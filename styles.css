@@ -40,24 +40,27 @@ html {
 img {
   width: 100%; }
 
+/* 전체 배경 */
 body {
   height: 100%;
   font-family: "Comfortaa", Helvetica, Arial, sans-serif;
-  background-color: #25b79f;
+  background-color: #fff6ff;
   /* Margin bottom by footer height */
   margin-bottom: 60px; }
 
+/* 타이틀/헤드라인 */
 h1,
 h2,
 h3,
 h4,
 h5 {
   font-family: "Comfortaa", Helvetica, Arial, sans-serif;
-  color: #07374a; }
+  color: #6d20e9; }
 
+/* 본문 텍스트 */
 p {
   font-family: "Quattrocento", sans-serif;
-  color: #f0f0e6; }
+  color: #4b4453; }
 
 body > .container-fluid {
   padding: 60px 15px 0; }
@@ -68,6 +71,7 @@ body > .container-fluid {
 .btn:focus, a:focus {
   outline: none !important; }
 
+/* 헤더(Navbar) */
 .navbar {
   height: 70px;
   background-color: transparent;
@@ -78,44 +82,44 @@ body > .container-fluid {
   margin-bottom: 0;
   border-radius: 0;
   transition: background-color 1s ease 0s; }
-
+  
 .navbar-brand {
   display: none;
   margin-top: 10px;
-  color: #f0f0e6;
+  color: #845ec2;
   font-weight: 400; }
 
 .navbar-default .navbar-nav > li > a {
-  color: #f0f0e6;
+  color: #6d20e9;
   font-weight: 500;
   font-size: 1em;
   text-transform: lowercase;
   margin: 10px 5px 5px 5px;
   border-radius: 5px; }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus {
-  color: #f0f0e6;
-  border: 1px solid #f0f0e6; }
+  color: #6d20e9;
+  border: 1px solid #fff6ff; }
 .navbar-default .navbar-nav > li > a:visited {
-  color: #f0f0e6;
+  color: #6d20e9;
   text-decoration: none; }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   background-color: transparent;
-  color: #f0f0e6; }
+  color: #6d20e9; }
 .navbar-default .navbar-toggle {
-  border-color: #f0f0e6; }
+  border-color: #fff6ff; }
   .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: #07374a; }
   .navbar-default .navbar-toggle .icon-bar {
-    color: #f0f0e6;
-    background-color: #f0f0e6; }
+    color: #6d20e9;
+    background-color: #fff6ff; }
 .navbar-default .navbar-collapse.collapse.in ul {
-  background-color: #07374a; }
+  background-color: #6d20e9; }
 
-/* Solid class attached on scroll past first section */
+/* 스크롤 이후 고정 옵션 */
 .navbar.solid {
-  background-color: #07374a;
+  background-color: #6d20e9;
   transition: background-color 1s ease 0s;
-  box-shadow: 0 0 4px rgba(7, 55, 74, 0.2); }
+  box-shadow: 0 0 4px #1f1926; }
   .navbar.solid .navbar-brand {
     display: inline-block;
     color: #f0f0e6;
@@ -124,13 +128,14 @@ body > .container-fluid {
     color: #f0f0e6;
     transition: color 1s ease 0s; }
 
+/* .cover class를 가진 HTML 섹션들의 설정 블록 */
 .cover {
-  padding: 10% 0 10% 0; }
+  padding: 10% 0 10% 0; } /*top, right, bottom, left*/
   .cover.top {
     padding: 15% 0 10% 0;
     height: 100vh;
     display: flex;
-    background-color: #25b79f; }
+    background-color: #fff6ff; }
   .cover.bottom {
     padding: 10% 0 10% 0; }
 
@@ -146,10 +151,11 @@ body > .container-fluid {
     .headline {
       padding-top: 0px; } }
 
+/* 섹션 별 배경 */
 #about {
-  background-color: #07374a; }
+  background-color: #fff6ff; }
   #about h2 {
-    color: #25b79f; }
+    color: #6d20e9; }
 
 .profile-img {
   margin-bottom: 15px;
@@ -168,7 +174,7 @@ body > .container-fluid {
     .about-tools ul:first-child {
       padding-left: 0px; }
     .about-tools ul {
-      color: #25b79f;
+      color: #1f1926;
       list-style: none; }
       .about-tools ul li {
         padding-top: 0.75em; }
@@ -218,12 +224,12 @@ body > .container-fluid {
 #contact {
   background-color: #07374a; }
   #contact h2 {
-    color: #25b79f; }
+    color: #f0f0e6; }
 
 .contact-social-icons p {
-  color: #25b79f; }
+  color: #f0f0e6; }
 .contact-social-icons ul a {
-  color: #25b79f;
+  color: #f0f0e6;
   list-style: none; }
   .contact-social-icons ul a:hover {
     color: #f0f0e6; }
@@ -242,16 +248,16 @@ body > .container-fluid {
 #scrollIcon, #scrollTopIcon {
   margin-top: 200px;
   padding: 10px;
-  font-size: 1.5em;
-  color: #07374a;
-  border: solid 2px #07374a;
+  font-size: 3.5em;
+  color: #9d88b2;
+  border: solid 10px #9d88b2;
   border-radius: 50%; }
 
 #scrollTopIcon {
   margin-top: 10px;
   font-size: 1em;
-  color: #f0f0e6;
-  border-color: #f0f0e6; }
+  color: #1e1e1e;
+  border-color: #1e1e1e; }
 
 .back-to-top {
   display: none; }
