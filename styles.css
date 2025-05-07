@@ -320,7 +320,7 @@ nav.navbar.solid .navbar-nav>li>a {
     background-color: #fff6ff !important;
 }
 .accordion-item:not(:first-of-type) {
-    border-bottom: 1px solid #51424f;
+    border-top: 1px solid #51424f;
 }
 .accordion-item {
     border-top: 1px solid #51424f;
