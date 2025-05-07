@@ -1,14 +1,12 @@
 $(document).ready(function () {
-
     // Transition effect for navbar and back-to-top icon
-    $(window).scroll(function () {
-        // checks if window is scrolled more than 500px, adds/removes solid class
-        if ($(this).scrollTop() > 550) {
+    let top_cover_height = $(".row.cover.top").outerHeight()
+    $(window).on("scroll", function () {
+        // checks if window is scrolled more than height of the cover, adds/removes solid class
+        if ($(this).scrollTop() > top_cover_height) {
             $('.navbar').addClass('solid');
-            $('.back-to-top').addClass('visible');
         } else {
             $('.navbar').removeClass('solid');
-            $('.back-to-top').removeClass('visible');
         }
 
     });
@@ -17,27 +15,32 @@ $(document).ready(function () {
     // Scrolling effect for Arrow icons
     $("#scrollIcon").click(function (e) {
         e.preventDefault();
-        $.scrollTo($("#about"), 1000);
+        scrollTo("#about");
     });
     $("#nav-about").click(function (e) {
         e.preventDefault();
-        $.scrollTo($("#about"), 1000);
+        scrollTo("#about");
     });
     $("#nav-skills").click(function (e) {
         e.preventDefault();
-        $.scrollTo($("#skills"), 1000);
+        scrollTo("#skills");
     });
     $("#nav-portfolio").click(function (e) {
         e.preventDefault();
-        $.scrollTo($("#portfolio"), 1000);
+        scrollTo("#portfolio");
     });
     $("#nav-contact").click(function (e) {
         e.preventDefault();
-        $.scrollTo($("#contact"), 1000);
+        scrollTo("#contact");
     });
     $(".navbar-brand").click(function (e) {
         e.preventDefault();
-        $.scrollTo(0, 1000);
+        scrollTo("body");
     });
 
+    function scrollTo(selector) {
+        $('html, body').animate({
+            scrollTop: parseInt($(selector).offset().top)
+        }, 500);
+    }
 });

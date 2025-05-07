@@ -101,9 +101,9 @@ a:focus {
 }
 
 /* 헤더(Navbar) */
-.navbar {
+nav.navbar {
   height: 70px;
-  background-color: transparent;
+  background-color: transparent !important;
   background: transparent;
   border: none;
   color: #f0f0e6;
@@ -114,13 +114,13 @@ a:focus {
 }
 
 .navbar-brand {
-  display: none;
   margin-top: 10px;
-  color: #845ec2;
+  color: #9F4298;
   font-weight: 400;
+  display: none;
 }
 
-.navbar-default .navbar-nav>li>a {
+.navbar-collapse .navbar-nav>li>a {
   color: #9F4298;
   font-weight: 500;
   font-size: 1em;
@@ -129,57 +129,48 @@ a:focus {
   border-radius: 5px;
 }
 
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-nav>li>a:active,
-.navbar-default .navbar-nav>li>a:focus {
-  color: #9F4298;
-  border: 1px solid #D1AFD3;
+.navbar-collapse .navbar-nav>li>a:hover,
+.navbar-collapse .navbar-nav>li>a:active,
+.navbar-collapse .navbar-nav>li>a:focus {
+  color: #51424f;
 }
 
-.navbar-default .navbar-nav>li>a:visited {
+.navbar-collapse .navbar-nav>li>a:visited {
   color: #9F4298;
   text-decoration: none;
 }
 
-.navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:hover,
-.navbar-default .navbar-nav>.active>a:focus {
+.navbar-collapse .navbar-nav>.active>a,
+.navbar-collapse .navbar-nav>.active>a:hover,
+.navbar-collapse .navbar-nav>.active>a:focus {
   background-color: transparent;
   color: #9F4298;
 }
 
-.navbar-default .navbar-toggle {
-  border-color: #fff6ff;
-}
-
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #D1AFD3;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
+.navbar .navbar-toggler {
+  border: none;
   color: #9F4298;
-  background-color: #fff6ff;
 }
 
-.navbar-default .navbar-collapse.collapse.in ul {
+.navbar .navbar-collapse.collapse.in ul {
   background-color: #9F4298;
 }
+
 
 /* 스크롤 이후 고정 옵션 */
-.navbar.solid {
-  background-color: #9F4298;
+nav.navbar.solid {
+  background-color: #9F4298 !important;
   transition: background-color 1s ease 0s;
   box-shadow: 0 0 4px #1f1926;
 }
 
-.navbar.solid .navbar-brand {
+nav.navbar.solid .navbar-brand {
   display: inline-block;
   color: #f0f0e6;
   transition: color 1s ease 0s;
 }
 
-.navbar.solid .navbar-nav>li>a {
+nav.navbar.solid .navbar-nav>li>a {
   color: #f0f0e6;
   transition: color 1s ease 0s;
 }
@@ -238,6 +229,11 @@ a:focus {
   color: #9F4298;
 }
 
+.card {
+    border: 0;
+    background-color: transparent;
+}
+
 .profile-img {
   margin-bottom: 15px;
   width: 120px;
@@ -274,11 +270,22 @@ a:focus {
 }
 
 .about-tools ul li {
-  padding-top: 0.75em;
+  padding-top: 0.2em;
 }
 
 .about-tools p {
-  color: #D1AFD3;
+  color: #51424f;
+  margin-top: 1.5em;
+}
+
+.text-bg-purple {
+    color: #fff !important;
+    background-color: #9F4298 !important;
+}
+
+.text-bg-lime {
+    color: #3c3f0b !important;
+    background-color: #CFDB31 !important;
 }
 
 .about-last {
@@ -301,9 +308,48 @@ a:focus {
   background-color: #fff6ff;
 }
 
-#portfolio h2 {
-  padding-bottom: 1.25em;
+.accordion {
+    border: 0 !important;
 }
+
+.accordion > .accordion-item {
+    border: none;
+}
+
+.accordion .accordion-body {
+    background-color: #fff6ff !important;
+}
+.accordion-item:not(:first-of-type) {
+    border-bottom: 1px solid #51424f;
+}
+.accordion-item {
+    border-top: 1px solid #51424f;
+}
+.accordion-header > .accordion-button {
+    font-weight: bolder;
+    font-size: 0.6em;
+    color: #9F4298;
+    background-color: #fff6ff;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #51424f;
+    background-color: #fff6ff;
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+}
+
+.accordion-header > .accordion-button > mark {
+    color: #51424f;
+    background-color: #fff6ff;
+    padding: 0.1em 0.2em;
+}
+
+.accordion-button:not(.collapsed) > mark {
+    color: #fffaff;
+    background-color: #9F4298;
+    padding: 0.1em 0.2em;
+}
+
 
 @media screen and (min-width: 768px) {
   .portfolio-projects {
@@ -338,8 +384,7 @@ a:focus {
   background: transparent;
   color: #9F4298;
   border: 1px solid #9F4298;
-  border-radius: 5px;
-  margin-bottom: 1.25em;
+  border-radius: 8px;
 }
 
 .portfolio-projects--btn:hover {
@@ -406,7 +451,7 @@ a:focus {
 
 #scrollIcon,
 #scrollTopIcon {
-  margin-top: 200px;
+  margin-top: 10vh;
   padding: 10px;
   font-size: 3.5em;
   color: #9F4298;
@@ -427,12 +472,13 @@ a:focus {
   display: block;
 }
 
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
+
+.navbar-collapse .navbar-collapse,
+.navbar-collapse .navbar-form {
   border: hidden;
 }
 
-.navbar-default .navbar-collapse.show {
+.navbar-collapse .navbar-collapse.show {
   background-color: #9F4298;
 }
 

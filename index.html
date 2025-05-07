@@ -12,45 +12,45 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <title>Hyeongseob Kim</title>
   <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
-
-  <body>
+    <!-- partial:index.partial.html -->
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-            aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Hyeongseob Kim</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li id="nav-about"><a href="#about">About Me</a></li>
-            <li id="nav-skills"><a href="#skills">Skills</a></li>
-            <li id="nav-portfolio"><a href="#portfolio">Project</a></li>
-            <li id="nav-contact"><a href="#contact">Contact</a></li>
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid col-10">
+        <a class="navbar-brand" href="#">Hyeongseob Kim</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item" id="nav-about">
+              <a class="nav-link" href="#about">About Me</a>
+            </li>
+            <li class="nav-item" id="nav-skills">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item" id="nav-portfolio">
+              <a class="nav-link" href="#portfolio">Projects</a>
+            </li>
+            <li class="nav-item" id="nav-contact">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
-
     <!-- Begin page content -->
     <div class="container-fluid">
       <div class="row cover top">
-        <div class="col-xs-12">
+        <div class="col">
           <div class="row">
-            <div class="col-xs-12 headline">
+            <div class="col headline">
               <h1 class="text-center">Kim Hyeongseob</h1>
               <p class="lead text-center"><span class="strong">AI Engineer</span>를 꿈꾸는 Construction Engineer</p>
             </div>
@@ -65,64 +65,87 @@
         </div>
       </div>
 
-      <div id="about" class="row cover">
-        <h1 class="text-center">About Me</h1>
-        <br>
-        <br>
-        <div class="row">
-          <div class="col-md-4 col-md-offset-1 text-center">
-            <img class="img-squre profile-img" src="assets/me.jpg" style="width: 300px;height: 380px;object-fit: cover;">
-          </div>
-          <div class="col-md-5 col-md-offset-1 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-left">
-            <p><strong>現</strong> AI Engineer</p>
-            <p><strong>前</strong> Construction Engineer</p>
-            <p><strong>현대건설(주) </strong>2022 ~ 2024</p>
-            <p><strong>동극건업(주) </strong>2016 ~ 2021</p>
-            <p><strong>두산건설(주) </strong>2014 ~ 2016</p>
-            <br>
-            <p>
-              건설업에서 10년간 Construction Engineer로 근무한 후,<br>
-              AI 기술을 통해 부가가치가 더 높은 산업에서 실질적 가치를 창출하고자 AI Engineer로 전향을 꿈꾸는 김형섭입니다.<br>
-              <br>
-              현재 LLM 및 Computer Vision 기반의 AI 솔루션 개발 프로젝트를 수행 중이며<br>
-              AR 및 Unreal Engine을 활용한 실시간 인터랙션 프로젝트에도 참여하고 있습니다.<br>
-              <br>
-              다양한 산업군에 AI를 적용해 효율성 개선과 문제 해결에 기여하고<br>
-              글로벌 시장에서 경쟁력 있는 AI 전문가로 성장하는 것을 목표로 하고 있습니다.
-            </p>
+      <div id="about" class="row justify-content-center cover">
+        <h1 class="text-center mb-5">About Me</h1>
+        <div class="card col-md-8 col-sm-10 col-xs-12">
+          <div class="row g-0">
+            <div class="col-lg-4 col-md-12">
+              <img src="assets/me.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-lg-8 col-md-12">
+              <div class="card-body ps-4">
+                <!-- <h5 class="card-title">안녕하세요. 김형섭입니다.</h5> -->
+                <p><strong>現</strong> AI Engineer</p>
+                <p><strong>前</strong> Construction Engineer</p>
+                <p><strong>현대건설(주) </strong>2022 ~ 2024</p>
+                <p><strong>동극건업(주) </strong>2016 ~ 2021</p>
+                <p><strong>두산건설(주) </strong>2014 ~ 2016</p>
+                <br>
+                <p class="card-text">
+                  건설업에서 10년간 Construction Engineer로 근무한 후, AI 기술을 통해 부가가치가 더 높은 산업에서 실질적 가치를 창출하고자 AI Engineer로 전향을 꿈꾸는 김형섭입니다.<br>
+                  <br>
+                  현재 LLM 및 Computer Vision 기반의 AI 솔루션 개발 프로젝트를 수행 중이며<br>
+                  AR 및 Unreal Engine을 활용한 실시간 인터랙션 프로젝트에도 참여하고 있습니다.<br>
+                  <br>
+                  다양한 산업군에 AI를 적용해 효율성 개선과 문제 해결에 기여하고<br>
+                  글로벌 시장에서 경쟁력 있는 AI 전문가로 성장하는 것을 목표로 하고 있습니다.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
       <div id="skills" class="row cover">
-        <div class="col-md-12 about-tools">
-          <h1 class="text-center">Skills</h1>
-          <br>
-          <br>
+        <div class="about-tools text-center">
+          <h1 class="text-center mb-5">Skills</h1>
           <div class="col-xs-12">
             <ul>
-              <p class="text-center">Programming Language</p>
-              <li>Python, SQL, HTML5, Markdown</li>
+              <p>Programming Language</p>
+              <span class="badge text-bg-lime me-1">Python</span>
+              <span class="badge text-bg-lime me-1">SQL</span>
+              <span class="badge text-bg-lime me-1">HTML5</span>
+              <span class="badge text-bg-lime">Markdown</span>
               <br>
 
-              <p class="text-center">Data Analysis</p>
-              <li>Numpy, Pandas, Scipy, Selenium, BeautifulSoup</li>
+              <p>Data Analysis</p>
+              <span class="badge text-bg-lime me-1">Numpy</span>
+              <span class="badge text-bg-lime me-1">Pandas</span>
+              <span class="badge text-bg-lime me-1">Scipy</span>
+              <span class="badge text-bg-lime me-1">Selenium</span>
+              <span class="badge text-bg-lime">BeautifulSoup</span>
               <br>
 
-              <p class="text-center">Visualization Analysis</p>
-              <li>Matplotlib, Seaborn, Plotly</li>
+              <p>Visualization Analysis</p>
+              <span class="badge text-bg-lime me-1">Matplotlib</span>
+              <span class="badge text-bg-lime me-1">Seaborn</span>
+              <span class="badge text-bg-lime me-1">Plotly</span>
               <br>
 
-              <p class="text-center">Machine & Deep Learning</p>
-              <li>Scikit-Learn, Pytorch, XGBoost, LightGBM</li>
-              <li>Hugging Face, Transformers, OpenCV, ComfyUI, Langchain, MCP</li>
+              <p>Machine & Deep Learning</p>
+              <span class="badge text-bg-lime me-1">Scikit-Learn</span>
+              <span class="badge text-bg-lime me-1">Pytorch</span>
+              <span class="badge text-bg-lime me-1">XGBoost</span>
+              <span class="badge text-bg-lime">LightGBM</span>
+              <br>
+              <span class="badge text-bg-lime me-1">Hugging Face</span>
+              <span class="badge text-bg-lime me-1">Transformers</span>
+              <span class="badge text-bg-lime me-1">OpenCV</span>
+              <span class="badge text-bg-lime me-1">ComfyUI</span>
+              <span class="badge text-bg-lime me-1">Langchain</span>
+              <span class="badge text-bg-lime">MCP</span>
               <br>
 
-              <p class="text-center">Deployment & Web Framework</p>
-              <li>FastAPI, Streamlit, Bootstrap, Docker</li>
+              <p>Deployment & Web Framework</p>
+              <span class="badge text-bg-lime me-1">FastAPI</span>
+              <span class="badge text-bg-lime me-1">Streamlit</span>
+              <span class="badge text-bg-lime">Docker</span>
               <br>
 
-              <p class="text-center">Tools & Collaboration Software</p>
-              <li>Git, GitHub, Notion, Postman</li>
+              <p>Tools & Collaboration Software</p>
+              <span class="badge text-bg-lime me-1">Git</span>
+              <span class="badge text-bg-lime me-1">GitHub</span>
+              <span class="badge text-bg-lime">Notion</span>
             </ul>
           </div>
         </div>
@@ -131,74 +154,82 @@
     </div><!-- End #About -->
 
     <div id="portfolio" class="row cover">
-      <h1 class="text-center">Projects</h2>
-        <div class="container">
-          <div class="row portfolio-projects"> <!-- 1st Two project row-->
-            <div class="col-lg-6"> <!--1st project -->
-              <div class="row">
-                <div class="col-sm-12 text-center">
-                  <h3 class="portfolio-projects--title">BeMyMuse</h3>
-                  <p class="portfolio-projects--desc">AI 언어 모델의 도메인 적합성 및 성능 향상을 위한 맞춤형 Fine-Tuning 서비스</p>
-                  <div class="col-sm-12 text-center">
-                    <img class="img-rounded portfolio-projects--image" src="assets/Adobe Express - file.png">
+      <h1 class="text-center mb-5">Projects</h2>
+      <div class = "container">
+          <div class = "row justify-content-center">
+              <div class="col-10">
+                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion" id="accordionPanelsStayOpenExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#beMyMuse" aria-expanded="true" aria-controls="beMyMuse">
+                          <mark>
+                        Be My Muse : AI 언어 모델의 도메인 적합성 및 성능 향상을 위한 맞춤형 Fine-Tuning 서비스
+                    </mark>
+                      </button>
+                    </h2>
+                    <div id="beMyMuse" class="accordion-collapse collapse show">
+                      <div class="accordion-body">
+                          MUSE Label에서 진행한 “BE MY MUSE” DACON 공모전에서 영감을 받아, 입력한 키워드만으로도 작사가가 의도하는 감성과 분위기를 반영한 가사를 자동 생성하는 AI 언어 모델을 개발합니다. 이를 통해 작사가의 아이디어 발상 과정을 보조하는 창작 지원 도구를 구현하는 것을 목표로 합니다.
+                          <p><span class="badge text-bg-lime me-1">KoGPT2</span><span class="badge text-bg-lime me-1">Pytorch</span><span class="badge text-bg-lime me-1">Transformers</span><span class="badge text-bg-lime me-1">Sickit-Learn</span><span class="badge text-bg-lime me-1">FastAPI</span>
+                              <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Hyeongseob91/BeMyMuse.git"
+                                role="button"><i class="fa-brands fa-github"></i> Github</a>
+                          </p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="portfolio-projects--desc">KoGPT2, Pytorch, Transformers, Sickit-Learn, FastAPI</p>
-                  <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Hyeongseob91/BeMyMuse.git"
-                    role="button"><i class="fa-brands fa-github"></i> Github</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6"> <!--2nd project -->
-              <div class="row">
-                <div class="col-sm-12 text-center pull-right-sm">
-                  <h3 class="portfolio-projects--title">EconDigest</h3>
-                  <p class="portfolio-projects--desc">AI 기반 경제 유튜브 콘텐츠 요약 서비스</p>
-                  <div class="col-sm-12 text-center pull-right-sm">
-                    <img class="img-rounded portfolio-projects--image" src="assets/Adobe Express - file (1).png">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ecoDigest" aria-expanded="false" aria-controls="ecoDigest">
+                        <mark>Econ Digest : AI 기반 경제 유튜브 콘텐츠 요약 서비스</mark>
+                      </button>
+                    </h2>
+                    <div id="ecoDigest" class="accordion-collapse collapse show">
+                      <div class="accordion-body">
+                          Hugging Face, Gemini, QLoRA, FastAPI, OpenAI Whisper
+                          <p><span class="badge text-bg-lime me-1">KoGPT2</span><span class="badge text-bg-lime me-1">Pytorch</span><span class="badge text-bg-lime me-1">Transformers</span><span class="badge text-bg-lime me-1">Sickit-Learn</span><span class="badge text-bg-lime me-1">FastAPI</span>
+                              <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Text-Audio-Team/EconDigest.git"
+                                role="button"><i class="fa-brands fa-github"></i> Github</a>
+                          </p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="portfolio-projects--desc">Hugging Face, Gemini, QLoRA, FastAPI, OpenAI Whisper</p>
-                  <a class="btn btn-rounded portfolio-projects--btn"
-                    href="https://github.com/Text-Audio-Team/EconDigest.git" role="button"><i
-                      class="fa-brands fa-github"></i> Github</a>
-                </div>
-              </div>
-            </div>
-          </div><!--end 1st Two project row-->
-
-          <div class="row portfolio-projects"><!-- 2st Two project row-->
-            <div class="col-lg-6"><!--3rd project -->
-              <div class="row">
-                <div class="col-sm-12 text-center">
-                  <h3 class="portfolio-projects--title">Perfect Pose</h3>
-                  <p class="portfolio-projects--desc">AI 기반 OpenCV 및 YOLO를 활용한 실시간 Pose Detection Unreal Engine Game</p>
-                  <div class="col-sm-12 text-center">
-                    <img class="img-rounded portfolio-projects--image" src="assets/Adobe Express - file (3).png">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#perfectPose" aria-expanded="false" aria-controls="perfectPose">
+                        <mark>Perfect Pose : AI 기반 OpenCV 및 YOLO를 활용한 실시간 Pose Detection Unreal Engine Game</mark>
+                      </button>
+                    </h2>
+                    <div id="perfectPose" class="accordion-collapse collapse show">
+                      <div class="accordion-body">
+                          OpenCV, YOLO, SAM, FastAPI, Pydantic
+                          <p><span class="badge text-bg-lime me-1">KoGPT2</span><span class="badge text-bg-lime me-1">Pytorch</span><span class="badge text-bg-lime me-1">Transformers</span><span class="badge text-bg-lime me-1">Sickit-Learn</span><span class="badge text-bg-lime me-1">FastAPI</span>
+                              <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Hyeongseob91/PerfectPose.git"
+                                role="button"><i class="fa-brands fa-github"></i> Github</a>
+                          </p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="portfolio-projects--desc">OpenCV, YOLO, SAM, FastAPI, Pydantic</p>
-                  <a class="btn btn-rounded portfolio-projects--btn"
-                    href="https://github.com/Hyeongseob91/PerfectPose.git" role="button"><i
-                      class="fa-brands fa-github"></i> Github</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6"> <!--4th project -->
-              <div class="row">
-                <div class="col-sm-12 text-center pull-right-sm"><!--flipped on small, unflipped on large-->
-                  <h3 class="portfolio-projects--title">KOMI</h3>
-                  <p class="portfolio-projects--desc">GenAI 원격 운동 진단 서비스</p>
-                  <div class="col-sm-12 text-center pull-right-sm">
-                    <img class="img-rounded portfolio-projects--image" src="assets/Adobe Express - file (2).png">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#komi" aria-expanded="false" aria-controls="komi">
+                        <mark>KOMI : GenAI 원격 운동 진단 서비스</mark>
+                      </button>
+                    </h2>
+                    <div id="komi" class="accordion-collapse collapse show">
+                      <div class="accordion-body">
+                          OpenCV, ChromaDB, OpenAI(LLM), Langchain, RAG, WebSocket, FastAPI, Streamlit
+                          <p><span class="badge text-bg-lime me-1">KoGPT2</span><span class="badge text-bg-lime me-1">Pytorch</span><span class="badge text-bg-lime me-1">Transformers</span><span class="badge text-bg-lime me-1">Sickit-Learn</span><span class="badge text-bg-lime me-1">FastAPI</span>
+                              <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Hyeongseob91/KOMI.git/"
+                                role="button"><i class="fa-brands fa-github"></i> Github</a>
+                          </p>
+                      </div>
+                    </div>
                   </div>
-                  <p class="portfolio-projects--desc">OpenCV, ChromaDB, OpenAI(LLM), Langchain, RAG, WebSocket, FastAPI,
-                    Streamlit</p>
-                  <a class="btn btn-rounded portfolio-projects--btn" href="https://github.com/Hyeongseob91/KOMI.git/"
-                    role="button"><i class="fa-brands fa-github"></i> Github</a>
                 </div>
-              </div>
             </div>
-          </div><!--end 2st Two project row-->
         </div>
+    </div>
     </div>
     </div><!-- End #Portfolio -->
 
@@ -228,11 +259,9 @@
       </div>
     </footer>
 
-  </body>
   <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
-  <script src='https://cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <script src="scripts.js"></script>
 </body>
 
