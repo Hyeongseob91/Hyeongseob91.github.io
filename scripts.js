@@ -5,8 +5,10 @@ $(document).ready(function () {
         // checks if window is scrolled more than height of the cover, adds/removes solid class
         if ($(this).scrollTop() > top_cover_height) {
             $('.navbar').addClass('solid');
+            $('.navbar-container').addClass('solid');
         } else {
             $('.navbar').removeClass('solid');
+            $('.navbar-container').removeClass('solid');
         }
 
     });

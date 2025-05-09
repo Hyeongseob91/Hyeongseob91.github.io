@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa:400,700,300|Quattrocento");
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@font-face {
+  font-family: 'GoyangIlsan';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 전체 배경 */
+body {
+  font-family: "Comfortaa", "GoyangIlsan", Helvetica, Arial, sans-serif;
+  background-color: #ffefff;
+  overflow-wrap: break-word;
+}
+
+.cover:nth-child(even) {
+  background : #fffaff;
+}
 
 .about-tools ul li,
 .contact-social-icons ul a li {
@@ -10,12 +26,6 @@
   float: none;
   margin-left: auto;
   margin-right: auto;
-}
-
-.break {
-  clear: both;
-  margin-top: 10px;
-  background-color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -61,31 +71,49 @@ img {
   width: 100%;
 }
 
-/* 전체 배경 */
-body {
-  height: 100%;
-  font-family: "Comfortaa", Helvetica, Arial, sans-serif;
-  background-color: #ffffff;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
 /* 타이틀/헤드라인 */
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-family: "Comfortaa", "Nanum Gothic", Arial, sans-serif;
+  font-family: "Comfortaa", "GoyangIlsan", Arial, sans-serif;
   font-weight: 700;
   color: #9F4298;
 }
 
 /* 본문 텍스트 */
-p {
-  font-family: "Quattrocento", "Nanum Gothic", sans-serif;
-  color: #4b4453;
+p, dl {
+  font-family: "Quattrocento", "GoyangIlsan", sans-serif;
+  color: #4b4453 !important;
   font-size: 1.1em;
+}
+
+dl > dd {
+  text-align: right;
+  font-family: "GoyangIlsan", sans-serif;
+  color: #816c7e !important;
+  font-size: 1.2em;
+}
+
+dl > dt {
+  font-family: "GoyangIlsan", sans-serif;
+  color: #4b4453 !important;
+  font-size: 1em;
+  font-weight: lighter;
+}
+
+dl > dt > h3 {
+  font-family: "GoyangIlsan", sans-serif;
+  color: #4b4453 !important;
+  font-size: 1.2em;
+
+}
+
+dl > dt > p.position {
+  font-size: 1em;
+  font-style: italic;
+  margin: 0.5em 0;
 }
 
 body>.container-fluid {
@@ -176,6 +204,12 @@ nav.navbar.solid .navbar-nav>li>a {
   transition: color 1s ease 0s;
 }
 
+.navbar.solid .navbar-toggler {
+  border: none;
+  color: #f0f0e6;
+}
+
+
 /* .cover class를 가진 HTML 섹션들의 설정 블록 */
 .cover {
   padding: 12% 0 12% 0;
@@ -186,7 +220,6 @@ nav.navbar.solid .navbar-nav>li>a {
   padding: 18% 0 10% 0;
   height: 100vh;
   display: flex;
-  background-color: #fffaff;
 }
 
 .cover.bottom {
@@ -226,8 +259,23 @@ nav.navbar.solid .navbar-nav>li>a {
   background-color: #fff6ff;
 }
 
-#about h2 {
-  color: #9F4298;
+#about .profile-photo {
+  background-image: url("assets/me.jpg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 28em;
+}
+
+#about .card-text h2 {
+  color: #51424f;
+  margin-bottom: 1.2em;
+  margin-top: 1em;
+}
+
+#about .card-text {
+  color: #51424f;
+  line-height: 2em;
 }
 
 .card {
@@ -235,9 +283,17 @@ nav.navbar.solid .navbar-nav>li>a {
     background-color: transparent;
 }
 
-.profile-img {
-  margin-bottom: 10px;
-  width: 120px;
+ul.dashed {
+  margin: 0;
+  list-style-type: none;
+}
+ul.dashed > li {
+  text-indent: -1em;
+}
+ul.dashed > li:before {
+  content: "-";
+  text-indent: 4em;
+  margin-right: 1em;
 }
 
 .about,
@@ -252,7 +308,6 @@ nav.navbar.solid .navbar-nav>li>a {
   padding-top: 4.375em;
   font-weight: 700;
   font-size: 1.5em;
-  background-color: #ffffff;
 }
 
 @media screen and (min-width: 992px) {
@@ -284,6 +339,10 @@ nav.navbar.solid .navbar-nav>li>a {
     background-color: #9F4298 !important;
 }
 
+.bg-purple {
+  background-color: #9F4298 !important;
+}
+
 .text-bg-lime {
     color: #3c3f0b !important;
     background-color: #CFDB31 !important;
@@ -305,10 +364,6 @@ nav.navbar.solid .navbar-nav>li>a {
   color: #9F4298;
 }
 
-#portfolio {
-  background-color: #ffffff;
-}
-
 .accordion {
     border: 0 !important;
 }
@@ -318,7 +373,7 @@ nav.navbar.solid .navbar-nav>li>a {
 }
 
 .accordion .accordion-body {
-    background-color: #ffffff !important;
+    background-color: #fffaff !important;
 }
 .accordion-item:not(:first-of-type) {
     border-top: 1px solid #51424f;
@@ -329,26 +384,22 @@ nav.navbar.solid .navbar-nav>li>a {
 .accordion-header > .accordion-button {
     font-weight: 900;
     font-size: 0.65em;
-    color: #9F4298;
-    background-color: #ffffff;
+    color: #51424f;
+    background-color: #fffaff;
 }
 
 .accordion-button:not(.collapsed) {
     color: #9F4298;
-    background-color: #ffffff;
     box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
 }
 
-.accordion-header > .accordion-button > mark {
-    color: #9F4298;
-    background-color: #ffffff;
-    padding: 0.1em 0.2em;
+.accordion-button {
+    color: #51424f;
+    padding: 1.2em 0.5em;
 }
 
-.accordion-button:not(.collapsed) > mark {
-    color: #51424f;
-    background-color: #ffffff;
-    padding: 0.1em 0.2em;
+.accordion-body {
+  padding-bottom: 2.5em;
 }
 
 
@@ -397,48 +448,22 @@ nav.navbar.solid .navbar-nav>li>a {
   margin-bottom: 1.875em;
 }
 
-#contact {
-  background-color: #ffffff;
-}
-
 #contact h2 {
   color: #9F4298;
 }
 
-.contact-email a {
-  color: #9F4298;
+#contact dl dd, #contact dl dt {
+  color: #51424f !important;
+  font-family: "Comfortaa", "GoyangIlsan", Arial, sans-serif;
 }
 
-.contact-email ul a {
+#contact a {
   color: #51424f;
-  list-style: none;
+  text-decoration: none;
 }
 
-.contact-email ul a:hover {
-  color: #51424f;
-}
-
-.contact-email ul a li {
-  display: inline-block;
-  padding: 2%;
-}
-
-.contact-social-icons p {
-  color: #9F4298;
-}
-
-.contact-social-icons ul a {
-  color: #51424f;
-  list-style: none;
-}
-
-.contact-social-icons ul a:hover {
-  color: #51424f;
-}
-
-.contact-social-icons ul a li {
-  display: inline-block;
-  padding: 2%;
+#contact a:hover {
+  color: #7d5277;
 }
 
 .footer {
@@ -473,6 +498,10 @@ nav.navbar.solid .navbar-nav>li>a {
   display: block;
 }
 
+
+.navbar-container.solid {
+  background-color: #9F4298;
+}
 
 .navbar-collapse .navbar-collapse,
 .navbar-collapse .navbar-form {
