@@ -361,32 +361,36 @@
                     <h2 class="accordion-header">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#perfectPose" aria-expanded="false" aria-controls="perfectPose">
-                        'Perfect Poses: 완벽한 자세' 게임 (2025.03)
+                        Perfect Poses: 완벽한 자세 게임 (2025.03)
                       </button>
                     </h2>
                     <div id="perfectPose" class="accordion-collapse collapse show">
                       <div class="accordion-body">
-                        “Perfect Poses(완벽한 자세)” 프로젝트는 Steam의 Perfect Poeses를 Reference로 하여, AI·Data Engineer 팀과 Unreal
-                        Engine5 개발 팀이 협업하여 만든 AI 기반 실시간 자세 인식 게임입니다.<br>
-                        <br>
-                        <strong>Pose Estimator 기능 개발</strong>
                         <ul>
-                          <li>YOLO-Pose 모델을 상속받는 PoseEstimator 클래스 설계·구현</li>
-                          <li>OpenCV를 활용하여 웹캠 영상에서 감지된 인물의 형상을 초당 30프레임으로 캡처하고, YOLO-Pose 모델을 이용해 17개 관절의 keypoint를
-                            실시간으로
-                            추출한 뒤, 이를 후속 처리 시스템에 전달하는 기능을 개발</li>
+                          <li><strong>프로젝트 개요 : "Perfect Poses"는 Steam 게임을 참고하여, Unreal Engine5 팀과 AI·Data 팀이 협업해 개발한
+                              실시간 자세 인식 기반 AI 게임입니다.</strong></li>
+                          <ul>
+                            <li>YOLO-Pose 기반의 자세 분석 기능을 통해 사용자의 움직임을 인식하고, 올바른 자세를 실시간으로 유도하는 게임 인터랙션 구현</li>
+                            <li>좌표 기반의 자세 유사도 분석, 정답 포즈 비교를 통한 정확도 점수화 등 AI 모델 기반 피드백 설계</li>
+                          </ul><br>
+
+                          <li><strong>역할</strong></li>
+                          <ul>
+                            <li>YOLO-Pose 모델을 상속받는 PoseEstimator 기능의 클래스를 직접 설계 및 구현</li>
+                            <li>OpenCV를 활용하여 웹캠 영상에서 감지된 인물의 형상을 초당 30프레임으로 캡처하고, 17개 관절의 keypoint를 실시간 추출 및 전달하는 기능 개발
+                            </li>
+                            <li>이틀간의 단기 프로젝트임을 감안하여, 이미 완성되어 서비스하는 Zeemo AI와 ClipChamp를 통해 해상도 640x480 기준의 정답 데이터 생성 및및
+                              영상 정규화</li>
+                          </ul>
                         </ul>
-                        <strong>데이터 수집·전처리 자동화</strong>
-                        <ul>
-                          <li>Zeemo AI를 활용해 정답 데이터 구현에 활용</li>
-                          <li>ClipChamp로 영상 크롭·리사이즈(640×480)로 동일한 픽셀 기준의 데이터 확보</li>
-                        </ul>
+
                         <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto"><span class="badge text-bg-lime me-1">OpenCV</span><span
-                              class="badge text-bg-lime me-1">YOLO</span><span
-                              class="badge text-bg-lime me-1">SAM</span><span
-                              class="badge text-bg-lime me-1">FastAPI</span><span
-                              class="badge text-bg-lime me-1">Pydantic</span></div>
+                          <div class="col-auto">
+                            <span class="badge text-bg-lime me-1">OpenCV</span>
+                            <span class="badge text-bg-lime me-1">YOLO-Pose</span>
+                            <span class="badge text-bg-lime me-1">Zeemo</span>
+                            <span class="badge text-bg-lime me-1">ClipChamp</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -395,31 +399,49 @@
                     <h2 class="accordion-header">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#ecoDigest" aria-expanded="false" aria-controls="ecoDigest">
-                        AI 기반 경제 유튜브 영상 요약 문서화 서비스 (2025.02) </strong>
+                        AI 기반 경제 유튜브 영상 요약 문서화 서비스 (2025.02)
                       </button>
                     </h2>
                     <div id="ecoDigest" class="accordion-collapse collapse show">
                       <div class="accordion-body">
-                        “경제 유튜브, 핵심만 보자!” 해당 서비스는 금융·재테크 정보를 찾기 위해 방대한 영상을 일일이 시청할 필요 없이, 클릭 한 번으로 요약 보고서를 받아볼 수 있는 AI 웹
-                        애플리케이션입니다.<br>
-                        <br>
-                        <strong>백엔드 및 프론트 통합 서비스 구현</strong>
                         <ul>
-                          <li>FastAPI 기반 백엔드 서버 구축 및 RESTful API 개발</li>
-                          <li>Streamlit으로 링크 업로드부터 결과 문서 요약까지 단일 버튼 UI 구성</li>
-                          <li>폴더 단위 일괄 처리 구조 설계 및 사용자 실행 흐름 최적화</li>
+                          <li><strong>프로젝트 개요 : “경제 유튜브, 핵심만 보자!” 해당 서비스는 금융·재테크 정보를 찾기 위해 방대한 영상을 일일이 시청할 필요 없이, 클릭 한
+                              번으로 요약 보고서를 받아볼 수 있는 AI 웹 애플리케이션 프로젝트입니다.</strong></li>
+                          <ul>
+                            <li>보고싶은 영상의 오디오를 추출하여, OpenAI Whisper 기반의 STT 기능을 활용하고 LLM 모델로 핵심 키워드 기반의 요약 문서를 생성해주는 기능을
+                              개발합니다.</li>
+                            <li>FastAPI 프레임워크를 사용하여 백엔드 서버를 구축하고, Streamlit으로 프론트엔드의 사용자 UI를 구현하여 One-click의 요약 서비스를
+                              제공합니다.</li>
+                          </ul><br>
+
+                          <li><strong>역할</strong></li>
+                          <ul>
+                            <li>yt-dlp와 FFmpeg를 활용해 고음질 오디오 분리 및 자동 정리 기능 개발</li>
+                            <li>FastAPI 기반의 백엔드 서버 구축 및 RESTful API 설계 및 구현</li>
+                            <li>Streamlit을 활용해 링크 입력부터 문서 생성까지 단일 버튼 UI 구성</li>
+                          </ul>
                         </ul>
-                        <strong>오디오 분리 및 저장 구조 설계</strong>
-                        <ul>
-                          <li>yt-dlp라이브러리, FFmpeg 기반 고음질 음원 분리 및 리소스 정리 자동화 기능 개발</li>
-                          <li>리소스 단위 관리 및 캐싱을 고려한 저장 경로 자동 분기 시스템 구현</li>
-                        </ul>
+                        <li><strong>트러블슈팅</strong></li>
+                        <ol>
+                          <li>연동된 웹캠의 코사인 유사도 동시 분석 어려움</li>
+                          <ul>
+                            <li>문제 : 웹캠의 2D 좌표만으로 회전값 산출이 어려워, 실시간 코사인 유사도 기반의 동시 분석에 제약이 발생함</li>
+                            <li>원인 : YOLO-Pose 모델은 단일 시점에서의 2D 좌표만으로 추출하므로, 관절의 회전 또는 비틀림과 같은 3차원적 움직임을 반영하기가 어려웠으며,
+                              이로 인해 한 방향만으로는 자세의 정확도 판단의 한계가 존재</li>
+                            <li>해결 : 동일한 자세를 Front View와 Side View 두 각도에서 각각 연산하도록 처리하고 각 시점의 관절 좌표를 개별적으로 분석하여 두
+                              방향에서의 코사인 유사도를 병렬 계산한 후 각각의 결과를 사용자에게 동시에 송출하는 방식으로 구현</li>
+                          </ul>
+                        </ol>
+
                         <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto"><span class="badge text-bg-lime me-1">Hugging Face</span><span
-                              class="badge text-bg-lime me-1">Gemini</span><span
-                              class="badge text-bg-lime me-1">QLoRA</span><span
-                              class="badge text-bg-lime me-1">FastAPI</span><span class="badge text-bg-lime me-1">OpenAI
-                              Whisper</span></div>
+                          <div class="col-auto">
+                            <span class="badge text-bg-lime me-1">FastAPI</span>
+                            <span class="badge text-bg-lime me-1">yt-dlp</span>
+                            <span class="badge text-bg-lime me-1">Hugging Face</span>
+                            <span class="badge text-bg-lime me-1">QLoRA</span>
+                            <span class="badge text-bg-lime me-1">Streamlit</span>
+                            <span class="badge text-bg-lime me-1">FFmpeg</span>
+                          </div>
                         </div>
                       </div>
                     </div>
