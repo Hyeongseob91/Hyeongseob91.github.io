@@ -334,6 +334,11 @@ ul.dashed > li:before {
   margin-top: 1.5em;
 }
 
+.text-bg-white {
+    color: #fff !important;
+    background-color: #fffaff !important;
+}
+
 .text-bg-purple {
     color: #fff !important;
     background-color: #9F4298 !important;
