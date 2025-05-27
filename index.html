@@ -483,6 +483,7 @@
                               <li>튜닝이 완료 된 모델을 사용하여 텍스트를 생성하고, 생성 된 텍스트를 BLEU, ROUGE, Perplexity로 평가.</li>
                               <li>평가 완료된 항목은 Matplotlib 라이브러리를 활용하여 시각화 진행. 객관적 결과 지표 확보.</li>
                             </ul>
+                            <img src="assets/image5.png" alt="Image Loading...">
                             <li>) 데이터 수집 동적 Crawling 기능 개발</li>
                             <ul>
                               <li>멜론 차트에서 음원에 맞춰 선정한 장르 3개 중 1개(힙합) 차트를 Selenium 라이브러리를 활용한 동적 크롤링 방식으로 수집.</li>
@@ -546,12 +547,6 @@
                               영상 정규화</li>
                           </ul>
                         </ul><br>
-                        <ul>
-                          <li><strong>트러블슈팅</strong></li>
-                          <ol>
-                            <li>단기 프로젝트라 트러블슈팅은 없었음</li>
-                        </ul>
-
                         <div class="row g-0 mt-2 justify-content-end">
                           <div class="col-auto">
                             <span class="badge text-bg-lime me-1">OpenCV</span>
@@ -595,18 +590,6 @@
                             <li>FastAPI 기반의 백엔드 서버 구축 및 RESTful API 설계 및 구현</li>
                             <li>Streamlit을 활용해 링크 입력부터 문서 생성까지 단일 버튼 UI 구성</li>
                           </ul>
-                        </ul>
-                        <ul>
-                          <li><strong>트러블슈팅</strong></li>
-                          <ol>
-                            <li>Streamlit 단일 버튼 UI 블로킹 이슈</li>
-                            <ul>
-                              <li>문제 : 영상 요약 처리 중 UI가 멈추고 “응답 없음” 상태 발생</li>
-                              <li>원인 : Streamlit에서 버튼 클릭 이벤트가 메인 스레드를 점유</li>
-                              <li>해결 : 문제가 일어나는 예상지점에서 spinner로 비동기 캐싱 및 로딩을 표시하고, 백엔드 FastAPI에 비동기로 요청(HTTP POST →
-                                asyncio)</li>
-                            </ul>
-                          </ol>
                         </ul>
                         <div class="row g-0 mt-2 justify-content-end">
                           <div class="col-auto">
