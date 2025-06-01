@@ -309,6 +309,11 @@
                                 <li>Node.2 : Game Report Analyze System</li>
                                 <li>Node.3 : Weapon/Skills Recommended System</li>
                               </ul>
+                              <li>TypeDict를 상속받는 MyState 클래스 설정</li>
+                              <ul>
+                                <li>question, context, response, relevence로 구성</li>
+                                <li>StateGraph 설정 전 Conditonal_Edge 구조 설계</li>
+                              </ul>
                               <li>HuggingFace의 Whisper Model으로 STT(Speech to Text) 기능을 구축하여, 음성으로 수신 할 수 있는 통신 파이프라인 구축
                               </li>
                               <li>게임 시나리오 & 캐릭터 특징 등, 데이터 수집 및 정제를 통해 RAG 문서 활용을 위한 VectroDB(Chroma)에 저장</li>
@@ -579,9 +584,12 @@
                               <li>실시간으로 통신이 이뤄지는만큼 계산 리소스가 상대적으로 효율적인 YOLO-Pose8n 모델로 사용</li>
                               <ol>
                                 <li>Start_camera : 실행과 동시에 웹캠 혹은 동영상이 자동으로 감지되도록 설정하며, 1명의 인원을 트래킹하는것을 Base로 기능 구현</li>
-                                <li>Video_image_extraction : 영상에서 감지된 인물의 형상을 초당 30프레임으로 캡처하고, 사전에 설정된 루트로 저장하는 메서드 개발<li>
-                                <li>Capture_image_detecting : OpenCV기반의 Detecting 기능을 개발하여, 저장된 Frame의 KeyPoints를 추출하는 메서드 개발</li>
-                                <li>real_time_video_detecting : RealTime으로 웹캠에서 감지 된 사람의 움직임을 실시간으로 분석하고, 17개의 관절 KeyPoints를(머리부터 발끝까지)<br>
+                                <li>Video_image_extraction : 영상에서 감지된 인물의 형상을 초당 30프레임으로 캡처하고, 사전에 설정된 루트로 저장하는 메서드 개발
+                                <li>
+                                <li>Capture_image_detecting : OpenCV기반의 Detecting 기능을 개발하여, 저장된 Frame의 KeyPoints를 추출하는
+                                  메서드 개발</li>
+                                <li>real_time_video_detecting : RealTime으로 웹캠에서 감지 된 사람의 움직임을 실시간으로 분석하고, 17개의 관절
+                                  KeyPoints를(머리부터 발끝까지)<br>
                                   추출 및 저장하여 JSON 타입으로 송신하는 메서드 개발</li>
                               </ol>
                             </ul>
