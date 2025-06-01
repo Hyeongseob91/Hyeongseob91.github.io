@@ -271,31 +271,42 @@
                           <br>
                           <li><strong>기획 의도</strong></li>
                           <ul>
-                            <li>본 프로젝트는 AI 엔지니어 3명과, 언리얼 엔진 개발자4명이 협업하여 제작 중인 차세대 FPS 게임 개발 프로젝트 입니다.<br>
-                              MCP 기반의 AI Agent 및 AI Tool을 직접 설계 및 구현함으로써, <strong>언리얼 엔진 에디터 환경에서의 게임 개발 워크플로우를
-                                혁신</strong>하고, 플레이어에게 사용자 친화적인 AI 경험을 제공하는 것을 목표로 하고 있습니다.<br>
-                              AI 기술이 프로젝트 기획부터 개발, 플레이 환경 전반에 걸쳐서 유기적으로 통합되도록 설계되었으며, 개발 효율성과 사용자 경험을 동시에 향상시키는 새로운 게임
-                              제작 패러다임을 제시하는 것이 최종목표입니다.</li>
+                            <li>본 프로젝트는 MCP 기술을 활용하여 <strong>개발자의 리소스를 절감 할 수 있는 워크플로우 개선에 초점</strong>을 맞춘 차세대 FPS 게임 개발 프로젝트 입니다.<br>
+                              단순히 최신 AI 기술을 게임에 접목하는 것을 넘어, MCP 기반의 AI Agent 및 AI Tool을 직접 설계 및 구현을 통해 <strong>언리얼 엔진 에디터 환경에서의 게임 개발 워크플로우를
+                              근본적으로 개선하고, 반복적인 수작업 및 리소스 투입을 획기적으로 절감</strong>하는 것을 핵심 목표로 설정하였습니다.<br>
+                              이를 통해 개발 효율성을 극대화하고, 결과적으로 플레이어에게 지금까지 경험하지 못한 수준의 사용자 친화적인 AI 경험을 제공하고자 합니다.<br>
+                              AI 기술이 프로젝트 개발부터 플레이 환경 전반에 걸쳐 유기적으로 통합되도록 설계되어, 개발 효율성과 사용자 경험을 동시에 향상시키는 새로운 게임 제작 패러다임을 제시하는 것이 최종목표입니다.</li>
                           </ul>
                           <br>
                           <li><strong>담당 기능</strong></li>
                           <ol>
                             <li>) 게임 개발자 환경 : 무기 반동 궤적 생성 AI Tool 기능</li>
                             <ul>
-                              <li>총기 종류별(권총, 기관총, 산탄총 등) 반동 궤적을 자동 생성하는 MCP Server 기반 AI Tool</li>
+                              <li>총기 종류별(기관총, 권총, 산탄총 등) 반동 궤적을 자동 생성하는 MCP Server 기반 AI Tool</li>
                               <li>NumPy를 기반으로 반동의 난수 시드값을 바탕으로 x/y 좌표 시퀀스를 생성</li>
+                              <ul>
+                                <li>초탄 : 1번째 발은 좌표 값을 0,0 으로 설정하고, 1/3 값으로 구분하여 총기궤적의 X축보다 Y축이 크게 흔들리도록 설정</li>
+                                <li>중탄 : 일반적인 게임 개발에서의 총기 궤적을 참고하여, X축과 Y축이 같이 흔들리도록 설정</li>
+                                <li>후탄 : Y축은 더 이상 크게 흔들리지 않고 미세한 레벨 값의 차이만 있도록 설정. X 축의 흔들림을 크게 설정하고 좌측과 우측 한방향으로 크게 이동하도록 설정</li>
+                              </ul>
                               <li>Matplotlib을 활용해 시각적으로 생성된 난수의 궤적 검토 가능</li>
-                              <li>MCP Server와 연동 된 Host에 자연어로 명령어를 입력하면 결과 출력 가능</li>
-                              <li>Unreal MCP Plugin을 통해 언리얼 엔진과의 연동 가능</li>
-                              <li>연동이 완료되면 LLM 모델(ex. Claude)등을 통해 언리얼 에디터 상에서 직관적 사용 가능</li>
+                              <li>Unreal MCP Plugin을 통해 언리얼 엔진과의 연동</li>
+                              <ul>
+                                <li>연동을 통해 C++로만 구현해야 했던 Unreal Engine에서 자연어로 명령어를 입력하여 사용 가능</li>
+                              </ul>
+                              <li>연동이 완료되면 MCP Server와 연동 된 Host(LLM Model)등을 통해 언리얼 에디터 상에서 직관적 사용 가능</li>
                             </ul>
                             <img src="assets/image.png" alt="Image Loading...">
-                            <li>) 게임 사용자 환경 : LangGraph 기반 LLM을 활용한 게임 도우미 AI Agent 기능 개발</li>
+                            <li>) 게임 사용자 환경 : LangGraph를 활용한 RAG 파이프라인을 구축하여, 음성 통신 기반의 AI Agent 설계 및 개발</li>
                             <ul>
-                              <li>인게임 내 가이드, 규칙, 캐릭터 특징 등 AI 도우미 역할 기능 개발</li>
-                              <li>게임 시나리오 & 캐릭터 특징 등, 데이터 수집 및 정제를 통해 VectroDB에 저장</li>
-                              <li>RAG 파이프라인을 구축하여 사용자의 질문에 응답 할 수 있는 Chat-bot 기능 구축</li>
-                              <li>STT Model을 활용해 고도화하여, FPS 게임 특성에 맞는 음성 인식 기능 고도화 예정</li>
+                              <li>인게임 내 가이드, 규칙, 캐릭터 특징 등 AI 도우미 역할 3가지 기능 개발</li>
+                              <ul>
+                                <li>Node.1 : Chatbot System</li>
+                                <li>Node.2 : Game Report Analyze System</li>
+                                <li>Node.3 : Weapon/Skills Recommended System</li>
+                              </ul>
+                              <li>HuggingFace의 Whisper Model으로 STT(Speech to Text) 기능을 구축하여, 음성으로 수신 할 수 있는 통신 파이프라인 구축</li>
+                              <li>게임 시나리오 & 캐릭터 특징 등, 데이터 수집 및 정제를 통해 RAG 문서 활용을 위한 VectroDB(Chroma)에 저장</li>
                             </ul>
                             <img src="assets/image6.png" alt="Image Loading...">
                           </ol>
