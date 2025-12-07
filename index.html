@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="김형섭 - AI Engineer Portfolio. LangGraph, LangChain, RAG 전문 개발자">
-  <meta name="keywords" content="AI Engineer, LangGraph, LangChain, RAG, Python, Machine Learning">
+  <meta name="description" content="김형섭 - AI Engineer Portfolio">
+  <meta name="keywords" content="AI Researcher, AI Engineer, LangGraph, LangChain, RAG, Python, Machine Learning">
   <meta name="author" content="Hyeongseob Kim">
 
   <!-- Open Graph -->
@@ -12,7 +12,7 @@
   <meta property="og:description" content="AI Engineer Portfolio - LangGraph, LangChain, RAG 전문">
   <meta property="og:type" content="website">
 
-  <title>Hyeongseob Kim | AI Engineer</title>
+  <title>Hyeongseob Kim | AI Researcher & Engineer</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,19 @@
       <a href="#" class="navbar__brand">Hyeongseob Kim</a>
       <ul class="navbar__menu" id="navMenu">
         <li><a href="#about" class="navbar__link">About</a></li>
-        <li><a href="#career" class="navbar__link">Career</a></li>
+        <li class="navbar__dropdown">
+          <a href="#experience" class="navbar__link navbar__link--dropdown">
+            Career
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <ul class="navbar__dropdown-menu">
+            <li><a href="#experience" class="navbar__dropdown-link">Experience</a></li>
+            <li><a href="#education" class="navbar__dropdown-link">Education</a></li>
+            <li><a href="#certificates" class="navbar__dropdown-link">Certificates</a></li>
+            <li><a href="#awards" class="navbar__dropdown-link">Awards</a></li>
+            <li><a href="#licenses" class="navbar__dropdown-link">Licenses</a></li>
+          </ul>
+        </li>
         <li><a href="#skills" class="navbar__link">Skills</a></li>
         <li><a href="#projects" class="navbar__link">Projects</a></li>
         <li><a href="#contact" class="navbar__link">Contact</a></li>
@@ -49,22 +61,11 @@
     <div class="hero__content">
       <p class="hero__greeting">Welcome to my portfolio</p>
       <h1 class="hero__name">KIM HYEONGSEOB</h1>
-      <h2 class="hero__title">AI Engineer</h2>
+      <h2 class="hero__title">AI Research & Development</h2>
       <p class="hero__description">
-        현장에서 마주한 AI 기술에 영감을 받아 새로운 길을 개척하는 개발자.<br>
-        LangGraph, LangChain, RAG 파이프라인을 활용한 AI Agent 개발에 집중하고 있습니다.
+        Career Switch to AI from Architect<br>
+        Advanced RAG System, Multi-Agent, Personar 연구개발에 집중하고 있습니다.
       </p>
-      <div class="hero__social">
-        <a href="https://github.com/Hyeongseob91" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:rukais2294@gmail.com" class="hero__social-link" aria-label="Email">
-          <i class="fa-regular fa-envelope"></i>
-        </a>
-      </div>
     </div>
     <a href="#about" class="hero__scroll">
       <span>Scroll Down</span>
@@ -84,7 +85,7 @@
           <img src="assets/me2.jpg" alt="Hyeongseob Kim" class="about__image">
         </div>
         <div class="about__content fade-in">
-          <h3>김형섭</h3>
+          <h3 class="hero__name">KIM HYEONGSEOB</h3>
           <p class="about__text">
             안녕하세요. 현장에서 실제로 마주한 기술 하나로 진로를 바꾸게 된 <span class="about__highlight">김형섭</span>입니다.
           </p>
@@ -105,28 +106,37 @@
     </div>
   </section>
 
-  <!-- Career Section -->
-  <section class="section career" id="career">
+  <!-- Experience Section -->
+  <section class="section experience" id="experience">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Career</h2>
-        <p class="section__subtitle">지난 경험과 현재의 여정</p>
+        <h2 class="section__title">Experience</h2>
+        <p class="section__subtitle">실무 경험과 프로젝트</p>
       </div>
-
-      <!-- Experience Timeline -->
       <div class="timeline">
-        <p class="timeline__category">Experience</p>
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2025.07 - 현재</span>
+          <h3 class="timeline__title">(주)사운드마인드</h3>
+          <p class="timeline__subtitle">AX / AI Researcher / Manager</p>
+          <div class="timeline__description">
+            <ul>
+              <li>NLP 기반 AI 솔루션 연구 및 개발</li>
+              <li>생성형 AI 사업 기획 및 프로토타입 개발</li>
+            </ul>
+          </div>
+        </div>
 
         <div class="timeline__item">
           <div class="timeline__marker"></div>
           <span class="timeline__date">2022.01 - 2024.09</span>
           <h3 class="timeline__title">현대건설(주)</h3>
-          <p class="timeline__subtitle">주택사업본부 / Architect Engineer / PM</p>
+          <p class="timeline__subtitle">주택사업본부 / Architectural Site Engineer</p>
           <div class="timeline__description">
             <ul>
-              <li>서울 방배5구역 주택재건축 정비사업</li>
-              <li>인천 백운2구역 주택재개발 정비사업</li>
-              <li>기술연구소 층간차음재 'H-Silent' 실증 TEST</li>
+              <li>서울 방배5구역 주택재건축 정비사업 설계 검토 및 시공 관리</li>
+              <li>인천 백운2구역 주택재개발 정비사업 현장 품질관리(QC)</li>
+              <li>기술연구소 'H-Silent' 층간차음재 현장 실증 참여, 국내 최초 국토교통부 1등급 인증 획득</li>
             </ul>
           </div>
         </div>
@@ -135,11 +145,12 @@
           <div class="timeline__marker"></div>
           <span class="timeline__date">2016.07 - 2022.01</span>
           <h3 class="timeline__title">동극건업(주)</h3>
-          <p class="timeline__subtitle">공무부 / Project Engineer / PM</p>
+          <p class="timeline__subtitle"> Head Office / Construction Project Manager</p>
           <div class="timeline__description">
             <ul>
-              <li>프로젝트 견적 및 입찰</li>
-              <li>프로젝트 관리 / 현장 지원</li>
+              <li>프로젝트 계약 및 재무 관리, P&L 분석</li>
+              <li>신규 프로젝트 입찰 및 견적 업무 수행</li>
+              <li>주요 프로젝트: 두산그룹 분당 신사옥, 세스코 멤버스시티, 연세대 Y-IBS 신축, MBC 상암 주차빌딩 등</li>
             </ul>
           </div>
         </div>
@@ -148,35 +159,132 @@
           <div class="timeline__marker"></div>
           <span class="timeline__date">2014.08 - 2016.07</span>
           <h3 class="timeline__title">두산건설(주)</h3>
-          <p class="timeline__subtitle">건축사업본부 / Architect Engineer / PM</p>
+          <p class="timeline__subtitle">건축사업본부 / Architectural Site Engineer</p>
           <div class="timeline__description">
             <ul>
-              <li>하남 하남미사 택지개발지구정비사업 14공구 LH주택 신축공사</li>
+              <li>하남미사 택지개발지구 14공구 LH주택 신축공사 현장 관리</li>
+              <li>2015년 LH 시공VE 경진대회 우수상 수상 기여</li>
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <p class="timeline__category" style="margin-top: 3rem;">Education</p>
-
-        <div class="timeline__item">
-          <div class="timeline__marker"></div>
-          <span class="timeline__date">2024.12 - 2025.06</span>
-          <h3 class="timeline__title">원티드랩 POTEN UP 1기</h3>
-          <p class="timeline__subtitle">AI Engineer 과정</p>
-        </div>
-
+  <!-- Education Section -->
+  <section class="section education" id="education">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Education</h2>
+        <p class="section__subtitle">학력 사항</p>
+      </div>
+      <div class="timeline">
         <div class="timeline__item">
           <div class="timeline__marker"></div>
           <span class="timeline__date">2023.06 - 2024.02</span>
           <h3 class="timeline__title">국가평생교육진흥원</h3>
-          <p class="timeline__subtitle">건축공학 학사</p>
+          <p class="timeline__subtitle">Bachelor's degree, Architecture Engineering</p>
         </div>
 
         <div class="timeline__item">
           <div class="timeline__marker"></div>
           <span class="timeline__date">2009.03 - 2015.08</span>
           <h3 class="timeline__title">경복대학교</h3>
-          <p class="timeline__subtitle">건축디자인 전문학사</p>
+          <p class="timeline__subtitle">Associate's degree, Architecture Design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section class="section certificates" id="certificates">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Training / Certificates</h2>
+        <p class="section__subtitle">교육 및 수료</p>
+      </div>
+      <div class="timeline timeline--with-logo">
+
+        <div class="timeline__item timeline__item--with-logo">
+          <div class="timeline__marker"></div>
+          <img src="assets/modulab.png" alt="Modulabs Logo" class="timeline__logo">
+          <div class="timeline__content">
+            <span class="timeline__date">2025.11 - 2025.12</span>
+            <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
+            <p class="timeline__subtitle">연구를 위한 AI 활용 과정 (모두의연구소)</p>
+          </div>
+        </div>
+
+        <div class="timeline__item timeline__item--with-logo">
+          <div class="timeline__marker"></div>
+          <img src="assets/tpc.png" alt="TPC Logo" class="timeline__logo">
+          <div class="timeline__content">
+            <span class="timeline__date">2025.11 - 2025.12</span>
+            <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
+            <p class="timeline__subtitle">프롬프트 엔지니어링 과정 (TPC)</p>
+          </div>
+        </div>
+
+        <div class="timeline__item timeline__item--with-logo">
+          <div class="timeline__marker"></div>
+          <img src="assets/wanted_logo.png" alt="Wanted Logo" class="timeline__logo">
+          <div class="timeline__content">
+            <span class="timeline__date">2024.12 - 2025.06</span>
+            <h3 class="timeline__title">Wanted Learning - PotenUp 1st (K-Digital Training)</h3>
+            <p class="timeline__subtitle">Data & AI Alignment Engineer 과정</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section awards" id="awards">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Awards</h2>
+        <p class="section__subtitle">수상 경력</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2022.12</span>
+          <h3 class="timeline__title">현대건설 기술경쟁력제고 부문 단체 수상</h3>
+          <p class="timeline__subtitle">'H-Silent' 층간차음재 현장 실증 주도, 국토교통부 1등급 인증 획득 기여</p>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2015.04</span>
+          <h3 class="timeline__title">대한건축학회 우수졸업논문전 장려상</h3>
+          <p class="timeline__subtitle">「건축현장에서 멘토링 도입을 통한 조직 몰입도 향상에 관한 연구」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Licenses Section -->
+  <section class="section licenses" id="licenses">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Licenses</h2>
+        <p class="section__subtitle">자격증</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2025.12.19</span>
+          <h3 class="timeline__title">빅데이터 분석기사</h3>
+          <p class="timeline__subtitle">한국데이터산업진흥원</p>
+        </div>
+      </div>
+            <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2025.04.28</span>
+          <h3 class="timeline__title">정보처리기사(필기)</h3>
+          <p class="timeline__subtitle">한국산업인력공단</p>
         </div>
       </div>
     </div>
@@ -186,7 +294,7 @@
   <section class="section skills" id="skills">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Skills</h2>
+        <h2 class="section__title">SKILLS</h2>
         <p class="section__subtitle">기술 스택과 도구</p>
       </div>
       <div class="skills__grid">
@@ -279,7 +387,7 @@
   <section class="section projects" id="projects">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Projects</h2>
+        <h2 class="section__title">PROJECTS</h2>
         <p class="section__subtitle">실제 문제 해결을 위한 프로젝트들</p>
       </div>
       <div class="projects__grid">
@@ -426,17 +534,7 @@
   <section class="section contact" id="contact">
     <div class="container">
       <div class="contact__content">
-        <h2 class="contact__title">Get In Touch</h2>
-        <p class="contact__description">
-          새로운 기회나 협업에 대해 이야기 나누고 싶습니다.<br>
-          언제든지 편하게 연락주세요.
-        </p>
-        <div class="contact__links">
-          <a href="mailto:rukais2294@gmail.com" class="contact__link">
-            <i class="fa-regular fa-envelope"></i>
-            rukais2294@gmail.com
-          </a>
-        </div>
+        <h2 class="section__title">Contact</h2>
         <div class="contact__social">
           <a href="https://github.com/Hyeongseob91" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="GitHub">
             <i class="fa-brands fa-github"></i>
@@ -444,6 +542,28 @@
           <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
+          <div class="contact__popover-wrapper">
+            <a href="#" class="contact__social-link" aria-label="Email" id="emailToggle">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+            <div class="contact__popover" id="emailPopover">
+              <span class="contact__popover-text">rukais2294@gmail.com</span>
+              <button class="contact__popover-copy" data-copy="rukais2294@gmail.com" aria-label="Copy email">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <div class="contact__popover-wrapper">
+            <a href="#" class="contact__social-link" aria-label="Phone" id="phoneToggle">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+            <div class="contact__popover" id="phonePopover">
+              <span class="contact__popover-text">010-9265-9103</span>
+              <button class="contact__popover-copy" data-copy="010-9265-9103" aria-label="Copy phone">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -363,4 +363,59 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // =====================================================
+  // CONTACT POPOVER
+  // =====================================================
+  const emailToggle = document.getElementById('emailToggle');
+  const emailPopover = document.getElementById('emailPopover');
+  const phoneToggle = document.getElementById('phoneToggle');
+  const phonePopover = document.getElementById('phonePopover');
+
+  // Toggle popover function
+  function togglePopover(toggle, popover, otherPopover) {
+    if (toggle && popover) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Close other popover
+        if (otherPopover) {
+          otherPopover.classList.remove('show');
+        }
+        popover.classList.toggle('show');
+      });
+    }
+  }
+
+  togglePopover(emailToggle, emailPopover, phonePopover);
+  togglePopover(phoneToggle, phonePopover, emailPopover);
+
+  // Close popovers when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.contact__popover-wrapper')) {
+      if (emailPopover) emailPopover.classList.remove('show');
+      if (phonePopover) phonePopover.classList.remove('show');
+    }
+  });
+
+  // Copy to clipboard
+  const copyButtons = document.querySelectorAll('.contact__popover-copy');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const textToCopy = this.dataset.copy;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        // Show copied feedback
+        const icon = this.querySelector('i');
+        icon.classList.remove('fa-copy');
+        icon.classList.add('fa-check');
+        this.classList.add('copied');
+
+        setTimeout(() => {
+          icon.classList.remove('fa-check');
+          icon.classList.add('fa-copy');
+          this.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+
 });
