@@ -1,702 +1,464 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
-  <title>Hyeongseob's Portfolio</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <title>Hyeongseob Kim</title>
-  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="김형섭 - AI Engineer Portfolio. LangGraph, LangChain, RAG 전문 개발자">
+  <meta name="keywords" content="AI Engineer, LangGraph, LangChain, RAG, Python, Machine Learning">
+  <meta name="author" content="Hyeongseob Kim">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hyeongseob Kim | AI Engineer">
+  <meta property="og:description" content="AI Engineer Portfolio - LangGraph, LangChain, RAG 전문">
+  <meta property="og:type" content="website">
+
+  <title>Hyeongseob Kim | AI Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- partial:index.partial.html -->
-  <!-- Fixed navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid navbar-container">
-      <a class="navbar-brand" href="#">Hyeongseob Kim</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars"></span>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="#" class="navbar__brand">Hyeongseob Kim</a>
+      <ul class="navbar__menu" id="navMenu">
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#career" class="navbar__link">Career</a></li>
+        <li><a href="#skills" class="navbar__link">Skills</a></li>
+        <li><a href="#projects" class="navbar__link">Projects</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+      </ul>
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item" id="nav-about">
-            <a class="nav-link" href="#about">INTRODUCE</a>
-          </li>
-          <li class="nav-item" id="nav-skills">
-            <a class="nav-link" href="#skills">SKILLS</a>
-          </li>
-          <li class="nav-item" id="nav-portfolio">
-            <a class="nav-link" href="#portfolio">PROJECTS</a>
-          </li>
-          <li class="nav-item" id="nav-contact">
-            <a class="nav-link" href="#contact">CONTACT</a>
-          </li>
-        </ul>
-      </div>
     </div>
   </nav>
 
-  <!-- Begin page content -->
-  <div class="container-fluid p-0">
-    <div class="row cover top">
-      <div class="col">
-        <div class="row">
-          <div class="col headline">
-            <h1 class="text-center">KIM HYEONGSEOB</h1>
-            <p class="lead text-center"><span class="strong">AI ENGINEER</span>를 꿈꾸는 CONSTRUCTION ENGINEER</p>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <p class="hero__greeting">Welcome to my portfolio</p>
+      <h1 class="hero__name">KIM HYEONGSEOB</h1>
+      <h2 class="hero__title">AI Engineer</h2>
+      <p class="hero__description">
+        현장에서 마주한 AI 기술에 영감을 받아 새로운 길을 개척하는 개발자.<br>
+        LangGraph, LangChain, RAG 파이프라인을 활용한 AI Agent 개발에 집중하고 있습니다.
+      </p>
+      <div class="hero__social">
+        <a href="https://github.com/Hyeongseob91" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:rukais2294@gmail.com" class="hero__social-link" aria-label="Email">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="hero__scroll">
+      <span>Scroll Down</span>
+      <div class="hero__scroll-icon"></div>
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">About Me</h2>
+        <p class="section__subtitle">AI 기술로 새로운 가치를 만들어가는 개발자</p>
+      </div>
+      <div class="about__grid">
+        <div class="about__image-wrapper fade-in">
+          <img src="assets/me.jpg" alt="Hyeongseob Kim" class="about__image">
+        </div>
+        <div class="about__content fade-in">
+          <h3>김형섭</h3>
+          <p class="about__text">
+            안녕하세요. 현장에서 실제로 마주한 기술 하나로 진로를 바꾸게 된 <span class="about__highlight">김형섭</span>입니다.
+          </p>
+          <p class="about__text">
+            2022년, 도시재개발 정비공사 프로젝트 중 AI 기술이 융합된 AR 인테리어 발표를 접하게 되었고, 그때 큰 인상을 받았습니다. 그 경험을 계기로 AI 기술에 흥미를 갖게 되었고, 직접 공부하며 가능성과 영향력을 체감하면서 <span class="about__highlight">"AI가 바로 미래"</span>라는 확신이 들었습니다.
+          </p>
+          <p class="about__text">
+            저는 엔지니어란, 비즈니스를 이해하고 소통하며 기술을 적재적소에 활용해 가치를 만들어내는 사람이라고 생각합니다. 지금은 <span class="about__highlight">자연어 처리(NLP)와 생성형 AI</span> 분야에 집중하며 실전 프로젝트를 통해 역량을 키워가고 있습니다.
+          </p>
+          <p class="about__text">
+            지난 10년간 건설업에서 Construction Engineer로 다수의 프로젝트를 수행해왔습니다. 100억 원대 소규모 프로젝트부터 조 단위 대형 프로젝트까지 경험했고, 적극적인 커뮤니케이션과 실행력으로 사내 공동주택 품질 대상 수상, 국내 최초 층간차음재 국토교통부 1등급 인증 등의 성과를 달성했습니다.
+          </p>
+          <p class="about__text">
+            앞으로는 이러한 경험과 소프트스킬을 바탕으로, AI 기술을 다양한 산업에 적용해 현실적인 문제를 해결하고 효율성을 높이는데 기여하는 <span class="about__highlight">글로벌 AI 전문가</span>로 성장하고 싶습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Section -->
+  <section class="section career" id="career">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Career</h2>
+        <p class="section__subtitle">지난 경험과 현재의 여정</p>
+      </div>
+
+      <!-- Experience Timeline -->
+      <div class="timeline">
+        <p class="timeline__category">Experience</p>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2022.01 - 2024.09</span>
+          <h3 class="timeline__title">현대건설(주)</h3>
+          <p class="timeline__subtitle">주택사업본부 / Architect Engineer / PM</p>
+          <div class="timeline__description">
+            <ul>
+              <li>서울 방배5구역 주택재건축 정비사업</li>
+              <li>인천 백운2구역 주택재개발 정비사업</li>
+              <li>기술연구소 층간차음재 'H-Silent' 실증 TEST</li>
+            </ul>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 center-block text-center">
-            <a href="#about">
-              <i class="fa-solid fa-angles-down" id="scrollIcon"></i>
-            </a>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2016.07 - 2022.01</span>
+          <h3 class="timeline__title">동극건업(주)</h3>
+          <p class="timeline__subtitle">공무부 / Project Engineer / PM</p>
+          <div class="timeline__description">
+            <ul>
+              <li>프로젝트 견적 및 입찰</li>
+              <li>프로젝트 관리 / 현장 지원</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2014.08 - 2016.07</span>
+          <h3 class="timeline__title">두산건설(주)</h3>
+          <p class="timeline__subtitle">건축사업본부 / Architect Engineer / PM</p>
+          <div class="timeline__description">
+            <ul>
+              <li>하남 하남미사 택지개발지구정비사업 14공구 LH주택 신축공사</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="timeline__category" style="margin-top: 3rem;">Education</p>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2024.12 - 2025.06</span>
+          <h3 class="timeline__title">원티드랩 POTEN UP 1기</h3>
+          <p class="timeline__subtitle">AI Engineer 과정</p>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2023.06 - 2024.02</span>
+          <h3 class="timeline__title">국가평생교육진흥원</h3>
+          <p class="timeline__subtitle">건축공학 학사</p>
+        </div>
+
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2009.03 - 2015.08</span>
+          <h3 class="timeline__title">경복대학교</h3>
+          <p class="timeline__subtitle">건축디자인 전문학사</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Skills</h2>
+        <p class="section__subtitle">기술 스택과 도구</p>
+      </div>
+      <div class="skills__grid">
+        <div class="skills__category fade-in stagger-1">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-code"></i>
+            Programming Language
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-2">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-robot"></i>
+            AI / ML / LLM
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">RAG</span>
+            <span class="skill-tag">MCP</span>
+            <span class="skill-tag">LLM</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Transformers</span>
+            <span class="skill-tag">Hugging Face</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-3">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-chart-line"></i>
+            Data Analysis
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">Scikit-Learn</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Plotly</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-4">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-eye"></i>
+            Computer Vision
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">YOLO</span>
+            <span class="skill-tag">ComfyUI</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-5">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-server"></i>
+            Backend & DevOps
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Streamlit</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">ChromaDB</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-6">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-users"></i>
+            Collaboration
+          </h4>
+          <div class="skills__tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">Notion</span>
           </div>
         </div>
       </div>
-    </div><!-- END top cover -->
+    </div>
+  </section>
 
-    <div id="about" class="row justify-content-center cover">
-      <h1 class="text-center mb-5">INTRODUCE</h1>
-      <div class="col-10 col-xs-12">
-        <div class="row g-0">
-          <div class="col-md-4 col-sm-12 profile-photo rounded-3"></div>
-          <div class="col-md-8 col-sm-12 px-4 rounded-start">
-            <span class="card-text">
-              <h2>김형섭</h2>
-              안녕하세요. 현장에서 실제로 마주한 기술 하나로 진로를 바꾸게 된 김형섭 입니다.<br>
-              2022년, 도시재개발 정비공사 프로젝트 중 AI 기술이 융합된 AR 인테리어 발표를 접하게 되었고, 그때 큰 인상을 받았습니다.<br>
-              그 경험을 계기로 AI 기술에 흥미를 갖게 되었고, 직접 공부하며 가능성과 영향력을 체감하면서 “AI가 바로 미래”라는 확신이 들었습니다.<br>
-              AI 기술이 만들어내는 부가가치는 제가 중요하게 생각하는 ‘발전’과 ‘성장’이라는 가치와 맞닿아 있었기 때문입니다.<br>
-              결국 오랜 고민 끝에 기존 경력을 내려놓고 새로운 길에 도전하게 되었습니다.<br>
-              <br>
-              저는 엔지니어란, 비즈니스를 이해하고 소통하며 기술을 적재적소에 활용해 가치를 만들어내는 사람이라고 생각합니다.<br>
-              지금은 자연어 처리(NLP)와 생성형 AI 분야에 집중하며 실전 프로젝트를 통해 역량을 키워가고 있습니다.<br>
-              특히 LLM 기반의 생성형 AI Agent 구조를 이해하고, 이를 실제로 구현하는 데 힘을 쏟고 있습니다.<br>
-              <br>
-              또한 저는 지난 10년간 건설업에서 Construction Engnieer로 근무하며 다수의 프로젝트를 수행해왔습니다.<br>
-              100억 원대 소규모 프로젝트부터 조 단위 대형 프로젝트까지 경험했고, 적극적인 커뮤니케이션과 실행력으로 과제를 완수해왔습니다.<br>
-              그 결과, 사내 공동주택 품질 대상 수상, 국내 최초 층간차음재 국토교통부 1등급 인증, 수주 사업 실행률 향상 등 실질적인 성과도 달성하였습니다.<br>
-              <br>
-              앞으로는 이러한 경험과 소프트스킬을 바탕으로, AI 기술을 다양한 산업에 적용해<br>
-              현실적인 문제를 해결하고 효율성을 높이는데 기여하는 글로벌 AI 전문가로 성장하고 싶습니다.
-            </span>
+  <!-- Projects Section -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Projects</h2>
+        <p class="section__subtitle">실제 문제 해결을 위한 프로젝트들</p>
+      </div>
+      <div class="projects__grid">
+
+        <!-- Project 1: MCP LangGraph -->
+        <article class="project-card fade-in" data-project="mcp">
+          <div class="project-card__image-wrapper">
+            <img src="assets/image.png" alt="MCP LangGraph Project" class="project-card__image">
+            <span class="project-card__status project-card__status--wip">WIP</span>
           </div>
-        </div>
-      </div>
-    </div><!-- End about -->
-
-    <div id="workExperience" class="row justify-content-center cover">
-      <h1 class="text-center mb-5">EXPERIENCE</h1>
-      <div class="container col-md-8 col-sm-10">
-        <div class="row g-0">
-          <dl class="row">
-            <dd class="col-4">2022.01 ~ 2024.09</dd>
-            <dt class="col-8">
-              <h3>현대건설(주)</h3>
-              <p class="position">주택사업본부 / Architect Engineer / PM</p>
-              <ul>
-                <li>서울 방배5구역 주택재건축 정비사업</li>
-                <li>인천 백운2구역 주택재개발 정비사업</li>
-                <li>기술연구소 층간차음재 'H-Silent' 실증 TEST</li>
-              </ul>
-            </dt>
-          </dl>
-          <dl class="row">
-            <dd class="col-4">2016.07 ~ 2022.01</dd>
-            <dt class="col-8">
-              <h3>동극건업(주)</h3>
-              <p class="position">공무부 / Project Engineer / PM</p>
-              <ul>
-                <li>프로젝트 견적 및 입찰</li>
-                <li>프로젝트 관리 / 현장 지원</li>
-                <ol>
-                </ol>
-              </ul>
-            </dt>
-          </dl>
-          <dl class="row">
-            <dd class="col-4">2014.08 ~ 2016.07</dd>
-            <dt class="col-8">
-              <h3>두산건설(주)</h3>
-              <p class="position">건축사업본부 / Architect Engineer / PM</p>
-              <ul>
-                <li>하남 하남미사 택지개발지구정비사업 14공구 LH주택 신축공사</li>
-              </ul>
-            </dt>
-          </dl>
-        </div>
-      </div>
-    </div><!-- End Experience -->
-
-    <div id="education" class="row justify-content-center cover">
-      <h1 class="text-center mb-5">EDUCATION</h1>
-      <div class="container col-md-8 col-sm-10">
-        <div class="row g-0">
-          <dl class="row">
-            <dd class="col-4">2024.12 ~ 2025.06</dd>
-            <dt class="col-8">
-              <h3>원티드랩 POTEN UP 1기</h3>
-              <p class="position">AI Engineer 과정</p>
-            </dt>
-          </dl>
-          <dl class="row">
-            <dd class="col-4">2023.06 ~ 2024.02</dd>
-            <dt class="col-8">
-              <h3>국가평생교육진흥원</h3>
-              <p class="position">건축공학 학사</p>
-            </dt>
-          </dl>
-          <dl class="row">
-            <dd class="col-4">2009.03 ~ 2015.08</dd>
-            <dt class="col-8">
-              <h3>경복대학교</h3>
-              <p class="position">건축디자인 전문학사</p>
-            </dt>
-          </dl>
-          <dl class="row">
-            <dd class="col-4">2006.03 ~ 2009.02</dd>
-            <dt class="col-8">
-              <h3>청원고등학교</h3>
-              <p class="position">이과계열</p>
-            </dt>
-          </dl>
-        </div>
-      </div>
-    </div><!-- End Experience -->
-
-    <div id="skills" class="row cover"><!-- Sills Tap -->
-      <div class="about-tools text-center">
-        <h1 class="text-center mb-5">SKILLS</h1>
-        <div class="col-xs-12">
-          <ul>
-            <p>Programming Language</p>
-            <span class="badge text-bg-lime me-1">Python</span>
-            <span class="badge text-bg-lime me-1">SQL</span>
-            <span class="badge text-bg-lime me-1">HTML5</span>
-            <br>
-
-            <p>Data Analysis</p>
-            <span class="badge text-bg-lime me-1">Numpy</span>
-            <span class="badge text-bg-lime me-1">Pandas</span>
-            <span class="badge text-bg-lime me-1">Scipy</span>
-            <span class="badge text-bg-lime me-1">Selenium</span>
-            <span class="badge text-bg-lime">BeautifulSoup</span>
-            <br>
-
-            <p>Visualization Analysis</p>
-            <span class="badge text-bg-lime me-1">Matplotlib</span>
-            <span class="badge text-bg-lime me-1">Seaborn</span>
-            <span class="badge text-bg-lime me-1">Plotly</span>
-            <br>
-
-            <p>Machine & Deep Learning</p>
-            <span class="badge text-bg-lime me-1">LangChain</span>
-            <span class="badge text-bg-lime me-1">LangGraph</span>
-            <span class="badge text-bg-lime me-1">LLM</span>
-            <span class="badge text-bg-lime">MCP</span>
-            <span class="badge text-bg-lime">RAG</span>
-            <span class="badge text-bg-lime me-1">Pytorch</span>
-            <span class="badge text-bg-lime me-1">Scikit-Learn</span>
-            <br>
-            <span class="badge text-bg-lime me-1">Hugging Face</span>
-            <span class="badge text-bg-lime me-1">Transformers</span>
-            <span class="badge text-bg-lime me-1">OpenCV</span>
-            <span class="badge text-bg-lime me-1">ComfyUI</span>
-            <span class="badge text-bg-lime me-1">XGBoost</span>
-            <span class="badge text-bg-lime">LightGBM</span>
-            <br>
-
-            <p>Deployment & Web Framework</p>
-            <span class="badge text-bg-lime">Docker</span>
-            <span class="badge text-bg-lime me-1">FastAPI</span>
-            <span class="badge text-bg-lime me-1">Streamlit</span>
-            <br>
-
-            <p>Tools & Collaboration Software</p>
-            <span class="badge text-bg-lime me-1">Git</span>
-            <span class="badge text-bg-lime me-1">GitHub</span>
-            <span class="badge text-bg-lime">Notion</span>
-          </ul>
-        </div>
-      </div>
-    </div><!-- End Skills -->
-
-    <div id="portfolio" class="row cover">
-      <h1 class="text-center mb-5">PROJECTS</h2>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-10">
-              <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion" id="accordionPanelsStayOpenExample">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mcp"
-                        aria-expanded="false" aria-controls="mcp">
-                        MCP 기반의 LangGraph 구조 AI Agent & AI Tools를 활용한 언리얼 융합 개발 팀 프로젝트
-                        <span class="badge text-bg-white ms-2">
-                          <dt class="col-6 text-end">
-                            <a href="https://github.com/Hyeongseob91/Valorithm.git">
-                              <i class="fa-brands fa-github fa-2x " style="color: #000000;"></i>
-                            </a>
-                          </dt>
-                        </span>
-                        <span class="badge bg-primary ms-2">WIP</span>
-                      </button>
-                    </h2>
-                    <div id="mcp" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <ol>
-                          <li><strong>팀 구성 및 역할</strong></li>
-                          <ul>
-                            <li>총원 7명 (AI Part 3명, Unreal Part 4명)</li>
-                            <li>AI Part 팀장 (기획 & 기술 설계 및 개발)</li>
-                          </ul>
-                          <br>
-                          <li><strong>프로젝트 기간</strong></li>
-                          <ul>
-                            <li>2025.04.04 ~ 2025. 06. 05 (진행 중)</li>
-                          </ul>
-                          <br>
-                          <li><strong>기획 의도</strong></li>
-                          <ul>
-                            <li>본 프로젝트는 MCP 기술을 활용하여 <strong>개발자의 리소스를 절감 할 수 있는 워크플로우 개선에 초점</strong>을 맞춘 차세대 FPS 게임 개발
-                              프로젝트 입니다.<br>
-                              단순히 최신 AI 기술을 게임에 접목하는 것을 넘어, MCP 기반의 AI Agent 및 AI Tool을 직접 설계 및 구현을 통해 <strong>언리얼 엔진
-                                에디터 환경에서의 게임 개발 워크플로우를
-                                근본적으로 개선하고, 반복적인 수작업 및 리소스 투입을 획기적으로 절감</strong>하는 것을 핵심 목표로 설정하였습니다.<br>
-                              이를 통해 개발 효율성을 극대화하고, 결과적으로 플레이어에게 지금까지 경험하지 못한 수준의 사용자 친화적인 AI 경험을 제공하고자 합니다.<br>
-                              AI 기술이 프로젝트 개발부터 플레이 환경 전반에 걸쳐 유기적으로 통합되도록 설계되어, 개발 효율성과 사용자 경험을 동시에 향상시키는 새로운 게임 제작 패러다임을
-                              제시하는 것이 최종목표입니다.</li>
-                          </ul>
-                          <br>
-                          <li><strong>담당 기능</strong></li>
-                          <ol>
-                            <li>) 게임 개발자 환경 : 무기 반동 궤적 생성 AI Tool 기능</li>
-                            <ul>
-                              <li>총기 종류별(기관총, 권총, 산탄총 등) 반동 궤적을 자동 생성하는 MCP Server 기반 AI Tool</li>
-                              <li>NumPy를 기반으로 반동의 난수 시드값을 바탕으로 x/y 좌표 시퀀스를 생성</li>
-                              <ul>
-                                <li>초탄 : 1번째 발은 좌표 값을 0,0 으로 설정하고, 1/3 값으로 구분하여 총기궤적의 X축보다 Y축이 크게 흔들리도록 설정</li>
-                                <li>중탄 : 일반적인 게임 개발에서의 총기 궤적을 참고하여, X축과 Y축이 같이 흔들리도록 설정</li>
-                                <li>후탄 : Y축은 더 이상 크게 흔들리지 않고 미세한 레벨 값의 차이만 있도록 설정. X 축의 흔들림을 크게 설정하고 좌측과 우측 한방향으로 크게
-                                  이동하도록 설정</li>
-                              </ul>
-                              <li>Matplotlib을 활용해 시각적으로 생성된 난수의 궤적 검토 가능</li>
-                              <li>Unreal MCP Plugin을 통해 언리얼 엔진과의 연동</li>
-                              <ul>
-                                <li>연동을 통해 C++로만 구현해야 했던 Unreal Engine에서 자연어로 명령어를 입력하여 사용 가능</li>
-                              </ul>
-                              <li>연동이 완료되면 MCP Server와 연동 된 Host(LLM Model)등을 통해 언리얼 에디터 상에서 직관적 사용 가능</li>
-                            </ul>
-                            <img src="assets/image.png" alt="Image Loading...">
-                            <li>) 게임 사용자 환경 : LangGraph를 활용한 RAG 파이프라인을 구축하여, 음성 통신 기반의 AI Agent 설계 및 개발</li>
-                            <ul>
-                              <li>인게임 내 가이드, 규칙, 캐릭터 특징 등 AI 도우미 역할 3가지 기능 개발</li>
-                              <ul>
-                                <li>Node.1 : Chatbot System</li>
-                                <li>Node.2 : Game Report Analyze System</li>
-                                <li>Node.3 : Weapon/Skills Recommended System</li>
-                              </ul>
-                              <li>TypeDict를 상속받는 MyState 클래스 설정</li>
-                              <ul>
-                                <li>question, context, response, relevence로 구성</li>
-                                <li>StateGraph 설정 전 Conditonal_Edge 구조 설계</li>
-                              </ul>
-                              <li>HuggingFace의 Whisper Model으로 STT(Speech to Text) 기능을 구축하여, 음성으로 수신 할 수 있는 통신 파이프라인 구축
-                              </li>
-                              <li>게임 시나리오 & 캐릭터 특징 등, 데이터 수집 및 정제를 통해 RAG 문서 활용을 위한 VectroDB(Chroma)에 저장</li>
-                            </ul>
-                            <img src="assets/image6.png" alt="Image Loading...">
-                          </ol>
-                        </ol>
-                        <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto">
-                            <span class="badge text-bg-lime me-1">LangGraph</span>
-                            <span class="badge text-bg-lime me-1">LangChain</span>
-                            <span class="badge text-bg-lime me-1">MCP</span>
-                            <span class="badge text-bg-lime me-1">RAG</span>
-                            <span class="badge text-bg-lime me-1">LLM</span>
-                            <span class="badge text-bg-lime me-1">HuggingFace</span>
-                            <span class="badge text-bg-lime me-1">ChromaDB</span>
-                            <span class="badge text-bg-lime me-1">Docker</span>
-                            <span class="badge text-bg-lime me-1">Whisper</span>
-                            <span class="badge text-bg-lime me-1">STT</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#komi"
-                        aria-expanded="false" aria-controls="komi">
-                        LangChain 기반 RAG 파이프라인을 활용한 GenAI 원격 운동 자세 진단 서비스
-                        <span class="badge text-bg-white ms-2">
-                          <dt class="col-6 text-end">
-                            <a href="https://github.com/Hyeongseob91/KOMI.git">
-                              <i class="fa-brands fa-github fa-2x " style="color: #000000;"></i>
-                            </a>
-                          </dt>
-                        </span>
-                      </button>
-                    </h2>
-                    <div id="komi" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <ol>
-                          <li><strong>팀 구성 및 역할</strong></li>
-                          <ul>
-                            <li>총원 3명(AI Engineer)</li>
-                            <li>팀장 (기획 & 기술 공통 설계 및 개발)</li>
-                          </ul>
-                          <br>
-                          <li><strong>프로젝트 기간</strong></li>
-                          <ul>
-                            <li>2025.03.10 ~ 2025. 04. 03</li>
-                          </ul>
-                          <br>
-                          <li><strong>기획 의도</strong></li>
-                          <ul>
-                            <li>본 프로젝트는 거동이 불편하거나 의료 접근성이 제한된 사용자들의 재활 치료를 위해 기획되었으며, AI 기반 원격 진료 서비스 구현을 목표로
-                              하고있습니다.<br>
-                              사용자는 병원에 직접 방문하지 않고도, 집이나 진료실에서 웹캠을 통해 자세와 운동 피드백을 실시간으로 받을 수 있습니다.<br>
-                              이를 통해 자세 교정이 필요한 부위나 근육의 이상 유무를 감지하고 판단할 수 있도록 설계되었습니다.<br>
-                              <br>
-                              프로젝트에서는 특정 부위에 대한 운동 데이터를 수집하여, OpenAI API를 통해 Vector DB에 임베딩 처리 후 저장하였으며, LangChain 기반의
-                              RAG 파이프라인을 구축하였습니다.<br>
-                              또한 OpenCV 기반의 YOLO 모델을 통해 사용자의 실시간 움직임을 감지하면서 데이터를 실시간으로 전송하고, 사전에 설정된 운동 자세의 오차 범위에서
-                              벗어나면,<br>
-                              LLM이 Prompt를 생성하여 AI 의료봇 형태로 맞춤형 진단과 피드백을 제공합니다. 이러한 과정을 통해 AI 기술을 활용한 공공 의료 서비스 차원의 건강 관리
-                              솔루션을 실현하고자 합니다.
-                            </li>
-                          </ul>
-                          <img src="assets/image3.png" alt="Image Loading...">
-                          <br>
-                          <li><strong>담당 기능</strong></li>
-                          <ol>
-                            <li>) LangChain기반 RAG 파이프라인 구축</li>
-                            <ul>
-                              <li>OpenAI Embedding 모델을 활용하여 의료 도메인 데이터를 Chroma Vector DB에 저장하고 검색 가능하도록 설정.</li>
-                              <li>LangChain의 Retriever를 Similarity 타입으로 구성하여 유사도 기반 질의 검색 구조 구현.</li>
-                              <li>사용자의 자세 진단 부위를 설정하여 실시간 자세 데이터를 기반으로 분석 결과를 생성하고, 이를 요약하는 Prompt 생성 기능 구현.</li>
-                              <li>RunnableMap, PromptTemplate, RunnableLambda, StrOutputParser 등을 연결하여 LangChain RAG
-                                파이프라인 구축.</li>
-                            </ul>
-                            <img src="assets/image2.png" alt="Image Loading...">
-                            <li>) RAGAS 성능 평가 지표를 통해 시각화 검증 및 객관적 지표 확보</li>
-                            <ul>
-                              <li>RAGAS 라이브러리를 활용하여 응답의 적합도, 포함도, 응답성, 신뢰성 등을 평가 지표로 계산.</li>
-                              <li>결과값을 Plotly라이브러리를 활용해 시각화 및 객관적 결과 지표 확보.</li>
-                            </ul>
-                            <img src="assets/image4.png" alt="Image Loading...">
-                            <li>) OpenCV 기반 YOLO-Pose11n Model을 사용하여 사용자의 움직임을 감지하는 Pose Estimator 기능 구축</li>
-                            <ul>
-                              <li>YOLO-Pose 모델을 활용하여 실시간 자세와 유사도 분석에 사용 될 정답 자세를 분석하고 좌표 값을 추출.</li>
-                              <li>YOLO 모델을 상속받는 PoseEstimator 클래스를 생성하여, 실시간 사용자의 자세를 분석 후 좌표 값을 송신하는 기능 구축.</li>
-                            </ul>
-                          </ol>
-                          <li><strong>회고</strong></li>
-                          <ul>
-                            <li>LangChain 라이브러리를 처음으로 활용한 프로젝트였고, RAG 파이프라인을 직접 구축하며 의료 데이터를 기반으로 한 AI 피드백 시스템을 구현하는 과정은
-                              첫 기획 의도와는 많이 달랐습니다.<br>
-                              가장 큰 어려움은 데이터 수집의 한계였습니다. 의료 데이터를 다루는 만큼 개인정보 보호 이슈로 블라인드 처리된 문서가 많았고, 운동학 관련 논문은 매우 제한적인
-                              범위의 정량 자료로 이루어져 있거나,<br>
-                              대부분 비정형적인 영상 형태로 존재하는 경우가 많았습니다. 결과적으로 이를 텍스트 기반 질의응답 시스템에 맞게 가공하는 데 상당한 시간과 노력이 들었습니다.
-                              <br>
-                              처음에는 "전문의를 대체할 수 있을 정도의 AI 원격 진료 시스템"이 목표였지만, 실제로 프로젝트를 진행하며 의료적 판단에는 비정량적 요소와 오프라인 진단이 갖는
-                              복합적 맥락이 중요하다는 사실을 실감했습니다.<br>
-                              전문의의 자문을 받아가며 개발할수록, AI의 역할은 ‘대체’가 아니라 ‘보조와 가이드’에 가깝다는 인식을 갖게 되었고, 그에 따라 프로젝트의 방향도
-                              조정해나갔습니다.<br>
-                              이번 경험은 단순히 기술을 적용하는 수준을 넘어, 데이터의 본질과 한계, 그리고 AI 시스템이 갖춰야 할 윤리성과 실효성에 대해 깊이 고민하게 해준 계기였던 것
-                              같습니다.
-                            </li>
-                          </ul>
-                        </ol>
-                        <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto">
-                            <span class="badge text-bg-lime me-1">LangChain</span>
-                            <span class="badge text-bg-lime me-1">RAG</span>
-                            <span class="badge text-bg-lime me-1">ChromaDB</span>
-                            <span class="badge text-bg-lime me-1">OpenCV</span>
-                            <span class="badge text-bg-lime me-1">YOLO-Pose</span>
-                            <span class="badge text-bg-lime me-1">RAGAS</span>
-                            <span class="badge text-bg-lime me-1">Numpy</span>
-                            <span class="badge text-bg-lime me-1">Ployly</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#beMyMuse" aria-expanded="true" aria-controls="beMyMuse">
-                        KoGPT-2 기반 감성 작사 특화 Fine-Tuning 팀 프로젝트
-                        <span class="badge text-bg-white ms-2">
-                          <dt class="col-6 text-end">
-                            <a href="https://github.com/Hyeongseob91/BeMyMuse.git">
-                              <i class="fa-brands fa-github fa-2x " style="color: #000000;"></i>
-                            </a>
-                          </dt>
-                        </span>
-                      </button>
-                    </h2>
-                    <div id="beMyMuse" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <ol>
-                          <li><strong>팀 구성 및 역할</strong></li>
-                          <ul>
-                            <li>총원 3명(AI Engineer)</li>
-                            <li>팀장 (기획 & 기술 설계 및 개발)</li>
-                          </ul>
-                          <br>
-                          <li><strong>프로젝트 기간</strong></li>
-                          <ul>
-                            <li>2025.01.04 ~ 2025.02.03</li>
-                          </ul>
-                          <br>
-                          <li><strong>기획 의도</strong></li>
-                          <ul>
-                            <li>본 프로젝트는 씽유 공모전에서 MUSE Label이 진행한 "작사가 채용 공모전 Be My Muse"의 영감을 받아, 작사가를 도울 수 있는 AI 보조
-                              프로그램 개발 프로젝트 입니다.<br>
-                              HuggingFace에 있는 언어 모델을 불러와, 단순한 키워드 단어 몇개로 사용자가 의도하는 감성과 분위기를 반영한 가사를 자동 생성하여 창작 활동에 도움을 줄
-                              수 있는 AI 언어 모델을 개발하였습니다.<br>
-                              이를 통해 사용자의 아이디어 발상 과정을 지원하고, 창작의 시간을 줄여줌으로서 비용과 효율성을 높여주며,<br>
-                              작사가가 아닌 일반인들의 창작 활동에도 도움을 줄 수 있는 AI 언어 모델로, 작사가로서의 진입 장벽을 낮춰주는 것이 핵심 목표입니다.
-                            </li>
-                          </ul>
-                          <br>
-                          <li><strong>담당 기능</strong></li>
-                          <ol>
-                            <li>) KoGTP-2 언어 모델 파인 튜닝</li>
-                            <ul>
-                              <li>SKTelecom에서 개발한 skt/kogpt2-base-v2 모델을 HuggingFace Transformers 기반으로 커스터마이징 및 파인튜닝 수행.
-                              </li>
-                              <li>RTX-4090으로 세팅 된 PyTorch 및 CUDA 서버 환경에서 실행하였으며, GPU 디바이스 사용 확인 후 할당하고 튜닝 진행.</li>
-                              <li>사전학습된 GPT2LMHeadModel, AutoTokenizer를 불러와 KoGPT-2 모델 초기화.</li>
-                              <li>Output 생성 예시를 위해 generate() 함수에 다양한 파라미터를 적용.</li>
-                              <ol>
-                                <li>max_length : 생성할 텍스트 최대 길이(노래 가사 처럼 생성)</li>
-                                <li>temperature : 창의성 제어(문맥적인 논리 구조 확보)</li>
-                                <li>top_k, top_p : BPE 토큰화 방식을 사용하는 GPT-2 언어 모델의 특성(Auto-Regressive)을 고려하여 필터링 사용.</li>
-                                <li>repetition_penalty : 동일한 단어 반복을 방지</li>
-                              </ol>
-                              <li>Scikit-Learn 라이브러리의 train_test_split 을 활용하여 학습 데이터셋을 학습, 테스트로 분리하고 batch_size를 적용하여
-                                과적합 방지 세팅.</li>
-                              <li>스케줄러를 설정하여 과적합이 되지 않도록 방지.</li>
-                              <ol>
-                                <li>학습 방식은 linear로 적용하여, 학습률을 선형적으로 감소시키는 방식을 선택하고, epochs는 10회로 설정.</li>
-                                <li>Optimizer는 AdamW 적용하였고, 학습률은 5e-5로 설정. 또한 weight_decay를 설정하여 학습률을 조정하여 더 정밀한 값을 찾아
-                                  최적화.</li>
-                              </ol>
-                            </ul>
-                            <img src="assets/bemymuse_finetuning.png" alt="Image Loading...">
-                            <li>) 언어 모델 성능 평가</li>
-                            <ul>
-                              <li>Matplotlib 라이브러리를 활용하여 파인 튜닝 학습 & 검증 과정 손실 검토 및 시각화 진행. 객관적 학습 지표 확보.</li>
-                              <li>튜닝이 완료 된 모델을 사용하여 텍스트를 생성하고, 생성 된 텍스트를 BLEU, ROUGE, Perplexity로 평가.</li>
-                              <li>평가 완료된 항목은 Matplotlib 라이브러리를 활용하여 시각화 진행. 객관적 결과 지표 확보.</li>
-                            </ul>
-                            <img src="assets/image5.png" alt="Image Loading...">
-                            <li>) 데이터 수집 동적 Crawling 기능 개발</li>
-                            <ul>
-                              <li>멜론 차트에서 음원에 맞춰 선정한 장르 3개 중 1개(힙합) 차트를 Selenium 라이브러리를 활용한 동적 크롤링 방식으로 수집.</li>
-                              <li>감성 분석을 위해서 수집 항목을 5개(노래제목, 가수, 가사, 발매일, 좋아요)로 계획.</li>
-                              <li>수집 된 데이터 7,439곡 중 장르가 중복되었거나, 비속어, 특수문자 등 데이터 전처리를 통해 4,840곡의 학습 데이터셋 구축</li>
-                            </ul>
-                          </ol>
-                          <li><strong>회고</strong></li>
-                          <ul>
-                            <li>파인튜닝의 개념조차 정확히 알지 못한 채 시작하였으나, 경사하강법을 공부하며 언어모델의 생성 방식을 이해하기 시작했습니다.<br>
-                              학습 도중 GPU 메모리 오류, 과적합, 토크나이저의 패딩 설정 미흡으로인한 학습 멈춤 등, 배운것이 많은 프로젝트였습니다.<br>
-                              결과적으로 모델의 구조, 메커니즘의 이해, LLM 모델 사용에 자신감을 얻은 프로젝트입니다.</li>
-                          </ul>
-                        </ol>
-                        <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto">
-                            <span class="badge text-bg-lime me-1">KoNLPy</span>
-                            <span class="badge text-bg-lime me-1">KoGPT2</span>
-                            <span class="badge text-bg-lime me-1">Transformers</span>
-                            <span class="badge text-bg-lime me-1">Hugging Face</span>
-                            <span class="badge text-bg-lime me-1">Pytorch</span>
-                            <span class="badge text-bg-lime me-1">Sickit-Learn</span>
-                            <span class="badge text-bg-lime me-1">evaluate</span>
-                            <span class="badge text-bg-lime me-1">Pandas</span>
-                            <span class="badge text-bg-lime me-1">Selenium</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#perfectPose" aria-expanded="false" aria-controls="perfectPose">
-                        Pose Detection AI 기술을 활용한 언리얼 융합 자세 추론 게임 개발 프로젝트 : "Perfect Poses"
-                        <span class="badge text-bg-white ms-2">
-                          <dt class="col-6 text-end">
-                            <a href="https://github.com/Hyeongseob91/PerfectPose.git">
-                              <i class="fa-brands fa-github fa-2x " style="color: #000000;"></i>
-                            </a>
-                          </dt>
-                        </span>
-                      </button>
-                    </h2>
-                    <div id="perfectPose" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <ol>
-                          <li><strong>팀 구성 및 역할</strong></li>
-                          <ul>
-                            <li>총원 6명(AI Engineer 3명, Unreal Engine Developer 3명)</li>
-                            <li>팀장 (공동 기획 & 기술 설계 및 개발)</li>
-                          </ul><br>
-                          <li><strong>프로젝트 기간</strong></li>
-                          <ul>
-                            <li>2025.03.13 ~ 2025.03.14</li>
-                          </ul><br>
-                          <li><strong>기획 의도</strong></li>
-                          <ul>
-                            <li>본 프로젝트는 Pose Detection AI 기술을 활용하여, 실시간으로 사람의 움직임을 분석하고 좌표값을 추출하여 화면에 나오는 동일한 자세를 취했을 때
-                              점수를 얻을 수 있는 게임 개발 프로젝트 입니다.<br>
-                              Steam의 "Perfect Poses" 게임을 참고하였으며, Unreal Engine 개발자와 함께 진행된 융합 프로젝트 입니다.</li>
-                            HuggingFace의 YOLO-Pose Model의 사전 학습 된 17가지 관절 좌표값을 활용하였고, Cosine 유사도 분석으로 움직임의 Vector값을
-                            계산하였습니다.<br>
-                            게임 내 화면에 표현할 정답 자세를 만들기위해 Semantic Segmentation 기술을 활용한 파이프라인을 구축하였으며, 이를 통해 게임의 확장성을
-                            확보하였습니다.<br>
-                            PoseEstimator의 기술을 공부하여, 어떻게 서비스에 적용 될 수 있을지 분석 결과를 얻기 위한 연구 프로젝트 입니다.
-                          </ul><br>
-                          <img src="assets/image7.png">
-                          <li><strong>담당 기능</strong></li>
-                          <ul>
-                            <li>HuggingFace의 YOLO-Pose 모델을 상속받는 PoseEstimator 클래스를 설계하고 4개의 메서드 기능을 구현</li>
-                            <ul>
-                              <li>실시간으로 통신이 이뤄지는만큼 계산 리소스가 상대적으로 효율적인 YOLO-Pose8n 모델로 사용</li>
-                              <ol>
-                                <li>Start_camera : 실행과 동시에 웹캠 혹은 동영상이 자동으로 감지되도록 설정하며, 1명의 인원을 트래킹하는것을 Base로 기능 구현</li>
-                                <li>Video_image_extraction : 영상에서 감지된 인물의 형상을 초당 30프레임으로 캡처하고, 사전에 설정된 루트로 저장하는 메서드 개발
-                                <li>
-                                <li>Capture_image_detecting : OpenCV기반의 Detecting 기능을 개발하여, 저장된 Frame의 KeyPoints를 추출하는
-                                  메서드 개발</li>
-                                <li>real_time_video_detecting : RealTime으로 웹캠에서 감지 된 사람의 움직임을 실시간으로 분석하고, 17개의 관절
-                                  KeyPoints를(머리부터 발끝까지)<br>
-                                  추출 및 저장하여 JSON 타입으로 송신하는 메서드 개발</li>
-                              </ol>
-                            </ul>
-                          </ul>
-                          <img src="assets/image_video.gif">
-                        </ol><br>
-                        <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto">
-                            <span class="badge text-bg-lime me-1">OpenCV</span>
-                            <span class="badge text-bg-lime me-1">YOLO-Pose</span>
-                            <span class="badge text-bg-lime me-1">Zeemo</span>
-                            <span class="badge text-bg-lime me-1">ClipChamp</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#ecoDigest" aria-expanded="false" aria-controls="ecoDigest">
-                        AI 기반 경제 유튜브 영상 요약 문서화 서비스
-                        <span class="badge text-bg-white ms-2">
-                          <dt class="col-6 text-end">
-                            <a href="https://github.com/Text-Audio-Team/EconDigest.git">
-                              <i class="fa-brands fa-github fa-2x " style="color: #000000;"></i>
-                            </a>
-                          </dt>
-                        </span>
-                      </button>
-                    </h2>
-                    <div id="ecoDigest" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <ul>
-                          <li><strong>프로젝트 개요 : “경제 유튜브, 핵심만 보자!” 해당 서비스는 금융·재테크 정보를 찾기 위해 방대한 영상을 일일이 시청할 필요 없이, 클릭 한
-                              번으로 요약 보고서를 받아볼 수 있는 AI 웹 애플리케이션 프로젝트입니다.</strong></li>
-                          <ul>
-                            <li>보고싶은 영상의 오디오를 추출하여, OpenAI Whisper 기반의 STT 기능을 활용하고 LLM 모델로 핵심 키워드 기반의 요약 문서를 생성해주는 기능을
-                              개발합니다.</li>
-                            <li>FastAPI 프레임워크를 사용하여 백엔드 서버를 구축하고, Streamlit으로 프론트엔드의 사용자 UI를 구현하여 One-click의 요약 서비스를
-                              제공합니다.</li>
-                          </ul><br>
-
-                          <li><strong>역할</strong></li>
-                          <ul>
-                            <li>yt-dlp와 FFmpeg를 활용해 고음질 오디오 분리 및 자동 정리 기능 개발</li>
-                            <li>FastAPI 기반의 백엔드 서버 구축 및 RESTful API 설계 및 구현</li>
-                            <li>Streamlit을 활용해 링크 입력부터 문서 생성까지 단일 버튼 UI 구성</li>
-                          </ul>
-                        </ul>
-                        <div class="row g-0 mt-2 justify-content-end">
-                          <div class="col-auto">
-                            <span class="badge text-bg-lime me-1">yt-dlp</span>
-                            <span class="badge text-bg-lime me-1">FFmpeg</span>
-                            <span class="badge text-bg-lime me-1">FastAPI</span>
-                            <span class="badge text-bg-lime me-1">Streamlit</span>
-                            <span class="badge text-bg-lime me-1">Hugging Face</span>
-                            <span class="badge text-bg-lime me-1">QLoRA</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              MCP 기반 LangGraph AI Agent
+              <a href="https://github.com/Hyeongseob91/Valorithm.git" target="_blank" rel="noopener noreferrer" class="project-card__link" onclick="event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </h3>
+            <p class="project-card__description">
+              MCP 기술을 활용하여 개발자의 리소스를 절감할 수 있는 워크플로우 개선에 초점을 맞춘 차세대 FPS 게임 개발 프로젝트. Unreal Engine과 AI Agent 융합.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">LangGraph</span>
+              <span class="project-card__tag">MCP</span>
+              <span class="project-card__tag">RAG</span>
+              <span class="project-card__tag">Unreal</span>
             </div>
           </div>
-        </div>
-    </div><!-- End #Portfolio -->
+        </article>
 
-    <div id="contact" class="row cover bottom">
-      <h2 class="text-center contact-header mb-4">CONTACT</h2>
-      <div class="row g-0">
-        <dl class="row">
-          <dt class="col-6 text-end"><i class="fa-regular fa-envelope"></i> E-MAIL :</dt>
-          <dd class="col-6 text-start">
-            <a href="mailto:rukais2294@gmail.com">rukais2294@gmail.com</a>
-          </dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-6 text-end"><i class="fa-solid fa-comment"></i> Kakaotalk :</dt>
-          <dd class="col-6 text-start">
-            KeemHS91</a>
-          </dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-6 text-end"><a href="https://github.com/Hyeongseob91">
-              <i class="fa-brands fa-github"></i> Github</a></dt>
-          <dt class="col-6 text-start">
-            <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim">
-              <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a></a>
-            </dd>
-        </dl>
+        <!-- Project 2: KOMI -->
+        <article class="project-card fade-in" data-project="komi">
+          <div class="project-card__image-wrapper">
+            <img src="assets/image3.png" alt="KOMI Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              KOMI - AI 원격 운동 자세 진단
+              <a href="https://github.com/Hyeongseob91/KOMI.git" target="_blank" rel="noopener noreferrer" class="project-card__link" onclick="event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </h3>
+            <p class="project-card__description">
+              LangChain 기반 RAG 파이프라인을 활용한 GenAI 원격 운동 자세 진단 서비스. YOLO-Pose를 통한 실시간 자세 분석과 AI 피드백 제공.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">LangChain</span>
+              <span class="project-card__tag">RAG</span>
+              <span class="project-card__tag">YOLO-Pose</span>
+              <span class="project-card__tag">ChromaDB</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: BeMyMuse -->
+        <article class="project-card fade-in" data-project="bemymuse">
+          <div class="project-card__image-wrapper">
+            <img src="assets/bemymuse_finetuning.png" alt="BeMyMuse Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              BeMyMuse - 감성 작사 AI
+              <a href="https://github.com/Hyeongseob91/BeMyMuse.git" target="_blank" rel="noopener noreferrer" class="project-card__link" onclick="event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </h3>
+            <p class="project-card__description">
+              KoGPT-2 기반 감성 작사 특화 Fine-Tuning 프로젝트. 키워드 입력만으로 사용자 의도에 맞는 가사를 자동 생성하여 창작 활동을 지원.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">KoGPT-2</span>
+              <span class="project-card__tag">Fine-Tuning</span>
+              <span class="project-card__tag">Transformers</span>
+              <span class="project-card__tag">PyTorch</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4: PerfectPose -->
+        <article class="project-card fade-in" data-project="perfectpose">
+          <div class="project-card__image-wrapper">
+            <img src="assets/image7.png" alt="PerfectPose Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              PerfectPose - AI 자세 추론 게임
+              <a href="https://github.com/Hyeongseob91/PerfectPose.git" target="_blank" rel="noopener noreferrer" class="project-card__link" onclick="event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </h3>
+            <p class="project-card__description">
+              Pose Detection AI 기술을 활용한 언리얼 융합 자세 추론 게임. YOLO-Pose의 17개 관절 좌표값과 Cosine 유사도 분석 활용.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">YOLO-Pose</span>
+              <span class="project-card__tag">OpenCV</span>
+              <span class="project-card__tag">Unreal</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5: EconDigest -->
+        <article class="project-card fade-in" data-project="econdigest">
+          <div class="project-card__image-wrapper">
+            <img src="assets/image5.png" alt="EconDigest Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              EconDigest - 경제 유튜브 요약
+              <a href="https://github.com/Text-Audio-Team/EconDigest.git" target="_blank" rel="noopener noreferrer" class="project-card__link" onclick="event.stopPropagation()">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </h3>
+            <p class="project-card__description">
+              AI 기반 경제 유튜브 영상 요약 문서화 서비스. Whisper STT와 LLM을 활용해 핵심 키워드 기반 요약 보고서를 자동 생성.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">FastAPI</span>
+              <span class="project-card__tag">Whisper</span>
+              <span class="project-card__tag">Streamlit</span>
+              <span class="project-card__tag">QLoRA</span>
+            </div>
+          </div>
+        </article>
+
       </div>
-    </div><!-- End #Contact-->
+    </div>
+  </section>
+
+  <!-- Project Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal__content">
+      <button class="modal__close" id="modalClose">&times;</button>
+      <img src="" alt="" class="modal__image" id="modalImage">
+      <div class="modal__body">
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <div class="modal__meta" id="modalMeta"></div>
+        <div id="modalContent"></div>
+        <div class="modal__tags" id="modalTags"></div>
+      </div>
+    </div>
   </div>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact__content">
+        <h2 class="contact__title">Get In Touch</h2>
+        <p class="contact__description">
+          새로운 기회나 협업에 대해 이야기 나누고 싶습니다.<br>
+          언제든지 편하게 연락주세요.
+        </p>
+        <div class="contact__links">
+          <a href="mailto:rukais2294@gmail.com" class="contact__link">
+            <i class="fa-regular fa-envelope"></i>
+            rukais2294@gmail.com
+          </a>
+        </div>
+        <div class="contact__social">
+          <a href="https://github.com/Hyeongseob91" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
+      <p class="footer__text">
+        &copy; 2025 Hyeongseob Kim. Built with passion.
+      </p>
     </div>
   </footer>
-  <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+
+  <!-- Scripts -->
   <script src="scripts.js"></script>
 </body>
-
 </html>
