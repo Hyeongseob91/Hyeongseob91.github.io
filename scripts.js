@@ -316,6 +316,19 @@ document.addEventListener('DOMContentLoaded', function() {
           `<span class="project-card__tag">${tag}</span>`
         ).join('');
 
+        // Add Live Demo button if demoUrl exists
+        if (project.demoUrl && project.demoUrl.trim() !== '') {
+          const demoBtn = document.createElement('a');
+          demoBtn.href = project.demoUrl;
+          demoBtn.target = '_blank';
+          demoBtn.rel = 'noopener noreferrer';
+          demoBtn.className = 'modal__demo-btn';
+          demoBtn.innerHTML = '<i class="fa-solid fa-rocket"></i> Live Demo';
+
+          // Insert demo button before tags
+          modalTags.parentNode.insertBefore(demoBtn, modalTags);
+        }
+
         // Show modal
         modal.classList.add('active');
         document.body.classList.add('modal-open');
@@ -364,35 +377,50 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // =====================================================
-  // CONTACT POPOVER
+  // SHOW MORE EDUCATIONAL PROJECTS
   // =====================================================
-  const emailToggle = document.getElementById('emailToggle');
-  const emailPopover = document.getElementById('emailPopover');
-  const phoneToggle = document.getElementById('phoneToggle');
-  const phonePopover = document.getElementById('phonePopover');
+  const showMoreBtn = document.getElementById('showMoreEducational');
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', function() {
+      const hiddenCards = document.querySelectorAll('.projects--educational .project-card.hidden');
+      const btnText = this.querySelector('.show-more-btn__text');
 
-  // Toggle popover function
-  function togglePopover(toggle, popover, otherPopover) {
-    if (toggle && popover) {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        // Close other popover
-        if (otherPopover) {
-          otherPopover.classList.remove('show');
-        }
-        popover.classList.toggle('show');
-      });
-    }
+      if (this.classList.contains('expanded')) {
+        // Hide cards
+        hiddenCards.forEach(card => {
+          card.classList.remove('show');
+        });
+        this.classList.remove('expanded');
+        btnText.textContent = '더 많은 프로젝트 보기';
+      } else {
+        // Show cards
+        hiddenCards.forEach(card => {
+          card.classList.add('show');
+        });
+        this.classList.add('expanded');
+        btnText.textContent = '프로젝트 접기';
+      }
+    });
   }
 
-  togglePopover(emailToggle, emailPopover, phonePopover);
-  togglePopover(phoneToggle, phonePopover, emailPopover);
+  // =====================================================
+  // CONTACT POPOVER
+  // =====================================================
+  const profileToggle = document.getElementById('profileToggle');
+  const profilePopover = document.getElementById('profilePopover');
+
+  // Toggle profile popover
+  if (profileToggle && profilePopover) {
+    profileToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      profilePopover.classList.toggle('show');
+    });
+  }
 
   // Close popovers when clicking outside
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.contact__popover-wrapper')) {
-      if (emailPopover) emailPopover.classList.remove('show');
-      if (phonePopover) phonePopover.classList.remove('show');
+      if (profilePopover) profilePopover.classList.remove('show');
     }
   });
 
