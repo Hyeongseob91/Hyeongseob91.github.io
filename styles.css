@@ -804,6 +804,127 @@ img {
   color: var(--color-primary-light);
 }
 
+/* Timeline Project Subsections */
+.timeline__project {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.timeline__project:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.timeline__project-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.timeline__project-meta {
+  font-size: 0.85rem;
+  color: var(--color-primary-light);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.timeline__project-overview {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--color-primary-light);
+}
+
+.timeline__subsection-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.timeline__description .timeline__nested-list {
+  margin-left: 0.5rem;
+}
+
+.timeline__description .timeline__nested-list > li {
+  margin-bottom: 0.75rem;
+}
+
+.timeline__description .timeline__nested-list > li > strong {
+  color: var(--color-text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.timeline__description .timeline__sub-items {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.timeline__description .timeline__sub-items li {
+  font-size: 0.875rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-text-muted);
+}
+
+.timeline__description .timeline__sub-items li::before {
+  content: '◦';
+  font-size: 0.75rem;
+}
+
+/* Timeline Link Card */
+.timeline__link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.timeline__link-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline__link-card-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.timeline__link-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline__link-card-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline__link-card-title i {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
 /* Timeline Categories */
 .timeline__category {
   font-size: 0.75rem;
