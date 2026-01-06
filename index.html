@@ -80,7 +80,7 @@
       </div>
       <div class="about__grid">
         <div class="about__image-wrapper fade-in">
-          <img src="assets/me2.jpg" alt="Hyeongseob Kim" class="about__image">
+          <img src="images/aboutme/me2.jpg" alt="Hyeongseob Kim" class="about__image">
         </div>
         <div class="about__content fade-in">
           <h3 class="hero__name">커뮤니케이션 역량을 AI 기술로 전환하는 AI Native</h3>
@@ -117,99 +117,39 @@
         <p class="section__subtitle">실무 경험과 프로젝트</p>
       </div>
       <div class="timeline">
+
+        <!-- NVIDIA RAPIDS Lab (최신순 - 2026) -->
+        <div class="timeline__item">
+          <div class="timeline__marker"></div>
+          <span class="timeline__date">2026.01 - 현재</span>
+          <h3 class="timeline__title">모두의연구소 NVIDIA RAPIDS Lab</h3>
+          <p class="timeline__subtitle">Research Member / GPU-Accelerated ML Researcher</p>
+          <div class="timeline__description">
+            <ul>
+              <li>NVIDIA RAPIDS 기반 <strong>오픈소스 End-to-End Full GPU-based AutoML System</strong> 연구 개발</li>
+              <li>NVTabular(Data Engineering), RAY(GPU Management), XGBoost/LightGBM/CatBoost GPU 버전 활용</li>
+              <li>OpenML Dataset 기반 벤치마킹 및 기존 AutoML(Autogluon, LightAutoML) 대비 성능 비교</li>
+              <li>결과물 PyPI/Conda 배포 예정, 논문화 및 NVIDIA GTC 출품 목표</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 사운드마인드 (2025.07 - 현재) -->
         <div class="timeline__item">
           <div class="timeline__marker"></div>
           <span class="timeline__date">2025.07 - 현재</span>
           <h3 class="timeline__title">(주)사운드마인드</h3>
           <p class="timeline__subtitle">AX / AI Research Engineer / Manager</p>
           <div class="timeline__description">
-
-            <!-- Project 1 -->
-            <div class="timeline__project">
-              <h4 class="timeline__project-title">Project 1. High-Performance Advanced RAG Engine 연구 및 개발</h4>
-              <p class="timeline__project-meta">2025.09 – 현재 | AI Research Lead & PM</p>
-              <p class="timeline__project-overview">
-                Naive RAG 시스템의 단순 검색 정확도 한계와 Python 기반 Serving의 Low-Latency 문제를 해결하기 위해,<br>
-                '정확도(Accuracy)'와 '속도(Latency)'를 동시에 최적화한 Advanced RAG Engine 아키텍처 설계 및 개발.
-              </p>
-              <h5 class="timeline__subsection-title">Key Engineering & Research</h5>
-              <ul class="timeline__nested-list">
-                <li>
-                  <strong>1. Advanced Retrieval Architecture 설계</strong>
-                  <ul class="timeline__sub-items">
-                    <li>Semantic Chunking: 임베딩 유사도(Cosine Similarity) 기반 의미적 청킹으로 문맥 단절 문제 해결</li>
-                    <li>Query Rewrite & Expansion: 모호한 질문을 다중 쿼리로 확장하여 Recall 향상</li>
-                    <li>Hybrid Search: Dense Retriever + BM25 기반 Sparse Retriever(Keyword Search) 결합</li>
-                    <li>LangGraph 기반 모듈화: Graph 구조로 복잡한 질의에 유연한 대응 체계 구축</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>2. Research RoadMap: Retrieval & Inference 고도화 (Work In Progress)</strong>
-                  <ul class="timeline__sub-items">
-                    <li>Dense Retriever 고도화 (Amazon AGI 논문 기반): Coherence Ranking Loss 적용</li>
-                      <ul class="timeline__sub-items">
-                        <li>QEA(Query Embedding Alignment)로 동의어 쿼리 임베딩 정렬</li>
-                        <li>SMC(Similarity Margin Consistency)로 쿼리 변형에도 일관된 유사도 점수 유지</li>
-                      </ul>
-                    <li>Sparse Retriever 고도화 (Naver Labs Europe 연구 기반): SPLADE 모델 적용</li>
-                      <ul class="timeline__sub-items">
-                        <li>BERT MLM head를 활용한 Sparse Expansion 학습</li>
-                        <li>FLOPS Regularizer로 Inverted Index 비용 최적화</li>
-                        <li>Out-of-domain 일반화 성능 향상</li>
-                      </ul>
-                    <li>Low-Latency Inference (Hugging Face TEI):</li>
-                      <ul class="timeline__sub-items">
-                        <li>Rust & Candle 프레임워크 기반 Python 의존성 제거</li>
-                        <li>Flash Attention 및 cuBLASLt 최적화</li>
-                        <li>Token-based Dynamic Batching으로 처리량 극대화</li>
-                      </ul>
-                    <li>Performance Evaluation: Haystack 기반 RAGAS 평가 시스템 구축 (Faithfulness, Answer Relevance)</li>
-                  </ul>
-                </li>
-                <li>
-                  <strong>3. Advanced Prompt Strategy</strong>
-                  <ul class="timeline__sub-items">
-                    <li>System Prompt Calibration: LLM 역할과 제약 조건 명확화로 토큰 비용 절감 및 응답 품질 향상</li>
-                    <li>Advanced Reasoning: Chain-of-Thought(CoT), Self-Consistency 기법으로 논리적 정합성 향상</li>
-                    <li>Hallucination Mitigation: Context 기반 답변 강제 및 출처 기반 답변 구조화</li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="timeline__project">
-              <h4 class="timeline__project-title">Project 2. 생성형 AI 기반 한국어 능숙도 평가 플랫폼 (KOCCA R&D)</h4>
-              <p class="timeline__project-meta">2025.10 – 진행 중 | System Architect & Backend Development</p>
-              <p class="timeline__project-overview">
-                외국인 대상 한국어 교육 수요 증가에 대응하기 위한 AI 기반 한국어 말하기 평가 및 맞춤형 문항 생성 플랫폼 구축
-                (총 3년, 정부 지원 R&D).
-              </p>
-              <h5 class="timeline__subsection-title">Key Engineering & Research</h5>
-              <ul class="timeline__nested-list">
-                <li>
-                  <strong>1. AI System Architecture 참여</strong>
-                  <ul class="timeline__sub-items">
-                    <li>Research to Product Bridge:</li>
-                      <ul class="timeline__sub-items">
-                        <li>서울대, 포항공대 등 4개 대학 연구진이 개발한 Foundation Model(LLM/STT)을 상용 서비스에 탑재하기 위한 전체 시스템 아키텍처 설계</li>
-                      </ul>
-                    <li>Interface Standardization:</li>
-                      <ul class="timeline__sub-items">
-                        <li>Model Provider(대학)와 Service Provider(자사) 간의 데이터 통신 규약 정의 및 API 명세화</li>
-                      </ul>
-                  </ul>
-                </li>
-                <li>
-                  <strong>2. Scalable Backend & Pipeline 참여</strong>
-                  <ul class="timeline__sub-items">
-                    <li>API Gateway: 트래픽의 안정적 처리를 위해 인증/인가 및 라우팅을 담당하는 Gateway 구축 및 서비스 모듈화</li>
-                    <li>Asynchronous Processing: 평가 및 문항 생성 등 긴 시간이 소요되는 AI 작업을 비동기(Celery/Redis)로 처리하여 사용자 경험(UX) 저하 방지</li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-
+            <ul>
+              <li><strong>High-Performance Advanced RAG Engine</strong> 아키텍처 설계 및 개발 (AI Research Lead)</li>
+              <li>Semantic Chunking, Query Rewrite, Hybrid Search(Dense+Sparse+RRF), Cross-encoder Reranking 파이프라인 구축</li>
+              <li>LangGraph 기반 State Machine 구조로 복잡한 질의에 유연한 대응 체계 구축</li>
+              <li><strong>Enterprise RAG Agent PlayGround</strong> 개발: MSA 아키텍처, SSE 스트리밍, Retrieval Insight 시각화</li>
+              <li>Benchmark UI 기반 RAG 성능 Evaluation 시스템 구축 <span style="color: var(--color-primary);">(WIP)</span></li>
+              <li>2026년 상반기 AI Platform R&D 전략 및 로드맵 수립 리드</li>
+              <li>KOCCA R&D 프로젝트 전체 시스템 아키텍처 설계 참여 (대학 연구진 AI Model 연동)</li>
+            </ul>
           </div>
         </div>
 
@@ -313,7 +253,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="assets/modulab.png" alt="Modulabs Logo" class="timeline__logo">
+          <img src="images/companies/modulab.png" alt="Modulabs Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2025.11 - 2025.12</span>
             <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
@@ -323,7 +263,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="assets/tpc.png" alt="TPC Logo" class="timeline__logo">
+          <img src="images/companies/tpc.png" alt="TPC Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2025.11 - 2025.12</span>
             <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
@@ -333,7 +273,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="assets/wanted_logo.png" alt="Wanted Logo" class="timeline__logo">
+          <img src="images/companies/wanted.png" alt="Wanted Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2024.12 - 2025.06</span>
             <h3 class="timeline__title">Wanted Learning - PotenUp 1st (K-Digital Training)</h3>
@@ -502,53 +442,83 @@
   <section class="section projects projects--educational" id="projects">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Side Projects</h2>
-        <p class="section__subtitle">개인적으로 진행한 사이드 프로젝트 및 학습 프로젝트</p>
+        <h2 class="section__title">Projects</h2>
+        <p class="section__subtitle">Company Projects & Learning Projects</p>
       </div>
       <div class="projects__grid">
 
-        <!-- Project 1: MCP LangGraph -->
-        <article class="project-card fade-in" data-project="mcp" data-category="educational">
+        <!-- Project: Enterprise RAG Agent PlayGround -->
+        <article class="project-card fade-in" data-project="enterprise-rag" data-category="educational">
           <div class="project-card__image-wrapper">
-            <img src="assets/image.png" alt="MCP LangGraph Project" class="project-card__image">
+            <img src="images/projects/soundmind_rag_agent_loginpage.png" alt="Enterprise RAG Agent PlayGround" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
-              <span class="project-card__category-text">[MCP Server Development & Configuration]</span>
+              <span class="project-card__category-text">[Enterprise RAG System]</span>
               <span class="project-card__title-main">
-                MCP 도구 개발로 Agent를 구축하여, 게임 개발 워크플로우 개선
-                <a href="https://github.com/Hyeongseob91/Valorithm.git" target="_blank" rel="noopener noreferrer"
-                  class="project-card__link" onclick="event.stopPropagation()">
-                  <i class="fa-brands fa-github"></i>
-                </a>
+                Enterprise RAG Agent PlayGround
               </span>
             </h3>
             <p class="project-card__description">
-              MCP 도구를 활용하여 AI Agent를 구축하고, Unreal Engine 개발자의 리소스를 절감할 수 있는 차세대 FPS 게임 개발 프로젝트.
+              End-to-End RAG 시스템을 제품 수준(Product-grade)으로 구현. Hybrid Search와 실시간 시각화 Web Console 제공.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">LangGraph</span>
+              <span class="project-card__tag">RAG</span>
+              <span class="project-card__tag">Hybrid Search</span>
+              <span class="project-card__tag">vLLM</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <span class="project-card__footer-note">
+              <i class="fa-solid fa-building"></i>
+              Company Project
+            </span>
+          </div>
+        </article>
+
+        <!-- Project 1: VALORITHM -->
+        <article class="project-card fade-in" data-project="mcp" data-category="educational">
+          <div class="project-card__image-wrapper">
+            <img src="images/projects/valorithm_main.png" alt="VALORITHM Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[MCP 기반 AI 도구 시스템]</span>
+              <span class="project-card__title-main">
+                MCP Server와 AI Agent로 FPS 게임 개발자의 생산성 개선하기
+              </span>
+            </h3>
+            <p class="project-card__description">
+              4가지 AI 도구로 게임 개발 과정에 자동화 시스템 도입.
+              <br>자연어로 맞춤형 총기 반동 생성, 3D 맵 모델링, 인게임 AI Agent 구현.
+            </p>
+            <div class="project-card__tags">
               <span class="project-card__tag">MCP</span>
+              <span class="project-card__tag">LangGraph</span>
               <span class="project-card__tag">RAG</span>
               <span class="project-card__tag">Unreal</span>
             </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/Valorithm.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
           </div>
         </article>
 
         <!-- Project 2: KOMI -->
         <article class="project-card fade-in" data-project="komi" data-category="educational">
           <div class="project-card__image-wrapper">
-            <img src="assets/image3.png" alt="KOMI Project" class="project-card__image">
+            <img src="images/projects/komi_architecture.png" alt="KOMI Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
               <span class="project-card__category-text">[RAG & Computer Vision]</span>
               <span class="project-card__title-main">
                 YOLO & RAG 시스템을 연동하여,<br>실시간 운동 자세 피드백 서비스 개발
-                <a href="https://github.com/Hyeongseob91/KOMI.git" target="_blank" rel="noopener noreferrer"
-                  class="project-card__link" onclick="event.stopPropagation()">
-                  <i class="fa-brands fa-github"></i>
-                </a>
               </span>
             </h3>
             <p class="project-card__description">
@@ -561,22 +531,25 @@
               <span class="project-card__tag">VectorDB</span>
             </div>
           </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/KOMI.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
         </article>
 
         <!-- Project 3: BeMyMuse -->
         <article class="project-card fade-in" data-project="bemymuse" data-category="educational">
           <div class="project-card__image-wrapper">
-            <img src="assets/bemymuse_finetuning.png" alt="BeMyMuse Project" class="project-card__image">
+            <img src="images/projects/bemymuse_main.png" alt="BeMyMuse Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
               <span class="project-card__category-text">[Language Model Fine-Tuning]</span>
               <span class="project-card__title-main">
                 KoGPT-2 Model을 감성 작사 특화 모델로 Fine-Tuning
-                <a href="https://github.com/Hyeongseob91/BeMyMuse.git" target="_blank" rel="noopener noreferrer"
-                  class="project-card__link" onclick="event.stopPropagation()">
-                  <i class="fa-brands fa-github"></i>
-                </a>
               </span>
             </h3>
             <p class="project-card__description">
@@ -588,22 +561,25 @@
               <span class="project-card__tag">Evaluate</span>
             </div>
           </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/BeMyMuse.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
         </article>
 
-        <!-- Project 4: PerfectPose (Hidden by default) -->
-        <article class="project-card fade-in hidden" data-project="perfectpose" data-category="educational">
+        <!-- Project 4: PerfectPose -->
+        <article class="project-card fade-in" data-project="perfectpose" data-category="educational">
           <div class="project-card__image-wrapper">
-            <img src="assets/image7.png" alt="PerfectPose Project" class="project-card__image">
+            <img src="images/projects/perfectposes_main.png" alt="PerfectPose Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
               <span class="project-card__category-text">[Computer Vision]</span>
               <span class="project-card__title-main">
                 PerfectPose - AI 자세 추론 게임
-                <a href="https://github.com/Hyeongseob91/PerfectPose.git" target="_blank" rel="noopener noreferrer"
-                  class="project-card__link" onclick="event.stopPropagation()">
-                  <i class="fa-brands fa-github"></i>
-                </a>
               </span>
             </h3>
             <p class="project-card__description">
@@ -615,22 +591,25 @@
               <span class="project-card__tag">Unreal</span>
             </div>
           </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/PerfectPose.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
         </article>
 
-        <!-- Project 5: EconDigest (Hidden by default) -->
-        <article class="project-card fade-in hidden" data-project="econdigest" data-category="educational">
+        <!-- Project 5: EconDigest -->
+        <article class="project-card fade-in" data-project="econdigest" data-category="educational">
           <div class="project-card__image-wrapper">
-            <img src="assets/image5.png" alt="EconDigest Project" class="project-card__image">
+            <img src="images/projects/youtube_main.png" alt="EconDigest Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
               <span class="project-card__category-text">[STT & Summarization]</span>
               <span class="project-card__title-main">
                 EconDigest - 경제 유튜브 요약
-                <a href="https://github.com/Text-Audio-Team/EconDigest.git" target="_blank" rel="noopener noreferrer"
-                  class="project-card__link" onclick="event.stopPropagation()">
-                  <i class="fa-brands fa-github"></i>
-                </a>
               </span>
             </h3>
             <p class="project-card__description">
@@ -643,16 +622,15 @@
               <span class="project-card__tag">QLoRA</span>
             </div>
           </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Text-Audio-Team/EconDigest.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
         </article>
 
-      </div>
-
-      <!-- Show More Button -->
-      <div class="projects__show-more">
-        <button class="show-more-btn" id="showMoreEducational">
-          <span class="show-more-btn__text">더 많은 프로젝트 보기</span>
-          <i class="fa-solid fa-chevron-down show-more-btn__icon"></i>
-        </button>
       </div>
 
     </div>

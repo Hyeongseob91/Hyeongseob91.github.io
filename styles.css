@@ -1047,6 +1047,8 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all var(--transition-base);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -1140,6 +1142,9 @@ img {
 
 .project-card__content {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card__title {
@@ -1193,6 +1198,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .project-card__tag {
@@ -1202,6 +1208,50 @@ img {
   font-size: 0.75rem;
   font-weight: 500;
   border-radius: var(--radius-sm);
+}
+
+/* Project Card Footer - GitHub Button */
+.project-card__footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.project-card__github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.project-card__github-btn:hover {
+  background: var(--color-text);
+  color: var(--color-dark);
+  border-color: var(--color-text);
+}
+
+.project-card__github-btn i {
+  font-size: 1rem;
+}
+
+.project-card__footer-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.project-card__footer-note i {
+  font-size: 0.9rem;
 }
 
 /* Show More Button */
@@ -1315,6 +1365,11 @@ img {
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
+.modal__image--contain {
+  object-fit: contain;
+  background-color: var(--color-surface);
+}
+
 .modal__body {
   padding: 2rem;
 }
@@ -1411,6 +1466,123 @@ img {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* =====================================================
+   MODAL DISCLAIMER (회사 프로젝트용)
+   ===================================================== */
+.modal__disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-md);
+  border-left: 4px solid #f59e0b;
+}
+
+.modal__disclaimer i {
+  color: #f59e0b;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.modal__disclaimer p {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Subsection 스타일 */
+.modal__subsection {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border);
+}
+
+.modal__subsection-title {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Section Image 스타일 */
+.modal__section-image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal__section-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal__section-image-caption {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Subsection Image 스타일 */
+.modal__subsection-image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  margin: 0.75rem 0;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal__subsection-image:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Gallery 스타일 (여러 이미지) */
+.modal__image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.modal__gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__gallery-item img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal__gallery-item img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal__gallery-item span {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 /* =====================================================
