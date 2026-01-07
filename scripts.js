@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Problem',
-          content: 'FPS 게임을 개발하면서 가장 큰 병목은 단순 반복 작업이었습니다. 예를 들어 총기 하나의 반동 패턴을 조정하는 데만 40분 이상이 걸렸고, 기획자가 "좀 더 위로 튀게 해주세요"라고 요청하면 개발자는 다시 수치를 조정하고 테스트하는 과정을 반복해야 했습니다. 3D 맵 화이트박싱의 경우 시야각 확인, 사물 배치 등의 커스텀을 거치면 한번의 맵 빌딩마다 8시간 가량의 시간이 소요되었습니다. 신규 플레이어에게 게임 규칙을 설명하는 것도 매번 같은 내용을 반복하는 비효율이 있었습니다. 그래서 저희는 이런 반복 작업을 AI로 자동화하여 개발자 리소스 효율화를 통해 회사의 기회비용을 창출하고, 개발자 본인도 작업에 더 집중할 수 있는 환경을 구축하는 목표로 시작하였습니다.'
+          content: 'FPS 게임을 개발하면서 가장 큰 Bottle Neck은 단순 반복 작업이었습니다. <br>예를 들어 총기 하나의 반동 패턴을 설정하는 데만 40분 가량이 걸렸고, 기획자가 "좀 더 위로 튀게 해주세요"라고 요청하면 개발자는 다시 수치를 조정하고 테스트하는 과정을 반복해야 했습니다. <br>3D 맵 화이트박싱의 경우 시야각 확인, 사물 배치 등의 커스텀을 거치면 한번의 맵 빌딩마다 8시간 가량의 시간이 소요되었습니다.<br><br>그래서 저희는 이런 반복 작업을 AI로 자동화하여 개발자 리소스 효율화를 통해 회사의 기회비용을 창출하고, 개발자 본인도 작업에 더 집중할 수 있는 환경을 구축하는 목표로 시작하였습니다.'
         },
         {
           title: 'Solution',
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: 'Core Value',
-              content: 'MCP와 LangGraph 기반의 AI 에이전트를 프로젝트 전반에 통합하여 기획부터 플레이까지의 워크플로우를 지능화하고, 단순 반복 작업의 제약 없이 누구나 아이디어를 즉시 구현할 수 있는 새로운 게임 개발 패러다임을 제시했습니다.',
+              content: '<strong>MCP 도구와 AI Agent를 프로젝트 전반에 통합하여 기획부터 플레이까지의 워크플로우를 지능화하고, 단순 반복 작업의 제약 없이 누구나 아이디어를 즉시 구현할 수 있는 새로운 게임 개발 패러다임을 제시합니다.</strong>',
               image: {
                 src: 'images/projects/valorithm_sequence_dev_flow.png',
                 alt: 'VALORITHM 개발 흐름'
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: 'Core Contributions & Technical Deep Dive',
+          title: 'What I Built & Technical Deep Dive',
           subsections: [
             {
               subtitle: 'MCP 기반 AI 시스템 설계',
