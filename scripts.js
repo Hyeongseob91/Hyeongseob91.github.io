@@ -144,9 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'Enterprise RAG Agent PlayGround',
       image: 'images/companies/soundmind.png',
       meta: {
-        role: 'Architect / Backend / RAG Engineer',
+        role: 'Project Director / Architect / Full-Stack / RAG Engineer',
         context: 'Company Project – Personal Engineering Scope',
-        period: '2025.09 – 2025.12',
+        period: '2025.11 ~ Ongoing',
         deployment: 'Docker Compose 기반 MSA 오케스트레이션'
       },
       disclaimer: {
@@ -346,8 +346,8 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'VALORITHM - MCP 기반 게임 개발 AI 시스템',
       image: 'images/projects/valorithm_mcp_server.png',
       meta: {
-        team: '7명 (AI 3명, Unreal 4명)',
-        role: 'AI Part 팀장 / 전체 AI 아키텍처 설계',
+        team: '7명 (AI Lead)',
+        role: 'Project Leader / Architect / MCP Server 개발',
         period: '2025.04 - 2025.06',
         deployment: 'MCP Server + FastAPI + LangGraph'
       },
@@ -486,8 +486,8 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'KOMI - AI 기반 원격 재활 진료 서비스',
       image: 'images/projects/komi_realtime_feedback.png',
       meta: {
-        team: '3명 (팀장)',
-        role: 'Project Leader / 아키텍처 설계 / RAG 파이프라인',
+        team: '3명 (Lead)',
+        role: 'Project Leader / Architect / RAG Engineer',
         period: '2025.03 (1개월)',
         context: '제3회 AI 프로젝트',
         deployment: 'FastAPI + Streamlit + WebSocket'
@@ -704,7 +704,7 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'BE MY MUSE - KoGPT-2 기반 감성 작사 AI',
       image: 'images/projects/bemymuse_lyrics.png',
       meta: {
-        team: '3명 (팀장)',
+        team: '3명 (Lead)',
         role: 'Project Leader / Model Fine-Tuning / Model Evaluation',
         period: '2025.01 (1개월)',
         context: 'MUSE Label DACON 공모전',
@@ -885,9 +885,9 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'PerfectPoses - AI 자세 인식 파티 게임',
       image: 'images/projects/perfectposes_game_main.gif',
       meta: {
-        team: '6명 (AI 3명, Unreal 3명)',
-        role: 'AI Part Lead / FastAPI 서버 개발 / YOLO-Pose 엔진 구축',
-        period: '2025.03.13 ~ 2025.03.14 (2일)',
+        team: '6명 (AI Lead)',
+        role: 'Project Leader / FastAPI 서버 개발 / YOLO-Pose 엔진 구축',
+        period: '2025.03.13 ~ 2025.03.14 (24시간)',
         context: 'Fast Builder Challenge - 24시간 E2E 서비스 구축',
         deployment: 'FastAPI + Unreal Engine 5 + WebSocket'
       },
