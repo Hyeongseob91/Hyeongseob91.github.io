@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "WebSearch",
+      "Bash(cat:*)",
+      "Bash(git config:*)",
+      "Bash(xargs:*)",
+      "Bash(dir /s /b \"C:\\\\Users\\\\vrsoft\\\\Desktop\\\\soundmind\\\\Wanted_KOMI\\\\*.py\")",
+      "Bash(dir /s .claude)",
+      "Bash(dir /s /b)"
+    ]
+  }
+}

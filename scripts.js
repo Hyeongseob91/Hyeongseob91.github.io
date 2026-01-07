@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Architecture Overview',
           image: {
-            src: 'images/projects/soundmind_ai_platform.png',
+            src: 'images/projects/soundmind_ai_platform_architecture.png',
             alt: 'Soundmind AI Platform Architecture',
             caption: '5계층 MSA 아키텍처: Presentation → API Gateway → Service → Data → External Model Services'
           },
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     komi: {
       title: 'KOMI - AI 기반 원격 재활 진료 서비스',
-      image: '../Wanted_KOMI/assets/ss_realtime.png',
+      image: 'images/projects/komi_realtime_feedback.png',
       meta: {
         team: '3명 (팀장)',
         role: 'Project Leader / 아키텍처 설계 / RAG 파이프라인',
@@ -542,17 +542,17 @@ document.addEventListener('DOMContentLoaded', function() {
               caption: '1. 전체 시스템 워크플로우: 사용자 입력부터 피드백 생성까지'
             },
             {
-              src: '../Wanted_KOMI/assets/komi_architecture1.png',
+              src: 'images/projects/komi_pose_estimation_architecture.png',
               alt: 'Pose Estimator Architecture',
               caption: '2. Pose-Estimator: YOLO11 기반 실시간 포즈 감지 시스템'
             },
             {
-              src: '../Wanted_KOMI/assets/komi_architecture2.png',
+              src: 'images/projects/komi_rag_pipeline_architecture.png',
               alt: 'RAG Pipeline Architecture',
               caption: '3. LangChain 기반 RAG Pipeline: OpenAI Embedding + ChromaDB'
             },
             {
-              src: '../Wanted_KOMI/assets/komi_architecture3.png',
+              src: 'images/projects/komi_web_server_architecture.png',
               alt: 'Multi-Modal WebSocket',
               caption: '4. Multi-Modal WebSocket: 2개 카메라 동기화 실시간 스트리밍'
             }
@@ -572,32 +572,32 @@ document.addEventListener('DOMContentLoaded', function() {
           ],
           gallery: [
             {
-              src: '../Wanted_KOMI/assets/ss_main.png',
+              src: 'images/projects/komi_web_pages.png',
               alt: 'Main Screen',
               caption: '1. 메인 화면 - 운동 선택'
             },
             {
-              src: '../Wanted_KOMI/assets/ss_guide.png',
+              src: 'images/projects/komi_guide.png',
               alt: 'Exercise Guide',
               caption: '2. 운동 가이드 - 올바른 자세 학습'
             },
             {
-              src: '../Wanted_KOMI/assets/ss_analysis.png',
+              src: 'images/projects/komi_segmentation.png',
               alt: 'Pose Analysis',
-              caption: '3. 정밀 분석 - 영상 녹화 및 자세 분석'
+              caption: '3. 정밀 분석 - Segmentaion-based 영상 녹화 및 자세 분석'
             },
             {
-              src: '../Wanted_KOMI/assets/ss_result1.png',
+              src: 'images/projects/komi_analyzer_result1.png',
               alt: 'Analysis Result 1',
               caption: '4. 분석 결과 - 관절별 정확도 표시'
             },
             {
-              src: '../Wanted_KOMI/assets/ss_result2.png',
+              src: 'images/projects/komi_analyzer_result2.png',
               alt: 'Analysis Result 2',
               caption: '5. 분석 결과 - LLM 기반 개선 제안'
             },
             {
-              src: '../Wanted_KOMI/assets/ss_realtime.png',
+              src: 'images/projects/komi_realtime_feedback.png',
               alt: 'Realtime Analysis',
               caption: '6. 실시간 분석 - 즉각적인 자세 피드백'
             }
@@ -643,18 +643,7 @@ document.addEventListener('DOMContentLoaded', function() {
               ]
             },
             {
-              subtitle: '4. Real-time Communication',
-              content: 'WebSocket + 멀티스레딩 기반 저지연 영상 스트리밍 시스템을 구현했습니다.',
-              list: [
-                'FastAPI <code>@app.websocket</code> 엔드포인트로 양방향 통신',
-                'Base64 인코딩 프레임 전송 및 브로드캐스트 (<code>broadcast_image_to_subscribers</code>)',
-                '<code>threading.Lock</code>을 활용한 동시성 제어',
-                '<code>ProcessPoolExecutor</code>로 LLM 분석 병렬 처리 (max_workers=2)',
-                '연결 상태 모니터링 및 자동 정리 (<code>cleanup_connections</code>)'
-              ]
-            },
-            {
-              subtitle: '5. RAGAS 평가 프레임워크 적용',
+              subtitle: '4. RAGAS 평가 프레임워크 적용',
               content: 'RAG 시스템의 품질을 객관적으로 검증하기 위해 RAGAS 프레임워크를 도입했습니다.<br>- "검색이 정확한가?"<br>- "답변이 질문에 맞는가?"<br>- "답변이 근거에 충실한가?"<br>위와 같은 핵심 질문에 대한 정량적 지표를 확보하여, 단순 체감이 아닌 데이터 기반의 품질 관리 체계를 구축했습니다.'
             }
           ]
@@ -713,7 +702,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     bemymuse: {
       title: 'BE MY MUSE - KoGPT-2 기반 감성 작사 AI',
-      image: '../Wanted_BeMyMuse/assets/image_3.png',
+      image: 'images/projects/bemymuse_lyrics.png',
       meta: {
         team: '3명 (팀장)',
         role: 'Project Leader / Model Fine-Tuning / Model Evaluation',
@@ -731,7 +720,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: 'Technical Challenge',
-              content: '한국어에 강한 KoGPT-2를 선택했지만, 이 모델은 뉴스, 소설 등 문어체 텍스트로 학습되어 있었습니다. 감수성 높은 발라드 가사를 생성하기에는 부적합했고, 모델이 감성적인 가사를 생성할 수 있도록 Fine-Tuning이 필요했습니다.'
+              content: '한국어에 강한 KoGPT-2를 선택했지만, 이 모델은 뉴스, 소설, 보고서 등 문어체 텍스트로 학습되어 있었습니다. 감수성 높은 발라드 가사를 생성하기에는 부적합했고, 모델이 감성적인 가사를 생성할 수 있도록 Fine-Tuning이 필요했습니다.'
             }
           ]
         },
@@ -793,7 +782,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Model Architecture',
           image: {
-            src: '../Wanted_BeMyMuse/assets/validation_image.png',
+            src: 'images/projects/bemymuse_validation_graph.png',
             alt: 'Training Validation Graph',
             caption: 'KoGPT2 Fine-tuning 학습 곡선 - Epoch별 Loss 변화'
           },
@@ -823,7 +812,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '1. 서비스 시작 화면',
               image: {
-                src: '../Wanted_BeMyMuse/assets/image_0.png',
+                src: 'images/projects/bemymuse_service_start.png',
                 alt: 'Service Start Screen',
                 style: 'width: 50%; height: auto;'
               }
@@ -831,7 +820,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '2. AI가 생성한 가사 결과',
               image: {
-                src: '../Wanted_BeMyMuse/assets/image_3.png',
+                src: 'images/projects/bemymuse_lyrics.png',
                 alt: 'Generated Lyrics',
                 style: 'width: 50%; height: auto;'
               }
@@ -839,7 +828,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '3. 감성 분석 시각화',
               image: {
-                src: '../Wanted_BeMyMuse/assets/image_4.png',
+                src: 'images/projects/bemymuse_service_kote.png',
                 alt: 'Emotion Analysis',
                 style: 'width: 50%; height: auto;'
               }
@@ -847,7 +836,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '4. 성능 평가 결과',
               image: {
-                src: '../Wanted_BeMyMuse/assets/image_5.png',
+                src: 'images/projects/bemymuse_service_metrics.png',
                 alt: 'Performance Evaluation',
                 style: 'width: 50%; height: auto;'
               }
@@ -893,112 +882,110 @@ document.addEventListener('DOMContentLoaded', function() {
       tags: ['KoGPT2', 'Fine-Tuning', 'NLP', 'Transformers', 'PyTorch', 'FastAPI', 'Streamlit', 'BLEU', 'ROUGE', 'Selenium']
     },
     perfectpose: {
-      title: 'PerfectPose - AI 자세 인식 게임',
-      image: '../Wanted_PerfectPose/assets/game_screenshot_0.png',
+      title: 'PerfectPoses - AI 자세 인식 파티 게임',
+      image: 'images/projects/perfectposes_game_main.gif',
       meta: {
         team: '6명 (AI 3명, Unreal 3명)',
-        role: 'AI 포즈 감지 엔지니어 / FastAPI 서버 개발',
+        role: 'AI Part Lead / FastAPI 서버 개발 / YOLO-Pose 엔진 구축',
         period: '2025.03.13 ~ 2025.03.14 (2일)',
-        context: 'Steam Perfect Poses 레퍼런스',
-        deployment: 'Python (FastAPI) + Unreal Engine 5'
+        context: 'Fast Builder Challenge - 24시간 E2E 서비스 구축',
+        deployment: 'FastAPI + Unreal Engine 5 + WebSocket'
       },
       sections: [
         {
-          title: 'Problem & Challenge',
+          title: 'Problem',
           subsections: [
             {
-              subtitle: 'Game Concept',
-              content: 'Steam의 "Perfect Poses" 게임을 레퍼런스로, 플레이어의 자세를 실시간으로 인식·분석하여 게임에서 제시하는 정답 자세와 비교해 점수를 부여하는 게임을 2일 만에 완성해야 하는 도전이었습니다.'
+              subtitle: 'Project Background',
+              content: '<strong>"24시간 안에 기획부터 배포까지"</strong> - 본 프로젝트는 Fast Builder Challenge로 진행된 미션이었습니다.<br>저희는 24시간 안에 E2E 서비스 구축을 완성해야 했기에, 많은 Reference를 검토하였고 최종적으로 Steam의 "Perfect Poses"를 기반으로 플레이어가 화면에 제시된 자세를 따라하면 AI가 실시간으로 정확도를 측정하여 점수를 부여하는 리듬 게임을 개발하기로 하였습니다.'
             },
             {
               subtitle: 'Technical Challenge',
-              content: 'AI 팀과 Unreal 팀 간의 실시간 데이터 통신, 웹캠 기반 포즈 감지의 정확도와 속도 확보, 그리고 짧은 개발 기간 내 완성도 높은 결과물 제작이 핵심 과제였습니다.'
+              content: '가장 큰 도전은 <strong>AI 팀(Python)과 Unreal 팀(C++) 간의 실시간 데이터 브릿지</strong>를 구축하는 것이었습니다.<br>웹캠을 30fps로 설정하여 캡처되는 영상을 YOLO-Pose로 Detecting하고, 17개 관절 좌표를 최적화된 WebSocket을 통해 Unreal Engine에 지연 없이 전달하여, 짧은 개발 기간 내에 완성도 높은 게임플레이 경험을 제공해야 했습니다.'
+            },
+            {
+              subtitle: 'Fast Builder Mindset',
+              content: '완벽한 코드보다 <strong>"동작하는 프로토타입"</strong>을 우선시 했습니다.<br>기술적 완성도와 시간 제약 사이에서 빠른 의사결정이 요구되었고, 협업간의 명확한 인터페이스 정의가 핵심이었습니다.'
             }
           ]
         },
         {
           title: 'Solution',
-          list: [
-            'YOLO-Pose를 이용한 17개 관절 실시간 검출',
-            'FastAPI 기반 비동기 REST API 서버 구축',
-            'Meta AI SAM을 활용한 객체 세그멘테이션',
-            'Unreal Engine 5 연동 및 실시간 자세 표시',
-            '한국 LLM (Bllossom) 활용 자세 분석 및 재활 운동 처방'
+          subsections: [
+            {
+              subtitle: 'What We Built',
+              list: [
+                'YOLO11-Pose 기반 실시간 17개 관절 좌표값 검출 엔진',
+                'FastAPI 비동기 WebSocket 서버 (AI ↔ Unreal 브릿지)',
+                'Meta AI SAM 라이브러리를 활용한 Player Segmentation 모듈',
+                'Unreal Engine 5 게임 클라이언트 (자세 매칭 + 스코어링)',
+                'Bllossom (한국어 LLM) 활용 자세 피드백 생성'
+              ]
+            },
+            {
+              subtitle: 'Core Value',
+              content: '24시간이라는 시간 제약 속에서 <strong>기획 → 설계 → 개발 → 테스트 → 배포</strong>까지 End-to-End 파이프라인을 완성했습니다.<br>AI 팀과 Unreal 팀이 병렬로 작업할 수 있도록 <strong>API 인터페이스를 먼저 정의</strong>하고, 각 팀이 독립적으로 개발한 후 통합하는 전략을 채택했습니다. 이를 통해 실무에서 늘 있을 수 있는, 서로 다른 조직과의 협업 프로젝트 경험을 간접적으로나마 체험하기로 하였습니다.'
+            }
           ]
         },
         {
-          title: 'System Architecture',
+          title: 'Project Workflow',
           image: {
-            src: '../Wanted_PerfectPose/assets/image_2.png',
-            alt: 'FastAPI Server Architecture',
-            caption: 'FastAPI 서버 구조: 웹캠 → 포즈 감지 → JSON API → Unreal Engine'
+            src: 'images/projects/perfectposes_workflow.png',
+            alt: 'PerfectPoses Project Workflow',
+            caption: '24시간 Fast Builder 프로젝트 흐름: <strong>기획 → 인터페이스 정의 → 병렬 개발 → 통합 → 배포</strong>'
           },
           subsections: [
             {
               subtitle: 'Data Flow',
-              content: '웹캠 영상 캡처 → OpenCV 전처리 → YOLO-Pose 추론 → 17개 관절 좌표 추출 → JSON 직렬화 → REST API 응답 → Unreal Engine 렌더링'
+              content: '웹캠 캡처 (30fps) → OpenCV 전처리 → YOLO11-Pose 추론 → 17개 관절 좌표 추출 → JSON 직렬화 → FastAPI REST API → Unreal Engine 렌더링 → 자세 매칭 & 스코어 계산'
+            },
+            {
+              subtitle: 'Communication Protocol',
+              content: 'AI 서버와 Unreal 클라이언트 간 통신은 <strong>JSON over HTTP</strong>로 구현했습니다. Unreal에서 주기적으로 `/api/pose` 엔드포인트를 폴링하여 최신 자세 데이터를 가져오는 방식입니다. 실시간성이 중요한 게임이므로 응답 지연을 최소화하기 위해 비동기 처리와 싱글톤 모델 인스턴스 패턴을 적용했습니다.'
             }
           ]
         },
         {
-          title: 'Technical Implementation',
+          title: 'What I Built',
           subsections: [
             {
-              subtitle: 'PoseEstimator 클래스',
+              subtitle: '1. Project Leading (PL)',
+              content: '중고 신입의 강점을 살려서, 이전 PM 경력을 바탕으로 프로젝트 전반을 리딩했습니다.',
               list: [
-                'YOLO 클래스를 상속받는 커스텀 Pose Estimator',
-                '웹캠 실시간 처리 및 이미지 배치 처리 지원',
-                '17개 COCO 키포인트 추출 (신뢰도 50% 이상 필터링)',
-                '싱글톤 패턴으로 모델 인스턴스 관리'
+                '<strong>킥오프 & 기획 확정:</strong> 레퍼런스 게임 분석 → 핵심 기능 정의 → MVP 범위 설정',
+                '<strong>팀 구성 & 역할 분배:</strong> AI 3명 / Unreal 3명 역할 명확화, 병렬 작업 가능하도록 태스크 분리',
+                '<strong>인터페이스 선정의:</strong> AI-Unreal 간 JSON API 스펙을 첫 2시간 내 확정하여 양 팀 독립 개발 가능하게 설계',
+                '<strong>일정 관리:</strong> 24시간을 4단계(기획/개발/통합/마무리)로 분할, 각 단계별 마일스톤 설정',
+                '<strong>리스크 관리:</strong> 통합 테스트 시점을 중간에 배치하여 조기 이슈 발견 및 대응'
               ]
             },
             {
-              subtitle: 'FastAPI 서버',
+              subtitle: '2. YOLO-Pose Engine',
+              content: '<code>PoseEstimator</code> 클래스 기반 실시간 포즈 감지 엔진을 구축했습니다.',
+              gallery: [
+                {
+                  src: 'images/projects/perfectposes_pose_estimation1.jpg',
+                  alt: 'YOLO-Pose 실시간 추론 테스트 1'
+                },
+                {
+                  src: 'images/projects/perfectposes_pose_estimation2.gif',
+                  alt: 'YOLO-Pose 실시간 추론 테스트 2'
+                }
+              ],
               list: [
-                '비동기 RESTful API로 자세 데이터 송수신',
-                'JSON 기반 통신 프로토콜 설계',
-                '실시간 웹캠 스트리밍 처리',
-                'Pydantic 스키마를 통한 데이터 검증'
-              ]
-            },
-            {
-              subtitle: 'SAM Integration',
-              list: [
-                'Meta AI SAM (Segment Anything Model) 활용',
-                'YOLO로 객체 검출 후 SAM으로 정밀한 마스크 생성',
-                '백그라운드 제거 및 객체 격리 기능'
+                'YOLO11n-pose 모델 활용 (경량화로 실시간 처리 가능)',
+                '17개 COCO Keypoints 추출: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles',
+                '<code>conf_threshold=0.5</code> 이상 신뢰도 관절만 필터링',
+                '싱글톤 패턴으로 모델 로딩 오버헤드 제거',
+                'OpenCV 기반 프레임 처리 및 키포인트 시각화'
               ]
             }
           ]
         },
         {
-          title: 'Demo & Results',
-          gallery: [
-            {
-              src: '../Wanted_PerfectPose/assets/game_screenshot_0.png',
-              alt: 'Game UI Screenshot',
-              caption: '1. 게임 UI - 자세 매칭 인터페이스'
-            },
-            {
-              src: '../Wanted_PerfectPose/assets/image_1.png',
-              alt: 'Development Process',
-              caption: '2. 개발 프로세스 - AI ↔ Unreal 협업 구조'
-            },
-            {
-              src: '../Wanted_PerfectPose/assets/frame_1.jpg',
-              alt: 'Pose Detection Result',
-              caption: '3. 포즈 감지 결과 - 17개 관절 키포인트 시각화'
-            },
-            {
-              src: '../Wanted_PerfectPose/assets/sam_mask_0.jpg',
-              alt: 'SAM Segmentation',
-              caption: '4. SAM 세그멘테이션 - 객체 마스크 생성'
-            }
-          ]
-        },
-        {
-          title: 'API Response Format',
-          content: 'JSON 형식으로 실시간 자세 데이터 전송:<br><code>{ "status": "success", "pose": [{ "person_id": 1, "keypoints": [{ "id": 0, "x": 320, "y": 240, "confidence": 0.95 }, ...] }], "timestamp": "..." }</code>'
+          title: 'Service Demo',
+          content: '📎 <a href="https://www.canva.com/design/DAG9v3E2r_Y/xg9HqKSgq7AJfvZ5TQv-zw/view?utm_content=DAG9v3E2r_Y&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h917814d62f" target="_blank" rel="noopener noreferrer"><strong>시연 영상 확인하기 (Canva)</strong></a>'
         },
         {
           title: '성과 및 회고',
@@ -1006,20 +993,30 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '주요 성과',
               list: [
-                '2일 만에 풀스택 AI 게임 완성',
-                '3명 AI + 3명 Unreal 팀 효율적 협업',
-                'YOLO-Pose + SAM + FastAPI + UE5 기술 통합',
-                '실시간 웹캠 포즈 감지 및 게임 연동 구현'
+                '<strong>24시간 내 E2E 게임 서비스 완성</strong> (기획 → 배포)',
+                'AI 3명 + Unreal 3명 팀 효율적 협업 체계 구축',
+                'YOLO-Pose + SAM + FastAPI + UE5 기술 스택 통합',
+                '평균 API 응답 시간 <strong>< 50ms</strong> 달성',
+                '실시간 30fps 웹캠 기반 자세 감지 구현'
               ]
             },
             {
-              subtitle: '기술적 도전',
-              content: '짧은 기간 내에 AI 모델, 백엔드 서버, 게임 엔진을 통합하는 경험을 통해 멀티 팀 협업과 실시간 시스템 개발 역량을 크게 향상시켰습니다.'
+              subtitle: '기술적 성장',
+              content: '이 프로젝트를 통해 <strong>"완벽한 코드"보다 "동작하는 프로토타입"</strong>의 가치를 체감했습니다. 시간 제약이 있을 때 어떤 기능을 포기하고 어떤 기능에 집중할지 빠르게 판단하는 능력이 중요하다는 것을 배웠습니다.<br><br>특히 <strong>인터페이스 선정의</strong>가 병렬 개발의 핵심이라는 것을 깨달았습니다. API 스펙을 먼저 확정함으로써 AI 팀과 Unreal 팀이 서로의 완성을 기다리지 않고 독립적으로 작업할 수 있었습니다.'
+            },
+            {
+              subtitle: 'Future Improvements',
+              list: [
+                'HTTP Polling → WebSocket 전환으로 지연 시간 추가 단축',
+                '멀티플레이어 지원 (2인 동시 자세 감지)',
+                '자세 정확도 알고리즘 고도화 (관절 각도 기반 평가)',
+                '리더보드 및 랭킹 시스템 추가'
+              ]
             }
           ]
         }
       ],
-      tags: ['YOLO-Pose', 'OpenCV', 'FastAPI', 'SAM', 'Unreal Engine 5', 'PyTorch', 'Game Dev', 'Real-time']
+      tags: ['YOLO11-Pose', 'FastAPI', 'SAM', 'Unreal Engine 5', 'OpenCV', 'PyTorch', 'REST API', 'Real-time', 'Game Dev']
     },
     econdigest: {
       title: 'EconDigest - 경제 유튜브 요약',
@@ -1132,6 +1129,19 @@ document.addEventListener('DOMContentLoaded', function() {
             contentHTML += `</div>`;
           }
 
+          // Video 지원 (mp4)
+          if (section.video) {
+            contentHTML += `
+              <div class="modal__video-wrapper">
+                <video class="modal__video" controls ${section.video.autoplay ? 'autoplay muted loop' : ''}>
+                  <source src="${section.video.src}" type="video/mp4">
+                  브라우저가 비디오를 지원하지 않습니다.
+                </video>
+                ${section.video.caption ? `<p class="modal__video-caption">${section.video.caption}</p>` : ''}
+              </div>
+            `;
+          }
+
           if (section.content) {
             contentHTML += `<p>${section.content}</p>`;
           }
@@ -1154,6 +1164,21 @@ document.addEventListener('DOMContentLoaded', function() {
                        ${imgStyle}
                        onclick="window.open('${sub.image.src}', '_blank')">
                 `;
+              }
+              // Subsection Gallery 지원 (여러 이미지 병렬 배치)
+              if (sub.gallery) {
+                contentHTML += `<div class="modal__subsection-gallery">`;
+                sub.gallery.forEach(img => {
+                  contentHTML += `
+                    <div class="modal__subsection-gallery-item">
+                      <img src="${img.src}"
+                           alt="${img.alt}"
+                           onclick="window.open('${img.src}', '_blank')">
+                      ${img.caption ? `<span>${img.caption}</span>` : ''}
+                    </div>
+                  `;
+                });
+                contentHTML += `</div>`;
               }
               if (sub.content) {
                 contentHTML += `<p>${sub.content}</p>`;

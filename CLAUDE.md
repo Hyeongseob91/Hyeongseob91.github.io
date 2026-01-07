@@ -13,12 +13,31 @@
 ├── index.html          # 메인 포트폴리오 페이지
 ├── styles.css          # 스타일시트 (BEM 네이밍)
 ├── scripts.js          # 인터랙션 로직 (projectData 객체 포함)
-├── images/             # 이미지 폴더
-│   ├── aboutme/        # About Me 섹션 이미지
-│   ├── companylogo/    # Experience/Certificates 로고
-│   └── projects/       # 프로젝트 이미지
-└── docs/               # 프로젝트 문서
+└── images/             # 이미지 폴더
+    ├── aboutme/        # About Me 섹션 이미지
+    ├── companies/      # Experience/Certificates 로고
+    └── projects/       # 프로젝트 이미지
 ```
+
+## Design System (Quick Reference)
+
+### Color Palette
+| 변수 | 값 | 용도 |
+|------|-----|------|
+| `--color-primary` | `#2563eb` | 강조, 버튼, 링크 |
+| `--color-primary-light` | `#3b82f6` | 호버, 보조 강조 |
+| `--color-surface` | `#f8fafc` | 섹션 배경, 카드 |
+| `--color-text` | `#0f172a` | 본문 텍스트 |
+| `--color-text-secondary` | `#475569` | 보조 텍스트 |
+
+### Typography
+- **폰트**: Pretendard, Inter, system-ui
+- **코드 폰트**: JetBrains Mono
+- **헤딩**: H1(2.5-4rem), H2(2-3rem), H3(1.25-1.75rem)
+
+### 섹션 배경 패턴
+- 흰색 (#ffffff): Hero, About, Education, Awards, Skills, Contact
+- 회색 (#f8fafc): Experience, Certificates, Licenses, Projects, Footer
 
 ## Code Style
 
