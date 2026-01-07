@@ -8,7 +8,9 @@
       "Bash(xargs:*)",
       "Bash(dir /s /b \"C:\\\\Users\\\\vrsoft\\\\Desktop\\\\soundmind\\\\Wanted_KOMI\\\\*.py\")",
       "Bash(dir /s .claude)",
-      "Bash(dir /s /b)"
+      "Bash(dir /s /b)",
+      "Bash(git reset:*)",
+      "Bash(git add:*)"
     ]
   }
 }
