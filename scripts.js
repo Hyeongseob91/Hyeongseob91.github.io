@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'Enterprise RAG Agent PlayGround',
       image: 'images/companies/soundmind.png',
       meta: {
-        role: 'Project Director / Architect / Full-Stack / RAG Engineer',
-        context: 'Company Project – Personal Engineering Scope',
-        period: '2025.11 ~ Ongoing',
-        deployment: 'Docker Compose 기반 MSA 오케스트레이션'
+        organization: 'Soundmind-Labs',
+        role: 'Project Lead / Tech Lead',
+        period: '2025.11 ~ 현재',
+        architecture: 'MSA + Clean Architecture + Docker Compose'
       },
       disclaimer: {
         show: true,
@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Try Demo',
+          highlight: true,
           content: '<a href="http://work.soundmind.life:12320" target="_blank" rel="noopener noreferrer"><strong>work.soundmind.life:12320</strong></a> 으로 접속하여 Try Demo 버튼을 통해 Guest Mode 체험이 가능합니다.'
         },
         {
@@ -346,10 +347,10 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'VALORITHM - MCP 기반 게임 개발 AI 시스템',
       image: 'images/projects/valorithm_mcp_server.png',
       meta: {
-        team: '7명 (AI Lead)',
-        role: 'Project Leader / Architect / MCP Server 개발',
-        period: '2025.04 - 2025.06',
-        deployment: 'MCP Server + FastAPI + LangGraph'
+        organization: 'Wanted Learning',
+        role: 'Project Lead / Tech Lead(AI)',
+        period: '2025.04 ~ 2025.06',
+        architecture: 'MCP Server + LangGraph Agent'
       },
       sections: [
         {
@@ -520,11 +521,10 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'KOMI - AI 기반 원격 재활 진료 서비스',
       image: 'images/projects/komi_realtime_feedback.png',
       meta: {
-        team: '3명 (Lead)',
-        role: 'Project Leader / Architect / RAG Engineer',
+        organization: 'Wanted Learning',
+        role: 'Project Lead / Tech Lead(AI)',
         period: '2025.03 (1개월)',
-        context: '제3회 AI 프로젝트',
-        deployment: 'FastAPI + Streamlit + WebSocket'
+        architecture: 'FastAPI + WebSocket + RAG Pipeline'
       },
       sections: [
         {
@@ -725,11 +725,10 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'BE MY MUSE - KoGPT-2 기반 감성 작사 AI',
       image: 'images/projects/bemymuse_lyrics.png',
       meta: {
-        team: '3명 (Lead)',
-        role: 'Project Leader / Model Fine-Tuning / Model Evaluation',
+        organization: 'Wanted Learning',
+        role: 'Project Lead / Tech Lead(AI)',
         period: '2025.01 (1개월)',
-        context: 'MUSE Label DACON 공모전',
-        deployment: 'FastAPI + Streamlit'
+        architecture: 'FastAPI + Fine-Tuning Pipeline'
       },
       sections: [
         {
@@ -906,11 +905,10 @@ document.addEventListener('DOMContentLoaded', function() {
       title: 'PerfectPoses - AI 자세 인식 파티 게임',
       image: 'images/projects/perfectposes_game_main.gif',
       meta: {
-        team: '6명 (AI Lead)',
-        role: 'Project Leader / FastAPI 서버 개발 / YOLO-Pose 엔진 구축',
-        period: '2025.03.13 ~ 2025.03.14 (24시간)',
-        context: 'Fast Builder Challenge - 24시간 E2E 서비스 구축',
-        deployment: 'FastAPI + Unreal Engine 5 + WebSocket'
+        organization: 'Wanted Learning',
+        role: 'Project Lead / Tech Lead(AI)',
+        period: '2025.03 (24시간)',
+        architecture: 'FastAPI + WebSocket + Real-time AI'
       },
       sections: [
         {
@@ -1036,23 +1034,155 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     econdigest: {
       title: 'EconDigest - 경제 유튜브 요약',
-      image: 'images/projects/youtube_main.png',
+      image: 'images/projects/econdigest_frontend_start.png',
       meta: {
-        team: '팀 프로젝트',
-        role: '백엔드 개발',
-        period: '2025'
+        organization: 'Wanted Learning',
+        role: 'Project Lead / Tech Lead(AI)',
+        period: '2025.01 (1개월)',
+        architecture: 'FastAPI + STT/LLM Pipeline'
       },
       sections: [
         {
-          title: '프로젝트 개요',
-          content: '"경제 유튜브, 핵심만 보자!" 금융·재테크 정보를 찾기 위해 방대한 영상을 일일이 시청할 필요 없이, 클릭 한 번으로 요약 보고서를 받아볼 수 있는 AI 웹 애플리케이션입니다.'
+          title: 'Problem',
+          subsections: [
+            {
+              subtitle: 'Business Challenge',
+              content: '<strong>시성비(시간 대비 효율) 트렌드</strong> - 영상이나 음성 콘텐츠에서 원하는 부분만 빠르게 취사선택하려는 소비자가 늘어남에 따라, 요약 서비스의 필요성이 대두되었습니다.'
+            },
+            {
+              subtitle: 'Social Challenge',
+              content: '<strong>시니어 금융 리터러시</strong> - 5060 세대가 모바일 자산관리 및 금융 거래에 적극적으로 참여하고 있으나, 복잡한 정보를 습득하는 데 여전히 어려움을 겪고 있습니다.'
+            },
+            {
+              subtitle: 'User Pain Points',
+              list: [
+                '긴 영상 시청에 대한 부담',
+                '전문 금융 용어 이해의 어려움',
+                '중요한 내용을 놓치는 문제'
+              ]
+            }
+          ]
         },
         {
-          title: '담당 기능',
+          title: 'Solution',
+          subsections: [
+            {
+              subtitle: 'What We Built',
+              content: '<strong>AI 기반 경제 유튜브 채널 요약 서비스</strong><br><br>클릭 한 번으로 영상을 요약 보고서로 변환하는 웹 애플리케이션입니다. Whisper(STT)와 Gemma 2(LLM)를 활용한 "음성 추출 → 텍스트 변환 → 요약" 파이프라인을 구축했습니다.'
+            },
+            {
+              subtitle: 'Core Value',
+              list: [
+                '<strong>효율적인 정보 전달</strong>: 경제 및 금융 영상의 내용을 분석하여 높은 효율의 문서화된 정보를 생성',
+                '<strong>금융 지식 격차 해소</strong>: 정보 접근성이 낮은 타겟 사용자들이 경제 정보를 더 쉽게 접하도록 지원'
+              ]
+            },
+            {
+              subtitle: 'Target Users',
+              list: [
+                'AI/금융 비전문가 (시니어층)',
+                '바쁜 직장인 및 학생'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Architecture Overview',
           list: [
-            'yt-dlp와 FFmpeg를 활용한 고음질 오디오 분리 및 자동 정리',
-            'FastAPI 기반 백엔드 서버 구축 및 RESTful API 설계',
-            'Streamlit을 활용한 단일 버튼 UI 구성'
+            '<strong>오디오 추출</strong>: yt-dlp + FFmpeg (192kbps MP3)',
+            '<strong>음성-텍스트 변환</strong>: OpenAI Whisper-large-v3 (잡음에 강하고 한국어 인식 정확도 높음)',
+            '<strong>텍스트 요약</strong>: Google Gemma-2-2b-it (QLoRA 파인튜닝, 4-bit 양자화)',
+            '<strong>백엔드</strong>: FastAPI (3개 라우터: Audio, STT, Summary)',
+            '<strong>프론트엔드</strong>: Streamlit'
+          ]
+        },
+        {
+          title: 'What I Built',
+          subsections: [
+            {
+              subtitle: 'Project Leadership',
+              list: [
+                'Team Lead로서 전체 파이프라인 설계 및 통합',
+                '팀원 역할 분담 및 일정 관리'
+              ]
+            },
+            {
+              subtitle: 'Backend Development',
+              list: [
+                'FastAPI 기반 RESTful API 설계',
+                '3개 서비스 모듈화 (Audio, STT, Summary)',
+                'yt-dlp + FFmpeg 오디오 추출 파이프라인',
+                'HTTPException 기반 에러 처리 및 GPU 메모리 관리'
+              ]
+            },
+            {
+              subtitle: 'Frontend Development',
+              list: [
+                'Streamlit 기반 단일 버튼 UI',
+                '진행 상황 표시 및 결과 Expander 패널',
+                '동영상 재생 윈도우 통합'
+              ]
+            },
+            {
+              subtitle: 'AI Pipeline Integration',
+              list: [
+                'Whisper → Gemma 2 파이프라인 연결',
+                '3-step 번역 프롬프트 설계 (한→영→요약→한)',
+                '후처리: 단어 중복 제거, 공백 정리'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Service Demo',
+          gallery: [
+            {
+              src: 'images/projects/econdigest_frontend_start.png',
+              alt: '서비스 시작 화면',
+              caption: '서비스 시작 화면'
+            },
+            {
+              src: 'images/projects/econdigest_frontend_input.png',
+              alt: 'YouTube URL 입력',
+              caption: 'YouTube URL 입력'
+            },
+            {
+              src: 'images/projects/econdigest_frontend_button.png',
+              alt: '요약 버튼 클릭',
+              caption: '요약 버튼 클릭'
+            },
+            {
+              src: 'images/projects/econdigest_frontend_progress.png',
+              alt: '처리 진행 중',
+              caption: '처리 진행 중'
+            },
+            {
+              src: 'images/projects/econdigest_frontend_result.png',
+              alt: '요약 결과',
+              caption: '요약 결과'
+            },
+            {
+              src: 'images/projects/econdigest_backend.png',
+              alt: '백엔드 API',
+              caption: '백엔드 API'
+            }
+          ]
+        },
+        {
+          title: 'Model Fine-Tuning',
+          subsections: [
+            {
+              subtitle: 'STT (Whisper)',
+              content: 'LoRA 기법으로 파인튜닝을 시도했으나, 에포크가 진행될수록 오차율(CER, WER)이 지속적으로 상승하여 <strong>성능이 저하</strong>되는 것을 확인했습니다. 이에 따라 <strong>원본 Whisper-large 모델을 그대로 사용</strong>하는 것이 더 낫다는 결론을 내렸습니다.',
+              image: {
+                src: 'images/projects/econdigest_whisper_fine_tuning.png',
+                alt: 'Whisper LoRA 파인튜닝 결과 - 에포크별 CER/WER 상승'
+              }
+            },
+            {
+              subtitle: 'LLM (Gemma 2)',
+              content: '메모리 효율을 위해 <strong>QLoRA(양자화+LoRA)</strong> 기법을 사용하여 튜닝을 진행했습니다. 4-bit BitsAndBytes 양자화를 적용하여 VRAM 사용량은 줄었으나, <strong>오히려 요약 품질이 저하</strong>되어 튜닝하지 않은 원본 모델보다 못한 결과가 나왔습니다. 경량화와 성능 사이의 트레이드오프를 체감한 경험이었습니다.'
+            }
           ]
         },
         {
@@ -1061,23 +1191,36 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '주요 성과',
               list: [
-                'yt-dlp + FFmpeg 기반 고음질 오디오 자동 추출 파이프라인 구축',
-                'FastAPI 백엔드 및 RESTful API 설계 완료',
-                'Streamlit 단일 버튼 UI로 사용자 경험 간소화'
+                'yt-dlp + FFmpeg 기반 오디오 자동 추출 파이프라인 구축',
+                'FastAPI 백엔드 + Streamlit 프론트엔드 통합',
+                'QLoRA 적용으로 VRAM 효율화 (4-bit 양자화)'
               ]
             },
             {
               subtitle: '시행착오',
-              content: '[추후 작성] 프로젝트 진행 중 겪은 어려움과 해결 과정'
+              list: [
+                '<strong>STT LoRA 파인튜닝 실패</strong>: 파인튜닝 기술에 대한 이해 부족과 보유 인프라의 한계를 사전에 가늠하지 못한 채 진행하여 실패',
+                '<strong>LLM QLoRA 경량화 역효과</strong>: 4-bit 양자화로 경량화는 달성했으나, 오히려 성능이 저하되어 튜닝하지 않은 원본 모델보다 못한 결과 도출',
+                '<strong>긴 텍스트 문맥 누락</strong>: 청킹(Chunking) 전략의 필요성 인식',
+                '<strong>동일 문장 중복 출력</strong>: 후처리 로직 추가로 해결'
+              ]
             },
             {
               subtitle: '기술적 성장',
-              content: '[추후 작성] 이 프로젝트를 통해 배운 점'
+              content: '처음 접하는 STT/LLM 파이프라인과 파인튜닝 기술이었기에, 접근 방법 자체가 잘못된 부분이 많았습니다. 그러나 이 경험을 통해 <strong>모델 튜닝 전 베이스라인 성능 측정의 중요성</strong>, <strong>인프라 제약 조건 사전 파악</strong>, 그리고 <strong>양자화와 성능 간의 트레이드오프</strong>를 체감할 수 있었습니다. 실패를 통해 앞으로 어떤 방향으로 공부하고 나아가야 할지 명확해졌습니다.'
+            },
+            {
+              subtitle: '향후 개선 방향',
+              list: [
+                '화자 분리(Speaker Diarization) 기능 개선',
+                '5060 타겟에 맞춘 UI 최적화 (글자 크기 등)',
+                '전문 경제 용어 추가 학습'
+              ]
             }
           ]
         }
       ],
-      tags: ['yt-dlp', 'FFmpeg', 'FastAPI', 'Streamlit', 'Hugging Face', 'QLoRA', 'Whisper']
+      tags: ['Whisper', 'Gemma-2', 'QLoRA', 'yt-dlp', 'FFmpeg', 'FastAPI', 'Streamlit', 'STT', 'LLM']
     }
   };
 
@@ -1101,22 +1244,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         modalTitle.textContent = project.title;
 
-        // Meta info - 확장된 메타 필드 지원
+        // Meta info - 통일된 메타 필드 (소속, 역할, 기간, 설계)
         let metaHTML = '';
-        if (project.meta.team) {
-          metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-users"></i> ${project.meta.team}</span>`;
+        if (project.meta.organization) {
+          metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-building"></i> ${project.meta.organization}</span>`;
         }
         if (project.meta.role) {
           metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-user-tie"></i> ${project.meta.role}</span>`;
         }
-        if (project.meta.context) {
-          metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-building"></i> ${project.meta.context}</span>`;
-        }
         if (project.meta.period) {
           metaHTML += `<span class="modal__meta-item"><i class="fa-regular fa-calendar"></i> ${project.meta.period}</span>`;
         }
-        if (project.meta.deployment) {
-          metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-server"></i> ${project.meta.deployment}</span>`;
+        if (project.meta.architecture) {
+          metaHTML += `<span class="modal__meta-item"><i class="fa-solid fa-layer-group"></i> ${project.meta.architecture}</span>`;
         }
         modalMeta.innerHTML = metaHTML;
 
@@ -1134,7 +1274,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         project.sections.forEach(section => {
-          contentHTML += `<div class="modal__section">`;
+          const sectionClass = section.highlight ? 'modal__section modal__section--highlight' : 'modal__section';
+          contentHTML += `<div class="${sectionClass}">`;
           contentHTML += `<h4 class="modal__section-title">${section.title}</h4>`;
 
           // Section Image 지원
