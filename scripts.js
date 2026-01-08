@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       disclaimer: {
         show: true,
-        text: '본 프로젝트는 Soundmind 소속 AI Research Engineer Lead로 단독으로 진행하였던 RAG Agent 연구·개발을 직접 기획·설계·구현한 기술적 요소를 개인 기술 역량 설명 목적으로 재구성하였습니다. 고객 데이터, 내부 문서, 상용 소스코드 및 영업 정보는 포함되어 있지 않으며, 시스템 아키텍처 설계, RAG 파이프라인 고도화, 엔지니어링 의사결정 경험만을 중심으로 정리했습니다.'
+        text: '본 프로젝트는 Soundmind-Labs 소속 AI Research Engineer로서, Project Lead로 진행하는 Agent Platform을<br>End-to-End로 직접 기획·설계·구현·배포까지의 종합 Pipeline 과정을 개인 역량 설명 목적으로 재구성하였습니다.<br>상용 소스코드 및 영업 정보는 포함되어 있지 않으며 시스템 엔지니어링 설계의 의사결정 경험만을 중심으로 정리했습니다.'
       },
       sections: [
         {
@@ -447,8 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 '- 초탄: X축 최소 흔들림, Y축 수직 반동 집중',
                 '- 중탄: 안정화 구간, 균일 분포 적용',
                 '- 후탄: X축 강한 흔들림, 제어 난이도 상승',
-                'Unreal MCP Plugin을 연동하여 엔진 내 에셋 즉시 반영 워크플로우 구축',
-                '📎 <a href="https://www.canva.com/design/DAG9oBMaAzI/IVszVKdZleiL5Qbl-KIcZg/view?utm_content=DAG9oBMaAzI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb9d5937c48" target="_blank" rel="noopener noreferrer">시연 영상 확인하기</a>'
+                'Unreal MCP Plugin을 연동하여 엔진 내 에셋 즉시 반영 워크플로우 구축'
               ]
             },
             {
@@ -476,6 +475,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 'LangGraph 도입: 복잡한 조건 분기가 필요한 대화 흐름의 가시성 및 제어권 확보',
                 '기회비용 창출: 단순 반복 작업의 자동화로 핵심 개발 리소스 확보'
               ]
+            }
+          ]
+        },
+        {
+          title: '성과 및 회고',
+          subsections: [
+            {
+              subtitle: '주요 성과',
+              gallery: [
+                {
+                  src: 'images/projects/valorithm_smithery_ai.png',
+                  alt: 'Smithery.ai MCP Server',
+                  caption: '1. smithery.ai에 배포된 MCP Server'
+                },
+                {
+                  src: 'images/projects/valorithm_3d_map_build.png',
+                  alt: '3D Map Building',
+                  caption: '2. 3D Map building'
+                }
+              ],
+              list: [
+                '별도의 회의록 작성 없이도, Discord 채팅 기록을 자동 요약하여 매일 오전 10시 마다 공유',
+                '총기 궤적 생성 40분 → 30초 (약 98.7% 시간 단축)',
+                '3D 화이트박싱 8시간 → 2시간 (약 75% 시간 단축)',
+                'MCP 표준 기반 도구 호환성 확보로 IDE/외부 LLM 환경 통합',
+                '📎 <a href="https://www.canva.com/design/DAG9oBMaAzI/IVszVKdZleiL5Qbl-KIcZg/view?utm_content=DAG9oBMaAzI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb9d5937c48" target="_blank" rel="noopener noreferrer"><strong>시연 영상 확인하기 (Canva)</strong></a>'
+              ]
+            },
+            {
+              subtitle: '시행착오',
+              content: '처음 MCP 도구를 설계할 때, Unreal Engine과의 연동 방식을 잘 모르던 상태였습니다. 그러던 중 오픈 소스 <strong>"Unreal MCP Plugin"</strong>을 발견했고, 이를 활용하여 엔진 내에서 직접 Remote 형식의 도구를 호출하는 방식으로 시스템 설계를 진행하였습니다.<br>그러나 문제는 여기서부터 시작이었습니다. 해당 Plugin의 경우 미국의 대학생이 개발한 개인 프로젝트였기 때문에 사실상 완성된 기능이 아니었고, 연동을 여러차례 도전했지만 결국 언리얼 엔진과 MCP 서버 간의 Remote 통신을 구현 할 수 없었습니다.<br>결국 저희는 Local 통신으로 시스템 설계를 변경하여 계획을 수정하게 되었습니다. <br><br>이 경험을 통해 오픈 소스 활용 시, 반드시 사전 검증 단계를 거쳐야 한다는 점과, 예상치 못한 상황에 유연하게 대처하기 위해서는 기본적인 엔지니어링 능력을 갖춰야, 대안을 내놓을 수 있다는 중요성을 다시금 깨닫게 되었습니다.'
+            },
+            {
+              subtitle: '기술적 성장',
+              content: '보통은 남들이 개발해서 배포한 MCP 도구를 호출하여, 프로젝트에 적용하는 경우가 많다고 생각합니다. 하지만 저는 이번 프로젝트를 통해 MCP 서버를 직접 설계하고 구축하는 경험을 하면서, 내부 동작 원리와 프로토콜에 대해 이해도가 높아졌습니다.<br>그리고 개인적으로 가장 큰 소득이라고 느끼는 \'서버\'의 역할에 대해서 이해하는 과정이었다고 생각합니다.<br>특히, 제가 배포했던 Smithery.ai 마켓플레이스의 경우 자체 서버를 제공하면서 개발자들을 유도했었는데, 개발 당시에는 장점에 대해서 체감하지 못하다가 배포가 끝난 후에야 이해하게 되었던 기억이 있습니다.<br><br>이를 통해서 유지/보수 관점에서 서버를 바라보는 시각을 가지게 되었고, 확장 가능한 설계란 무엇인지 서버의 개념을 통해 이해하는 계기가 되었습니다. 다음 프로젝트부터는 시스템 아키텍처 설계 단계부터 Infrastructure as Code의 개념을 접목시켜서, 더 나은 시스템을 구축할 수 있을 것 같습니다.'
             }
           ]
         }
@@ -649,7 +683,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: '성과',
+          title: '성과 및 회고',
           subsections: [
             {
               subtitle: '주요 성과',
@@ -673,27 +707,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Answer Relevancy: 0.82 (82%) - 생성된 답변이 질문에 적절히 대응',
                 'Faithfulness: 0.61 (61%) - 문맥 충실도는 개선 필요 영역으로 식별, 프롬프트 엔지니어링 고도화 방향 도출'
               ]
-            }
-          ]
-        },
-        {
-          title: '회고',
-          subsections: [
+            },
+            {
+              subtitle: '시행착오',
+              content: '이번 프로젝트에서 가장 어려웠던 부분은 의료 데이터 수집이었습니다.<br>의료 데이터는 개인정보 보호 이슈가 크고, AI-Hub에 공개된 데이터 역시 일정 비용이 필요해 초기 기획을 그대로 유지하기에는 현실적인 제약이 컸습니다.<br><br>이로 인해 당초 계획했던 재활 운동 교정 프로젝트를 \'자세 교정 중심 프로젝트\'로 전환하게 되었습니다.<br>그러나 프로젝트 방향을 변경한 이후에도 또 다른 문제에 직면했습니다.<br>팔 관절을 들어 올리지 못하는 원인을 사전에 정의하고 학습시켜 문제를 예측하려 했지만, 데이터 적재 후 정형외과 전문의에게 자문한 결과 단일 2D 카메라 기반 분석만으로는 의학적 기준을 설정하기 어렵다는 결론에 이르렀습니다. 실제 현장에는 너무 많은 Edge Case가 존재했습니다.<br><br>이 판단을 계기로, 저희는 의학적 해석을 무리하게 자동화하기보다는 \'정확한 동작 수행 여부\'에 집중하는 방향으로 문제를 재정의하였고, 그 결과 현재와 같은 형태의 프로젝트로 발전하게 되었습니다.<br><br>한편, 기획 단계에서 고려했던 민간 보험사 연계 B2B 모델은 1개월이라는 제한된 기간과, 변경된 프로젝트 목표 설정으로 인해 핵심 기능 구현에 집중하면서 완성하지 못한 부분으로 남았습니다. 다만 사용자의 재활 운동 수행도에 따른 보험료 할인 인센티브 제공, B2B 피트니스 센터·재활병원 연동, B2C 홈트레이닝 앱 확장, 게이미피케이션 요소 추가 등은 향후 확장 가능성으로 남겨두었습니다.'
+            },
             {
               subtitle: '기술적 성장',
-              content: 'LangChain 라이브러리를 처음 활용한 프로젝트로, 의료 데이터 수집의 한계와 AI의 역할에 대해 깊이 고민하게 된 계기가 되었습니다. AI는 "대체"가 아니라 "보조와 가이드"에 가깝다는 인식을 갖게 되었습니다.'
-            },
-            {
-              subtitle: 'Future Work: Insurance Linkage',
-              content: '원래 기획 단계에서 <strong>민간 보험사 연계 비즈니스 모델</strong>까지 구현하려 했으나, 1개월이라는 제한된 기간 내에 핵심 기능 개발에 집중하게 되었습니다.<br><br>사용자가 성실히 재활 운동을 수행하면 <strong>보험료 할인 인센티브</strong>를 제공받는 구조로, 예방적 건강관리를 통해 건강보험 재정 건전성에 기여하는 것이 최종 목표였습니다.'
-            },
-            {
-              subtitle: 'Future Work: Scalability',
-              list: [
-                'B2B: 피트니스 센터, 재활병원 연동',
-                'B2C: 홈트레이닝 앱 확장',
-                '게이미피케이션 요소 추가로 사용자 동기 부여 강화'
-              ]
+              content: '본 프로젝트를 통해서 가장 크게 얻은것은, 기술적으로 가능한 것과, 책임 있게 제공할 수 있는 것의 경계를 고민하게 된 부분인 것 같습니다.<br><strong>"요즘 시대에 AI가 못하는게 어디있냐"</strong>라는 얘기를 많이 듣게 되는데요. 이러한 인식의 개선이 반드시 필요하다고 느꼈고, 사람과 AI의 차이가 어디서 오는것인지 명확하게 나타난 프로젝트였다고 생각합니다.<br><br>또한 LangChain 라이브러리를 처음 활용한 프로젝트로서 LLM을 활용한 RAG 시스템 구축 경험을 쌓을 수 있었습니다. RAGAS 평가 기준을 도입하여 객관적인 성능 지표를 확보한 점도 좋았던 것 같습니다. 앞으로도 RAG 시스템의 신뢰성과 품질을 지속적으로 개선하는 데 이 경험이 큰 도움이 될 것이라 생각합니다.'
             }
           ]
         }
@@ -953,11 +974,11 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: '1. Project Leading (PL)',
               content: '중고 신입의 강점을 살려서, 이전 PM 경력을 바탕으로 프로젝트 전반을 리딩했습니다.',
               list: [
-                '<strong>킥오프 & 기획 확정:</strong> 레퍼런스 게임 분석 → 핵심 기능 정의 → MVP 범위 설정',
+                '<strong>킥오프 & 기획 확정:</strong> 레퍼런스 게임 분석 → AI 핵심 기능 협력 계획 정의 → MVP 범위 설정',
                 '<strong>팀 구성 & 역할 분배:</strong> AI 3명 / Unreal 3명 역할 명확화, 병렬 작업 가능하도록 태스크 분리',
-                '<strong>인터페이스 선정의:</strong> AI-Unreal 간 JSON API 스펙을 첫 2시간 내 확정하여 양 팀 독립 개발 가능하게 설계',
-                '<strong>일정 관리:</strong> 24시간을 4단계(기획/개발/통합/마무리)로 분할, 각 단계별 마일스톤 설정',
-                '<strong>리스크 관리:</strong> 통합 테스트 시점을 중간에 배치하여 조기 이슈 발견 및 대응'
+                '<strong>인터페이스 선정의:</strong> AI-Unreal 간 API 명세서를 방향 수립 이후, 3시간 내 확정하여 양 팀 독립 개발 가능하도록 조치',
+                '<strong>일정 관리:</strong> 24시간을 4단계(기획/개발/통합/마무리)로 분할하고, 단계 별 발표 전략 수립',
+                '<strong>리스크 관리:</strong> 통합 테스트 시점을 중간에 배치하여 조기 이슈 발견 및 대응 전략 마련'
               ]
             },
             {
@@ -993,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '주요 성과',
               list: [
-                '<strong>24시간 내 E2E 게임 서비스 완성</strong> (기획 → 배포)',
+                '<strong>24시간 내, MVP 단계의 E2E 게임 서비스 완성</strong> (기획 → 배포)',
                 'AI 3명 + Unreal 3명 팀 효율적 협업 체계 구축',
                 'YOLO-Pose + SAM + FastAPI + UE5 기술 스택 통합',
                 '평균 API 응답 시간 <strong>< 50ms</strong> 달성',
@@ -1001,18 +1022,13 @@ document.addEventListener('DOMContentLoaded', function() {
               ]
             },
             {
-              subtitle: '기술적 성장',
-              content: '이 프로젝트를 통해 <strong>"완벽한 코드"보다 "동작하는 프로토타입"</strong>의 가치를 체감했습니다. 시간 제약이 있을 때 어떤 기능을 포기하고 어떤 기능에 집중할지 빠르게 판단하는 능력이 중요하다는 것을 배웠습니다.<br><br>특히 <strong>인터페이스 선정의</strong>가 병렬 개발의 핵심이라는 것을 깨달았습니다. API 스펙을 먼저 확정함으로써 AI 팀과 Unreal 팀이 서로의 완성을 기다리지 않고 독립적으로 작업할 수 있었습니다.'
+              subtitle: '시행착오',
+              content: '초기 기획에서는 YOLO-Pose로 추출한 Keypoints를 기반으로 Unreal Engine 내에서 <strong>사람을 따라하는 캐릭터 모션</strong>을 구현하기로 계획했습니다. 하지만 통합 테스트 단계에서 문제를 발견하게 되었는데, AI 서버에서 전달한 Keypoints 좌표 변경값은 정상적으로 인식되었지만, Unreal 측 캐릭터 UI가 이를 자연스러운 움직임으로 변환하지 못했습니다. 사람처럼 자연스럽게 움직이려면 관절별 회전값과 뼈 구조에 대한 깊은 이해가 필요했고, 24시간이라는 제한된 시간 안에 이를 구현하기는 현실적으로 불가능했습니다.<br>이때, 저는 처음으로 많이 당황했던 것 같습니다. 게임 개발 경험이 전무했기 때문에, 어떤 대안을 내놓아야 하는지 감을 잡지 못했던 기억이 납니다.<br><br>하지만 팀원들의 아이디어와 빠른 실행력으로 전략을 수정하여, 복잡한 캐릭터 애니메이션 대신 <strong>Point-to-Point 레이저 연결 방식</strong>으로 UI를 단순화했습니다. 그 결과 "언리얼 엔진치고는 저퀄리티"라는 아쉬움은 남았지만, 핵심 게임 로직과 자세 인식 기능을 시간 내에 완성할 수 있었습니다. 이 경험을 통해 MVP 단계에서는 완성도보다 핵심 기능 구현에 먼저 집중하는 것이 중요하다는 것을 체감했습니다.'
             },
             {
-              subtitle: 'Future Improvements',
-              list: [
-                'HTTP Polling → WebSocket 전환으로 지연 시간 추가 단축',
-                '멀티플레이어 지원 (2인 동시 자세 감지)',
-                '자세 정확도 알고리즘 고도화 (관절 각도 기반 평가)',
-                '리더보드 및 랭킹 시스템 추가'
-              ]
-            }
+              subtitle: '기술적 성장',
+              content: '이 프로젝트를 통해 저는 <strong>\'완벽한 코드\'</strong> 보다 <strong>\'동작하는 프로토타입\'</strong>이 더 중요할 수 있다는 사실을 체감했습니다.<br>제한된 시간 안에서 어떤 기능에 집중하고 무엇을 과감히 내려놓을지 판단하는 것이 프로젝트 완성도를 결정했다고 생각합니다.<br><br>특히, <strong>인터페이스를 먼저 정의하는 것</strong>이 협업 개발에서 굉장히 중요하다는것을 느꼈습니다.<br>API 스펙을 초기에 확정함으로써 AI 팀과 Unreal 팀은 서로를 기다리지 않고 독립적으로 개발할 수 있었습니다.<br><br>또 하나의 배움은, <strong>통합 테스트 과정</strong>이었습니다.<br>개별 기능은 정상 동작했지만, 시스템을 연결하는 순간 예상치 못한 문제가 드러났고, 만약 프로젝트 기획에서 테스트 시점을 마지막에 배치했다면 아마 완성하지 못했을 프로젝트였을거라고 생각합니다.<br>이후 TDD와 단위·통합 테스트의 개념을 접하며, 테스트가 더 높은 품질의 코드를 만들기 위한 기반이라는 인식을 갖게 되었습니다.'
+            },
           ]
         }
       ],
@@ -1037,6 +1053,27 @@ document.addEventListener('DOMContentLoaded', function() {
             'yt-dlp와 FFmpeg를 활용한 고음질 오디오 분리 및 자동 정리',
             'FastAPI 기반 백엔드 서버 구축 및 RESTful API 설계',
             'Streamlit을 활용한 단일 버튼 UI 구성'
+          ]
+        },
+        {
+          title: '성과 및 회고',
+          subsections: [
+            {
+              subtitle: '주요 성과',
+              list: [
+                'yt-dlp + FFmpeg 기반 고음질 오디오 자동 추출 파이프라인 구축',
+                'FastAPI 백엔드 및 RESTful API 설계 완료',
+                'Streamlit 단일 버튼 UI로 사용자 경험 간소화'
+              ]
+            },
+            {
+              subtitle: '시행착오',
+              content: '[추후 작성] 프로젝트 진행 중 겪은 어려움과 해결 과정'
+            },
+            {
+              subtitle: '기술적 성장',
+              content: '[추후 작성] 이 프로젝트를 통해 배운 점'
+            }
           ]
         }
       ],

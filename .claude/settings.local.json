@@ -10,7 +10,8 @@
       "Bash(dir /s .claude)",
       "Bash(dir /s /b)",
       "Bash(git reset:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(python -c:*)"
     ]
   }
 }
