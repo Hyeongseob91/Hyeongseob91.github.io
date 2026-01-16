@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Try Claude Code Skills Plugins',
           highlight: true,
-          content: '당신도 AI-Native 개발을 시작해보세요!<br><br><a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">🔗 Claude Code Skills Plugins GitHub</a>'
+          content: '<a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">🔗 Claude Code Skills Plugins GitHub</a>'
         },
         {
           title: 'Technical Details',
@@ -525,8 +525,8 @@ document.addEventListener('DOMContentLoaded', function() {
               ]
             },
             {
-              subtitle: '다른 개발자들에게',
-              content: 'Claude Code Skills Plugins을 사용해보세요. 체계적인 개발 워크플로우가 생산성을 크게 높여줍니다.<br>→ <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">Plugin GitHub</a>'
+              subtitle: 'Plugins Link',
+              content: '→ <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">Claude Code Skills Plugins GitHub</a>'
             }
           ]
         }
