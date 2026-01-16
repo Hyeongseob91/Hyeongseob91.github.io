@@ -356,18 +356,18 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Background',
-          content: '<strong>"우리 LLM 서버, 동시 접속자 몇 명까지 가능할까요?"</strong><br><br>금요일 퇴근 무렵, 상사분의 질문에서 이 프로젝트가 시작되었습니다.<br><br>규모가 작은 조직에서는 "인프라 평가 / 성능 테스트"가 담당자에게 축적되기보다, 필요할 때마다 누군가가 임시로 맡아서 처리하게 됩니다. 그래서 <strong>"비개발자도 누구나 돌려볼 수 있는 사내 공용 LLM LoadTester"</strong>를 만들어보자는 생각으로 주말 프로젝트를 시작했습니다.'
+          content: '<strong>"우리 LLM 서버, 동시 접속자 몇 명까지 가능할까요?"</strong><br><br>금요일 퇴근 무렵, 상사분의 질문에서 이 프로젝트가 시작되었습니다.<br><br>제가 있는 규모가 작은 조직에서는 "인프라 평가 / 성능 테스트"가 담당자에게 축적되기보다, 필요할 때마다 누군가가 임시로 맡아서 처리하게 됩니다. 그러면 <strong>"비개발자도 누구나 돌려볼 수 있는 사내 공용 LLM LoadTester"</strong>를 만들어보자는 생각으로 주말 프로젝트를 시작했습니다.'
         },
         {
           title: 'Problem',
           subsections: [
             {
               subtitle: '기술적 문제',
-              content: '기존 벤치마킹 도구들은 LLM 특화 메트릭(TTFT, TPOT, ITL) 지원이 부족합니다.'
+              content: '기존 벤치마킹 도구들은 개발자 친화적이라, 비개발직군의 LLM 특화 메트릭(TTFT, TPOT, ITL) 시각화 지원이 부족합니다.'
             },
             {
-              subtitle: '운영 문제',
-              content: '실시간 모니터링 없이 결과만 제공하며, GPU 리소스 추적이 어렵습니다.'
+              subtitle: '접근성 문제',
+              content: '기존 도구들은 CLI 기반에 복잡한 설정이 필요해, 비개발 직군이나 비전공자가 쉽게 접근하기 어렵습니다.'
             },
             {
               subtitle: '품질 평가 문제',
@@ -388,17 +388,17 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           title: 'AI-Native Fast Build',
-          content: '<strong>AI-Assisted 개발의 새로운 패러다임</strong><br><br>AI-Native 시대, 개발자의 역할은 변화하고 있습니다. Claude Code Skills Plugins을 활용하여 <strong>단 2일 만에</strong> 완성도 높은 풀스택 애플리케이션을 구축했습니다.',
+          content: '<strong>WIGTN과 AI-Native 개발</strong><br><br>저는 <strong>WIGTN</strong>이라는 주니어 개발자 크루를 이끌고 있습니다. 저희는 AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각합니다.<br><br>그래서 Coding Agent인 Claude Code에 설치하여 사용할 수 있는 Workflow Tool Set, <strong>Claude Code Skills Plugins</strong>를 구축했습니다. 본 프로젝트는 해당 플러그인을 활용한 Fast Build 기반 프로젝트로, <strong>단 2일 만에</strong> 완성도 높은 풀스택 애플리케이션을 구축했습니다.',
           subsections: [
             {
               subtitle: '사용한 도구',
               list: [
                 '<strong>Claude Code</strong>: Anthropic의 AI 코딩 어시스턴트',
                 '<strong>Claude Code Skills Plugins</strong>: 체계적인 개발 워크플로우 자동화',
-                '• /prd: 요구사항 문서 자동 생성',
-                '• /digging: PRD 취약점 분석',
-                '• /implement: 구현 계획 수립',
-                '• /auto-commit: 품질 검증 후 자동 커밋'
+                '/prd: 요구사항 문서 자동 생성',
+                '/digging: PRD 취약점 분석',
+                '/implement: 구현 계획 수립',
+                '/auto-commit: 품질 검증 후 자동 커밋'
               ]
             },
             {
@@ -504,10 +504,9 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '대상 사용자',
               list: [
-                '<strong>AI 연구자</strong>: LLM 서빙 성능 실험 및 논문 데이터 수집',
-                '<strong>MLOps 엔지니어</strong>: 프로덕션 환경 최적화 및 모니터링',
-                '<strong>기획자/PM</strong>: LLM 서비스 도입 시 인프라 비용 산정 근거 마련',
-                '<strong>스타트업</strong>: 제한된 리소스로 LLM 서빙 인프라 검증'
+                '<strong>주니어 개발자</strong>: AI 협업 개발 방법론 학습 및 실습',
+                '<strong>소규모 연구원</strong>: 복잡한 설정 없이 LLM 서빙 성능 실험',
+                '<strong>비전공자/기획자</strong>: 직관적인 UI로 LLM 서비스 도입 검증'
               ]
             },
             {
@@ -544,10 +543,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 '벤치마크 비교 기능 추가',
                 '커뮤니티 피드백 반영'
               ]
-            },
-            {
-              subtitle: 'Plugins Link',
-              content: '→ <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">Claude Code Skills Plugins GitHub</a>'
             }
           ]
         }
