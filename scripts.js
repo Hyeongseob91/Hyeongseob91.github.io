@@ -343,6 +343,197 @@ document.addEventListener('DOMContentLoaded', function() {
       ],
       tags: ['LangGraph', 'RAG', 'Hybrid Search', 'Weaviate', 'FastAPI', 'Docker Compose', 'SSE', 'vLLM', 'BGE-M3']
     },
+    'llm-loadtester': {
+      title: 'Simple LLM Loadtester',
+      image: 'images/projects/llm-loadtester-dashboard.png',
+      imageContain: false,
+      meta: {
+        organization: 'Personal Project',
+        role: '1인 개발 (기획, 설계, 백엔드, 프론트엔드)',
+        period: '2025.01.11 - 2025.01.12',
+        architecture: 'Python FastAPI + Next.js + Docker'
+      },
+      sections: [
+        {
+          title: 'Background',
+          content: 'LLM(대규모 언어 모델) 서빙 인프라의 성능을 측정하고 최적화하기 위해서는 정확한 벤치마킹이 필수입니다.<br><br>vLLM, SGLang, Ollama 등 다양한 LLM 서빙 엔진이 등장하면서, 각 엔진의 성능을 객관적으로 비교하고 운영 환경에 적합한 인프라를 선택해야 하는 필요성이 증가했습니다.'
+        },
+        {
+          title: 'Problem',
+          subsections: [
+            {
+              subtitle: '기술적 문제',
+              content: '기존 벤치마킹 도구들은 LLM 특화 메트릭(TTFT, TPOT, ITL) 지원이 부족합니다.'
+            },
+            {
+              subtitle: '운영 문제',
+              content: '실시간 모니터링 없이 결과만 제공하며, GPU 리소스 추적이 어렵습니다.'
+            },
+            {
+              subtitle: '품질 평가 문제',
+              content: '단순 처리량만 측정하고, SLO 기반 품질 평가(Goodput)를 지원하지 않습니다.'
+            }
+          ]
+        },
+        {
+          title: 'Solution',
+          list: [
+            'OpenAI 호환 API 서버 지원 (vLLM, SGLang, Ollama, LMDeploy, TensorRT-LLM)',
+            'LLM 특화 메트릭: TTFT, TPOT, E2E Latency, ITL, Throughput',
+            'Goodput 메트릭: SLO 임계값 기반 품질 평가',
+            '실시간 WebSocket 기반 진행 상황 모니터링',
+            'GPU 메트릭 수집 (메모리, 사용률, 온도, 전력)',
+            '인프라 추천 엔진'
+          ]
+        },
+        {
+          title: 'AI-Native Fast Build',
+          content: '<strong>AI-Assisted 개발의 새로운 패러다임</strong><br><br>AI-Native 시대, 개발자의 역할은 변화하고 있습니다. Claude Code Skills Plugins을 활용하여 <strong>단 2일 만에</strong> 완성도 높은 풀스택 애플리케이션을 구축했습니다.',
+          subsections: [
+            {
+              subtitle: '사용한 도구',
+              list: [
+                '<strong>Claude Code</strong>: Anthropic의 AI 코딩 어시스턴트',
+                '<strong>Claude Code Skills Plugins</strong>: 체계적인 개발 워크플로우 자동화',
+                '• /prd: 요구사항 문서 자동 생성',
+                '• /digging: PRD 취약점 분석',
+                '• /implement: 구현 계획 수립',
+                '• /auto-commit: 품질 검증 후 자동 커밋'
+              ]
+            },
+            {
+              subtitle: '개발 과정',
+              list: [
+                '<strong>Day 1</strong>: 요구사항 정의 → 아키텍처 설계 → 백엔드 핵심 로직 구현',
+                '<strong>Day 2</strong>: 프론트엔드 대시보드 → 통합 테스트 → Docker 배포 설정'
+              ]
+            },
+            {
+              subtitle: '핵심 인사이트',
+              content: 'AI 협업 개발은 단순히 코드를 대신 작성하는 것이 아닙니다. PRD 작성, 아키텍처 검토, 코드 리뷰, 테스트 등 전체 개발 라이프사이클을 가속화합니다.'
+            }
+          ]
+        },
+        {
+          title: 'Try Claude Code Skills Plugins',
+          highlight: true,
+          content: '당신도 AI-Native 개발을 시작해보세요!<br><br><a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">🔗 Claude Code Skills Plugins GitHub</a>'
+        },
+        {
+          title: 'Technical Details',
+          subsections: [
+            {
+              subtitle: '아키텍처',
+              content: 'MSA (Microservices Architecture) - API Service + Web Service'
+            },
+            {
+              subtitle: '비동기 설계',
+              content: 'asyncio + httpx로 고동시성 부하 생성'
+            },
+            {
+              subtitle: '어댑터 패턴',
+              content: '다양한 서버 타입 지원을 위한 확장 가능한 구조'
+            },
+            {
+              subtitle: '실시간 통신',
+              content: 'WebSocket으로 벤치마크 진행 상황 실시간 전달'
+            },
+            {
+              subtitle: '데이터 시각화',
+              content: 'Recharts를 활용한 인터랙티브 차트'
+            }
+          ]
+        },
+        {
+          title: 'Key Features',
+          list: [
+            '다중 동시성 레벨 테스트 (1, 10, 50, 100 동시 요청)',
+            'Goodput 메트릭 (SLO 기반 품질 평가)',
+            'GPU 리소스 실시간 모니터링',
+            'CLI 도구 + Web Dashboard 이중 인터페이스',
+            '결과 내보내기 (CSV, Excel)',
+            'AI 기반 분석 리포트 생성'
+          ]
+        },
+        {
+          title: 'Service Flow',
+          gallery: [
+            {
+              src: 'images/projects/llm-loadtester-dashboard.png',
+              alt: 'LLM Loadtester Dashboard',
+              caption: '1. 대시보드 - 벤치마크 현황 및 히스토리'
+            },
+            {
+              src: 'images/projects/llm-loadtester-new.png',
+              alt: 'New Benchmark Configuration',
+              caption: '2. 새 벤치마크 - 설정 및 실행'
+            },
+            {
+              src: 'images/projects/llm-loadtester-result.png',
+              alt: 'Benchmark Result',
+              caption: '3. 결과 - 메트릭 차트 및 Goodput 분석'
+            },
+            {
+              src: 'images/projects/llm-loadtester-analysis.png',
+              alt: 'AI Analysis Report',
+              caption: '4. AI 분석 리포트 자동 생성'
+            }
+          ]
+        },
+        {
+          title: 'Open Source & Impact',
+          content: '<strong>누구나 무료로 사용할 수 있는 LLM 벤치마킹 도구</strong><br><br>이 프로젝트는 처음부터 오픈소스로 공개하기 위해 개발되었습니다.',
+          subsections: [
+            {
+              subtitle: '대상 사용자',
+              list: [
+                '<strong>AI 연구자</strong>: LLM 서빙 성능 실험 및 논문 데이터 수집',
+                '<strong>MLOps 엔지니어</strong>: 프로덕션 환경 최적화 및 모니터링',
+                '<strong>기획자/PM</strong>: LLM 서비스 도입 시 인프라 비용 산정 근거 마련',
+                '<strong>스타트업</strong>: 제한된 리소스로 LLM 서빙 인프라 검증'
+              ]
+            },
+            {
+              subtitle: '오픈소스 기여 의의',
+              list: [
+                '상용 벤치마킹 도구 대비 무료로 핵심 기능 제공',
+                'Goodput 메트릭으로 실제 서비스 품질 평가 가능',
+                '커뮤니티 기여 및 피드백을 통한 지속적 개선'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Reflection',
+          content: '<strong>AI 협업 개발의 가능성을 확인한 프로젝트</strong>',
+          subsections: [
+            {
+              subtitle: '성과',
+              list: [
+                '<strong>2일 완성</strong>: AI-Native 개발 방법론으로 풀스택 애플리케이션을 2일 만에 완성',
+                '<strong>개발 패러다임 전환</strong>: Claude Code Skills Plugins이 PRD → 구현 → 검증 전 과정을 지원',
+                '<strong>풀스택 경험</strong>: FastAPI + Next.js + Docker 통합 경험',
+                '<strong>실시간 시스템</strong>: WebSocket 기반 양방향 통신 구현'
+              ]
+            },
+            {
+              subtitle: '향후 계획',
+              list: [
+                'Triton Inference Server 어댑터 완성',
+                '벤치마크 비교 기능 추가',
+                '커뮤니티 피드백 반영'
+              ]
+            },
+            {
+              subtitle: '다른 개발자들에게',
+              content: 'Claude Code Skills Plugins을 사용해보세요. 체계적인 개발 워크플로우가 생산성을 크게 높여줍니다.<br>→ <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">Plugin GitHub</a>'
+            }
+          ]
+        }
+      ],
+      tags: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'WebSocket', 'LLM', 'Claude Code', 'Open Source'],
+      demoUrl: null
+    },
     mcp: {
       title: 'VALORITHM - MCP 기반 게임 개발 AI 시스템',
       image: 'images/projects/valorithm_mcp_server.png',
