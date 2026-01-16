@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Background',
-          content: 'LLM(대규모 언어 모델) 서빙 인프라의 성능을 측정하고 최적화하기 위해서는 정확한 벤치마킹이 필수입니다.<br><br>vLLM, SGLang, Ollama 등 다양한 LLM 서빙 엔진이 등장하면서, 각 엔진의 성능을 객관적으로 비교하고 운영 환경에 적합한 인프라를 선택해야 하는 필요성이 증가했습니다.'
+          content: '<strong>"우리 LLM 서버, 동시 접속자 몇 명까지 가능할까요?"</strong><br><br>금요일 퇴근 무렵, 상사분의 질문에서 이 프로젝트가 시작되었습니다.<br><br>규모가 작은 조직에서는 "인프라 평가 / 성능 테스트"가 담당자에게 축적되기보다, 필요할 때마다 누군가가 임시로 맡아서 처리하게 됩니다. 그래서 <strong>"비개발자도 누구나 돌려볼 수 있는 사내 공용 LLM LoadTester"</strong>를 만들어보자는 생각으로 주말 프로젝트를 시작했습니다.'
         },
         {
           title: 'Problem',
@@ -445,14 +445,31 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: 'Key Features',
-          list: [
-            '다중 동시성 레벨 테스트 (1, 10, 50, 100 동시 요청)',
-            'Goodput 메트릭 (SLO 기반 품질 평가)',
-            'GPU 리소스 실시간 모니터링',
-            'CLI 도구 + Web Dashboard 이중 인터페이스',
-            '결과 내보내기 (CSV, Excel)',
-            'AI 기반 분석 리포트 생성'
+          title: 'Experiment Design',
+          content: 'Web 기반 시각화 + Setting 값 변경을 통한 반복 테스트가 가능한 <strong>플랫폼</strong> 형태로 구성했습니다.',
+          subsections: [
+            {
+              subtitle: 'Input: 실험 변수',
+              content: '유연한 의사결정을 돕는 핵심 변수들을 UI에서 직접 조정하며 반복 테스트가 가능합니다.',
+              list: [
+                '<strong>타겟 서버</strong>: vLLM, SGLang, Ollama 등 OpenAI 호환 API 서버',
+                '<strong>모델 설정</strong>: 테스트할 LLM 모델 선택',
+                '<strong>트래픽 규모</strong>: 동시 요청 수 (1, 10, 50, 100)',
+                '<strong>프롬프트 옵션</strong>: 입력/출력 토큰 길이 설정',
+                '<strong>SLO 기준값</strong>: 서비스 목표 임계값 (TTFT, TPOT)'
+              ]
+            },
+            {
+              subtitle: 'Output: 성능 지표',
+              content: '데이터 기반의 판단을 가능케 하는 지표들을 시각화합니다.',
+              list: [
+                '<strong>TTFT</strong> (Time To First Token): 첫 토큰까지의 지연 시간',
+                '<strong>TPOT</strong> (Time Per Output Token): 토큰당 생성 시간',
+                '<strong>p99 Latency</strong>: 99번째 백분위수 지연 시간',
+                '<strong>Throughput</strong>: 초당 처리량 (tokens/sec)',
+                '<strong>Goodput</strong>: SLO를 만족하는 유효 처리량'
+              ]
+            }
           ]
         },
         {
@@ -505,16 +522,20 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           title: 'Reflection',
-          content: '<strong>AI 협업 개발의 가능성을 확인한 프로젝트</strong>',
+          content: '<strong>7개월차 주니어의 AI 협업 개발 경험</strong>',
           subsections: [
             {
               subtitle: '성과',
               list: [
-                '<strong>2일 완성</strong>: AI-Native 개발 방법론으로 풀스택 애플리케이션을 2일 만에 완성',
+                '<strong>2일 완성</strong>: 주말 동안 AI-Native 개발 방법론으로 풀스택 애플리케이션 완성',
                 '<strong>개발 패러다임 전환</strong>: Claude Code Skills Plugins이 PRD → 구현 → 검증 전 과정을 지원',
                 '<strong>풀스택 경험</strong>: FastAPI + Next.js + Docker 통합 경험',
                 '<strong>실시간 시스템</strong>: WebSocket 기반 양방향 통신 구현'
               ]
+            },
+            {
+              subtitle: '주니어로서의 인사이트',
+              content: '과거에 시니어가 되기까지 10년이 걸렸던 경험의 축적을, AI라는 강력한 파트너와 함께한다면 5년, 3년으로 압축할 수 있지 않을까요?<br><br>저와 같은 고민을 하는 주니어, 비전공자 분들에게 작은 도움이 될 수 있다면 좋겠습니다.'
             },
             {
               subtitle: '향후 계획',
