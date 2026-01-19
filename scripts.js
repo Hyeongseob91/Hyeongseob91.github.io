@@ -127,6 +127,31 @@ document.addEventListener('DOMContentLoaded', function() {
   highlightNavLink(); // Initial check
 
   // =====================================================
+  // PROJECT FILTER
+  // =====================================================
+  const filterButtons = document.querySelectorAll('.projects__filter-btn');
+  const projectCardsAll = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Update active button
+      filterButtons.forEach(b => b.classList.remove('projects__filter-btn--active'));
+      this.classList.add('projects__filter-btn--active');
+
+      // Filter projects
+      const filter = this.dataset.filter;
+
+      projectCardsAll.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('project-card--hidden');
+        } else {
+          card.classList.add('project-card--hidden');
+        }
+      });
+    });
+  });
+
+  // =====================================================
   // PROJECT MODAL
   // =====================================================
   const projectCards = document.querySelectorAll('.project-card');

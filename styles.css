@@ -1028,9 +1028,52 @@ img {
   background: var(--color-surface);
 }
 
+/* Project Filter Tabs */
+.projects__filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.projects__filter-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transition-base);
+  position: relative;
+}
+
+.projects__filter-btn:not(:last-child)::after {
+  content: '|';
+  position: absolute;
+  right: -2px;
+  color: var(--color-border);
+  font-weight: 300;
+}
+
+.projects__filter-btn:hover {
+  color: var(--color-primary);
+}
+
+.projects__filter-btn--active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.project-card--hidden {
+  display: none !important;
+}
+
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
 }
 
@@ -1049,6 +1092,7 @@ img {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  max-width: 500px;
 }
 
 .project-card:hover {
