@@ -879,6 +879,28 @@ img {
   font-size: 0.75rem;
 }
 
+/* Timeline Inline Link (Report/GitHub badge) */
+.timeline__inline-link {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  vertical-align: middle;
+}
+
+.timeline__inline-link:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
 /* Timeline Link Card */
 .timeline__link-card {
   display: flex;
