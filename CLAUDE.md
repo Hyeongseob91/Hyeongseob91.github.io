@@ -2,7 +2,7 @@
 
 ## Project Overview
 김형섭의 개인 포트폴리오 웹사이트 (GitHub Pages 배포)
-블로그 허브 + 포트폴리오 구조: Hub (Blog/Tech Reports) → Portfolio
+포트폴리오 메인 + 허브 구조: Portfolio (Main) + Hub (Blog/Tech Reports)
 
 ## Tech Stack
 - Vanilla HTML/CSS/JavaScript
@@ -11,21 +11,22 @@
 
 ## File Structure
 ```
-├── index.html              # 허브 페이지 (미니멀 텍스트 레이아웃)
-├── hub.css                 # 허브 전용 스타일 (BEM 네이밍)
-├── .nojekyll               # Jekyll 처리 방지
+├── index.html              # 메인 포트폴리오 페이지
+├── styles.css              # 포트폴리오 스타일시트 (BEM 네이밍)
+├── scripts.js              # 인터랙션 로직 (projectData 객체 포함)
+├── images/                 # 이미지 폴더
+│   ├── aboutme/            # About Me 섹션 이미지
+│   ├── companies/          # Experience/Certificates 로고
+│   └── projects/           # 프로젝트 이미지
+├── hub/                    # 허브 페이지 (블로그/리포트 링크)
+│   ├── index.html          # 허브 메인 페이지
+│   └── hub.css             # 허브 전용 스타일 (BEM 네이밍)
 ├── reports/                # Tech Report 페이지
 │   ├── report.css          # 리포트 공용 스타일 (BEM 네이밍)
+│   ├── index.html          # 리포트 목록 페이지
 │   ├── images/             # 리포트 이미지
 │   └── [slug].html         # 개별 리포트 페이지
-├── portfolio/              # 포트폴리오 페이지
-│   ├── index.html          # 메인 포트폴리오 페이지
-│   ├── styles.css          # 스타일시트 (BEM 네이밍)
-│   ├── scripts.js          # 인터랙션 로직 (projectData 객체 포함)
-│   └── images/             # 이미지 폴더
-│       ├── aboutme/        # About Me 섹션 이미지
-│       ├── companies/      # Experience/Certificates 로고
-│       └── projects/       # 프로젝트 이미지
+├── .nojekyll               # Jekyll 처리 방지
 └── .claude/                # Claude Code 설정
 ```
 
@@ -66,7 +67,7 @@
 
 ## 새 포스트 추가 (Hub)
 
-`index.html`의 해당 섹션(Blog 또는 Tech Reports)에서 `<a>` 태그를 추가/교체합니다.
+`hub/index.html`의 해당 섹션(Blog 또는 Tech Reports)에서 `<a>` 태그를 추가/교체합니다.
 최신 글이 위에 오도록 배치. 2~3개만 큐레이션합니다.
 
 ### 포스트 링크 템플릿
@@ -109,10 +110,12 @@
 <body>
   <header class="report-header">
     <div class="report-header__inner">
-      <a href="../" class="report-header__brand">Harrison Kim</a>
+      <a href="../hub/" class="report-header__brand">Hyeongseob's Note</a>
       <nav class="report-header__nav">
-        <a href="../" class="report-header__link">Home</a>
-        <a href="../portfolio/" class="report-header__link">Portfolio</a>
+        <a href="./" class="report-header__link">Tech Report</a>
+        <a href="https://harrison-kim.tistory.com/" target="_blank" rel="noopener noreferrer"
+          class="report-header__link">Blog</a>
+        <a href="../" class="report-header__link report-header__link--cta">Portfolio</a>
       </nav>
     </div>
   </header>
@@ -120,7 +123,7 @@
   <main class="report-main">
     <article>
       <header>
-        <a href="../" class="report-article__back">&larr; Home</a>
+        <a href="../hub/" class="report-article__back">&larr; Hub</a>
         <h1 class="report-article__title">리포트 제목</h1>
         <div class="report-article__meta">
           <time datetime="YYYY-MM-DD">YYYY.MM.DD</time>
@@ -199,10 +202,10 @@ $$
 ```
 
 ### Step 3: 허브에 링크 추가
-`index.html`의 Tech Reports 섹션에서 `hub-section__empty`를 제거하고 링크 추가:
+`hub/index.html`의 Tech Reports 섹션에 링크 추가:
 ```html
 <div class="hub-posts">
-  <a href="./reports/slug.html" class="hub-post">
+  <a href="../reports/slug.html" class="hub-post">
     <span class="hub-post__title">리포트 제목</span>
     <span class="hub-post__date">YYYY.MM.DD</span>
   </a>
@@ -214,9 +217,9 @@ $$
 
 ## 새 프로젝트 추가
 
-1. `portfolio/index.html`의 `#projects` 섹션에 카드 추가
-2. `portfolio/scripts.js`의 `projectData` 객체에 데이터 추가
-3. 이미지는 `portfolio/images/projects/` 폴더에 저장
+1. `index.html`의 `#projects` 섹션에 카드 추가
+2. `scripts.js`의 `projectData` 객체에 데이터 추가
+3. 이미지는 `images/projects/` 폴더에 저장
 
 ### projectData 템플릿
 ```javascript

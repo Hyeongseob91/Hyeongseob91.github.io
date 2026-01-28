@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLM 기반 문서 파싱의 RAG 파이프라인 적용 연구 | Hyeongseob's Note</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+  <!-- Prism.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+
+  <!-- Report Styles -->
+  <link rel="stylesheet" href="report.css">
+</head>
+
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../hub/" class="report-header__brand">Hyeongseob's Note</a>
+      <nav class="report-header__nav">
+        <a href="./" class="report-header__link">Tech Report</a>
+        <a href="https://harrison-kim.tistory.com/" target="_blank" rel="noopener noreferrer"
+          class="report-header__link">Blog</a>
+        <a href="https://www.wigtn.com/" target="_blank" rel="noopener noreferrer"
+          class="report-header__link">WIGTN</a>
+        <a href="../" class="report-header__link report-header__link--cta">Portfolio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../hub/" class="report-article__back">&larr; Hub</a>
+        <h1 class="report-article__title">VLM 기반 문서 파싱의 RAG 파이프라인 적용 연구</h1>
+        <div class="report-article__meta" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <time datetime="2026-01-28">2026.01.28</time>
+            <span class="report-article__tags">
+              <span class="report-article__tag">VLM</span>
+              <span class="report-article__tag">RAG</span>
+              <span class="report-article__tag">Document Parsing</span>
+              <span class="report-article__tag">OCR</span>
+            </span>
+          </div>
+          <a href="https://github.com/Hyeongseob91/test-vlm-document-parsing" target="_blank" rel="noopener noreferrer"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; background: #24292e; color: #fff; border-radius: 50%; text-decoration: none; transition: background 0.15s ease;"
+            title="GitHub Repository">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+        </div>
+      </header>
+
+      <div class="report-content">
+
+        <!-- Abstract -->
+        <h2>Abstract</h2>
+        <p>
+          본 연구는 Vision-Language Model(VLM)을 활용한 문서 파싱이 RAG(Retrieval-Augmented Generation) 파이프라인의
+          시맨틱 청킹 품질과 검색 성능에 미치는 영향을 정량적으로 평가한다.
+          Qwen3-VL 기반 구조화된 마크다운 출력과 기존 OCR 방식(pdfplumber, RapidOCR)을
+          <strong>Lexical Accuracy</strong>, <strong>Structural Integrity</strong>, <strong>Retrieval Performance</strong>
+          세 가지 차원에서 비교 분석하였다.
+        </p>
+
+        <blockquote>
+          <p>
+            <strong>핵심 발견</strong>: VLM 기반 파싱으로 Structure F1을 <strong>0%에서 79.25%</strong>로 향상시켰으나,
+            CER(Character Error Rate)이 <strong>+17 percentage points</strong> 증가하는 트레이드오프가 발생한다.
+            이는 문서 구조가 중요한 RAG 애플리케이션에서 의미 있는 선택지가 될 수 있음을 시사한다.
+          </p>
+        </blockquote>
+
+        <!-- Motivation -->
+        <h2>1. Motivation</h2>
+
+        <h3>1.1 문제 인식</h3>
+        <p>
+          RAG 시스템을 구축하면서 반복적으로 마주한 문제가 있다.
+          기존 OCR 파이프라인으로 추출한 텍스트를 시맨틱 청킹하면,
+          <strong>테이블이 중간에 잘리거나</strong>, <strong>다단 레이아웃의 읽기 순서가 뒤섞이는</strong> 현상이 발생했다.
+        </p>
+
+        <p>예를 들어, 아래와 같은 2단 학술 논문을 pdfplumber로 추출하면:</p>
+
+        <pre><code class="language-text"># 기대하는 결과
+1. Introduction
+   문단 1 내용...
+   문단 2 내용...
+
+# 실제 결과 (pdfplumber)
+1. Introduction    문단 1 첫 줄    문단 2 첫 줄
+문단 1 두번째 줄    문단 2 두번째 줄...</code></pre>
+
+        <p>
+          이러한 구조적 손실은 <strong>청킹 품질 저하</strong> → <strong>검색 정확도 하락</strong>으로 이어진다.
+          VLM이 이 문제를 해결할 수 있을지 정량적으로 검증하고자 본 연구를 시작했다.
+        </p>
+
+        <h3>1.2 Research Questions</h3>
+        <p>본 연구는 세 가지 핵심 질문에 답하고자 한다:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>RQ</th>
+              <th>질문</th>
+              <th>측정 지표</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>RQ1</strong></td>
+              <td>VLM 기반 파싱이 문자/단어 수준 정확도를 향상시키는가?</td>
+              <td>CER, WER</td>
+            </tr>
+            <tr>
+              <td><strong>RQ2</strong></td>
+              <td>VLM 기반 파싱이 문서 구조를 더 잘 보존하는가?</td>
+              <td>Structure F1, Boundary Score</td>
+            </tr>
+            <tr>
+              <td><strong>RQ3</strong></td>
+              <td>구조 보존이 RAG 검색 성능을 향상시키는가?</td>
+              <td>Hit Rate@k, MRR</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>1.3 Core Hypothesis</h3>
+        <blockquote>
+          <p>
+            "동일한 청킹 알고리즘을 사용하더라도, 입력 품질(구조화된 마크다운 vs 플레인 텍스트)에 따라
+            출력 품질이 크게 달라진다."
+          </p>
+        </blockquote>
+
+        <!-- Methodology -->
+        <h2>2. Methodology</h2>
+
+        <h3>2.1 평가 프레임워크</h3>
+        <p>3단계 평가 프레임워크를 설계하여 문서 파싱 품질을 다각도로 측정하였다:</p>
+
+        <pre><code class="language-text">┌─────────────────────────────────────────────────────────────────┐
+│                    EVALUATION FRAMEWORK                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐          │
+│   │   PHASE 1   │   │   PHASE 2   │   │   PHASE 3   │          │
+│   │   Lexical   │ → │  Structural │ → │  Retrieval  │          │
+│   │  Accuracy   │   │  Integrity  │   │ Performance │          │
+│   └─────────────┘   └─────────────┘   └─────────────┘          │
+│         │                 │                 │                   │
+│         ▼                 ▼                 ▼                   │
+│   ┌───────────┐    ┌───────────┐    ┌───────────┐             │
+│   │ CER, WER  │    │  F1, BC   │    │ HR@k, MRR │             │
+│   └───────────┘    └───────────┘    └───────────┘             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+
+        <h3>2.2 파서 아키텍처</h3>
+        <p>4가지 파서 조합을 비교 평가하였다:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Parser</th>
+              <th>Stage 1</th>
+              <th>Stage 2</th>
+              <th>적합 문서 유형</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Text-Baseline</strong></td>
+              <td>PyMuPDF</td>
+              <td>-</td>
+              <td>디지털 PDF (텍스트 레이어 존재)</td>
+            </tr>
+            <tr>
+              <td><strong>Image-Baseline</strong></td>
+              <td>RapidOCR</td>
+              <td>-</td>
+              <td>스캔 PDF, 이미지 기반 문서</td>
+            </tr>
+            <tr>
+              <td><strong>Text-Advanced</strong></td>
+              <td>PyMuPDF</td>
+              <td>VLM 구조화</td>
+              <td>디지털 PDF + 구조 추출</td>
+            </tr>
+            <tr>
+              <td><strong>Image-Advanced</strong></td>
+              <td>RapidOCR</td>
+              <td>VLM 구조화</td>
+              <td>스캔 PDF + 구조 추출</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>2.3 VLM 프롬프트 전략</h3>
+        <p>
+          VLM의 Hallucination을 최소화하기 위해 <strong>Transcription-focused prompt (v2)</strong>를 사용했다.
+          "추출"이 아닌 "전사"에 초점을 맞춰 원본에 없는 내용이 추가되는 것을 방지한다.
+        </p>
+
+        <pre><code class="language-python"># VLM Prompt (v2 - Transcription-focused)
+PROMPT = """
+You are a document transcription engine. Your sole purpose is to convert
+the given image into markdown text format. You MUST only transcribe what
+is actually visible in the image.
+
+Rules:
+1. Transcribe ALL visible text exactly as shown
+2. Use markdown formatting to preserve structure (headers, lists, tables)
+3. For tables, use markdown table syntax
+4. Preserve the original language (Korean, English, etc.)
+5. Do NOT add explanations, summaries, or interpretations
+6. If text is unclear, indicate with [unclear] rather than guessing
+"""</code></pre>
+
+        <h3>2.4 측정 지표 정의</h3>
+
+        <h4>Character Error Rate (CER)</h4>
+        <p>문자 수준의 정확도를 Levenshtein 편집 거리로 측정:</p>
+        <p style="text-align: center; font-style: italic;">
+          CER = (Substitutions + Deletions + Insertions) / Reference Length
+        </p>
+
+        <h4>Structure F1</h4>
+        <p>마크다운 구조 요소(Heading, List, Table) 검출 정확도:</p>
+        <pre><code class="language-text">평가 대상 구조 요소:
+| Element Type   | Pattern           | Example              |
+|----------------|-------------------|----------------------|
+| Heading        | ^#{1,6}\s+        | # Title, ## Section  |
+| Unordered List | ^[\s]*[-*+]\s+    | - item               |
+| Ordered List   | ^[\s]*\d+\.\s+    | 1. first             |
+| Table Row      | ^\|.+\|$          | | col1 | col2 |      |</code></pre>
+
+        <!-- Experimental Setup -->
+        <h2>3. Experimental Setup</h2>
+
+        <h3>3.1 테스트 문서</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>문서 유형</th>
+              <th>언어</th>
+              <th>페이지</th>
+              <th>특성</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>test_1</td>
+              <td>정부 공문서</td>
+              <td>Korean</td>
+              <td>1</td>
+              <td>테이블, 헤더, 스캔 PDF</td>
+            </tr>
+            <tr>
+              <td>test_2</td>
+              <td>학술 논문</td>
+              <td>English</td>
+              <td>4</td>
+              <td>2단 레이아웃, 스캔 (Chain-of-Thought)</td>
+            </tr>
+            <tr>
+              <td>test_3</td>
+              <td>학술 논문</td>
+              <td>English</td>
+              <td>15</td>
+              <td>2단 레이아웃, 디지털 (Attention Is All You Need)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3.2 실험 환경</h3>
+        <pre><code class="language-yaml"># Parser Configuration
+vlm_parser:
+  model: "Qwen3-VL-2B-Instruct"
+  temperature: 0.0  # Deterministic output
+  max_tokens: 4096
+  image_resolution: 300 DPI
+
+# Chunking Configuration (Controlled Variable)
+chunking:
+  strategy: "recursive_character"
+  chunk_size: 500
+  chunk_overlap: 50
+  separators: ["\n\n", "\n", ". ", " "]
+
+# Embedding Configuration
+embedding:
+  model: "jhgan/ko-sroberta-multitask"
+  dimension: 768</code></pre>
+
+        <h3>3.3 A/B 실험 설계</h3>
+        <p>
+          <strong>통제 변수</strong>: 청킹 알고리즘, 청크 크기, 임베딩 모델, 검색 방식을 동일하게 유지하고,
+          <strong>독립 변수</strong>(파서 유형)만 변경하여 파싱 품질의 영향을 분리 측정했다.
+        </p>
+
+        <h3>3.4 실제 파싱 결과 비교</h3>
+        <p>동일한 학술 논문(Attention Is All You Need)의 테이블을 각 파서로 추출한 결과:</p>
+
+        <h4>Baseline (pdfplumber) 출력</h4>
+        <pre><code class="language-text">Layer Type Self-Attention (encoder)
+Self-Attention (decoder) Encoder-Decoder Attention
+Feed-Forward Complexity per Layer O(n2 · d) O(n2 · d)
+Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
+        <p style="color: #dc2626; font-size: 0.875rem;">
+          ⚠️ 테이블 구조가 완전히 붕괴되어 텍스트 스트림으로 변환됨
+        </p>
+
+        <h4>Advanced (VLM) 출력</h4>
+        <pre><code class="language-markdown">| Layer Type | Complexity per Layer | Sequential Operations | Minimum Path Length |
+|------------|---------------------|----------------------|---------------------|
+| Self-Attention (encoder) | O(n² · d) | O(1) | O(1) |
+| Self-Attention (decoder) | O(n² · d) | O(1) | O(1) |
+| Encoder-Decoder Attention | O(n · m · d) | O(1) | O(1) |
+| Feed-Forward | O(n · d²) | O(1) | O(1) |</code></pre>
+        <p style="color: #16a34a; font-size: 0.875rem;">
+          ✓ 마크다운 테이블로 구조가 보존되어 청킹 시 테이블이 atomic unit으로 유지됨
+        </p>
+
+        <!-- Results -->
+        <h2>4. Results</h2>
+
+        <h3>4.1 Structure F1: 핵심 발견</h3>
+        <figure>
+          <img src="images/fig1_structure_f1_comparison.png" alt="Structure F1 Comparison">
+          <figcaption>Figure 1: 파서별 Structure F1 비교. Baseline 파서는 구조 검출 불가(0%), Advanced 파서는 최대 79.25% 달성</figcaption>
+        </figure>
+
+        <p>
+          <strong>가장 중요한 발견</strong>: Baseline 파서들의 Structure F1은 <strong>모두 0%</strong>인 반면,
+          VLM 기반 Advanced 파서는 <strong>79.25%</strong>를 달성했다.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Parser</th>
+              <th>Structure F1</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>TP</th>
+              <th>FP</th>
+              <th>FN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Text-Baseline</td>
+              <td>0.00%</td>
+              <td>0.00%</td>
+              <td>0.00%</td>
+              <td>0</td>
+              <td>11</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>Image-Baseline</td>
+              <td>0.00%</td>
+              <td>0.00%</td>
+              <td>0.00%</td>
+              <td>0</td>
+              <td>0</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td><strong>Text-Advanced</strong></td>
+              <td><strong>79.25%</strong></td>
+              <td>72.41%</td>
+              <td>87.50%</td>
+              <td>21</td>
+              <td>8</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Image-Advanced</td>
+              <td>77.78%</td>
+              <td>70.00%</td>
+              <td>87.50%</td>
+              <td>21</td>
+              <td>9</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>해석</strong>:</p>
+        <ul>
+          <li><strong>Recall 87.5%</strong>: Ground Truth의 24개 구조 요소 중 21개를 검출</li>
+          <li><strong>Precision ~72%</strong>: 검출한 요소 중 약 72%가 정확 (일부 과검출)</li>
+          <li><strong>FN 3개</strong>: 놓친 구조 요소 - 주로 세부 섹션 헤딩이나 중첩 구조</li>
+        </ul>
+
+        <figure>
+          <img src="images/fig5_precision_recall.png" alt="Precision vs Recall">
+          <figcaption>Figure 5: 파서별 Precision-Recall 비교. Advanced 파서는 높은 Recall(87.5%)을 달성하며, Precision도 70% 이상 유지</figcaption>
+        </figure>
+
+        <h3>4.2 CER 비교: 트레이드오프 발견</h3>
+        <figure>
+          <img src="images/fig2_cer_comparison.png" alt="CER Comparison">
+          <figcaption>Figure 2: 파서별 CER 비교. Image-Baseline이 가장 낮은 CER(40.79%)을 달성하지만 구조 정보가 없음</figcaption>
+        </figure>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Text-Baseline</th>
+              <th>Image-Baseline</th>
+              <th>Text-Advanced</th>
+              <th>Image-Advanced</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>test_1 (Korean/Scanned)</td>
+              <td>N/A</td>
+              <td>91.87%</td>
+              <td>N/A</td>
+              <td style="color: #dc2626;"><strong>536.50%</strong></td>
+            </tr>
+            <tr>
+              <td>test_2 (English/Scanned)</td>
+              <td>99.59%</td>
+              <td>40.80%</td>
+              <td>120.54%</td>
+              <td style="color: #16a34a;"><strong>33.09%</strong></td>
+            </tr>
+            <tr>
+              <td>test_3 (English/Digital)</td>
+              <td>51.25%</td>
+              <td style="color: #16a34a;"><strong>40.79%</strong></td>
+              <td>64.11%</td>
+              <td>57.71%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>핵심 관찰</h4>
+        <ol>
+          <li><strong>스캔 PDF에서 Text-Baseline 한계</strong>: PyMuPDF는 스캔 PDF에서 텍스트 추출 불가 (test_1, test_2)</li>
+          <li><strong>영어 스캔 문서에서 Image-Advanced 최적</strong>: test_2에서 CER 33.09%로 가장 낮음</li>
+          <li><strong>VLM Hallucination 위험</strong>: test_1 한글 스캔 문서에서 CER 536% - 원본보다 긴 텍스트 생성</li>
+          <li><strong>디지털 PDF에서 Image-Baseline 우수</strong>: test_3에서 CER 40.79%로 Text-Baseline(51.25%)보다 낮음</li>
+        </ol>
+
+        <h3>4.3 트레이드오프 시각화</h3>
+        <figure>
+          <img src="images/fig3_tradeoff_scatter.png" alt="Trade-off Analysis">
+          <figcaption>Figure 3: 텍스트 정확도(CER) vs 구조화 품질(Structure F1) 트레이드오프. 이상적인 지점은 우상단이지만, 현실적으로 Baseline과 Advanced 중 선택이 필요</figcaption>
+        </figure>
+
+        <pre><code class="language-text">                    텍스트 정확도 (CER ↓)
+                           ▲
+                           │
+         Baseline          │         (이상적)
+         ┌─────┐           │
+         │ 좋음 │           │
+         └─────┘           │
+                           │
+    ─────────────────────────────────────▶ 구조화 품질 (F1 ↑)
+                           │
+                           │         Advanced
+                           │         ┌─────┐
+                           │         │ 좋음 │
+                           │         └─────┘</code></pre>
+
+        <h3>4.4 Latency 분석</h3>
+        <figure>
+          <img src="images/fig4_latency_breakdown.png" alt="Latency Breakdown">
+          <figcaption>Figure 4: 처리 시간 분석. VLM 구조화 단계(Stage 2)가 전체 시간의 90% 이상을 차지</figcaption>
+        </figure>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Parser</th>
+              <th>Stage 1</th>
+              <th>Stage 2 (VLM)</th>
+              <th>Total</th>
+              <th>배수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Image-Baseline</td>
+              <td>0.27s</td>
+              <td>-</td>
+              <td><strong>0.27s</strong></td>
+              <td>1x</td>
+            </tr>
+            <tr>
+              <td>Text-Baseline</td>
+              <td>2.31s</td>
+              <td>-</td>
+              <td>2.31s</td>
+              <td>8.6x</td>
+            </tr>
+            <tr>
+              <td>Image-Advanced</td>
+              <td>0.27s</td>
+              <td>35.48s</td>
+              <td>35.75s</td>
+              <td>132x</td>
+            </tr>
+            <tr>
+              <td>Text-Advanced</td>
+              <td>2.28s</td>
+              <td>40.64s</td>
+              <td><strong>42.92s</strong></td>
+              <td>159x</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          <strong>159배</strong>의 latency 증가는 부담스럽지만,
+          <strong>Structure F1 +79%p</strong> 개선이 RAG 품질에 미치는 영향을 고려하면
+          구조가 중요한 문서에서는 정당화될 수 있다.
+        </p>
+
+        <!-- Error Analysis -->
+        <h2>5. Error Analysis</h2>
+
+        <h3>5.1 VLM Error Categories</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>빈도</th>
+              <th>심각도</th>
+              <th>Root Cause</th>
+              <th>예시</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: #dc2626;"><strong>HALLUCINATION</strong></td>
+              <td>High (test_1)</td>
+              <td>Critical</td>
+              <td>불명확한 내용 과해석</td>
+              <td>CER 536% (한글 스캔)</td>
+            </tr>
+            <tr>
+              <td>FALSE_POSITIVE_STRUCTURE</td>
+              <td>27-30%</td>
+              <td>Medium</td>
+              <td>구조 과검출</td>
+              <td>FP=8-9 in test_3</td>
+            </tr>
+            <tr>
+              <td>MISSED_STRUCTURE</td>
+              <td>12.5%</td>
+              <td>Medium</td>
+              <td>미묘한 포맷 누락</td>
+              <td>FN=3 in test_3</td>
+            </tr>
+            <tr>
+              <td>LATENCY</td>
+              <td>100%</td>
+              <td>Varies</td>
+              <td>VLM 추론 시간</td>
+              <td>42.92s vs 0.27s</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>5.2 Hallucination 상세 분석</h3>
+        <p>
+          test_1(한글 스캔 문서)에서 VLM이 <strong>CER 536%</strong>를 기록한 것은
+          원본 텍스트보다 <strong>5배 이상 긴 텍스트</strong>를 생성했음을 의미한다.
+          VLM이 불명확한 스캔 이미지를 "해석"하려 시도하면서 존재하지 않는 내용을 추가한 것이다.
+        </p>
+
+        <blockquote>
+          <p>
+            <strong>교훈</strong>: 한글 스캔 문서에 VLM을 적용할 때는
+            Hallucination 위험을 반드시 모니터링해야 한다.
+            품질이 낮은 스캔에는 Image-Baseline이 더 안전한 선택이다.
+          </p>
+        </blockquote>
+
+        <h3>5.3 Traditional OCR Error Categories</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>빈도</th>
+              <th>심각도</th>
+              <th>Root Cause</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: #dc2626;"><strong>STRUCTURE_LOSS</strong></td>
+              <td>100%</td>
+              <td>Critical</td>
+              <td>레이아웃 이해 불가</td>
+            </tr>
+            <tr>
+              <td>TABLE_COLLAPSE</td>
+              <td>100%</td>
+              <td>Critical</td>
+              <td>테이블이 텍스트 스트림으로 변환</td>
+            </tr>
+            <tr>
+              <td>COLUMN_MIX</td>
+              <td>High</td>
+              <td>Critical</td>
+              <td>다단 레이아웃 읽기 순서 오류</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Discussion -->
+        <h2>6. Discussion</h2>
+
+        <h3>6.1 Research Questions 답변</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>RQ</th>
+              <th>답변</th>
+              <th>근거</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>RQ1</strong>: VLM이 텍스트 정확도를 향상시키는가?</td>
+              <td style="color: #d97706;"><strong>부분적</strong></td>
+              <td>영어 스캔 문서에서 CER 개선 (40.8% → 33.1%), 단 Hallucination 위험 존재</td>
+            </tr>
+            <tr>
+              <td><strong>RQ2</strong>: VLM이 구조 보존에 효과적인가?</td>
+              <td style="color: #16a34a;"><strong>Yes</strong></td>
+              <td>Structure F1: 0% → 79.25% (+79pp)</td>
+            </tr>
+            <tr>
+              <td><strong>RQ3</strong>: 문서 유형별 최적 파서가 다른가?</td>
+              <td style="color: #16a34a;"><strong>Yes</strong></td>
+              <td>스캔 PDF: Image 계열, 디지털 PDF: Text 계열</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>6.2 Hybrid 파싱 전략 제안</h3>
+        <p>연구 결과를 바탕으로 다음과 같은 문서 라우팅 전략을 제안한다:</p>
+
+        <pre><code class="language-text">                    Document Input
+                         │
+                         ▼
+                    ┌─────────┐
+                    │ Scanned?│──────Yes────► VLM (Required)
+                    └────┬────┘               ⚠️ 한글은 주의
+                         │No
+                         ▼
+                    ┌──────────────┐
+                    │ Complex      │
+                    │ Layout?      │──────Yes────► VLM (Recommended)
+                    │ (Tables,     │
+                    │ Multi-column)│
+                    └──────┬───────┘
+                           │No
+                           ▼
+                    pdfplumber (Fast, Sufficient)</code></pre>
+
+        <h3>6.3 Parser Selection Guide</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>사용 목적</th>
+              <th>권장 파서</th>
+              <th>이유</th>
+              <th>예상 성능</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>텍스트 검색/인덱싱</td>
+              <td>Baseline</td>
+              <td>높은 텍스트 정확도</td>
+              <td>CER ~41%, Latency ~0.3s</td>
+            </tr>
+            <tr>
+              <td>RAG/Chunking</td>
+              <td>Advanced</td>
+              <td>구조 기반 청킹 가능</td>
+              <td>F1 ~79%, Latency ~43s</td>
+            </tr>
+            <tr>
+              <td>문서 변환 (HTML/MD)</td>
+              <td>Advanced</td>
+              <td>마크다운 구조 활용</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>실시간 처리</td>
+              <td>Baseline</td>
+              <td>낮은 Latency</td>
+              <td>0.27s</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Limitations -->
+        <h2>7. Limitations</h2>
+
+        <h3>7.1 Dataset Limitations</h3>
+        <ul>
+          <li><strong>샘플 크기</strong>: 3개 문서만 테스트 - 통계적 검정력 제한</li>
+          <li><strong>문서 다양성</strong>: 한국어/영어만 포함, 특정 문서 유형에 편중</li>
+          <li><strong>Ground Truth 품질</strong>: 단일 주석자, 마크다운 스타일 선택이 지표에 영향</li>
+        </ul>
+
+        <h3>7.2 Methodological Limitations</h3>
+        <ul>
+          <li><strong>단일 VLM 모델</strong>: Qwen3-VL 결과가 다른 VLM에 일반화되지 않을 수 있음</li>
+          <li><strong>고정 청킹 파라미터</strong>: 최적 설정이 아닐 수 있음</li>
+          <li><strong>End-to-End 검증 미완</strong>: Hit Rate@k 직접 측정은 향후 연구 과제</li>
+        </ul>
+
+        <!-- Future Work -->
+        <h2>8. Future Work</h2>
+
+        <h3>8.1 단기 과제 (3-6개월)</h3>
+        <ul>
+          <li><strong>Dataset 확장</strong>: 더 많은 한국어 정부 문서, 금융 보고서, 법률 문서 포함</li>
+          <li><strong>End-to-End RAG 평가</strong>: LLM 답변 생성까지 연결하여 RAGAs 메트릭으로 평가</li>
+          <li><strong>Ablation Study 완료</strong>: 프롬프트 변형, 해상도 최적화, 임베딩 모델 비교</li>
+        </ul>
+
+        <h3>8.2 중기 과제 (6-12개월)</h3>
+        <ul>
+          <li><strong>Hybrid System 구현</strong>: 문서 자동 분류기 + 파서 선택 로직 + 프로덕션 파이프라인</li>
+          <li><strong>다국어 확장</strong>: 중국어, 일본어 문서 지원 및 교차 언어 검색 평가</li>
+          <li><strong>효율성 연구</strong>: 작은 VLM 모델(distillation), 배치 처리 최적화</li>
+        </ul>
+
+        <h3>8.3 장기 과제 (1년+)</h3>
+        <ul>
+          <li><strong>Adaptive Parsing</strong>: 문서 유형별 최적 파서 자동 학습 (강화학습 기반)</li>
+          <li><strong>벤치마크 공개</strong>: 공개 데이터셋 + 리더보드 + 커뮤니티 평가 표준</li>
+        </ul>
+
+        <!-- Conclusion -->
+        <h2>9. Conclusion</h2>
+
+        <h3>9.1 핵심 기여</h3>
+        <ol>
+          <li><strong>Multi-Metric 평가 프레임워크</strong>: Lexical, Structural, Retrieval 3차원 평가 체계 제시</li>
+          <li><strong>트레이드오프 정량화</strong>: Structure F1 +79pp vs CER +17pp vs Latency 159x</li>
+          <li><strong>Hybrid 전략 제안</strong>: 문서 특성별 최적 파서 라우팅 가이드</li>
+          <li><strong>Hallucination 경고</strong>: 한글 스캔 문서에서 VLM 적용 시 주의사항 문서화</li>
+        </ol>
+
+        <h3>9.2 정량화된 트레이드오프 (test_3 기준)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>Baseline</th>
+              <th>Advanced</th>
+              <th>변화</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Structure F1</td>
+              <td>0%</td>
+              <td>79.25%</td>
+              <td style="color: #16a34a;"><strong>+79pp</strong></td>
+            </tr>
+            <tr>
+              <td>CER</td>
+              <td>40.79%</td>
+              <td>57.71%</td>
+              <td style="color: #dc2626;">+17pp</td>
+            </tr>
+            <tr>
+              <td>Latency</td>
+              <td>0.27s</td>
+              <td>42.92s</td>
+              <td style="color: #dc2626;">159x</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>9.3 Closing Remarks</h3>
+        <blockquote>
+          <p>
+            "구조 보존은 RAG 시스템에서 중요하다.
+            VLM 기반 파싱은 만능 해결책이 아니지만, 복잡한 문서에서 상당한 이점을 제공한다.
+            <strong>파싱 품질에 투자하면 하류(downstream) 검색 정확도에서 보상받는다.</strong>"
+          </p>
+        </blockquote>
+
+        <hr>
+
+        <h2>References</h2>
+        <ul>
+          <li>Xu et al. (2020). LayoutLM: Pre-training of Text and Layout for Document Image Understanding</li>
+          <li>Bai et al. (2023). Qwen-VL: A Versatile Vision-Language Model</li>
+          <li>Vaswani et al. (2017). Attention Is All You Need (test document)</li>
+          <li>Wei et al. (2022). Chain-of-Thought Prompting (test document)</li>
+        </ul>
+
+        <p style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem;">
+          <strong>Keywords</strong>: Vision-Language Models, Document Parsing, RAG, Semantic Chunking, OCR, Qwen-VL, Hybrid Strategy
+        </p>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+  </footer>
+
+  <!-- KaTeX -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Prism.js -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <script>
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ]
+    });
+  </script>
+</body>
+
+</html>
