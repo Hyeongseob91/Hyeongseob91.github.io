@@ -71,7 +71,7 @@
           이후 어떤 청킹 전략이나 검색 알고리즘을 적용해도 품질의 한계에 부딪힌다.
           본 연구는 이 가설을 정량적으로 검증하기 위해,
           표 안의 표, 이미지 기반 테이블, 다단 레이아웃 등 복잡한 구조를 포함하는 문서를 대상으로
-          기존 OCR 방식(pdfplumber, RapidOCR)과 VLM(Qwen3-VL) 기반 구조화 파싱을
+          기존 텍스트 추출/OCR 방식(PyMuPDF, RapidOCR)과 VLM(Qwen3-VL) 기반 구조화 파싱을
           <strong>Lexical Accuracy</strong>, <strong>Structural Integrity</strong>, <strong>Downstream Quality</strong>
           세 가지 차원에서 비교 분석하였다.
         </p>
@@ -104,14 +104,14 @@
           구조가 손실된 상태로 넘어온 텍스트는, 이후 어떤 고도화를 적용해도 복원이 불가능하다.
         </p>
 
-        <p>예를 들어, 아래와 같은 2단 학술 논문을 pdfplumber로 추출하면:</p>
+        <p>예를 들어, 아래와 같은 2단 학술 논문을 PyMuPDF로 추출하면:</p>
 
         <pre><code class="language-text"># 기대하는 결과
 1. Introduction
    문단 1 내용...
    문단 2 내용...
 
-# 실제 결과 (pdfplumber)
+# 실제 결과 (PyMuPDF)
 1. Introduction    문단 1 첫 줄    문단 2 첫 줄
 문단 1 두번째 줄    문단 2 두번째 줄...</code></pre>
 
@@ -175,9 +175,9 @@
         <!-- Related Work -->
         <h2>2. Related Work</h2>
 
-        <h3>2.1 Traditional OCR Approaches</h3>
+        <h3>2.1 Traditional Text Extraction &amp; OCR Approaches</h3>
         <p>
-          전통적인 OCR 파이프라인(Tesseract, RapidOCR, pdfplumber)은
+          전통적인 텍스트 추출/OCR 파이프라인(Tesseract, RapidOCR, PyMuPDF)은
           문자 인식에는 우수하지만 <strong>레이아웃 이해 능력이 제한적</strong>이다.
           특히 다단 레이아웃, 표, 중첩 구조에서 읽기 순서가 뒤섞이는 문제가 발생한다.
         </p>
@@ -555,28 +555,29 @@ Rules:
         <pre><code class="language-yaml"># Hardware Configuration
 hardware:
   gpu: "NVIDIA RTX PRO 6000 Blackwell x2"
-  vram: "96GB (48GB x2)"
+  vram: "96GB each (96GB x2)"
   ram: "128GB DDR5"
   storage: "NVMe SSD"
 
 # Parser Configuration
 vlm_parser:
   model: "Qwen3-VL-2B-Instruct"
-  temperature: 0.0  # Deterministic output
-  max_tokens: 4096
+  temperature: 0.1  # 일관된 출력
+  max_tokens: 8192  # 긴 문서 지원
   image_resolution: 300 DPI
 
 # Chunking Configuration (Controlled Variable)
 chunking:
-  strategy: "recursive_character"
-  chunk_size: 500
-  chunk_overlap: 50
-  separators: ["\n\n", "\n", ". ", " "]
+  strategy: "semantic"
+  chunker: "LangChain SemanticChunker"
+  breakpoint_threshold_type: "percentile"
+  breakpoint_threshold_amount: 95.0
+  min_chunk_size: null
 
 # Embedding Configuration
 embedding:
-  model: "jhgan/ko-sroberta-multitask"
-  dimension: 768
+  chunking_model: "BAAI/bge-m3"                    # SemanticChunker 경계 검출용
+  metrics_model: "jhgan/ko-sroberta-multitask"      # BC/CS 평가용
 
 # Normalization
 normalization:
@@ -587,14 +588,14 @@ normalization:
 
         <h3>4.3 A/B 실험 설계</h3>
         <p>
-          <strong>통제 변수</strong>: 청킹 알고리즘, 청크 크기, 임베딩 모델, 검색 방식을 동일하게 유지하고,
+          <strong>통제 변수</strong>: 청킹 알고리즘(SemanticChunker), breakpoint threshold, 임베딩 모델, 검색 방식을 동일하게 유지하고,
           <strong>독립 변수</strong>(파서 유형)만 변경하여 파싱 품질의 영향을 분리 측정했다.
         </p>
 
         <h3>4.4 실제 파싱 결과 비교</h3>
         <p>동일한 학술 논문(Attention Is All You Need)의 테이블을 각 파서로 추출한 결과:</p>
 
-        <h4>Baseline (pdfplumber) 출력</h4>
+        <h4>Baseline (PyMuPDF) 출력</h4>
         <pre><code class="language-text">Layer Type Self-Attention (encoder)
 Self-Attention (decoder) Encoder-Decoder Attention
 Feed-Forward Complexity per Layer O(n2 · d) O(n2 · d)
@@ -826,7 +827,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td>Baseline (pdfplumber)</td>
+              <td>Baseline (PyMuPDF)</td>
               <td>N/A</td>
               <td>-</td>
               <td>측정 불가 (구조 없음)</td>
@@ -864,7 +865,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td>Baseline (pdfplumber)</td>
+              <td>Baseline (PyMuPDF)</td>
               <td>N/A</td>
               <td>측정 불가 (구조 없음)</td>
             </tr>
@@ -1105,7 +1106,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
                     └──────┬───────┘
                            │No
                            ▼
-                    pdfplumber (Fast, Sufficient)</code></pre>
+                    PyMuPDF (Fast, Sufficient)</code></pre>
 
         <h3>7.3 Parser Selection Guide</h3>
         <table>
@@ -1362,8 +1363,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
             </tr>
             <tr>
               <td>LangChain</td>
-              <td>0.1.x</td>
-              <td>RAG pipeline framework</td>
+              <td>0.3.x</td>
+              <td>Semantic chunking framework</td>
             </tr>
           </tbody>
         </table>
@@ -1385,7 +1386,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
   </nav>
 
   <footer class="report-footer">
-    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+    <p class="report-footer__copy">&copy; 2026 Hyeongseob Kim</p>
   </footer>
 
   <!-- KaTeX -->
