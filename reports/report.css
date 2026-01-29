@@ -462,7 +462,8 @@ img {
    ===================================================== */
 .report-toc {
   position: fixed;
-  top: 80px;
+  top: 50%;
+  transform: translateY(-50%);
   left: calc(50% + 425px + 24px); /* 콘텐츠(850px/2) + 간격 */
   width: 180px;
   max-height: calc(100vh - 120px);
