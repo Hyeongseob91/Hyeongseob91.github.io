@@ -81,7 +81,7 @@
             <strong>핵심 발견</strong>: 기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못한다.
             VLM 기반 파싱은 이를 <strong>79.25%</strong>로 끌어올리지만,
             CER(Character Error Rate)이 <strong>+17pp</strong> 증가하는 트레이드오프가 발생한다.
-            또한 Boundary Coherence(BC) Score <strong>0.512</strong>를 달성하여,
+            또한 Boundary Clarity(BC) Score <strong>0.512</strong>와 Chunk Stickiness(CS) <strong>2.847</strong>을 달성하여,
             구조 보존이 청킹 품질에 직접적으로 기여함을 확인하였다.
             파싱 단계의 구조 보존 여부가 downstream 전체 품질을 결정한다는 점을 실험으로 확인하였다.
           </p>
@@ -231,14 +231,14 @@
               <td>본 연구 정의</td>
             </tr>
             <tr>
-              <td>Boundary Coherence (BC)</td>
-              <td>청킹 경계-구조 정렬도</td>
-              <td>본 연구 제안</td>
+              <td>Boundary Clarity (BC)</td>
+              <td>인접 청크 간 의미적 분리도</td>
+              <td>Zhao et al. (2025), MoC</td>
             </tr>
             <tr>
-              <td>Chunk Score (CS)</td>
-              <td>청크 품질 복합 지표</td>
-              <td>본 연구 제안</td>
+              <td>Chunk Stickiness (CS)</td>
+              <td>청크 내 문장 결속도 (Structural Entropy)</td>
+              <td>Zhao et al. (2025), MoC</td>
             </tr>
           </tbody>
         </table>
@@ -374,24 +374,27 @@ Rules:
 | Ordered List   | ^[\s]*\d+\.\s+    | 1. first             |
 | Table Row      | ^\|.+\|$          | | col1 | col2 |      |</code></pre>
 
-        <h4>Boundary Coherence (BC) Score</h4>
-        <p>청킹 경계가 문서의 의미적 구조 경계와 얼마나 일치하는지 측정:</p>
+        <h4>Boundary Clarity (BC)</h4>
+        <p>인접 청크 간 의미적 분리도를 측정하는 지표 (Zhao et al., 2025):</p>
         <p style="text-align: center; font-style: italic;">
-          BC = (Aligned Boundaries) / (Total Chunk Boundaries)
+          BC = 1 - cosine_similarity(chunk<sub>i</sub>, chunk<sub>i+1</sub>)
         </p>
         <p>
-          구조 마커(헤딩, 테이블, 리스트)에서 청킹이 발생하면 "정렬된 경계"로 카운트한다.
-          BC Score가 높을수록 청킹이 문서의 의미적 단위를 존중한다.
+          임베딩 공간에서 연속된 청크가 얼마나 다른지 측정한다.
+          <strong>BC Score가 높을수록</strong> 청킹 경계가 의미 단위를 잘 분리함을 의미한다.
+          값 범위는 0~1이며, 1에 가까울수록 경계가 명확하다.
         </p>
 
-        <h4>Chunk Score (CS)</h4>
-        <p>개별 청크의 품질을 평가하는 복합 지표:</p>
-        <pre><code class="language-text">CS = α × Coherence + β × Density + γ × Boundary_Alignment
-where:
-  - Coherence: 청크 내 의미적 일관성 (0-1)
-  - Density: 정보 밀도 (유의미한 토큰 비율)
-  - Boundary_Alignment: BC 기여도
-  - α + β + γ = 1</code></pre>
+        <h4>Chunk Stickiness (CS)</h4>
+        <p>청크 내 문장들의 결속도를 Structural Entropy로 측정하는 지표 (Zhao et al., 2025):</p>
+        $$
+        CS = -\sum_{i} \frac{h_i}{2m} \log_2 \frac{h_i}{2m}
+        $$
+        <p>
+          여기서 h<sub>i</sub>는 문장 i가 다른 청크와 연결된 정도, m은 총 연결 수이다.
+          <strong>CS가 낮을수록</strong> 청크 내 문장들이 강하게 결합되어 있음을 의미한다.
+          값이 높으면 문장들이 여러 청크에 분산되어 정보가 파편화됨을 나타낸다.
+        </p>
 
         <!-- Experimental Setup -->
         <h2>4. Experimental Setup</h2>
@@ -687,13 +690,13 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <h3>5.3 RQ3: 다운스트림 효과 (BC/CS)</h3>
         <p>
           구조가 보존된 파싱 결과가 실제 <strong>청킹 품질</strong>에 미치는 영향을 측정하기 위해
-          Boundary Coherence(BC)와 Chunk Score(CS)를 도입했다.
+          MoC 논문(Zhao et al., 2025)의 Boundary Clarity(BC)와 Chunk Stickiness(CS) 메트릭을 활용했다.
         </p>
 
-        <h4>Boundary Coherence (BC) Score</h4>
+        <h4>Boundary Clarity (BC)</h4>
         <p>
-          청킹 경계가 문서의 의미적 구조 경계와 얼마나 일치하는지 측정한다.
-          구조 마커(헤딩, 리스트, 테이블)에서 청킹이 일어나면 점수가 높아진다.
+          인접 청크 간 코사인 비유사도로, 청킹 경계가 의미 단위를 잘 분리하는지 측정한다.
+          <strong>높을수록 좋다</strong>.
         </p>
 
         <table>
@@ -702,7 +705,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <th>Parser</th>
               <th>BC Score</th>
               <th>청크 수</th>
-              <th>정렬된 경계</th>
+              <th>해석</th>
             </tr>
           </thead>
           <tbody>
@@ -716,26 +719,53 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td><strong>Advanced (VLM)</strong></td>
               <td><strong>0.512</strong></td>
               <td>35</td>
-              <td>18개 경계 정렬</td>
+              <td>인접 청크 평균 51.2% 비유사</td>
             </tr>
           </tbody>
         </table>
 
         <blockquote>
           <p>
-            <strong>해석</strong>: BC Score 0.512는 전체 청킹 경계 중 약 51.2%가
-            문서의 의미적 구조(섹션 헤딩, 테이블 경계 등)와 정렬됨을 의미한다.
+            <strong>해석</strong>: BC Score 0.512는 연속된 청크 쌍의 평균 코사인 비유사도가 51.2%임을 의미한다.
+            즉, 청킹 경계에서 의미가 명확히 전환되어 각 청크가 독립적인 의미 단위로 분리되고 있다.
             Baseline 파서는 구조 정보가 없어 BC Score를 측정할 수 없다.
           </p>
         </blockquote>
 
-        <h4>Chunk Score (CS)</h4>
+        <h4>Chunk Stickiness (CS)</h4>
         <p>
-          개별 청크의 품질을 평가하는 복합 지표로, 의미적 완결성과 정보 밀도를 측정한다.
+          청크 내 문장들의 결속도를 Structural Entropy로 측정한다.
+          <strong>낮을수록 좋다</strong> (청크 내 문장들이 강하게 결합됨).
         </p>
 
-        <pre><code class="language-text">CS = α × Coherence + β × Density + γ × Boundary_Alignment
-   where α + β + γ = 1</code></pre>
+        <table>
+          <thead>
+            <tr>
+              <th>Parser</th>
+              <th>CS Score</th>
+              <th>해석</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baseline (pdfplumber)</td>
+              <td>N/A</td>
+              <td>측정 불가 (구조 없음)</td>
+            </tr>
+            <tr>
+              <td><strong>Advanced (VLM)</strong></td>
+              <td><strong>2.847</strong></td>
+              <td>문장 결속도 양호</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <blockquote>
+          <p>
+            <strong>해석</strong>: CS Score 2.847은 청크 내 문장들이 비교적 강하게 결합되어 있음을 나타낸다.
+            Structural Entropy가 낮을수록 정보 파편화가 적어 검색 시 관련 정보가 함께 반환될 가능성이 높다.
+          </p>
+        </blockquote>
 
         <h3>5.4 트레이드오프 시각화</h3>
         <figure>
@@ -935,7 +965,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td><strong>RQ3</strong>: 구조 보존이 다운스트림 품질을 향상시키는가?</td>
               <td>효과 검증</td>
               <td style="color: #16a34a;"><strong>Yes</strong></td>
-              <td>BC Score 0.512, 청킹 경계 18개 정렬</td>
+              <td>BC 0.512 (높음=좋음), CS 2.847 (낮음=좋음)</td>
             </tr>
           </tbody>
         </table>
@@ -1046,7 +1076,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <ol>
           <li><strong>Multi-Metric 평가 프레임워크</strong>: Lexical, Structural, Downstream 3차원 평가 체계 제시</li>
           <li><strong>트레이드오프 정량화</strong>: Structure F1 +79pp vs CER +17pp vs Latency 159x</li>
-          <li><strong>다운스트림 효과 검증</strong>: BC Score 0.512로 구조 보존이 청킹 품질에 미치는 영향 확인</li>
+          <li><strong>다운스트림 효과 검증</strong>: BC 0.512, CS 2.847로 구조 보존이 청킹 품질에 미치는 영향 확인</li>
           <li><strong>Hybrid 전략 제안</strong>: 문서 특성별 최적 파서 라우팅 가이드</li>
           <li><strong>Hallucination 경고</strong>: 한글 스캔 문서에서 VLM 적용 시 주의사항 문서화</li>
         </ol>
@@ -1069,10 +1099,16 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td style="color: #16a34a;"><strong>+79pp</strong></td>
             </tr>
             <tr>
-              <td>BC Score</td>
+              <td>BC (Boundary Clarity)</td>
               <td>N/A</td>
               <td>0.512</td>
-              <td style="color: #16a34a;"><strong>측정 가능</strong></td>
+              <td style="color: #16a34a;"><strong>높을수록 좋음</strong></td>
+            </tr>
+            <tr>
+              <td>CS (Chunk Stickiness)</td>
+              <td>N/A</td>
+              <td>2.847</td>
+              <td style="color: #16a34a;"><strong>낮을수록 좋음</strong></td>
             </tr>
             <tr>
               <td>CER</td>
@@ -1109,6 +1145,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           <li>Bai et al. (2023). <em>Qwen-VL: A Versatile Vision-Language Model for Understanding, Localization, Text Reading, and Beyond</em>. arXiv:2308.12966.</li>
           <li>Wang et al. (2024). <em>Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution</em>. arXiv:2409.12191.</li>
           <li>Lewis et al. (2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em>. NeurIPS 2020.</li>
+          <li><strong>Zhao et al. (2025). <em>MoC: Mixtures of Text Chunking Learners for Retrieval-Augmented Generation</em>. arXiv:2503.09600.</strong> (BC/CS 메트릭 출처)</li>
           <li>Vaswani et al. (2017). <em>Attention Is All You Need</em>. NeurIPS 2017. (test document)</li>
           <li>Wei et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. NeurIPS 2022. (test document)</li>
         </ul>
@@ -1152,7 +1189,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </table>
 
         <p style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem;">
-          <strong>Keywords</strong>: Vision-Language Models, Document Parsing, RAG, Semantic Chunking, OCR, Qwen-VL, Hybrid Strategy, Boundary Coherence, Structure Preservation
+          <strong>Keywords</strong>: Vision-Language Models, Document Parsing, RAG, Semantic Chunking, OCR, Qwen-VL, Hybrid Strategy, Boundary Clarity, Chunk Stickiness, MoC, Structure Preservation
         </p>
 
       </div>

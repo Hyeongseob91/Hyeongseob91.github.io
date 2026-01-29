@@ -64,7 +64,7 @@ img {
 }
 
 .report-header__inner {
-  max-width: 640px;
+  max-width: 850px;
   width: 100%;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -114,7 +114,7 @@ img {
    MAIN
    ===================================================== */
 .report-main {
-  max-width: 640px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 1.5rem 4rem;
 }
