@@ -78,7 +78,7 @@
 
         <blockquote>
           <p>
-            <strong>핵심 발견</strong>: 기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못한다.
+            기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못한다.
             VLM 기반 파싱은 이를 <strong>79.25%</strong>로 끌어올리지만,
             CER(Character Error Rate)이 <strong>+17pp</strong> 증가하는 트레이드오프가 발생한다.
             또한 Boundary Clarity(BC) Score <strong>0.512</strong>와 Chunk Stickiness(CS) <strong>2.847</strong>을 달성하여,
@@ -168,7 +168,7 @@
         <blockquote>
           <p>
             "파이프라인의 첫 단계(Data Parsing)에서 구조를 보존하면,
-            동일한 downstream 처리(청킹, 임베딩, 검색)로도 유의미하게 높은 품질을 달성할 수 있다."
+            동일한 downstream 처리(청킹, 임베딩, 검색)로도 더 높은 품질을 달성할 수 있다."
           </p>
         </blockquote>
 
@@ -375,7 +375,9 @@ Rules:
 | Table Row      | ^\|.+\|$          | | col1 | col2 |      |</code></pre>
 
         <h4>Boundary Clarity (BC)</h4>
-        <p>인접 청크 간 의미적 분리도를 측정하는 지표 (Zhao et al., 2025):</p>
+        <p>
+          MoC 논문<sup>[1]</sup>에 따르면, BC는 인접 청크 간 의미적 분리도를 측정한다:
+        </p>
         <p style="text-align: center; font-style: italic;">
           BC = 1 - cosine_similarity(chunk<sub>i</sub>, chunk<sub>i+1</sub>)
         </p>
@@ -386,7 +388,9 @@ Rules:
         </p>
 
         <h4>Chunk Stickiness (CS)</h4>
-        <p>청크 내 문장들의 결속도를 Structural Entropy로 측정하는 지표 (Zhao et al., 2025):</p>
+        <p>
+          MoC 논문<sup>[1]</sup>에 따르면, CS는 청크 내 문장들의 결속도를 Structural Entropy로 측정한다:
+        </p>
         $$
         CS = -\sum_{i} \frac{h_i}{2m} \log_2 \frac{h_i}{2m}
         $$
@@ -619,7 +623,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </figure>
 
         <p>
-          <strong>가장 중요한 발견</strong>: Baseline 파서들의 Structure F1은 <strong>모두 0%</strong>인 반면,
+          Baseline 파서들의 Structure F1은 <strong>모두 0%</strong>인 반면,
           VLM 기반 Advanced 파서는 <strong>79.25%</strong>를 달성했다.
         </p>
 
@@ -690,7 +694,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <h3>5.3 RQ3: 다운스트림 효과 (BC/CS)</h3>
         <p>
           구조가 보존된 파싱 결과가 실제 <strong>청킹 품질</strong>에 미치는 영향을 측정하기 위해
-          MoC 논문(Zhao et al., 2025)의 Boundary Clarity(BC)와 Chunk Stickiness(CS) 메트릭을 활용했다.
+          MoC 논문<sup>[1]</sup>의 Boundary Clarity(BC)와 Chunk Stickiness(CS) 메트릭을 사용했다.
         </p>
 
         <h4>Boundary Clarity (BC)</h4>
@@ -1072,7 +1076,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <!-- Conclusion -->
         <h2>10. Conclusion</h2>
 
-        <h3>10.1 핵심 기여</h3>
+        <h3>10.1 기여</h3>
         <ol>
           <li><strong>Multi-Metric 평가 프레임워크</strong>: Lexical, Structural, Downstream 3차원 평가 체계 제시</li>
           <li><strong>트레이드오프 정량화</strong>: Structure F1 +79pp vs CER +17pp vs Latency 159x</li>
@@ -1129,7 +1133,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <blockquote>
           <p>
             "구조 보존은 RAG 시스템에서 중요하다.
-            VLM 기반 파싱은 만능 해결책이 아니지만, 복잡한 문서에서 상당한 이점을 제공한다.
+            VLM 기반 파싱은 만능 해결책이 아니지만, 복잡한 문서에서는 도움이 된다.
             <strong>파싱 품질에 투자하면 하류(downstream) 검색 정확도에서 보상받는다.</strong>"
           </p>
         </blockquote>
@@ -1145,7 +1149,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           <li>Bai et al. (2023). <em>Qwen-VL: A Versatile Vision-Language Model for Understanding, Localization, Text Reading, and Beyond</em>. arXiv:2308.12966.</li>
           <li>Wang et al. (2024). <em>Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution</em>. arXiv:2409.12191.</li>
           <li>Lewis et al. (2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em>. NeurIPS 2020.</li>
-          <li><strong>Zhao et al. (2025). <em>MoC: Mixtures of Text Chunking Learners for Retrieval-Augmented Generation</em>. arXiv:2503.09600.</strong> (BC/CS 메트릭 출처)</li>
+          <li><strong>[1] Zhao et al. (2025). <em>MoC: Mixtures of Text Chunking Learners for Retrieval-Augmented Generation</em>. arXiv:2503.09600.</strong> (BC/CS 메트릭 출처)</li>
           <li>Vaswani et al. (2017). <em>Attention Is All You Need</em>. NeurIPS 2017. (test document)</li>
           <li>Wei et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. NeurIPS 2022. (test document)</li>
         </ul>
