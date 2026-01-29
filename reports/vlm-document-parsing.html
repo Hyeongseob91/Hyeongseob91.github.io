@@ -67,23 +67,23 @@
         <!-- Abstract -->
         <h2>Abstract</h2>
         <p>
-          AI 파이프라인의 첫 단계인 문서 파싱에서 구조 정보가 손실되면,
-          이후 어떤 청킹 전략이나 검색 알고리즘을 적용해도 품질의 한계에 부딪힌다.
-          본 연구는 이 가설을 정량적으로 검증하기 위해,
+          AI 파이프라인의 첫 단계인 Document Parsing에서 구조 정보가 손실되면,
+          이후 어떤 청킹 전략이나 검색 알고리즘을 적용해도 품질의 한계에 부딪힙니다.
+          이 실험에서는 이 가설을 정량적으로 검증하기 위해,
           표 안의 표, 이미지 기반 테이블, 다단 레이아웃 등 복잡한 구조를 포함하는 문서를 대상으로
           기존 텍스트 추출/OCR 방식(PyMuPDF, RapidOCR)과 VLM(Qwen3-VL) 기반 구조화 파싱을
           <strong>Lexical Accuracy</strong>, <strong>Structural Integrity</strong>, <strong>Downstream Quality</strong>
-          세 가지 차원에서 비교 분석하였다.
+          세 가지 차원에서 비교 분석했습니다.
         </p>
 
         <blockquote>
           <p>
-            기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못한다.
+            기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못합니다.
             VLM 기반 파싱은 이를 <strong>79.25%</strong>로 끌어올리지만,
-            CER(Character Error Rate)이 <strong>+17pp</strong> 증가하는 트레이드오프가 발생한다.
+            CER(Character Error Rate)이 <strong>+17pp</strong> 증가하는 트레이드오프가 발생합니다.
             또한 Boundary Clarity(BC) Score <strong>0.512</strong>와 Chunk Stickiness(CS) <strong>2.847</strong>을 달성하여,
-            구조 보존이 청킹 품질에 직접적으로 기여함을 확인하였다.
-            파싱 단계의 구조 보존 여부가 downstream 전체 품질을 결정한다는 점을 실험으로 확인하였다.
+            구조 보존이 청킹 품질에 직접적으로 기여함을 확인했습니다.
+            파싱 단계의 구조 보존 여부가 downstream 전체 품질을 결정한다는 점을 실험으로 확인했습니다.
           </p>
         </blockquote>
 
@@ -92,19 +92,19 @@
 
         <h3>1.1 문제 인식</h3>
         <p>
-          고객사의 RAG 파이프라인을 구축하면서 반복적으로 마주한 문제가 있다.
+          고객사의 RAG 파이프라인을 구축하면서 반복적으로 마주한 문제가 있습니다.
           고객사 문서에는 <strong>표 안의 표</strong>, <strong>이미지 기반 테이블</strong>, <strong>다단 레이아웃</strong> 등
-          복잡한 구조가 포함되어 있었다. 이런 문서를 기존 OCR 파이프라인으로 추출하면
-          <strong>테이블이 중간에 잘리거나</strong>, <strong>다단 레이아웃의 읽기 순서가 뒤섞이는</strong> 현상이 발생했다.
-          청킹 전략을 바꾸고, 임베딩 모델을 교체하고, Reranker를 추가해도 근본적인 한계가 해소되지 않았다.
+          복잡한 구조가 포함되어 있었습니다. 이런 문서를 기존 OCR 파이프라인으로 추출하면
+          <strong>테이블이 중간에 잘리거나</strong>, <strong>다단 레이아웃의 읽기 순서가 뒤섞이는</strong> 현상이 발생했습니다.
+          청킹 전략을 바꾸고, 임베딩 모델을 교체하고, Reranker를 추가해도 근본적인 한계가 해소되지 않았습니다.
         </p>
 
         <p>
-          결국 문제의 원인은 파이프라인의 첫 단계인 <strong>Data Parsing</strong>에 있었다.
-          구조가 손실된 상태로 넘어온 텍스트는, 이후 어떤 고도화를 적용해도 복원이 불가능하다.
+          결국 문제의 원인은 파이프라인의 첫 단계인 <strong>Data Parsing</strong>에 있었습니다.
+          구조가 손실된 상태로 넘어온 텍스트는, 이후 어떤 고도화를 적용해도 복원이 불가능합니다.
         </p>
 
-        <p>예를 들어, 아래와 같은 2단 학술 논문을 PyMuPDF로 추출하면:</p>
+        <p>예를 들어, 아래와 같은 2단 학술 논문을 PyMuPDF로 추출하면 어떻게 될까요?</p>
 
         <pre><code class="language-text"># 기대하는 결과
 1. Introduction
@@ -116,15 +116,15 @@
 문단 1 두번째 줄    문단 2 두번째 줄...</code></pre>
 
         <p>
-          이러한 구조적 손실은 <strong>청킹 품질 저하</strong> → <strong>검색 정확도 하락</strong>으로 직결된다.
-          파싱 단계에서 구조를 보존하면 이 문제를 해결할 수 있는지,
-          VLM 기반 구조화 파싱을 통해 정량적으로 검증하고자 본 연구를 시작했다.
+          이러한 구조적 손실은 <strong>청킹 품질 저하</strong> → <strong>검색 정확도 하락</strong>으로 직결됩니다.
+          그렇다면 파싱 단계에서 구조를 보존하면 이 문제를 해결할 수 있을까요?
+          VLM 기반 구조화 파싱을 통해 정량적으로 검증해 보겠습니다.
         </p>
 
         <h3>1.2 Research Questions</h3>
-        <p>본 연구는 세 가지 핵심 질문에 답하고자 한다:</p>
+        <p>이 실험에서는 세 가지 핵심 질문에 답하고자 합니다:</p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>RQ</th>
@@ -153,10 +153,10 @@
               <td>BC Score, CS</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>1.3 "구조화된 데이터" 정의</h3>
-        <p>본 연구에서 "구조화된 데이터"란 다음을 의미한다:</p>
+        <p>이 실험에서 "구조화된 데이터"란 다음을 의미합니다:</p>
         <ul>
           <li><strong>마크다운 헤딩</strong>: 문서의 계층적 섹션 구조 (#, ##, ###)</li>
           <li><strong>테이블</strong>: 행/열로 구성된 표 형식 데이터 (| col1 | col2 |)</li>
@@ -178,14 +178,14 @@
         <h3>2.1 Traditional Text Extraction &amp; OCR Approaches</h3>
         <p>
           전통적인 텍스트 추출/OCR 파이프라인(Tesseract, RapidOCR, PyMuPDF)은
-          문자 인식에는 우수하지만 <strong>레이아웃 이해 능력이 제한적</strong>이다.
-          특히 다단 레이아웃, 표, 중첩 구조에서 읽기 순서가 뒤섞이는 문제가 발생한다.
+          문자 인식에는 우수하지만 <strong>레이아웃 이해 능력이 제한적</strong>입니다.
+          특히 다단 레이아웃, 표, 중첩 구조에서 읽기 순서가 뒤섞이는 문제가 발생합니다.
         </p>
 
         <h3>2.2 Layout-Aware Models</h3>
         <p>
           LayoutLM 시리즈(v1, v2, v3)는 텍스트와 레이아웃 정보를 함께 학습하여
-          문서 이해 성능을 향상시켰다. 그러나 이러한 모델들은:
+          문서 이해 성능을 향상시켰습니다. 하지만 이러한 모델들에는 한계가 있습니다:
         </p>
         <ul>
           <li>사전 학습된 레이아웃 패턴에 의존</li>
@@ -196,7 +196,7 @@
         <h3>2.3 Vision-Language Models</h3>
         <p>
           Qwen-VL, GPT-4V, Claude 3 등 최신 VLM은 이미지를 직접 이해하고
-          구조화된 텍스트를 생성할 수 있다. 본 연구에서는 Qwen3-VL-2B-Instruct를 사용하여:
+          구조화된 텍스트를 생성할 수 있습니다. 이 실험에서는 Qwen3-VL-2B-Instruct를 사용했습니다:
         </p>
         <ul>
           <li><strong>End-to-End 구조화</strong>: 이미지 → 마크다운 직접 변환</li>
@@ -206,17 +206,17 @@
 
         <h3>2.4 Prompt Engineering Evolution</h3>
         <p>
-          VLM 기반 문서 파싱에서 프롬프트 설계는 결과 품질에 큰 영향을 미친다.
-          본 연구에서는 "Extraction" 패러다임에서 "Transcription" 패러다임으로 전환하여
-          Hallucination을 최소화하는 전략을 도입했다.
+          VLM 기반 문서 파싱에서 프롬프트 설계는 결과 품질에 큰 영향을 미칩니다.
+          이 실험에서는 "Extraction" 패러다임에서 "Transcription" 패러다임으로 전환하여
+          Hallucination을 최소화하는 전략을 도입했습니다.
         </p>
 
         <h3>2.5 Semantic Chunking & Evaluation</h3>
         <p>
-          RAG 파이프라인에서 청킹 품질 평가는 아직 표준화되지 않았다.
-          본 연구에서는 다음 메트릭을 제안/활용한다:
+          RAG 파이프라인에서 청킹 품질 평가는 아직 표준화되지 않았습니다.
+          이 실험에서는 다음 메트릭을 활용합니다:
         </p>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>메트릭</th>
@@ -241,13 +241,13 @@
               <td>Zhao et al. (2025), MoC</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <!-- Methodology -->
         <h2>3. Methodology</h2>
 
         <h3>3.1 평가 프레임워크</h3>
-        <p>3단계 평가 프레임워크를 설계하여 문서 파싱 품질을 다각도로 측정하였다:</p>
+        <p>3단계 평가 프레임워크를 설계하여 문서 파싱 품질을 다각도로 측정했습니다:</p>
 
         <pre><code class="language-text">┌─────────────────────────────────────────────────────────────────┐
 │                    EVALUATION FRAMEWORK                          │
@@ -267,9 +267,9 @@
 └─────────────────────────────────────────────────────────────────┘</code></pre>
 
         <h3>3.2 파서 아키텍처</h3>
-        <p>4가지 파서 조합을 비교 평가하였다:</p>
+        <p>4가지 파서 조합을 비교 평가했습니다:</p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Parser</th>
@@ -304,15 +304,15 @@
               <td>스캔 PDF + 구조 추출</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>3.3 PDF Type 분류</h3>
         <p>
-          같은 "PDF"라도 내부 구조에 따라 파서 동작이 크게 달라진다.
-          본 연구에서는 PDF를 다음 4가지 Type으로 분류하여 테스트 커버리지를 관리한다.
+          같은 "PDF"라도 내부 구조에 따라 파서 동작이 크게 달라집니다.
+          이 실험에서는 PDF를 다음 4가지 Type으로 분류하여 테스트 커버리지를 관리합니다.
         </p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>PDF Type</th>
@@ -342,12 +342,12 @@
               <td>텍스트는 추출되나 표 구조 손실</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p>
-          분류 기준으로 80%를 사용하는 것은 휴리스틱이다.
+          분류 기준으로 80%를 사용하는 것은 휴리스틱입니다.
           100%를 사용하면 단 1페이지라도 다른 유형이면 분류가 실패하므로,
-          약간의 여유를 두어 주요 특성을 반영한다.
+          약간의 여유를 두어 주요 특성을 반영합니다.
         </p>
 
         <pre><code class="language-python">import fitz  # PyMuPDF
@@ -383,12 +383,12 @@ def classify_pdf(pdf_path):
 
         <h3>3.4 VLM 프롬프트 전략</h3>
         <p>
-          VLM의 Hallucination을 최소화하기 위해 프롬프트를 v1에서 v2로 진화시켰다.
-          "추출"이 아닌 "전사"에 초점을 맞춰 원본에 없는 내용이 추가되는 것을 방지한다.
+          VLM의 Hallucination을 최소화하기 위해 프롬프트를 v1에서 v2로 진화시켰습니다.
+          "추출"이 아닌 "전사"에 초점을 맞춰 원본에 없는 내용이 추가되는 것을 방지합니다.
         </p>
 
         <h4>프롬프트 v1 vs v2 비교</h4>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>버전</th>
@@ -408,7 +408,7 @@ def classify_pdf(pdf_path):
               <td>불명확한 부분은 [unclear]로 표시</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <pre><code class="language-python"># VLM Prompt (v2 - Transcription-focused)
 PROMPT = """
@@ -428,19 +428,19 @@ Rules:
         <h3>3.5 측정 지표 정의</h3>
 
         <h4>Character Error Rate (CER)</h4>
-        <p>문자 수준의 정확도를 Levenshtein 편집 거리로 측정:</p>
+        <p>문자 수준의 정확도를 Levenshtein 편집 거리로 측정합니다:</p>
         <p style="text-align: center; font-style: italic;">
           CER = (Substitutions + Deletions + Insertions) / Reference Length
         </p>
 
         <h4>Word Error Rate (WER)</h4>
-        <p>단어 수준의 정확도를 측정:</p>
+        <p>단어 수준의 정확도를 측정합니다:</p>
         <p style="text-align: center; font-style: italic;">
           WER = (Word Substitutions + Word Deletions + Word Insertions) / Reference Word Count
         </p>
 
         <h4>Structure F1</h4>
-        <p>마크다운 구조 요소(Heading, List, Table) 검출 정확도:</p>
+        <p>마크다운 구조 요소(Heading, List, Table) 검출 정확도입니다:</p>
         <pre><code class="language-text">평가 대상 구조 요소:
 | Element Type   | Pattern           | Example              |
 |----------------|-------------------|----------------------|
@@ -451,35 +451,35 @@ Rules:
 
         <h4>Boundary Clarity (BC)</h4>
         <p>
-          MoC 논문<sup>[1]</sup>에 따르면, BC는 인접 청크 간 의미적 분리도를 측정한다:
+          MoC 논문<sup>[1]</sup>에 따르면, BC는 인접 청크 간 의미적 분리도를 측정합니다:
         </p>
         <p style="text-align: center; font-style: italic;">
           BC = 1 - cosine_similarity(chunk<sub>i</sub>, chunk<sub>i+1</sub>)
         </p>
         <p>
-          임베딩 공간에서 연속된 청크가 얼마나 다른지 측정한다.
-          <strong>BC Score가 높을수록</strong> 청킹 경계가 의미 단위를 잘 분리함을 의미한다.
-          값 범위는 0~1이며, 1에 가까울수록 경계가 명확하다.
+          임베딩 공간에서 연속된 청크가 얼마나 다른지 측정합니다.
+          <strong>BC Score가 높을수록</strong> 청킹 경계가 의미 단위를 잘 분리함을 의미합니다.
+          값 범위는 0~1이며, 1에 가까울수록 경계가 명확합니다.
         </p>
 
         <h4>Chunk Stickiness (CS)</h4>
         <p>
-          MoC 논문<sup>[1]</sup>에 따르면, CS는 청크 내 문장들의 결속도를 Structural Entropy로 측정한다:
+          MoC 논문<sup>[1]</sup>에 따르면, CS는 청크 내 문장들의 결속도를 Structural Entropy로 측정합니다:
         </p>
         $$
         CS = -\sum_{i} \frac{h_i}{2m} \log_2 \frac{h_i}{2m}
         $$
         <p>
-          여기서 h<sub>i</sub>는 문장 i가 다른 청크와 연결된 정도, m은 총 연결 수이다.
-          <strong>CS가 낮을수록</strong> 청크 내 문장들이 강하게 결합되어 있음을 의미한다.
-          값이 높으면 문장들이 여러 청크에 분산되어 정보가 파편화됨을 나타낸다.
+          여기서 h<sub>i</sub>는 문장 i가 다른 청크와 연결된 정도, m은 총 연결 수입니다.
+          <strong>CS가 낮을수록</strong> 청크 내 문장들이 강하게 결합되어 있음을 의미합니다.
+          값이 높으면 문장들이 여러 청크에 분산되어 정보가 파편화됨을 나타냅니다.
         </p>
 
         <!-- Experimental Setup -->
         <h2>4. Experimental Setup</h2>
 
         <h3>4.1 테스트 문서</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>ID</th>
@@ -512,14 +512,14 @@ Rules:
               <td><strong>Digital PDF</strong></td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h4>4.1.1 커버리지 매트릭스</h4>
         <p>
-          본 연구의 결과를 일반화하려면 다양한 PDF Type에서 검증이 필요하다.
-          현재 커버리지 현황은 다음과 같다:
+          결과를 일반화하려면 다양한 PDF Type에서 검증이 필요합니다.
+          현재 커버리지 현황은 다음과 같습니다:
         </p>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>PDF Type</th>
@@ -549,7 +549,7 @@ Rules:
               <td>test_2는 순수 이미지, PDF 형태로 추가 테스트 필요</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>4.2 실험 환경</h3>
         <pre><code class="language-yaml"># Hardware Configuration
@@ -589,11 +589,11 @@ normalization:
         <h3>4.3 A/B 실험 설계</h3>
         <p>
           <strong>통제 변수</strong>: 청킹 알고리즘(SemanticChunker), breakpoint threshold, 임베딩 모델, 검색 방식을 동일하게 유지하고,
-          <strong>독립 변수</strong>(파서 유형)만 변경하여 파싱 품질의 영향을 분리 측정했다.
+          <strong>독립 변수</strong>(파서 유형)만 변경하여 파싱 품질의 영향을 분리 측정했습니다.
         </p>
 
         <h3>4.4 실제 파싱 결과 비교</h3>
-        <p>동일한 학술 논문(Attention Is All You Need)의 테이블을 각 파서로 추출한 결과:</p>
+        <p>동일한 학술 논문(Attention Is All You Need)의 테이블을 각 파서로 추출한 결과를 살펴보겠습니다:</p>
 
         <h4>Baseline (PyMuPDF) 출력</h4>
         <pre><code class="language-text">Layer Type Self-Attention (encoder)
@@ -620,8 +620,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h3>5.1 RQ1: 전제 조건 검증 (CER/WER)</h3>
         <p>
-          VLM 기반 파싱이 다운스트림에서 유의미하려면, 먼저 <strong>텍스트 정확도가 심각하게 훼손되지 않아야</strong> 한다.
-          이 전제를 검증하기 위해 CER(Character Error Rate)과 WER(Word Error Rate)을 측정했다.
+          VLM 기반 파싱이 다운스트림에서 유의미하려면, 먼저 <strong>텍스트 정확도가 심각하게 훼손되지 않아야</strong> 합니다.
+          이 전제를 검증하기 위해 CER(Character Error Rate)과 WER(Word Error Rate)을 측정했습니다.
         </p>
 
         <figure>
@@ -630,7 +630,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </figure>
 
         <h4>CER (Character Error Rate)</h4>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Document</th>
@@ -663,10 +663,10 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>57.71%</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h4>WER (Word Error Rate)</h4>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Document</th>
@@ -699,10 +699,10 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>68.04%</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h4>전제 조건 판정</h4>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>문서 유형</th>
@@ -727,7 +727,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>CER 536% — Hallucination으로 인해 사용 불가</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>5.2 RQ2: 구조 보존 효과 (Structure F1)</h3>
         <figure>
@@ -737,10 +737,10 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <p>
           Baseline 파서들의 Structure F1은 <strong>모두 0%</strong>인 반면,
-          VLM 기반 Advanced 파서는 <strong>79.25%</strong>를 달성했다.
+          VLM 기반 Advanced 파서는 <strong>79.25%</strong>를 달성했습니다.
         </p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Parser</th>
@@ -790,7 +790,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>3</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p><strong>해석</strong>:</p>
         <ul>
@@ -807,16 +807,16 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <h3>5.3 RQ3: 다운스트림 효과 (BC/CS)</h3>
         <p>
           구조가 보존된 파싱 결과가 실제 <strong>청킹 품질</strong>에 미치는 영향을 측정하기 위해
-          MoC 논문<sup>[1]</sup>의 Boundary Clarity(BC)와 Chunk Stickiness(CS) 메트릭을 사용했다.
+          MoC 논문<sup>[1]</sup>의 Boundary Clarity(BC)와 Chunk Stickiness(CS) 메트릭을 사용했습니다.
         </p>
 
         <h4>Boundary Clarity (BC)</h4>
         <p>
-          인접 청크 간 코사인 비유사도로, 청킹 경계가 의미 단위를 잘 분리하는지 측정한다.
-          <strong>높을수록 좋다</strong>.
+          인접 청크 간 코사인 비유사도로, 청킹 경계가 의미 단위를 잘 분리하는지 측정합니다.
+          <strong>높을수록 좋습니다</strong>.
         </p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Parser</th>
@@ -839,23 +839,23 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>인접 청크 평균 51.2% 비유사</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <blockquote>
           <p>
-            <strong>해석</strong>: BC Score 0.512는 연속된 청크 쌍의 평균 코사인 비유사도가 51.2%임을 의미한다.
-            즉, 청킹 경계에서 의미가 명확히 전환되어 각 청크가 독립적인 의미 단위로 분리되고 있다.
-            Baseline 파서는 구조 정보가 없어 BC Score를 측정할 수 없다.
+            <strong>해석</strong>: BC Score 0.512는 연속된 청크 쌍의 평균 코사인 비유사도가 51.2%임을 의미합니다.
+            즉, 청킹 경계에서 의미가 명확히 전환되어 각 청크가 독립적인 의미 단위로 분리되고 있습니다.
+            Baseline 파서는 구조 정보가 없어 BC Score를 측정할 수 없습니다.
           </p>
         </blockquote>
 
         <h4>Chunk Stickiness (CS)</h4>
         <p>
-          청크 내 문장들의 결속도를 Structural Entropy로 측정한다.
-          <strong>낮을수록 좋다</strong> (청크 내 문장들이 강하게 결합됨).
+          청크 내 문장들의 결속도를 Structural Entropy로 측정합니다.
+          <strong>낮을수록 좋습니다</strong> (청크 내 문장들이 강하게 결합됨).
         </p>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Parser</th>
@@ -875,12 +875,12 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>문장 결속도 양호</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <blockquote>
           <p>
-            <strong>해석</strong>: CS Score 2.847은 청크 내 문장들이 비교적 강하게 결합되어 있음을 나타낸다.
-            Structural Entropy가 낮을수록 정보 파편화가 적어 검색 시 관련 정보가 함께 반환될 가능성이 높다.
+            <strong>해석</strong>: CS Score 2.847은 청크 내 문장들이 비교적 강하게 결합되어 있음을 나타냅니다.
+            Structural Entropy가 낮을수록 정보 파편화가 적어 검색 시 관련 정보가 함께 반환될 가능성이 높습니다.
           </p>
         </blockquote>
 
@@ -911,7 +911,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           <figcaption>Figure 4: 처리 시간 분석. VLM 구조화 단계(Stage 2)가 전체 시간의 90% 이상을 차지</figcaption>
         </figure>
 
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Parser</th>
@@ -951,19 +951,19 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>159x</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p>
           <strong>159배</strong>의 latency 증가는 부담스럽지만,
           <strong>Structure F1 +79%p</strong> 개선과 <strong>BC Score 0.512</strong>가 RAG 품질에 미치는 영향을 고려하면
-          구조가 중요한 문서에서는 정당화될 수 있다.
+          구조가 중요한 문서에서는 충분히 정당화될 수 있습니다.
         </p>
 
         <!-- Error Analysis -->
         <h2>6. Error Analysis</h2>
 
         <h3>6.1 VLM Error Categories</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Category</th>
@@ -1003,25 +1003,25 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>42.92s vs 0.27s</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>6.2 Hallucination 상세 분석</h3>
         <p>
           test_1(한글 스캔 문서)에서 VLM이 <strong>CER 536%</strong>를 기록한 것은
-          원본 텍스트보다 <strong>5배 이상 긴 텍스트</strong>를 생성했음을 의미한다.
-          VLM이 불명확한 스캔 이미지를 "해석"하려 시도하면서 존재하지 않는 내용을 추가한 것이다.
+          원본 텍스트보다 <strong>5배 이상 긴 텍스트</strong>를 생성했음을 의미합니다.
+          VLM이 불명확한 스캔 이미지를 "해석"하려 시도하면서 존재하지 않는 내용을 추가한 것입니다.
         </p>
 
         <blockquote>
           <p>
             <strong>교훈</strong>: 한글 스캔 문서에 VLM을 적용할 때는
-            Hallucination 위험을 반드시 모니터링해야 한다.
-            품질이 낮은 스캔에는 Image-Baseline이 더 안전한 선택이다.
+            Hallucination 위험을 반드시 모니터링해야 합니다.
+            품질이 낮은 스캔에는 Image-Baseline이 더 안전한 선택입니다.
           </p>
         </blockquote>
 
         <h3>6.3 Traditional OCR Error Categories</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Category</th>
@@ -1050,13 +1050,13 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>다단 레이아웃 읽기 순서 오류</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <!-- Discussion -->
         <h2>7. Discussion</h2>
 
         <h3>7.1 Research Questions 답변</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>RQ</th>
@@ -1085,10 +1085,10 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>BC 0.512 (높음=좋음), CS 2.847 (낮음=좋음)</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>7.2 Hybrid 파싱 전략 제안</h3>
-        <p>연구 결과를 바탕으로 다음과 같은 문서 라우팅 전략을 제안한다:</p>
+        <p>실험 결과를 바탕으로 다음과 같은 문서 라우팅 전략을 제안합니다:</p>
 
         <pre><code class="language-text">                    Document Input
                          │
@@ -1109,7 +1109,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
                     PyMuPDF (Fast, Sufficient)</code></pre>
 
         <h3>7.3 Parser Selection Guide</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>사용 목적</th>
@@ -1144,7 +1144,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>0.27s</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <!-- Limitations -->
         <h2>8. Limitations</h2>
@@ -1154,33 +1154,33 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         <h4>8.1.1 통계적 유의성</h4>
         <ul>
           <li>
-            <strong>샘플 크기</strong>: 3개 문서로는 p-value 계산 자체가 무의미하다.
+            <strong>샘플 크기</strong>: 3개 문서로는 p-value 계산 자체가 무의미합니다.
             중심극한정리(CLT)에 따르면 n≥30에서 표본 평균이 정규분포에 근사하므로,
-            통계적 검정을 위해서는 최소 30개 이상의 샘플이 필요하다.
+            통계적 검정을 위해서는 최소 30개 이상의 샘플이 필요합니다.
           </li>
           <li>
             <strong>효과 크기 관점</strong>: Structure F1이 0% → 79%로 효과 크기(effect size)가 매우 크므로,
-            <em>방향성</em>은 신뢰할 수 있다. 다만 "79.25%"라는 정확한 수치는 추가 검증이 필요하다.
+            <em>방향성</em>은 신뢰할 수 있습니다. 다만 "79.25%"라는 정확한 수치는 추가 검증이 필요합니다.
           </li>
           <li>
             <strong>해석 범위</strong>: 현재 결과는 "VLM이 구조 보존에 효과적이다"는 가설을 지지하는
-            <em>예비 증거(preliminary evidence)</em>로 해석해야 한다.
+            <em>예비 증거(preliminary evidence)</em>로 해석해야 합니다.
           </li>
         </ul>
 
         <h4>8.1.2 PDF Type 커버리지</h4>
         <ul>
-          <li><strong>Hybrid PDF 미포함</strong>: 일부 페이지만 스캔된 문서 유형이 테스트되지 않았다.</li>
-          <li><strong>Image-heavy PDF 제한적</strong>: 표/차트가 이미지로 삽입된 Digital PDF 추가 필요.</li>
-          <li><strong>문서 다양성</strong>: 한국어/영어만 포함, 금융/법률 도메인 미포함.</li>
-          <li><strong>Ground Truth 품질</strong>: 단일 주석자, 마크다운 스타일 선택이 지표에 영향.</li>
+          <li><strong>Hybrid PDF 미포함</strong>: 일부 페이지만 스캔된 문서 유형이 테스트되지 않았습니다.</li>
+          <li><strong>Image-heavy PDF 제한적</strong>: 표/차트가 이미지로 삽입된 Digital PDF 추가가 필요합니다.</li>
+          <li><strong>문서 다양성</strong>: 한국어/영어만 포함되어 있고, 금융/법률 도메인은 미포함입니다.</li>
+          <li><strong>Ground Truth 품질</strong>: 단일 주석자가 작성했으며, 마크다운 스타일 선택이 지표에 영향을 줄 수 있습니다.</li>
         </ul>
 
         <h3>8.2 Methodological Limitations</h3>
         <ul>
-          <li><strong>단일 VLM 모델</strong>: Qwen3-VL 결과가 다른 VLM에 일반화되지 않을 수 있음</li>
-          <li><strong>고정 청킹 파라미터</strong>: 최적 설정이 아닐 수 있음</li>
-          <li><strong>End-to-End 검증 미완</strong>: Hit Rate@k 직접 측정은 향후 연구 과제</li>
+          <li><strong>단일 VLM 모델</strong>: Qwen3-VL 결과가 다른 VLM에 일반화되지 않을 수 있습니다.</li>
+          <li><strong>고정 청킹 파라미터</strong>: 최적 설정이 아닐 수 있습니다.</li>
+          <li><strong>End-to-End 검증 미완</strong>: Hit Rate@k 직접 측정은 향후 과제로 남아 있습니다.</li>
         </ul>
 
         <!-- Future Work -->
@@ -1190,10 +1190,10 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h4>PDF Type 다양화 로드맵</h4>
         <p>
-          PDF Type 다양화를 파일 포맷 다양화(DOCX, HWP)보다 우선한다.
-          파서가 다르게 동작하는 조건을 먼저 커버해야 결과를 일반화할 수 있기 때문이다.
+          PDF Type 다양화를 파일 포맷 다양화(DOCX, HWP)보다 우선합니다.
+          파서가 다르게 동작하는 조건을 먼저 커버해야 결과를 일반화할 수 있기 때문입니다.
         </p>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>단계</th>
@@ -1230,7 +1230,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>학술 논문 제출 가능, p-value 계산 의미 있음</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <ul>
           <li><strong>End-to-End RAG 평가</strong>: LLM 답변 생성까지 연결하여 RAGAs 메트릭(Faithfulness, Answer Relevancy)으로 평가</li>
@@ -1263,7 +1263,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </ol>
 
         <h3>10.2 정량화된 트레이드오프 (test_3 기준)</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>지표</th>
@@ -1304,14 +1304,14 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td style="color: #dc2626;">159x</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <h3>10.3 Closing Remarks</h3>
         <blockquote>
           <p>
-            "구조 보존은 RAG 시스템에서 중요하다.
-            VLM 기반 파싱은 만능 해결책이 아니지만, 복잡한 문서에서는 도움이 된다.
-            <strong>파싱 품질에 투자하면 하류(downstream) 검색 정확도에서 보상받는다.</strong>"
+            "구조 보존은 RAG 시스템에서 중요합니다.
+            VLM 기반 파싱은 만능 해결책이 아니지만, 복잡한 문서에서는 확실히 도움이 됩니다.
+            <strong>파싱 품질에 투자하면 하류(downstream) 검색 정확도에서 보상받습니다.</strong>"
           </p>
         </blockquote>
 
@@ -1332,7 +1332,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </ul>
 
         <h3>Software Tools</h3>
-        <table>
+        <div class="table-wrap"><table>
           <thead>
             <tr>
               <th>Tool</th>
@@ -1367,7 +1367,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>Semantic chunking framework</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem;">
           <strong>Keywords</strong>: Vision-Language Models, Document Parsing, RAG, Semantic Chunking, OCR, Qwen-VL, Hybrid Strategy, Boundary Clarity, Chunk Stickiness, MoC, Structure Preservation

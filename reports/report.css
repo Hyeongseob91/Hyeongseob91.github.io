@@ -200,6 +200,12 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* --- Prose typography (Korean) --- */
+.report-content {
+  word-break: keep-all;      /* 한국어 단어 단위 줄바꿈 */
+  overflow-wrap: break-word;  /* 긴 영단어/URL 줄바꿈 */
+}
+
 /* --- Paragraph --- */
 .report-content p {
   margin-bottom: 1.25rem;
@@ -309,11 +315,21 @@ img {
 }
 
 /* --- Tables --- */
+.report-content .table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+}
+
 .report-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9rem;
+}
+
+.report-content .table-wrap table {
+  margin: 0; /* 래퍼가 마진 담당 */
 }
 
 .report-content thead th {
