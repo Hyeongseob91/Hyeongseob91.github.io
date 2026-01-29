@@ -1376,6 +1376,14 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
     </article>
   </main>
 
+  <!-- Table of Contents Minimap -->
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list">
+      <!-- Dynamically generated -->
+    </ul>
+  </nav>
+
   <footer class="report-footer">
     <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
   </footer>
@@ -1395,6 +1403,93 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         { left: '$', right: '$', display: false }
       ]
     });
+
+    // Table of Contents Generator
+    (function() {
+      const tocList = document.getElementById('toc-list');
+      const content = document.querySelector('.report-content');
+      if (!tocList || !content) return;
+
+      // Get all h2 headings in report-content
+      const headings = content.querySelectorAll('h2');
+      if (headings.length === 0) return;
+
+      // Generate IDs and TOC items
+      headings.forEach((heading, index) => {
+        // Create ID if not exists
+        if (!heading.id) {
+          heading.id = 'section-' + index;
+        }
+
+        // Create TOC item
+        const li = document.createElement('li');
+        li.className = 'report-toc__item';
+
+        const a = document.createElement('a');
+        a.className = 'report-toc__link';
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+
+        // Smooth scroll on click
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.getElementById(heading.id);
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            // Update URL hash without jumping
+            history.pushState(null, null, '#' + heading.id);
+          }
+        });
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // Scroll spy - highlight current section
+      const tocLinks = tocList.querySelectorAll('.report-toc__link');
+
+      function updateActiveLink() {
+        const scrollPosition = window.scrollY + 100;
+
+        let currentIndex = 0;
+        headings.forEach((heading, index) => {
+          if (heading.offsetTop <= scrollPosition) {
+            currentIndex = index;
+          }
+        });
+
+        tocLinks.forEach((link, index) => {
+          if (index === currentIndex) {
+            link.classList.add('report-toc__link--active');
+          } else {
+            link.classList.remove('report-toc__link--active');
+          }
+        });
+      }
+
+      // Throttle scroll event
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateActiveLink();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // Initial update
+      updateActiveLink();
+    })();
   </script>
 </body>
 
