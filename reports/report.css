@@ -463,7 +463,7 @@ img {
 .report-toc {
   position: fixed;
   top: 80px;
-  right: calc((100vw - 850px) / 2 - 200px);
+  left: calc(50% + 425px + 24px); /* 콘텐츠(850px/2) + 간격 */
   width: 180px;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
