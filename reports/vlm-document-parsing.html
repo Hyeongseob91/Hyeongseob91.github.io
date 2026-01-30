@@ -78,12 +78,14 @@
 
         <blockquote>
           <p>
-            기존 OCR 파서는 Structure F1 <strong>0%</strong> — 구조를 전혀 보존하지 못합니다.
-            VLM 기반 파싱은 이를 <strong>79.25%</strong>로 끌어올리지만,
-            CER(Character Error Rate)이 <strong>+17pp</strong> 증가하는 트레이드오프가 발생합니다.
-            또한 Boundary Clarity(BC) Score <strong>0.512</strong>와 Chunk Stickiness(CS) <strong>2.847</strong>을 달성하여,
-            구조 보존이 청킹 품질에 직접적으로 기여함을 확인했습니다.
-            파싱 단계의 구조 보존 여부가 downstream 전체 품질을 결정한다는 점을 실험으로 확인했습니다.
+            기존 OCR 파서(PyMuPDF, RapidOCR)는 텍스트 추출 자체는 잘 수행합니다(CER <strong>40–51%</strong>).
+            그러나 추출된 결과에 구조 정보가 전혀 없어 Structure F1은 <strong>0%</strong>입니다.
+            여기에 VLM 기반 2-Stage Parsing을 적용하면, 텍스트 추출 품질은 유지하면서
+            Structure Precision <strong>72.41%</strong>, Recall <strong>87.50%</strong>
+            (F1 <strong>79.25%</strong>)을 달성합니다.
+            다만 CER이 소폭 증가하는 트레이드오프가 존재하며,
+            이는 Prompt Engineering(v1 → v2)을 통해 개선했습니다.
+            자세한 실험 과정과 결과는 아래에서 살펴보겠습니다.
           </p>
         </blockquote>
 
@@ -1327,6 +1329,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           <li>Wang et al. (2024). <em>Qwen2-VL: Enhancing Vision-Language Model's Perception of the World at Any Resolution</em>. arXiv:2409.12191.</li>
           <li>Lewis et al. (2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</em>. NeurIPS 2020.</li>
           <li><strong>[1] Zhao et al. (2025). <em>MoC: Mixtures of Text Chunking Learners for Retrieval-Augmented Generation</em>. arXiv:2503.09600.</strong> (BC/CS 메트릭 출처)</li>
+          <li><strong>[2] Van Rijsbergen, C. J. (1979). <em>Information Retrieval</em> (2nd ed.). Butterworths.</strong> (F-measure / Structure F1 공식 출처)</li>
           <li>Vaswani et al. (2017). <em>Attention Is All You Need</em>. NeurIPS 2017. (test document)</li>
           <li>Wei et al. (2022). <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>. NeurIPS 2022. (test document)</li>
         </ul>
