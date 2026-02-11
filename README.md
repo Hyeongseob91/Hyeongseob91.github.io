@@ -1,13 +1,12 @@
-# Hyeongseob's Portfolio & Hub
+# Hyeongseob's Portfolio
 
-Personal portfolio and tech hub website for Hyeongseob Kim, AI Research Engineer.
+Personal portfolio website for Hyeongseob Kim, AI Research Engineer.
 
 ## Live Site
 
 | Page | URL |
 |------|-----|
-| **Portfolio (Main)** | https://hyeongseob91.github.io |
-| **Hub** | https://hyeongseob91.github.io/hub/ |
+| **Portfolio** | https://hyeongseob91.github.io |
 | **Tech Reports** | https://hyeongseob91.github.io/reports/ |
 
 ## Structure
@@ -21,9 +20,6 @@ Personal portfolio and tech hub website for Hyeongseob Kim, AI Research Engineer
 │   ├── aboutme/
 │   ├── companies/
 │   └── projects/
-├── hub/                    # Hub page (blog/report links)
-│   ├── index.html
-│   └── hub.css
 ├── reports/                # Tech Reports
 │   ├── index.html          # Report listing
 │   ├── report.css          # Shared report styles
