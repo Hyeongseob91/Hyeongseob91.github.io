@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navToggle.addEventListener('click', function() {
       navToggle.classList.toggle('open');
       navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', navToggle.classList.contains('open'));
     });
 
     // Close menu when clicking a link
@@ -86,8 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // Optionally stop observing after animation
-        // observer.unobserve(entry.target);
+        observer.unobserve(entry.target);
       }
     });
   };
@@ -797,7 +797,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: 'Prompt Engineering — 0%에서 77~79%로',
-              content: 'v1 프롬프트(일반적 지시)에서는 두 Advanced 파서 모두 Structure F1 = 0%로 완전 실패했습니다. v2 프롬프트에서 명시적 규칙(<code>"MUST"</code>, <code>"NEVER"</code> + 번호-마크다운 레벨 매핑)을 적용하여 77~79%를 달성했습니다.<br><br>2B 파라미터의 소형 모델은 암묵적 가이드보다 <strong>명시적 제약 조건</strong>이 효과적이라는 것을 실험으로 확인했습니다.'
+              content: '동일한 Qwen3-VL-2B 모델에서 <strong>프롬프트만 변경</strong>하여 Structure F1이 0%에서 77~79%로 개선되었습니다. 핵심은 Role Framing과 명시적 제약 조건의 차이입니다.<table><thead><tr><th></th><th>v1 — Extraction Expert</th><th>v2 — Transcription Engine</th></tr></thead><tbody><tr><td><strong>Role</strong></td><td>"You are an <em>expert</em> document extraction assistant"</td><td>"You are a document <em>transcription engine</em>"</td></tr><tr><td><strong>지시</strong></td><td>"Extract all information and present it in organized format"</td><td>"You <strong>MUST</strong> only transcribe what is actually visible"</td></tr><tr><td><strong>제약</strong></td><td>(없음)</td><td>"Do <strong>NOT</strong> add explanations, summaries, or interpretations"</td></tr><tr><td><strong>불확실성</strong></td><td>(없음 — 모델이 추측)</td><td>"If text is unclear, indicate with <code>[unclear]</code> rather than guessing"</td></tr><tr><td><strong>구조 매핑</strong></td><td>"Headers and section titles" (암묵적)</td><td>"1 Introduction" → <code>## 1. Introduction</code><br>"3.1 Method" → <code>### 3.1 Method</code> (명시적)</td></tr><tr><td><strong>Structure F1</strong></td><td style="color:#ef4444"><strong>0%</strong></td><td style="color:#22c55e"><strong>77~79%</strong></td></tr></tbody></table><strong>v1이 실패한 이유:</strong> "expert" 프레이밍은 모델에게 <em>해석과 재구성</em>을 유도합니다. 2B 소형 모델은 이를 hallucination으로 수행하여, 원본에 없는 구조를 만들어내거나 기존 구조를 무시했습니다.<br><br><strong>v2가 성공한 이유:</strong> "transcription engine" 프레이밍은 <em>있는 그대로의 전사</em>를 유도하고, <code>MUST</code>/<code>NEVER</code> 키워드와 번호→마크다운 레벨 매핑 규칙이 2B 모델의 제한된 추론 능력을 보완했습니다. 소형 모델일수록 암묵적 기대보다 <strong>명시적 제약 조건</strong>이 효과적이라는 것을 실험으로 확인했습니다.'
             },
             {
               subtitle: 'RQ4: Retrieval 영향 평가 (진행 중)',
@@ -1133,6 +1133,9 @@ document.addEventListener('DOMContentLoaded', function() {
                        ${imgStyle}
                        onclick="window.open('${sub.image.src}', '_blank')">
                 `;
+                if (sub.image.caption) {
+                  contentHTML += `<p class="modal__section-image-caption">${sub.image.caption}</p>`;
+                }
               }
               // Subsection Gallery 지원 (여러 이미지 병렬 배치)
               if (sub.gallery) {
@@ -1186,6 +1189,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show modal
         modal.classList.add('active');
         document.body.classList.add('modal-open');
+
+        // Focus trap: store trigger and move focus into modal
+        modal._triggerElement = this;
+        modalClose.focus();
       }
     });
   });
@@ -1194,6 +1201,39 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeModal() {
     modal.classList.remove('active');
     document.body.classList.remove('modal-open');
+
+    // Restore focus to the element that opened the modal
+    if (modal._triggerElement) {
+      modal._triggerElement.focus();
+      modal._triggerElement = null;
+    }
+  }
+
+  // Focus trap inside modal
+  if (modal) {
+    modal.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab' || !modal.classList.contains('active')) return;
+
+      const focusable = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
   }
 
   if (modalClose) {

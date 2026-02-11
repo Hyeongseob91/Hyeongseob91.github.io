@@ -146,13 +146,39 @@ img {
 
 .report-article__meta {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--color-text-muted);
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--color-border);
+}
+
+.report-article__meta-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.report-article__github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: #24292e;
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.report-article__github:hover {
+  background: #161b22;
 }
 
 .report-article__tags {
@@ -367,6 +393,46 @@ img {
 
 .report-content em {
   font-style: italic;
+}
+
+/* --- Semantic Value Colors (table cells) --- */
+.value-positive {
+  color: #16a34a;
+}
+
+.value-negative {
+  color: #dc2626;
+}
+
+.value-warning {
+  color: #d97706;
+}
+
+.value-neutral {
+  color: #6b7280;
+}
+
+.value-negative--note {
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.value-positive--note {
+  color: #16a34a;
+  font-size: 0.875rem;
+}
+
+.report-content__caption {
+  text-align: center;
+  font-style: italic;
+}
+
+.report-content__callout {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
 }
 
 /* =====================================================

@@ -42,8 +42,8 @@
       <header>
         <a href="../hub/" class="report-article__back">&larr; Hub</a>
         <h1 class="report-article__title">문서 파싱의 구조 보존이 RAG 파이프라인에 미치는 영향 연구</h1>
-        <div class="report-article__meta" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-          <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div class="report-article__meta">
+          <div class="report-article__meta-left">
             <time datetime="2026-01-28">2026.01.28</time>
             <span class="report-article__tags">
               <span class="report-article__tag">VLM</span>
@@ -53,8 +53,8 @@
             </span>
           </div>
           <a href="https://github.com/Hyeongseob91/test-vlm-document-parsing" target="_blank" rel="noopener noreferrer"
-            style="display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; background: #24292e; color: #fff; border-radius: 50%; text-decoration: none; transition: background 0.15s ease;"
-            title="GitHub Repository">
+            class="report-article__github"
+            title="GitHub Repository" aria-label="GitHub Repository">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
               <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
             </svg>
@@ -72,8 +72,9 @@
           이 실험에서는 이 가설을 정량적으로 검증하기 위해,
           표 안의 표, 이미지 기반 테이블, 다단 레이아웃 등 복잡한 구조를 포함하는 문서를 대상으로
           기존 텍스트 추출/OCR 방식(PyMuPDF, RapidOCR)과 VLM(Qwen3-VL) 기반 구조화 파싱을
-          <strong>Lexical Accuracy</strong>, <strong>Structural Integrity</strong>, <strong>Downstream Quality</strong>
-          세 가지 차원에서 비교 분석했습니다.
+          <strong>Lexical Accuracy</strong>, <strong>Structural Integrity</strong>,
+          <strong>Downstream Chunking Quality</strong>, <strong>Retrieval Impact</strong>
+          네 가지 차원에서 비교 분석했습니다.
         </p>
 
         <blockquote>
@@ -124,7 +125,7 @@
         </p>
 
         <h3>1.2 Research Questions</h3>
-        <p>이 실험에서는 세 가지 핵심 질문에 답하고자 합니다:</p>
+        <p>이 실험에서는 네 가지 핵심 질문에 답하고자 합니다:</p>
 
         <div class="table-wrap"><table>
           <thead>
@@ -153,6 +154,12 @@
               <td>효과 검증</td>
               <td>구조 보존이 다운스트림(청킹) 품질을 향상시키는가?</td>
               <td>BC Score, CS</td>
+            </tr>
+            <tr>
+              <td><strong>RQ4</strong></td>
+              <td>End-to-End</td>
+              <td>개선된 청킹이 실제 검색 정밀도를 높이는가?</td>
+              <td>Hit Rate@k, MRR</td>
             </tr>
           </tbody>
         </table></div>
@@ -249,24 +256,25 @@
         <h2>3. Methodology</h2>
 
         <h3>3.1 평가 프레임워크</h3>
-        <p>3단계 평가 프레임워크를 설계하여 문서 파싱 품질을 다각도로 측정했습니다:</p>
+        <p>4단계 평가 프레임워크를 설계하여 문서 파싱 품질을 다각도로 측정했습니다:</p>
 
-        <pre><code class="language-text">┌─────────────────────────────────────────────────────────────────┐
-│                    EVALUATION FRAMEWORK                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐          │
-│   │   PHASE 1   │   │   PHASE 2   │   │   PHASE 3   │          │
-│   │   Lexical   │ → │  Structural │ → │  Downstream │          │
-│   │  Accuracy   │   │  Integrity  │   │   Quality   │          │
-│   └─────────────┘   └─────────────┘   └─────────────┘          │
-│         │                 │                 │                   │
-│         ▼                 ▼                 ▼                   │
-│   ┌───────────┐    ┌───────────┐    ┌───────────┐             │
-│   │ CER, WER  │    │  F1, BC   │    │  BC, CS   │             │
-│   └───────────┘    └───────────┘    └───────────┘             │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘</code></pre>
+        <pre><code class="language-text">┌──────────────────────────────────────────────────────────────────────────────────┐
+│                           EVALUATION FRAMEWORK                                   │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐                     │
+│  │  RQ1     │   │  RQ2     │   │  RQ3     │   │  RQ4     │                     │
+│  │ Lexical  │ → │Structural│ → │Downstream│ → │Retrieval │                     │
+│  │ Accuracy │   │Integrity │   │ Chunking │   │ Impact   │                     │
+│  └──────────┘   └──────────┘   └──────────┘   └──────────┘                     │
+│       │              │              │              │                            │
+│       ▼              ▼              ▼              ▼                            │
+│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐                    │
+│  │ CER, WER │   │    F1    │   │  BC, CS  │   │Hit Rate, │                    │
+│  │          │   │          │   │          │   │   MRR    │                    │
+│  └──────────┘   └──────────┘   └──────────┘   └──────────┘                    │
+│                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────┘</code></pre>
 
         <h3>3.2 파서 아키텍처</h3>
         <p>4가지 파서 조합을 비교 평가했습니다:</p>
@@ -385,59 +393,217 @@ def classify_pdf(pdf_path):
 
         <h3>3.4 VLM 프롬프트 전략</h3>
         <p>
-          VLM의 Hallucination을 최소화하기 위해 프롬프트를 v1에서 v2로 진화시켰습니다.
-          "추출"이 아닌 "전사"에 초점을 맞춰 원본에 없는 내용이 추가되는 것을 방지합니다.
+          본 연구에서 가장 결정적인 성능 차이를 만든 요인은 모델이나 파이프라인 구조가 아닌
+          <strong>프롬프트 설계</strong>였습니다. 동일한 Qwen3-VL-2B 모델에서 프롬프트만 변경하여
+          Structure F1이 0%에서 77~79%로 개선되었습니다.
+          이 절에서는 v1에서 v2로의 진화 과정과 그 근거를 상세히 기술합니다.
         </p>
 
-        <h4>프롬프트 v1 vs v2 비교</h4>
-        <div class="table-wrap"><table>
-          <thead>
-            <tr>
-              <th>버전</th>
-              <th>초점</th>
-              <th>문제점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>v1 (Extraction)</td>
-              <td>"Extract all text and structure"</td>
-              <td>VLM이 빈 공간을 채우려 함 → Hallucination</td>
-            </tr>
-            <tr>
-              <td><strong>v2 (Transcription)</strong></td>
-              <td>"Transcribe only what is visible"</td>
-              <td>불명확한 부분은 [unclear]로 표시</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <h4>3.4.1 Prompt v1: Extraction Expert (Baseline)</h4>
+        <p>
+          초기 프롬프트는 VLM을 "전문가(expert)"로 프레이밍하여 문서의 모든 정보를
+          추출하도록 지시했습니다.
+        </p>
 
-        <pre><code class="language-python"># VLM Prompt (v2 - Transcription-focused)
-PROMPT = """
+        <pre><code class="language-python"># Prompt v1 — Extraction Expert
+PROMPT_V1 = """
+You are an expert document extraction assistant. Your task is to extract
+all information from the given document image and present it in a clear,
+organized markdown format.
+
+Please extract:
+1. All text content
+2. Tables (preserve structure)
+3. Lists and enumerations
+4. Headers and section titles
+
+Format the output as clean markdown.
+"""</code></pre>
+
+        <p>
+          이 프롬프트로 두 Advanced 파서 모두 <strong>Structure F1 = 0%</strong>를 기록하며 완전히 실패했습니다.
+          "expert"라는 역할 부여와 "extract... present... organized"라는 지시가 모델에게
+          <em>해석과 재구성</em>을 유도했고, 2B 파라미터의 소형 모델은 이를 hallucination으로 수행하여
+          원본에 없는 구조를 만들어내거나 기존 구조를 무시했습니다.
+        </p>
+
+        <h4>3.4.2 Prompt v2: Transcription Engine (Selected)</h4>
+        <p>
+          v1의 실패를 분석한 뒤, 근본적으로 다른 접근을 설계했습니다.
+          핵심 전환은 <strong>"추출(Extraction)"에서 "전사(Transcription)"로의 패러다임 변경</strong>입니다.
+        </p>
+
+        <pre><code class="language-python"># Prompt v2 — Transcription Engine (Selected)
+PROMPT_V2 = """
 You are a document transcription engine. Your sole purpose is to convert
 the given image into markdown text format. You MUST only transcribe what
-is actually visible in the image.
+is actually visible in the image - do not add any additional information,
+explanations, or content that is not present in the original document.
 
 Rules:
 1. Transcribe ALL visible text exactly as shown
 2. Use markdown formatting to preserve structure (headers, lists, tables)
-3. For tables, use markdown table syntax
+3. For tables, use markdown table syntax with proper alignment
 4. Preserve the original language (Korean, English, etc.)
 5. Do NOT add explanations, summaries, or interpretations
-6. If text is unclear, indicate with [unclear] rather than guessing
+6. Do NOT add information that is not visible in the image
+7. If text is unclear, indicate with [unclear] rather than guessing
+8. Maintain original paragraph breaks and spacing intent
 """</code></pre>
+
+        <p>
+          VLM이 출력한 텍스트를 마크다운 구조로 변환하는 2단계(Text Structuring)에서는
+          <strong>번호-마크다운 레벨 간의 명시적 매핑 규칙</strong>을 별도로 정의했습니다.
+        </p>
+
+        <pre><code class="language-python"># Text Structuring Prompt — 명시적 구조 매핑 규칙
+SYSTEM_PROMPT = """You are a Markdown formatting expert. Your task is to
+convert plain text into well-structured Markdown format.
+
+CRITICAL RULES - You MUST follow these:
+1. ALWAYS use # symbols for headings. This is mandatory.
+2. Document title → # Title
+3. Section numbers like "1 Introduction" or "1. Introduction" → ## 1. Introduction
+4. Subsections like "3.1 Method" → ### 3.1 Method
+5. Sub-subsections like "3.1.1 Details" → #### 3.1.1 Details
+6. Tables with aligned columns → Markdown table with | separators
+7. Bullet points → - item
+8. Numbered lists → 1. item
+
+NEVER output plain text headings without # symbols."""</code></pre>
+
+        <h4>3.4.3 v1 vs v2 설계 차이 분석</h4>
+        <p>
+          두 프롬프트의 핵심 차이를 5개 차원에서 비교합니다.
+          각 차원이 2B 소형 모델의 행동에 어떤 영향을 미쳤는지 분석합니다.
+        </p>
+
+        <div class="table-wrap"><table>
+          <thead>
+            <tr>
+              <th>설계 차원</th>
+              <th>v1 (Extraction Expert)</th>
+              <th>v2 (Transcription Engine)</th>
+              <th>영향</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Role Framing</strong></td>
+              <td>"expert extraction <em>assistant</em>"</td>
+              <td>"transcription <em>engine</em>"</td>
+              <td>"assistant"는 해석을 유도, "engine"은 기계적 전사를 유도</td>
+            </tr>
+            <tr>
+              <td><strong>Task Definition</strong></td>
+              <td>"Extract all information and <em>present</em> it"</td>
+              <td>"You <strong>MUST</strong> only transcribe what is <em>actually visible</em>"</td>
+              <td>"present"는 재구성 허용, "MUST only"는 범위를 제한</td>
+            </tr>
+            <tr>
+              <td><strong>Explicit Negation</strong></td>
+              <td>(없음)</td>
+              <td>"Do <strong>NOT</strong> add explanations, summaries, or interpretations"</td>
+              <td>소형 모델은 암묵적 기대를 추론하지 못하므로 명시적 금지가 필수</td>
+            </tr>
+            <tr>
+              <td><strong>Uncertainty Handling</strong></td>
+              <td>(없음 — 모델이 추측)</td>
+              <td>"If text is unclear, indicate with <code>[unclear]</code> rather than guessing"</td>
+              <td>hallucination의 주요 원인인 "추측"을 차단하는 안전장치</td>
+            </tr>
+            <tr>
+              <td><strong>Structure Mapping</strong></td>
+              <td>"Headers and section titles" (암묵적)</td>
+              <td>"1 Introduction" → <code>## 1. Introduction</code><br>"3.1 Method" → <code>### 3.1 Method</code> (명시적)</td>
+              <td>2B 모델의 제한된 추론 능력을 규칙 기반 매핑으로 보완</td>
+            </tr>
+          </tbody>
+        </table></div>
+
+        <h4>3.4.4 결과: Structure F1 변화</h4>
+
+        <div class="table-wrap"><table>
+          <thead>
+            <tr>
+              <th>Prompt Version</th>
+              <th>Text-Advanced</th>
+              <th>Image-Advanced</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>v1 (Extraction Expert)</td>
+              <td class="value-negative"><strong>0%</strong></td>
+              <td class="value-negative"><strong>0%</strong></td>
+            </tr>
+            <tr>
+              <td>v2 (Transcription Engine)</td>
+              <td class="value-positive"><strong>79.25%</strong></td>
+              <td class="value-positive"><strong>77.78%</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Delta</strong></td>
+              <td><strong>+79.25pp</strong></td>
+              <td><strong>+77.78pp</strong></td>
+            </tr>
+          </tbody>
+        </table></div>
+
+        <h4>3.4.5 Prompt Engineering Lessons</h4>
+        <p>
+          본 실험에서 도출한 소형 VLM(2B) 대상 프롬프트 설계 원칙을 정리합니다.
+          이 원칙들은 대형 모델에서는 불필요할 수 있으나,
+          자원 제약 환경에서 소형 모델을 활용할 때 실질적인 가이드라인이 됩니다.
+        </p>
+        <ol>
+          <li>
+            <strong>Explicit Negation</strong>:
+            "Do NOT add"는 암묵적 기대보다 효과적입니다.
+            소형 모델은 "clean markdown"이라는 지시에서 "불필요한 내용을 추가하지 말 것"을 추론하지 못합니다.
+          </li>
+          <li>
+            <strong>Role Framing</strong>:
+            "transcription engine"은 "expert assistant"보다 기계적·리터럴한 행동을 유도합니다.
+            "expert"는 모델에게 판단과 해석의 여지를 부여하여 hallucination 위험을 높입니다.
+          </li>
+          <li>
+            <strong>Uncertainty Handling</strong>:
+            <code>[unclear]</code> 마커를 제공하면 모델이 불확실한 입력에 대해
+            "추측" 대신 "표시"를 선택할 수 있는 경로가 생깁니다.
+          </li>
+          <li>
+            <strong>Deterministic Mapping</strong>:
+            "섹션 번호 → 마크다운 헤딩 레벨"과 같은 규칙 기반 매핑은
+            소형 모델의 제한된 추론 능력을 보완하는 가장 효과적인 방법입니다.
+          </li>
+          <li>
+            <strong>MUST/NEVER Keywords</strong>:
+            강제 키워드(<code>MUST</code>, <code>NEVER</code>, <code>ALWAYS</code>)는
+            소형 모델의 instruction following 성능을 향상시킵니다.
+            v2 프롬프트에서 이 키워드들이 없으면 Structure F1이 현저히 낮아지는 것을 확인했습니다.
+          </li>
+        </ol>
+
+        <blockquote>
+          <p>
+            <strong>핵심 교훈</strong>: 2B 파라미터 소형 모델에서는 프롬프트가 모델 선택만큼 중요한 변수입니다.
+            동일한 모델에서 프롬프트 하나의 차이로 Structure F1이 0%에서 79%로 변했다는 사실은,
+            소형 모델 활용 시 프롬프트 엔지니어링이 모델 스케일업의 대안이 될 수 있음을 시사합니다.
+          </p>
+        </blockquote>
 
         <h3>3.5 측정 지표 정의</h3>
 
         <h4>Character Error Rate (CER)</h4>
         <p>문자 수준의 정확도를 Levenshtein 편집 거리로 측정합니다:</p>
-        <p style="text-align: center; font-style: italic;">
+        <p class="report-content__caption">
           CER = (Substitutions + Deletions + Insertions) / Reference Length
         </p>
 
         <h4>Word Error Rate (WER)</h4>
         <p>단어 수준의 정확도를 측정합니다:</p>
-        <p style="text-align: center; font-style: italic;">
+        <p class="report-content__caption">
           WER = (Word Substitutions + Word Deletions + Word Insertions) / Reference Word Count
         </p>
 
@@ -455,7 +621,7 @@ Rules:
         <p>
           MoC 논문<sup>[1]</sup>에 따르면, BC는 인접 청크 간 의미적 분리도를 측정합니다:
         </p>
-        <p style="text-align: center; font-style: italic;">
+        <p class="report-content__caption">
           BC = 1 - cosine_similarity(chunk<sub>i</sub>, chunk<sub>i+1</sub>)
         </p>
         <p>
@@ -602,7 +768,7 @@ normalization:
 Self-Attention (decoder) Encoder-Decoder Attention
 Feed-Forward Complexity per Layer O(n2 · d) O(n2 · d)
 Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
-        <p style="color: #dc2626; font-size: 0.875rem;">
+        <p class="value-negative--note">
           ⚠️ 테이블 구조가 완전히 붕괴되어 텍스트 스트림으로 변환됨
         </p>
 
@@ -613,7 +779,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 | Self-Attention (decoder) | O(n² · d) | O(1) | O(1) |
 | Encoder-Decoder Attention | O(n · m · d) | O(1) | O(1) |
 | Feed-Forward | O(n · d²) | O(1) | O(1) |</code></pre>
-        <p style="color: #16a34a; font-size: 0.875rem;">
+        <p class="value-positive--note">
           ✓ 마크다운 테이블로 구조가 보존되어 청킹 시 테이블이 atomic unit으로 유지됨
         </p>
 
@@ -627,8 +793,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </p>
 
         <figure>
-          <img src="images/fig2_cer_comparison.png" alt="CER Comparison">
-          <figcaption>Figure 2: 파서별 CER 비교. Image-Baseline이 가장 낮은 CER(40.79%)을 달성하지만 구조 정보가 없음</figcaption>
+          <img src="images/fig2_cer_comparison.png" alt="CER Comparison" loading="lazy">
+          <figcaption>Figure 1: 파서별 CER 비교. Image-Baseline이 가장 낮은 CER(40.79%)을 달성하지만 구조 정보가 없음</figcaption>
         </figure>
 
         <h4>CER (Character Error Rate)</h4>
@@ -648,19 +814,19 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>N/A</td>
               <td>91.87%</td>
               <td>N/A</td>
-              <td style="color: #dc2626;"><strong>536.50%</strong></td>
+              <td class="value-negative"><strong>536.50%</strong></td>
             </tr>
             <tr>
               <td>test_2 (영수증 이미지)</td>
               <td>99.59%</td>
               <td>40.80%</td>
               <td>120.54%</td>
-              <td style="color: #16a34a;"><strong>33.09%</strong></td>
+              <td class="value-positive"><strong>33.09%</strong></td>
             </tr>
             <tr>
               <td>test_3 (English/Digital)</td>
               <td>51.25%</td>
-              <td style="color: #16a34a;"><strong>40.79%</strong></td>
+              <td class="value-positive"><strong>40.79%</strong></td>
               <td>64.11%</td>
               <td>57.71%</td>
             </tr>
@@ -684,19 +850,19 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>N/A</td>
               <td>98.21%</td>
               <td>N/A</td>
-              <td style="color: #dc2626;"><strong>421.43%</strong></td>
+              <td class="value-negative"><strong>421.43%</strong></td>
             </tr>
             <tr>
               <td>test_2 (영수증 이미지)</td>
               <td>100.00%</td>
               <td>52.17%</td>
               <td>115.22%</td>
-              <td style="color: #16a34a;"><strong>43.48%</strong></td>
+              <td class="value-positive"><strong>43.48%</strong></td>
             </tr>
             <tr>
               <td>test_3 (English/Digital)</td>
               <td>62.89%</td>
-              <td style="color: #16a34a;"><strong>51.55%</strong></td>
+              <td class="value-positive"><strong>51.55%</strong></td>
               <td>75.26%</td>
               <td>68.04%</td>
             </tr>
@@ -715,17 +881,17 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           <tbody>
             <tr>
               <td>영어 디지털 PDF</td>
-              <td style="color: #16a34a;"><strong>Pass</strong></td>
+              <td class="value-positive"><strong>Pass</strong></td>
               <td>CER 57.71%, 구조 보존 가치 &gt; 정확도 손실</td>
             </tr>
             <tr>
               <td>영어 스캔 PDF</td>
-              <td style="color: #16a34a;"><strong>Pass</strong></td>
+              <td class="value-positive"><strong>Pass</strong></td>
               <td>CER 33.09%로 오히려 개선</td>
             </tr>
             <tr>
               <td>한글 스캔 PDF</td>
-              <td style="color: #dc2626;"><strong>Fail</strong></td>
+              <td class="value-negative"><strong>Fail</strong></td>
               <td>CER 536% — Hallucination으로 인해 사용 불가</td>
             </tr>
           </tbody>
@@ -733,8 +899,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h3>5.2 RQ2: 구조 보존 효과 (Structure F1)</h3>
         <figure>
-          <img src="images/fig1_structure_f1_comparison.png" alt="Structure F1 Comparison">
-          <figcaption>Figure 1: 파서별 Structure F1 비교. Baseline 파서는 구조 검출 불가(0%), Advanced 파서는 최대 79.25% 달성</figcaption>
+          <img src="images/fig1_structure_f1_comparison.png" alt="Structure F1 Comparison" loading="lazy">
+          <figcaption>Figure 2: 파서별 Structure F1 비교. Baseline 파서는 구조 검출 불가(0%), Advanced 파서는 최대 79.25% 달성</figcaption>
         </figure>
 
         <p>
@@ -802,8 +968,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
         </ul>
 
         <figure>
-          <img src="images/fig5_precision_recall.png" alt="Precision vs Recall">
-          <figcaption>Figure 5: 파서별 Precision-Recall 비교. Advanced 파서는 높은 Recall(87.5%)을 달성하며, Precision도 70% 이상 유지</figcaption>
+          <img src="images/fig5_precision_recall.png" alt="Precision vs Recall" loading="lazy">
+          <figcaption>Figure 3: 파서별 Precision-Recall 비교. Advanced 파서는 높은 Recall(87.5%)을 달성하며, Precision도 70% 이상 유지</figcaption>
         </figure>
 
         <h3>5.3 RQ3: 다운스트림 효과 (BC/CS)</h3>
@@ -888,8 +1054,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h3>5.4 트레이드오프 시각화</h3>
         <figure>
-          <img src="images/fig3_tradeoff_scatter.png" alt="Trade-off Analysis">
-          <figcaption>Figure 3: 텍스트 정확도(CER) vs 구조화 품질(Structure F1) 트레이드오프. 이상적인 지점은 우상단이지만, 현실적으로 Baseline과 Advanced 중 선택이 필요</figcaption>
+          <img src="images/fig3_tradeoff_scatter.png" alt="Trade-off Analysis" loading="lazy">
+          <figcaption>Figure 4: 텍스트 정확도(CER) vs 구조화 품질(Structure F1) 트레이드오프. 이상적인 지점은 우상단이지만, 현실적으로 Baseline과 Advanced 중 선택이 필요</figcaption>
         </figure>
 
         <pre><code class="language-text">                    텍스트 정확도 (CER ↓)
@@ -909,8 +1075,8 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h3>5.5 Latency 분석</h3>
         <figure>
-          <img src="images/fig4_latency_breakdown.png" alt="Latency Breakdown">
-          <figcaption>Figure 4: 처리 시간 분석. VLM 구조화 단계(Stage 2)가 전체 시간의 90% 이상을 차지</figcaption>
+          <img src="images/fig4_latency_breakdown.png" alt="Latency Breakdown" loading="lazy">
+          <figcaption>Figure 5: 처리 시간 분석. VLM 구조화 단계(Stage 2)가 전체 시간의 90% 이상을 차지</figcaption>
         </figure>
 
         <div class="table-wrap"><table>
@@ -961,6 +1127,45 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           구조가 중요한 문서에서는 충분히 정당화될 수 있습니다.
         </p>
 
+        <h3>5.6 RQ4: Retrieval 영향 평가 (진행 중)</h3>
+        <p>
+          RQ4는 개선된 청킹 품질이 실제 검색 정밀도(Hit Rate@k, MRR)를 높이는지 검증하는 End-to-End 평가입니다.
+          RQ1-RQ3에서 확인한 구조 보존 → 청킹 품질 개선의 효과가
+          최종 검색 단계까지 전파되는지를 직접 측정합니다.
+        </p>
+
+        <div class="table-wrap"><table>
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>정의</th>
+              <th>측정 방식</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hit Rate@k</strong></td>
+              <td>상위 k개 검색 결과에 정답 청크가 포함되는 비율</td>
+              <td>k = {1, 3, 5, 10}</td>
+            </tr>
+            <tr>
+              <td><strong>MRR</strong></td>
+              <td>첫 번째 정답 청크의 역순위 평균 (Mean Reciprocal Rank)</td>
+              <td>$MRR = \frac{1}{|Q|}\sum_{i=1}^{|Q|}\frac{1}{rank_i}$</td>
+            </tr>
+          </tbody>
+        </table></div>
+
+        <blockquote>
+          <p>
+            <strong>현재 상태</strong>: RQ1-RQ3의 결과는 구조 보존이 청킹 품질까지 개선한다는 것을 보여줍니다.
+            그러나 이것이 실제 검색 정밀도 향상으로 이어지는지는 아직 직접 측정하지 못했습니다.
+            BC Score 0.512와 CS Score 2.847은 긍정적인 <em>간접 증거</em>이지만,
+            Hit Rate@k와 MRR을 통한 직접 검증이 필요합니다.
+            2026년 2월 내 실험 완료를 목표로 하고 있습니다.
+          </p>
+        </blockquote>
+
         <!-- Error Analysis -->
         <h2>6. Error Analysis</h2>
 
@@ -977,7 +1182,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td style="color: #dc2626;"><strong>HALLUCINATION</strong></td>
+              <td class="value-negative"><strong>HALLUCINATION</strong></td>
               <td>High (test_1)</td>
               <td>Critical</td>
               <td>불명확한 내용 과해석</td>
@@ -1007,18 +1212,129 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </tbody>
         </table></div>
 
-        <h3>6.2 Hallucination 상세 분석</h3>
+        <h3>6.2 Hallucination 상세 분석 — 한글 스캔 문서는 왜 실패하는가</h3>
         <p>
           test_1(한글 스캔 문서)에서 VLM이 <strong>CER 536%</strong>를 기록한 것은
-          원본 텍스트보다 <strong>5배 이상 긴 텍스트</strong>를 생성했음을 의미합니다.
-          VLM이 불명확한 스캔 이미지를 "해석"하려 시도하면서 존재하지 않는 내용을 추가한 것입니다.
+          원본 텍스트(522자)보다 <strong>36배 긴 텍스트(19,033자)</strong>를 생성했음을 의미합니다.
+          동일한 프롬프트(v2)와 파이프라인으로 영어 스캔 문서(test_2)는 CER 33%로 정상 작동한 반면,
+          한글에서만 이러한 극단적 실패가 발생한 원인은 세 가지 요인의 복합 작용입니다.
         </p>
+
+        <div class="table-wrap"><table>
+          <thead>
+            <tr>
+              <th>문서</th>
+              <th>언어</th>
+              <th>CER (Image-Advanced)</th>
+              <th>원본 글자수</th>
+              <th>VLM 출력 글자수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>test_1</td>
+              <td><strong>한국어</strong></td>
+              <td class="value-negative"><strong>536.50%</strong></td>
+              <td>522자</td>
+              <td><strong>19,033자</strong> (36x)</td>
+            </tr>
+            <tr>
+              <td>test_2</td>
+              <td>영어</td>
+              <td class="value-positive">33.09%</td>
+              <td>-</td>
+              <td>정상</td>
+            </tr>
+            <tr>
+              <td>test_3</td>
+              <td>영어</td>
+              <td class="value-positive">57.71%</td>
+              <td>-</td>
+              <td>정상</td>
+            </tr>
+          </tbody>
+        </table></div>
+
+        <h4>원인 1: VLM 학습 데이터 편향 (근본 원인)</h4>
+        <p>
+          Qwen3-VL-2B는 주로 <strong>영어와 중국어</strong> 데이터로 학습되었으며,
+          한국어 문서 데이터의 학습 비중은 현저히 낮습니다.
+          모델이 한국어 글자를 "확신 있게 읽지 못하는" 상태에서
+          두 가지 행동 중 하나를 선택해야 합니다:
+        </p>
+        <ul>
+          <li>프롬프트 지시대로 <code>[unclear]</code>로 표기하거나</li>
+          <li><strong>문맥에서 추측하여 채워넣거나</strong> (실제 발생한 행동)</li>
+        </ul>
+        <p>
+          2B 파라미터의 소형 모델은 프롬프트의 anti-hallucination 지시
+          ("Do NOT add information that is not visible", "indicate with [unclear] rather than guessing")를
+          충실히 따를 역량이 부족하여 후자로 빠진 것입니다.
+        </p>
+
+        <h4>원인 2: OCR 입력 품질의 극단적 저하</h4>
+        <p>
+          Image-Baseline의 한글 CER이 이미 <strong>91.87%</strong>입니다.
+          즉 OCR 단계에서 거의 모든 글자가 틀린 채로 VLM에 전달됩니다.
+          영어 Baseline CER은 40% 수준으로 VLM이 충분히 복원할 수 있었지만,
+          한글의 92% 에러율은 <strong>복원 자체가 불가능한 수준</strong>입니다.
+          VLM은 "거의 읽을 수 없는" 입력을 구조화하라는 지시를 받고,
+          원본을 알 수 없으니 <em>추론 → 없는 내용 생성</em>으로 이어진 것입니다.
+        </p>
+
+        <h4>원인 3: 한국어 처리 파이프라인 미최적화</h4>
+        <p>
+          한국어 WER 측정 시 <strong>MeCab(형태소 분석기)을 적용하지 않고</strong>
+          단순 공백 기반 토크나이징을 사용했습니다.
+          이는 직접적 hallucination 원인은 아니지만,
+          파이프라인 전체가 한국어에 최적화되지 않았음을 보여주는 증거입니다.
+        </p>
+
+        <h4>구조 검출 결과: 완전한 실패</h4>
+        <p>
+          세 가지 원인이 복합적으로 작용한 결과,
+          test_1의 구조 검출은 다음과 같이 완전히 실패했습니다:
+        </p>
+
+        <div class="table-wrap"><table>
+          <thead>
+            <tr>
+              <th>지표</th>
+              <th>test_1 (한글)</th>
+              <th>해석</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>True Positives</td>
+              <td><strong>0</strong></td>
+              <td>실제 구조를 하나도 맞추지 못함</td>
+            </tr>
+            <tr>
+              <td>False Positives</td>
+              <td class="value-negative"><strong>831</strong></td>
+              <td>존재하지 않는 헤딩·리스트·테이블을 생성</td>
+            </tr>
+            <tr>
+              <td>False Negatives</td>
+              <td>19</td>
+              <td>실제 구조 19개를 모두 놓침</td>
+            </tr>
+            <tr>
+              <td>Structure F1</td>
+              <td><strong>0.00%</strong></td>
+              <td>831개의 구조를 만들었으나 전부 가짜</td>
+            </tr>
+          </tbody>
+        </table></div>
 
         <blockquote>
           <p>
-            <strong>교훈</strong>: 한글 스캔 문서에 VLM을 적용할 때는
-            Hallucination 위험을 반드시 모니터링해야 합니다.
-            품질이 낮은 스캔에는 Image-Baseline이 더 안전한 선택입니다.
+            <strong>결론</strong>: <em>낮은 OCR 품질(92% 에러) + 한국어 학습 데이터 부족 + 소형 모델(2B)의 지시 따르기 한계</em>가 결합되어,
+            모델이 "읽을 수 없는 한글"을 "추측으로 채우는" 모드로 전환한 것이 근본 원인입니다.
+            프롬프트 v2의 anti-hallucination 규칙은 영어에서는 효과적이었으나,
+            한글에서는 모델의 언어 이해 능력 자체가 부족하여 무력화되었습니다.
+            품질이 낮은 한글 스캔에는 VLM 구조화를 적용하지 않고 Image-Baseline을 사용하는 것이 안전합니다.
           </p>
         </blockquote>
 
@@ -1034,7 +1350,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </thead>
           <tbody>
             <tr>
-              <td style="color: #dc2626;"><strong>STRUCTURE_LOSS</strong></td>
+              <td class="value-negative"><strong>STRUCTURE_LOSS</strong></td>
               <td>100%</td>
               <td>Critical</td>
               <td>레이아웃 이해 불가</td>
@@ -1071,20 +1387,26 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
             <tr>
               <td><strong>RQ1</strong>: VLM이 텍스트 정확도를 유지하는가?</td>
               <td>전제조건</td>
-              <td style="color: #d97706;"><strong>부분적</strong></td>
+              <td class="value-warning"><strong>부분적</strong></td>
               <td>영어 스캔 문서에서 CER 개선 (40.8% → 33.1%), 단 Hallucination 위험 존재</td>
             </tr>
             <tr>
               <td><strong>RQ2</strong>: VLM이 구조 보존에 효과적인가?</td>
               <td>핵심 가설</td>
-              <td style="color: #16a34a;"><strong>Yes</strong></td>
+              <td class="value-positive"><strong>Yes</strong></td>
               <td>Structure F1: 0% → 79.25% (+79pp)</td>
             </tr>
             <tr>
               <td><strong>RQ3</strong>: 구조 보존이 다운스트림 품질을 향상시키는가?</td>
               <td>효과 검증</td>
-              <td style="color: #16a34a;"><strong>Yes</strong></td>
+              <td class="value-positive"><strong>Yes</strong></td>
               <td>BC 0.512 (높음=좋음), CS 2.847 (낮음=좋음)</td>
+            </tr>
+            <tr>
+              <td><strong>RQ4</strong>: 개선된 청킹이 실제 검색 정밀도를 높이는가?</td>
+              <td>End-to-End</td>
+              <td class="value-neutral"><strong>진행 중</strong></td>
+              <td>Hit Rate@k, MRR 직접 측정 예정 (간접 증거: BC/CS에서 긍정적)</td>
             </tr>
           </tbody>
         </table></div>
@@ -1257,8 +1579,9 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
 
         <h3>10.1 기여</h3>
         <ol>
-          <li><strong>Multi-Metric 평가 프레임워크</strong>: Lexical, Structural, Downstream 3차원 평가 체계 제시</li>
+          <li><strong>Multi-Metric 평가 프레임워크</strong>: Lexical, Structural, Downstream, Retrieval 4차원 평가 체계 제시</li>
           <li><strong>트레이드오프 정량화</strong>: Structure F1 +79pp vs CER +17pp vs Latency 159x</li>
+          <li><strong>Prompt Engineering 방법론</strong>: Role Framing, Explicit Negation, Uncertainty Handling 등 5가지 전략으로 Structure F1을 0% → 79.25%로 개선</li>
           <li><strong>다운스트림 효과 검증</strong>: BC 0.512, CS 2.847로 구조 보존이 청킹 품질에 미치는 영향 확인</li>
           <li><strong>Hybrid 전략 제안</strong>: 문서 특성별 최적 파서 라우팅 가이드</li>
           <li><strong>Hallucination 경고</strong>: 한글 스캔 문서에서 VLM 적용 시 주의사항 문서화</li>
@@ -1279,31 +1602,31 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
               <td>Structure F1</td>
               <td>0%</td>
               <td>79.25%</td>
-              <td style="color: #16a34a;"><strong>+79pp</strong></td>
+              <td class="value-positive"><strong>+79pp</strong></td>
             </tr>
             <tr>
               <td>BC (Boundary Clarity)</td>
               <td>N/A</td>
               <td>0.512</td>
-              <td style="color: #16a34a;"><strong>높을수록 좋음</strong></td>
+              <td class="value-positive"><strong>높을수록 좋음</strong></td>
             </tr>
             <tr>
               <td>CS (Chunk Stickiness)</td>
               <td>N/A</td>
               <td>2.847</td>
-              <td style="color: #16a34a;"><strong>낮을수록 좋음</strong></td>
+              <td class="value-positive"><strong>낮을수록 좋음</strong></td>
             </tr>
             <tr>
               <td>CER</td>
               <td>40.79%</td>
               <td>57.71%</td>
-              <td style="color: #dc2626;">+17pp</td>
+              <td class="value-negative">+17pp</td>
             </tr>
             <tr>
               <td>Latency</td>
               <td>0.27s</td>
               <td>42.92s</td>
-              <td style="color: #dc2626;">159x</td>
+              <td class="value-negative">159x</td>
             </tr>
           </tbody>
         </table></div>
@@ -1372,7 +1695,7 @@ Sequential Operations O(1) Minimum Path Length O(1)</code></pre>
           </tbody>
         </table></div>
 
-        <p style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 0.5rem; font-size: 0.875rem;">
+        <p class="report-content__callout">
           <strong>Keywords</strong>: Vision-Language Models, Document Parsing, RAG, Semantic Chunking, OCR, Qwen-VL, Hybrid Strategy, Boundary Clarity, Chunk Stickiness, MoC, Structure Preservation
         </p>
 
