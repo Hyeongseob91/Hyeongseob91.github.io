@@ -13,15 +13,12 @@
   <meta property="og:description" content="AI Engineer Portfolio - NLP Engineer(RAG & Agent) ">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hyeongseob91.github.io/">
-  <meta property="og:image" content="https://hyeongseob91.github.io/images/aboutme/me2.jpg">
 
   <title>Hyeongseob Kim | AI Research Engineer</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -36,6 +33,7 @@
     <div class="navbar__container">
       <a href="#" class="navbar__brand">Hyeongseob Kim</a>
       <ul class="navbar__menu" id="navMenu">
+        <li><a href="/hub/" class="navbar__link" aria-label="Hub"><i class="fa-solid fa-house"></i></a></li>
         <li><a href="#about" class="navbar__link">About</a></li>
         <li class="navbar__dropdown">
           <a href="#experience" class="navbar__link navbar__link--dropdown">
@@ -51,10 +49,11 @@
             <li><a href="#licenses" class="navbar__dropdown-link">Licenses</a></li>
           </ul>
         </li>
+        <li><a href="#skills" class="navbar__link">Skills</a></li>
         <li><a href="#projects" class="navbar__link">Projects</a></li>
         <li><a href="#contact" class="navbar__link">Contact</a></li>
       </ul>
-      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
@@ -84,27 +83,27 @@
       </div>
       <div class="about__grid">
         <div class="about__image-wrapper fade-in">
-          <img src="images/aboutme/me2.jpg" alt="Hyeongseob Kim" class="about__image" loading="lazy">
+          <img src="images/aboutme/me2.jpg" alt="Hyeongseob Kim" class="about__image">
         </div>
         <div class="about__content fade-in">
-          <h3 class="hero__name">LLM 기반 최신 Agent 시스템을 연구 및 구현합니다</h3>
+          <h3 class="hero__name">AI 시스템을 설계하고 최신 기술을 연구합니다</h3>
           <p class="about__text">
-            안녕하세요. 건축공학을 전공하고 건설회사에서 <strong>Engineer</strong>이자 <strong>Manager</strong>로서,<br>
-            품질·공정·생산성 관리와 노동조합과의 교섭 등, 복합적인 현장 문제를 정의하고 조율해 온 경험을 바탕으로,<br>
-            현재는 현장에서의 문제 인식, 판단, 조율 과정을 분해하여 이를 자연어 기반 Agent 시스템의<br><span class="about__highlight">추론 흐름과 의사결정 구조로 설계하는 연구</span>를 진행하고 있습니다.
+            건축공학을 전공하고 <strong>10년간 건설회사</strong>에서 품질·공정·생산성 관리와 노동조합 교섭까지,<br>
+            복합적인 현장 문제를 정의하고 조율해왔습니다.<br>
+            현재는 <strong>SoundMind Inc.</strong>에서 <span class="about__highlight">AI Research Engineer</span>로서 실무와 연구를 병행하고 있습니다.
           </p>
           <p class="about__text">
-            <span class="about__highlight">저는 기초를 가장 중요하게 생각합니다.</span><br>
-            어떤 기술이든 근본적인 질문에 대한 이해 없이 쌓아 올려진 구조는 <span class="about__highlight">반드시 한계에 부딪힌다고 믿기 때문입니다.</span>
+            현재 프로젝트 리드로서 B2B 영업을 지원하는 <strong>RAG Pipeline 자동화 빌드 도구</strong>와,<br>
+            PoC 테스트를 즉시 진행할 수 있는 <strong>PlayGround 기반 시연 도구</strong>를 구축하고 있습니다.<br>
+            내부에는 <strong>Chat Agent</strong>를 포함한 다양한 AI Agent 시스템도 함께 개발하고 있습니다.
           </p>
           <p class="about__text">
-            그래서 Agent가 어떻게 추론하고, 어떤 구조에서 성능 차이가 발생하는지를<br>
-            <span class="about__highlight">Model 비교 실험</span>으로 확인하고, <span class="about__highlight">사내 Report 작성</span>을 통해 기록하며 개선하는 과정을 좋아합니다.<br>
-            이러한 접근을 바탕으로, 현재 소속 회사에서는 연구 결과를 실제로 확인하고 활용할 수 있도록,<br>
-            <span class="about__highlight">Playground 형태의 Platform 개발을 기획하고 Project Lead로서 설계와 구현을 진행하고 있습니다.</span>
+            또한 사내 개발자 크루 <span class="about__highlight">WIGTN</span>을 리드하며 팀원들과 다양한 연구를 진행하고 있습니다.
           </p>
           <p class="about__text">
-            아직 배울 점이 많지만, 본 포트폴리오는 그런 고민과 <span class="about__highlight">실험의 결과를 정리하는 공간</span>입니다.
+            근래에는 PSTN 전화망에서 발생하는 <strong>에코 루프 문제</strong>를 연구하여 새로운 오디오 필터 아키텍처를 설계하고,<br>
+            <span class="about__highlight">ACL 2026 System Demonstrations</span>에 논문을 투고했습니다.<br>
+            현재는 <strong>VLM 기반 문서 구조 보존 파싱</strong> 연구를 진행하고 있으며 <span class="about__highlight">EMLNP 2026</span>을 목표로 진행중입니다.
           </p>
         </div>
       </div>
@@ -127,21 +126,55 @@
           <h3 class="timeline__title">(주)사운드마인드</h3>
           <p class="timeline__subtitle">AX / AI Research Engineer / Manager</p>
           <div class="timeline__description">
-            <h4 class="timeline__category">Engineering</h4>
-            <ul>
-              <li><strong>Soundmind AI Platform</strong> — 기술 엔진 납품을 위한 B2B2B 영업 도구 플랫폼<br>- 고객사(데이터센터 운영사)가 자사 고객에게 AI 기술을 시연할 수 있는 Playground 제공, 1인 Full-Stack 구축</li>
-              <li><strong>RAG Evaluation Framework</strong> — 사내 RAG 성능 평가 개발자 도구<br>- B2B 납품 전 정량적 성능 증명 체계 구축 (RAGAS, LLM-as-a-Judge, A/B Test)</li>
-              <li><strong>LLM Loadtester</strong> — GPU 서버 부하 테스트 도구<br>- SLA/SLO 기준 충족 여부를 검증하는 비동기 부하 테스트 시스템 설계 및 개발</li>
-            </ul>
-            <h4 class="timeline__category">R&D</h4>
-            <ul>
-              <li><strong>VLM 기반 문서 파싱 구조화 연구</strong> — Qwen3-VL-2B 활용 문서 구조 보존 연구<br>- Structure F1 0% → 79% 달성, 4단계 평가 프레임워크 설계</li>
-              <li><strong>2025 문화체육관광 R&D (정부지원과제)</strong> — 외국인 한국어 말하기 AI 진단 시스템<br>- 서울대학교 산학협력단 컨소시엄 (주관: 서울대, 공동연구: 연세대·한국외대, 기술: POSTECH·셀바스AI)<br>- 시스템 아키텍트로서 전체 서비스 플랫폼 연동 설계 및 앱 개발 담당</li>
-            </ul>
-            <h4 class="timeline__category">Engineering Culture</h4>
-            <ul>
-              <li><strong>WIGTN Crew 조직 및 리드</strong> — 신입 온보딩 및 주니어 개발자 AI-Native 역량 내재화<br>- Claude Code 플러그인을 직접 구축하여 PoC 사이클 1주 → 2일로 단축 (약 70% 감소)</li>
-            </ul>
+            <span class="about__highlight">[PRODUCT]</span>
+            <br><strong>SoundMind AI Ecosystem</strong> (단독 개발, 9 Projects 통합 Beta 버전 배포)
+            <ol style="margin-left: 20px;">
+              <li>
+                <strong>SoundMind-AI-Console</strong>: 분산된 3개 Platform을 통합한 Admin 대시보드
+                <ul>
+                  <li>Analysis: 문서 분석 (Gemini+GPT 2-Stage) → RAG Component 자동 추천 → 원클릭 Docker 자동 배포</li>
+                  <li>Eval: LLM-as-a-Judge 기반 RAG Pipeline 성능 평가</li>
+                  <li>Monitoring: Grafana + Loki 임베딩</li>
+                </ul>
+              </li>
+              <li>
+                <strong>SoundMind-AI-Platform</strong>: Console 결과물로 PoC 운용하는 고객용 PlayGround
+                <ul>
+                  <li>Web Console (React 19) + API Gateway (FastAPI, JWT, SSE)</li>
+                  <li>RAG Agent: Console에서 생성한 맞춤형 RAG Pipeline 연동</li>
+                  <li>AI Agent: LangGraph ReAct + 멀티 프로바이더 LLM + Tool Use</li>
+                </ul>
+              </li>
+            </ol>
+
+            <span class="about__highlight">[PROJECT]</span>
+            <br><strong>KOCCA R&D:</strong> AI 한국어 말하기 발화 평가 시스템 (정부 R&D 컨소시엄, 시스템 아키텍트)
+
+            <br><br><span class="about__highlight">[Community]</span>
+            <br><strong>WIGTN Crew</strong> - AI-Native 사내 개발자 Crew Lead
+            <ol style="margin-left: 20px;">
+              <li>R&D (논문 투고)
+                <ul>
+                  <li><strong>WIGVO:</strong> 실시간 PSTN 양방향 음성 번역 시스템 (ACL 2026 Under Review)
+                    <br><small><em>Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small>
+                  </li>
+                  <li><strong>WigtnOCR:</strong> VLM 기반 한국어 공문서 구조 보존 파싱 (EMNLP 2026 준비)
+                    <br><small><em>Open-Source VLM-Based Document Parsing for Korean Government Documents</em></small>
+                  </li>
+                </ul>
+              </li>
+              <li>오픈소스 기여
+                <ul>
+                  <li><strong>WIGTN-Coding:</strong> Claude Code Plugin (12 Agents, 29 Skills) - 기획 → 배포 워크플로우 자동화 도구</li>
+                </ul>
+              </li>
+            </ol>
+
+            <span class="about__highlight">[OpenSources]</span>
+            <br><strong>Independent Development</strong>
+            <ol style="margin-left: 20px;">
+              <li><strong>LLM Loadtester:</strong> 비개발직군용 LLM 서빙 성능 벤치마킹 도구 (TTFT/TPOT/Goodput 시각화)</li>
+            </ol>
           </div>
         </div>
 
@@ -151,14 +184,12 @@
           <h3 class="timeline__title">현대건설(주)</h3>
           <p class="timeline__subtitle">주택사업본부 / Architectural Site Engineer</p>
           <div class="timeline__description">
-            <h4 class="timeline__category">담당 프로젝트</h4>
             <ul>
-              <li><strong>HILLSTATE 부평</strong> — 백운2구역 주택재개발, 2공구 선임<br>- 도면 검토 및 공정 관리, 기술연구소 층간 차음 신기술 'H-Silence' 현장 실증 핵심 인력 (국내 최초 국토교통부 1등급 인증 획득)</li>
-              <li><strong>THE H 방배</strong> — 방배5구역 주택재건축, 3공구 선임<br>- 설계 과정부터 참여한 도면 리뷰 및 공정 관리</li>
-            </ul>
-            <h4 class="timeline__category">수상</h4>
-            <ul>
-              <li><strong>2022 하반기 기술경쟁력제고 부문 우수사원</strong> 수상<br>- 담당 프로젝트 최우수 현장상, 품질 대상 수상</li>
+              <li>건축·구조 변경도서 사전 검토를 통한 설계 간섭 및 리스크 사전 제거</li>
+              <li>기술연구소 층간 차음 신기술 'H-Silence' 현장 실증 리드 및 국내 최초 국토교통부 1등급 인증 획득</li>
+              <li>마감 및 공정별 시공성(Workability) 검토 및 현장 품질 이슈 조정</li>
+              <li>현장 구조·건축 협업을 통한 기술 검토 및 시공 품질 확보</li>
+              <li>현장 QC 활동 및 시공 계획·일정 관리 수행</li>
             </ul>
           </div>
         </div>
@@ -167,16 +198,15 @@
           <div class="timeline__marker"></div>
           <span class="timeline__date">2016.07 - 2022.01</span>
           <h3 class="timeline__title">동극건업(주)</h3>
-          <p class="timeline__subtitle">Head Office / Construction Project Manager</p>
+          <p class="timeline__subtitle"> Head Office / Construction Project Manager</p>
           <div class="timeline__description">
-            <h4 class="timeline__category">담당 프로젝트</h4>
             <ul>
-              <li><strong>두산그룹 분당 신사옥</strong>, <strong>MBC 상암동 주차빌딩</strong>, <strong>부천 일루미스테이트</strong> 컨소시엄 신축공사 (현대건설·두산건설·코오롱건설) 등<br>- 본사 소속 현장 파견 기성·노무관리, 견적 입찰</li>
-            </ul>
-            <h4 class="timeline__category">주요 성과</h4>
-            <ul>
-              <li><strong>분당두산타워</strong> — 국내 최초 초대형 스카이브릿지 리프트업 공법 적용, 골조공사 기술력 입증</li>
-              <li><strong>대한전문건설협회</strong> 철근·콘크리트 공사협의회 — 노동조합 교섭 참여</li>
+              <li>프로젝트 계약·원가·재무 관리(P&L) 및 공사 관리</li>
+              <li>신규 프로젝트 입찰 및 견적 검토를 통한 사업 수주 지원</li>
+              <li>RC 구조물 공사의 계약·원가·정산 프로세스 운영</li>
+              <li>본사–현장 간 행정·기술 커뮤니케이션 담당, 노조와의 교섭 및 조율 참여</li>
+              <li>Subcontractor 담당자로서 Contractor 및 협력 하도급사들과 공정·계약·원가 협의 진행</li>
+              <li>주요 프로젝트 지원: 두산그룹 분당 신사옥, CESCO Members City, 연세대 Y-IBS 신축, MBC 상암 주차빌딩 등</li>
             </ul>
           </div>
         </div>
@@ -187,13 +217,10 @@
           <h3 class="timeline__title">두산건설(주)</h3>
           <p class="timeline__subtitle">건축사업본부 / Architectural Site Engineer</p>
           <div class="timeline__description">
-            <h4 class="timeline__category">담당 프로젝트</h4>
             <ul>
-              <li><strong>하남미사 A17BL 공공임대주택 신축공사</strong> — 건축 공정 관리<br>- 도면 검토, 자원·일정 조율 및 시공 품질 점검(QC)</li>
-            </ul>
-            <h4 class="timeline__category">수상</h4>
-            <ul>
-              <li><strong>한국토지주택공사(LH) VE 경진대회 우수상</strong> 수상</li>
+              <li>건축 공정 관리 및 자원·일정 조율 지원</li>
+              <li>설계도서 대비 시공 품질 점검(QC) 및 공정 기록 문서화</li>
+              <li>2015년 LH 시공VE 경진대회 우수상 수상 기여</li>
             </ul>
           </div>
         </div>
@@ -201,12 +228,12 @@
     </div>
   </section>
 
-  <!-- Research Section -->
+  <!-- Research & Community Section -->
   <section class="section research" id="research">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Research</h2>
-        <p class="section__subtitle">외부 연구 활동</p>
+        <h2 class="section__title">Research & Community</h2>
+        <p class="section__subtitle">연구 활동 및 커뮤니티</p>
       </div>
       <div class="timeline">
 
@@ -218,8 +245,10 @@
           <p class="timeline__subtitle">Research Member / GPU-Accelerated ML Researcher</p>
           <div class="timeline__description">
             <ul>
-              <li>NVIDIA RAPIDS 기반 <strong>GPU-Accelerated AutoML System</strong> 연구 참여</li>
-              <li>cuDF, cuML 등 RAPIDS 에코시스템을 활용한 End-to-End GPU 파이프라인 설계 예정</li>
+              <li>NVIDIA RAPIDS 기반 <strong>오픈소스 End-to-End Full GPU-based AutoML System</strong> 연구 개발</li>
+              <li>NVTabular(Data Engineering), RAY(GPU Management), XGBoost/LightGBM/CatBoost GPU 버전 활용</li>
+              <li>OpenML Dataset 기반 벤치마킹 및 기존 AutoML(Autogluon, LightAutoML) 대비 성능 비교</li>
+              <li>결과물 PyPI/Conda 배포 예정, 논문화 및 NVIDIA GTC 출품 목표</li>
             </ul>
           </div>
         </div>
@@ -264,7 +293,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="images/companies/modulab.png" alt="Modulabs Logo" class="timeline__logo" loading="lazy">
+          <img src="images/companies/modulab.png" alt="Modulabs Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2025.11 - 2025.12</span>
             <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
@@ -274,7 +303,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="images/companies/tpc.png" alt="TPC Logo" class="timeline__logo" loading="lazy">
+          <img src="images/companies/tpc.png" alt="TPC Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2025.11 - 2025.12</span>
             <h3 class="timeline__title">동그라미재단 - CircleUp AI Academy 1st</h3>
@@ -284,7 +313,7 @@
 
         <div class="timeline__item timeline__item--with-logo">
           <div class="timeline__marker"></div>
-          <img src="images/companies/wanted.png" alt="Wanted Logo" class="timeline__logo" loading="lazy">
+          <img src="images/companies/wanted.png" alt="Wanted Logo" class="timeline__logo">
           <div class="timeline__content">
             <span class="timeline__date">2024.12 - 2025.06</span>
             <h3 class="timeline__title">Wanted Learning - PotenUp 1st (K-Digital Training)</h3>
@@ -306,31 +335,15 @@
       <div class="timeline">
         <div class="timeline__item">
           <div class="timeline__marker"></div>
-          <h3 class="timeline__title">2023년 현대건설 최우수 현장상</h3>
-          <p class="timeline__subtitle">전사 최우수 현장 선정</p>
+          <span class="timeline__date">2022.12</span>
+          <h3 class="timeline__title">현대건설 2022년 기술경쟁력제고 부문 단체 수상</h3>
+          <p class="timeline__subtitle">'H-Silent' 층간차음재 현장 실증 주도, 국토교통부 1등급 인증 획득 기여</p>
         </div>
 
         <div class="timeline__item">
           <div class="timeline__marker"></div>
-          <h3 class="timeline__title">2023년 현대건설 품질 대상</h3>
-          <p class="timeline__subtitle">전사 품질 대상 수상</p>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__marker"></div>
-          <h3 class="timeline__title">2022년 현대건설 기술경쟁력제고 부문 단체 수상</h3>
-          <p class="timeline__subtitle">'H-Silence' 층간차음재 현장 실증, 국토교통부 1등급 인증 획득 기여</p>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__marker"></div>
-          <h3 class="timeline__title">2015년 한국토지주택공사(LH) VE 경진대회 우수상</h3>
-          <p class="timeline__subtitle">두산건설 하남미사 A17BL 공공임대주택 신축공사</p>
-        </div>
-
-        <div class="timeline__item">
-          <div class="timeline__marker"></div>
-          <h3 class="timeline__title">2015년 대한건축학회 제 11회 우수졸업논문전 장려상</h3>
+          <span class="timeline__date">2015.04</span>
+          <h3 class="timeline__title">대한건축학회 제 11회 우수졸업논문전 장려상</h3>
           <p class="timeline__subtitle">「건축현장에서 멘토링 도입을 통한 조직 몰입도 향상에 관한 연구」</p>
         </div>
       </div>
@@ -355,12 +368,125 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Skills Section (주석 처리)
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Skills</h2>
+        <p class="section__subtitle">핵심 역량 및 기술 스택</p>
+      </div>
+      <div class="skills__grid">
+
+        <div class="skills__category fade-in stagger-1">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-brain"></i>
+            Core AI Skills
+          </h4>
+
+          <h5 class="skills__subgroup-title">Advanced RAG System Architecture</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Semantic Chunking Optimization<br>Hybrid Retrieval & Reranking</span>
+            <span class="skill-tag">Query Understanding<br>Vector Indexing & Context Refinement</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Multi-Agent Workflow Orchestration</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">LangGraph Supervisor Architecture<br>Agent Role Design</span>
+            <span class="skill-tag">Task Decomposition<br>State & Tool Routing Management</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Prompt Engineering & LLM Behavior Design</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">System-Level Prompt Structuring</span>
+            <span class="skill-tag">Reasoning Strategy Design(CoT, ReAct) & Model Behavior Optimization</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-2">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            Engineering & Tools
+          </h4>
+
+          <h5 class="skills__subgroup-title">Language</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Python</span>
+          </div>
+          <h5 class="skills__subgroup-title">AI/ML Frameworks</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">vLLM</span>
+            <span class="skill-tag">Hugging Face</span>
+            <span class="skill-tag">RAGAS</span>
+            <span class="skill-tag">LoRA/PEFT</span>
+            <span class="skill-tag">Silero VAD</span>
+            <span class="skill-tag">OpenAI Realtime API</span>
+            <span class="skill-tag">MCP</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Backend & Infrastructure</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">asyncio</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Google Cloud Run</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">Git / GitHub</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Vector Search & Data</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Weaviate</span>
+            <span class="skill-tag">Qdrant</span>
+            <span class="skill-tag">BGE-M3</span>
+            <span class="skill-tag">ChromaDB</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Research Methods</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Ablation Study</span>
+            <span class="skill-tag">LLM-as-Judge</span>
+            <span class="skill-tag">Statistical Analysis</span>
+          </div>
+        </div>
+
+        <div class="skills__category fade-in stagger-3">
+          <h4 class="skills__category-title">
+            <i class="fa-solid fa-user-tie"></i>
+            Professional Strengths
+          </h4>
+
+          <h5 class="skills__subgroup-title">Project Architecture & Communication</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Cross-functional Team Leadership & Stakeholder Negotiation</span>
+            <span class="skill-tag">Risk Management & Resource Optimization (Construction PM)</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Logical Thinking & Planning</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Requirement Analysis & Logical Structuring</span>
+            <span class="skill-tag">Aligning Project Goals with Development Processes</span>
+          </div>
+
+          <h5 class="skills__subgroup-title">Continuous Learning Mindset</h5>
+          <div class="skills__tags">
+            <span class="skill-tag">Steady Technical Absorption & Application</span>
+            <span class="skill-tag">Collaborative Approach to Problem Solving</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  Skills Section 끝 -->
+
+  <!-- Side Projects Section -->
   <section class="section projects projects--educational" id="projects">
     <div class="container">
       <div class="section__header">
         <h2 class="section__title">Projects</h2>
-        <p class="section__subtitle">실무 프로젝트 & 연구</p>
+        <p class="section__subtitle">Company Projects & Learning Projects</p>
       </div>
 
       <!-- Project Filter Tabs -->
@@ -370,31 +496,33 @@
         <button class="projects__filter-btn" data-filter="project">Project</button>
         <button class="projects__filter-btn" data-filter="research">Research</button>
         <button class="projects__filter-btn" data-filter="opensource">Open Source</button>
+        <button class="projects__filter-btn projects__filter-btn--toy" data-filter="toy">
+          <i class="fa-solid fa-graduation-cap"></i> Learning
+        </button>
       </div>
 
       <div class="projects__grid">
 
-        <!-- Project: Soundmind AI Platform -->
-        <article class="project-card fade-in" data-project="soundmind-platform" data-category="product">
+        <!-- Project: SoundMind AI Ecosystem -->
+        <article class="project-card fade-in" data-project="soundmind-ecosystem" data-category="product">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/soundmind_rag_agent_loginpage.png" alt="Soundmind AI Platform" class="project-card__image" loading="lazy">
+            <img src="images/projects/soundmind_rag_agent_loginpage.png" alt="SoundMind AI Ecosystem" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
-              <span class="project-card__category-text">[Enterprise AI Platform]</span>
+              <span class="project-card__category-text">[B2B SaaS Platform]</span>
               <span class="project-card__title-main">
-                Soundmind AI Platform
+                SoundMind AI Ecosystem
               </span>
             </h3>
             <p class="project-card__description">
-              기술 엔진 납품 고객사가 자사 고객에게 AI 기술을 시연할 수 있는 B2B2B Playground 플랫폼.
-              <br>1인 Full-Stack 구축, 고객사별 RAG Pipeline 분리 구조.
+              9개 프로젝트, 161개 API로 구성된 B2B SaaS 플랫폼. Ablation Study로 -8.8% 성능 저하 발견 → 아키텍처 재설계.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">LangGraph</span>
               <span class="project-card__tag">Advanced RAG</span>
               <span class="project-card__tag">vLLM</span>
-              <span class="project-card__tag">Docker</span>
+              <span class="project-card__tag">MSA</span>
             </div>
           </div>
           <div class="project-card__footer">
@@ -405,42 +533,100 @@
           </div>
         </article>
 
-        <!-- Project: RAG Evaluation Framework -->
-        <article class="project-card fade-in" data-project="rag-evaluation" data-category="opensource">
+        <!-- Project: WIGVO -->
+        <article class="project-card fade-in" data-project="wigvo" data-category="research">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/rag-evaluation-framework-dashboard.png" alt="RAG Evaluation Framework" class="project-card__image" loading="lazy">
+            <img src="images/companies/soundmind.png" alt="WIGVO - Real-Time Speech Translation" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
-              <span class="project-card__category-text">[Open Source]</span>
+              <span class="project-card__category-text">[ACL 2026 Under Review]</span>
               <span class="project-card__title-main">
-                RAG Evaluation Framework
+                WIGVO - 실시간 PSTN 음성 번역
               </span>
             </h3>
             <p class="project-card__description">
-              B2B 납품 전, RAG 성능을 정량적으로 증명하는 사내 개발자 도구.
-              <br>Node별 독립 평가 + LLM-as-a-Judge + A/B Test 통계 검정.
+              외국인·장애인을 위한 실시간 양방향 전화 통역. 에코 루프 80%→0% 해결, 레이턴시 555ms.
             </p>
             <div class="project-card__tags">
-              <span class="project-card__tag">RAGAS</span>
-              <span class="project-card__tag">LLM Judge</span>
-              <span class="project-card__tag">A/B Test</span>
-              <span class="project-card__tag">Streamlit</span>
+              <span class="project-card__tag">OpenAI Realtime</span>
+              <span class="project-card__tag">Twilio</span>
+              <span class="project-card__tag">Silero VAD</span>
+              <span class="project-card__tag">Cloud Run</span>
             </div>
           </div>
           <div class="project-card__footer">
-            <a href="https://github.com/Hyeongseob91/rag-evaluation-framework" target="_blank" rel="noopener noreferrer"
-              class="project-card__github-btn" onclick="event.stopPropagation()">
-              <i class="fa-brands fa-github"></i>
-              GitHub
-            </a>
+            <span class="project-card__footer-note">
+              <i class="fa-solid fa-flask"></i>
+              Research Project
+            </span>
+          </div>
+        </article>
+
+        <!-- Project: VLM Research -->
+        <article class="project-card fade-in" data-project="vlm-research" data-category="research">
+          <div class="project-card__image-wrapper">
+            <img src="images/companies/soundmind.png" alt="VLM Document Parsing Research" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[EMNLP 2026 In Prep]</span>
+              <span class="project-card__title-main">
+                VLM 기반 문서 파싱 구조 보존 연구
+              </span>
+            </h3>
+            <p class="project-card__description">
+              Structure F1: 0%→79% 개선. 3단계 평가 프레임워크 설계, 프롬프트 전략 발견.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Qwen3-VL</span>
+              <span class="project-card__tag">LoRA</span>
+              <span class="project-card__tag">vLLM</span>
+              <span class="project-card__tag">BGE-M3</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <span class="project-card__footer-note">
+              <i class="fa-solid fa-flask"></i>
+              Research Project
+            </span>
+          </div>
+        </article>
+
+        <!-- Project: KOCCA -->
+        <article class="project-card fade-in" data-project="kocca" data-category="project">
+          <div class="project-card__image-wrapper">
+            <img src="images/companies/soundmind.png" alt="KOCCA - Korean Speaking Assessment" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[정부 R&D]</span>
+              <span class="project-card__title-main">
+                KOCCA - AI 한국어 말하기 평가 시스템
+              </span>
+            </h3>
+            <p class="project-card__description">
+              한국콘텐츠진흥원 R&D 컨소시엄. STT → EXAONE-Score 채점 → 6등급 매핑 파이프라인 아키텍처 설계.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">WhisperX</span>
+              <span class="project-card__tag">EXAONE</span>
+              <span class="project-card__tag">FastAPI</span>
+              <span class="project-card__tag">EdTech</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <span class="project-card__footer-note">
+              <i class="fa-solid fa-building"></i>
+              Company Project
+            </span>
           </div>
         </article>
 
         <!-- Project: Simple LLM Loadtester -->
         <article class="project-card fade-in" data-project="llm-loadtester" data-category="opensource">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/llm-loadtester-dashboard.png" alt="Simple LLM Loadtester Dashboard" class="project-card__image" loading="lazy">
+            <img src="images/projects/llm-loadtester-dashboard.png" alt="Simple LLM Loadtester Dashboard" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -450,14 +636,13 @@
               </span>
             </h3>
             <p class="project-card__description">
-              GPU 서버 SLA/SLO 충족 여부를 검증하는 LLM 부하 테스트 도구.
-              <br>Goodput 기반 품질 평가, Cross-validation, 2일 AI-Native 빌드.
+              Claude Code Skills Plugins으로 2일 만에 완성한 LLM 벤치마킹 도구.
+              AI-Native 개발 방법론으로 연구자/기획자를 위한 오픈소스 프로젝트.
             </p>
             <div class="project-card__tags">
+              <span class="project-card__tag">Claude Code</span>
               <span class="project-card__tag">FastAPI</span>
-              <span class="project-card__tag">Next.js</span>
-              <span class="project-card__tag">asyncio</span>
-              <span class="project-card__tag">WebSocket</span>
+              <span class="project-card__tag">Open Source</span>
             </div>
           </div>
           <div class="project-card__footer">
@@ -472,7 +657,7 @@
         <!-- Project: WIGTN-Coding -->
         <article class="project-card fade-in" data-project="wigtn-coding" data-category="opensource">
           <div class="project-card__image-wrapper">
-            <img src="images/companies/soundmind.png" alt="WIGTN Claude Code Skills Plugins" class="project-card__image" loading="lazy">
+            <img src="images/companies/soundmind.png" alt="WIGTN Claude Code Skills Plugins" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -483,7 +668,7 @@
             </h3>
             <p class="project-card__description">
               주니어 AI 개발자 크루 WIGTN이 만든 Claude Code용 워크플로우 자동화 플러그인.
-              <br>PRD 작성부터 구현, 코드 리뷰, 커밋까지 체계적인 개발 프로세스 지원.
+              PRD 작성부터 구현, 코드 리뷰, 커밋까지 체계적인 개발 프로세스 지원.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Claude Code</span>
@@ -500,42 +685,10 @@
           </div>
         </article>
 
-        <!-- Project: VLM Document Parsing Research -->
-        <article class="project-card fade-in" data-project="vlm-document-parsing" data-category="research">
-          <div class="project-card__image-wrapper">
-            <img src="reports/images/fig1_structure_f1_comparison.png" alt="VLM Document Parsing - Structure F1 비교" class="project-card__image" loading="lazy">
-          </div>
-          <div class="project-card__content">
-            <h3 class="project-card__title">
-              <span class="project-card__category-text">[Research]</span>
-              <span class="project-card__title-main">
-                VLM 기반 문서 파싱 구조 보존 연구
-              </span>
-            </h3>
-            <p class="project-card__description">
-              RAG 파이프라인의 문서 이해 능력 향상을 위한 사내 R&D.
-              <br>4-Parser 비교 × 4단계 평가 프레임워크. Structure F1: 0% → 79%.
-            </p>
-            <div class="project-card__tags">
-              <span class="project-card__tag">Qwen3-VL</span>
-              <span class="project-card__tag">RAGAS</span>
-              <span class="project-card__tag">PyMuPDF</span>
-              <span class="project-card__tag">RapidOCR</span>
-            </div>
-          </div>
-          <div class="project-card__footer">
-            <a href="https://github.com/Hyeongseob91/test-vlm-document-parsing" target="_blank" rel="noopener noreferrer"
-              class="project-card__github-btn" onclick="event.stopPropagation()">
-              <i class="fa-brands fa-github"></i>
-              GitHub
-            </a>
-          </div>
-        </article>
-
         <!-- Project: VALORITHM -->
         <article class="project-card fade-in" data-project="mcp" data-category="project">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/valorithm_main.png" alt="VALORITHM Project" class="project-card__image" loading="lazy">
+            <img src="images/projects/valorithm_main.png" alt="VALORITHM Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -545,8 +698,8 @@
               </span>
             </h3>
             <p class="project-card__description">
-              맞춤형 AI 도구로 반복 작업 자동화, 첫 정량적 성과 달성.
-              <br>총기 반동 생성 40분→30초(98.7%↓), MCP Server Smithery.ai 배포.
+              4가지 AI 도구로 게임 개발 과정에 자동화 시스템 도입.
+              <br>자연어로 맞춤형 총기 반동 생성, 3D 맵 모델링, 인게임 AI Agent 구현.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">MCP</span>
@@ -564,35 +717,128 @@
           </div>
         </article>
 
-        <!-- Project: RAG Advanced Pipeline (Coming Soon) -->
-        <article class="project-card fade-in project-card--coming-soon" data-project="rag-advanced-pipeline" data-category="research">
+        <!-- Project: KOMI -->
+        <article class="project-card fade-in" data-project="komi" data-category="toy">
           <div class="project-card__image-wrapper">
-            <div class="project-card__coming-soon-overlay">Coming Soon</div>
+            <img src="images/projects/komi_architecture.png" alt="KOMI Project" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
-              <span class="project-card__category-text">[Research / MLOps]</span>
+              <span class="project-card__category-text">[RAG & Computer Vision]</span>
               <span class="project-card__title-main">
-                Triton + TensorRT Serving 연구
+                YOLO & RAG 시스템을 연동하여,<br>실시간 운동 자세 피드백 서비스 개발
               </span>
             </h3>
             <p class="project-card__description">
-              vLLM + FastAPI 기반 현재 서빙 구조 대비 Triton Inference Server의 성능 이점을 객관적 지표로 비교.
+              YOLO-Pose 모델로 사용자의 자세를 추출하고, LangChain-based RAG 시스템으로 운동 자세를 진단 후 실시간 피드백을 제공하는 서비스.
             </p>
             <div class="project-card__tags">
-              <span class="project-card__tag">Triton</span>
-              <span class="project-card__tag">TensorRT</span>
-              <span class="project-card__tag">ML Serving</span>
+              <span class="project-card__tag">RAG</span>
+              <span class="project-card__tag">LangChain</span>
+              <span class="project-card__tag">YOLO-Pose</span>
+              <span class="project-card__tag">RAGAS</span>
             </div>
           </div>
           <div class="project-card__footer">
-            <span class="project-card__footer-note">
-              <i class="fa-solid fa-flask"></i>
-              In Progress
-            </span>
+            <a href="https://github.com/Hyeongseob91/KOMI.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
           </div>
         </article>
 
+        <!-- Project: BeMyMuse -->
+        <article class="project-card fade-in" data-project="bemymuse" data-category="toy">
+          <div class="project-card__image-wrapper">
+            <img src="images/projects/bemymuse_main.png" alt="BeMyMuse Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[Language Model Fine-Tuning]</span>
+              <span class="project-card__title-main">
+                KoGPT-2 Model을 감성 작사 특화 모델로 Fine-Tuning
+              </span>
+            </h3>
+            <p class="project-card__description">
+              입력 된 Keyword를 분석하여 종합 감성을 평가하고, 해당 감성에 맞는 가사 문장들을 생성하여 가사 작사 모델 개발.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Hugging Face</span>
+              <span class="project-card__tag">Fine-Tuning</span>
+              <span class="project-card__tag">Evaluation</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/BeMyMuse.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project: PerfectPose -->
+        <article class="project-card fade-in" data-project="perfectpose" data-category="toy">
+          <div class="project-card__image-wrapper">
+            <img src="images/projects/perfectposes_main.png" alt="PerfectPose Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[Computer Vision + WebSocket + Unreal]</span>
+              <span class="project-card__title-main">
+                PerfectPose - AI-based 자세 추론 게임
+              </span>
+            </h3>
+            <p class="project-card__description">
+              Pose Detection AI 기술을 활용한 언리얼 융합 자세 추론 게임. YOLO-Pose의 17개 관절 좌표값과 Cosine 유사도 분석 활용.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">YOLO-Pose</span>
+              <span class="project-card__tag">OpenCV</span>
+              <span class="project-card__tag">Segmentation</span>
+              <span class="project-card__tag">WebSocket</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/PerfectPose.git" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project: EconDigest -->
+        <article class="project-card fade-in" data-project="econdigest" data-category="toy">
+          <div class="project-card__image-wrapper">
+            <img src="images/projects/econdigest_main.png" alt="EconDigest Project" class="project-card__image">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[AI/LLM]</span>
+              <span class="project-card__title-main">
+                EconDigest - 경제 유튜브 요약
+              </span>
+            </h3>
+            <p class="project-card__description">
+              Whisper(STT)와 Gemma 2(LLM)를 활용한 경제 유튜브 영상 자동 요약 서비스. QLoRA 파인튜닝으로 VRAM 효율화를 달성했습니다.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Whisper</span>
+              <span class="project-card__tag">Gemma-2</span>
+              <span class="project-card__tag">QLoRA</span>
+              <span class="project-card__tag">FastAPI</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/Hyeongseob91/Wanted_EconDigest" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </article>
 
       </div>
 
@@ -600,9 +846,9 @@
   </section>
 
   <!-- Project Modal -->
-  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="projectModal">
     <div class="modal__content">
-      <button class="modal__close" id="modalClose" aria-label="Close modal">&times;</button>
+      <button class="modal__close" id="modalClose">&times;</button>
       <img src="" alt="" class="modal__image" id="modalImage">
       <div class="modal__body">
         <h2 class="modal__title" id="modalTitle"></h2>
@@ -676,7 +922,7 @@
   <footer class="footer">
     <div class="container">
       <p class="footer__text">
-        &copy; 2026 Hyeongseob Kim. Built with passion.
+        &copy; 2025 Hyeongseob Kim. Built with passion.
       </p>
     </div>
   </footer>
