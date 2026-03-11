@@ -363,11 +363,19 @@
         <p class="section__subtitle">실무 프로젝트 & 연구</p>
       </div>
 
+      <!-- Project Filter Tabs -->
+      <div class="projects__filter">
+        <button class="projects__filter-btn projects__filter-btn--active" data-filter="all">All</button>
+        <button class="projects__filter-btn" data-filter="product">Product</button>
+        <button class="projects__filter-btn" data-filter="project">Project</button>
+        <button class="projects__filter-btn" data-filter="research">Research</button>
+        <button class="projects__filter-btn" data-filter="opensource">Open Source</button>
+      </div>
 
       <div class="projects__grid">
 
         <!-- Project: Soundmind AI Platform -->
-        <article class="project-card fade-in" data-project="soundmind-platform" data-category="professional">
+        <article class="project-card fade-in" data-project="soundmind-platform" data-category="product">
           <div class="project-card__image-wrapper">
             <img src="images/projects/soundmind_rag_agent_loginpage.png" alt="Soundmind AI Platform" class="project-card__image" loading="lazy">
           </div>
@@ -461,6 +469,37 @@
           </div>
         </article>
 
+        <!-- Project: WIGTN-Coding -->
+        <article class="project-card fade-in" data-project="wigtn-coding" data-category="opensource">
+          <div class="project-card__image-wrapper">
+            <img src="images/companies/soundmind.png" alt="WIGTN Claude Code Skills Plugins" class="project-card__image" loading="lazy">
+          </div>
+          <div class="project-card__content">
+            <h3 class="project-card__title">
+              <span class="project-card__category-text">[Open Source]</span>
+              <span class="project-card__title-main">
+                WIGTN Claude Code Skills Plugins
+              </span>
+            </h3>
+            <p class="project-card__description">
+              주니어 AI 개발자 크루 WIGTN이 만든 Claude Code용 워크플로우 자동화 플러그인.
+              <br>PRD 작성부터 구현, 코드 리뷰, 커밋까지 체계적인 개발 프로세스 지원.
+            </p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Claude Code</span>
+              <span class="project-card__tag">Skills Plugin</span>
+              <span class="project-card__tag">Open Source</span>
+            </div>
+          </div>
+          <div class="project-card__footer">
+            <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code" target="_blank" rel="noopener noreferrer"
+              class="project-card__github-btn" onclick="event.stopPropagation()">
+              <i class="fa-brands fa-github"></i>
+              GitHub
+            </a>
+          </div>
+        </article>
+
         <!-- Project: VLM Document Parsing Research -->
         <article class="project-card fade-in" data-project="vlm-document-parsing" data-category="research">
           <div class="project-card__image-wrapper">
@@ -494,7 +533,7 @@
         </article>
 
         <!-- Project: VALORITHM -->
-        <article class="project-card fade-in" data-project="mcp" data-category="personal">
+        <article class="project-card fade-in" data-project="mcp" data-category="project">
           <div class="project-card__image-wrapper">
             <img src="images/projects/valorithm_main.png" alt="VALORITHM Project" class="project-card__image" loading="lazy">
           </div>

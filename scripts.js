@@ -499,6 +499,64 @@ document.addEventListener('DOMContentLoaded', function() {
       ],
       tags: ['RAGAS', 'LLM Judge', 'A/B Test', 'FastAPI', 'Streamlit', 'Redis', 'Weaviate', 'LangChain', 'Open Source']
     },
+    'wigtn-coding': {
+      title: 'WIGTN Claude Code Skills Plugins',
+      image: 'images/companies/soundmind.png',
+      meta: {
+        organization: 'WIGTN Crew (Open Source)',
+        role: 'Crew Leader / Main Contributor',
+        period: '2025.01 ~ 현재',
+        architecture: 'Claude Code Skills Plugin System',
+        team: 'WIGTN Crew',
+        contribution: '60%'
+      },
+      sections: [
+        {
+          title: 'Overview',
+          content: '<strong>주니어 AI 개발자 크루 WIGTN이 만든 Claude Code용 워크플로우 자동화 플러그인</strong><br><br>AI-Native 개발 방법론을 실천하기 위해, Claude Code에 설치하여 사용할 수 있는 체계적인 개발 워크플로우 도구 세트를 구축했습니다.',
+          subsections: [
+            {
+              subtitle: '핵심 가치',
+              list: [
+                '<strong>PRD → 구현 → 검증</strong> 전 과정을 AI와 협업하여 가속화',
+                '초보자도 시니어 수준의 개발 프로세스를 경험할 수 있는 가이드 제공',
+                '오픈소스로 공개하여 커뮤니티 기여'
+              ]
+            }
+          ]
+        },
+        {
+          title: '제공 Skills',
+          subsections: [
+            {
+              subtitle: '/prd',
+              content: '모호한 기능 요청을 구조화된 PRD 문서로 자동 변환'
+            },
+            {
+              subtitle: '/digging',
+              content: 'PRD 문서의 취약점, 간극, 리스크를 분석하여 구현 전 개선점 도출'
+            },
+            {
+              subtitle: '/implement',
+              content: 'PRD 명세에 기반한 체계적인 구현 계획 수립 및 실행'
+            },
+            {
+              subtitle: '/code-review',
+              content: '가독성, 유지보수성, 성능, 베스트 프랙티스 관점의 종합 코드 리뷰'
+            },
+            {
+              subtitle: '/auto-commit',
+              content: '변경 사항 분석 → 품질 검증 → 지능형 커밋 메시지 자동 생성'
+            }
+          ]
+        },
+        {
+          title: 'WIGTN Crew',
+          content: '저는 주니어 AI 개발자들의 성장을 위한 크루 <strong>WIGTN</strong>을 리딩하고 있습니다. AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각하며, 이 플러그인은 그 철학을 실천하기 위한 결과물입니다.'
+        }
+      ],
+      tags: ['Claude Code', 'Skills Plugin', 'AI-Native', 'PRD', 'Code Review', 'Open Source']
+    },
     'llm-loadtester': {
       title: 'Simple LLM Loadtester',
       image: 'images/projects/llm-loadtester-dashboard.png',
