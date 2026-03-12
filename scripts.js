@@ -766,40 +766,85 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Overview',
-          content: '<strong>주니어 AI 개발자 크루 WIGTN이 만든 Claude Code용 워크플로우 자동화 플러그인</strong><br><br>AI-Native 개발 방법론을 실천하기 위해, Claude Code에 설치하여 사용할 수 있는 체계적인 개발 워크플로우 도구 세트를 구축했습니다.',
+          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인입니다. 12개의 전문 에이전트, 3개의 커맨드, 3개의 레퍼런스 스킬로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.<br><br>⭐ GitHub Stars 14 · v2.0.0',
           subsections: [
             {
               subtitle: '핵심 가치',
               list: [
-                '<strong>PRD → 구현 → 검증</strong> 전 과정을 AI와 협업하여 가속화',
+                '<strong>PRD → 구현 → 검증 → 배포</strong> 전 과정을 AI와 협업하여 가속화',
                 '초보자도 시니어 수준의 개발 프로세스를 경험할 수 있는 가이드 제공',
+                '팀 빌드 병렬화 — 백엔드·프론트엔드·AI·Ops 팀 동시 구현',
                 '오픈소스로 공개하여 커뮤니티 기여'
               ]
             }
           ]
         },
         {
-          title: '제공 Skills',
+          title: '12 Agents',
+          content: '각 도메인에 특화된 전문 에이전트가 자동으로 호출되어 작업을 수행합니다.',
+          subsections: [
+            {
+              subtitle: '기획 & 분석',
+              list: [
+                '<strong>prd-reviewer</strong> — PRD 품질 분석 (완성도, 실현가능성, 보안, 일관성)',
+                '<strong>architecture-decision</strong> — MSA vs Monolithic 아키텍처 의사결정',
+                '<strong>parallel-digging-coordinator</strong> — 4개 병렬 에이전트를 조율하여 PRD 취약점 심층 분석'
+              ]
+            },
+            {
+              subtitle: '구현 & 빌드',
+              list: [
+                '<strong>team-build-coordinator</strong> — Backend·Frontend·AI·Ops 팀 병렬 빌드 조율',
+                '<strong>frontend-developer</strong> — React 19, Next.js 16, 12+ 디자인 스타일 지원',
+                '<strong>backend-architect</strong> — 백엔드 아키텍처 설계 및 고급 패턴 구현',
+                '<strong>mobile-developer</strong> — React Native / Expo 크로스플랫폼 모바일 개발',
+                '<strong>ai-agent</strong> — STT, LLM, AI 서비스 통합 (OpenAI, Anthropic 등)',
+                '<strong>design-discovery</strong> — VS(Verbalized Sampling) 기법 기반 디자인 탐색'
+              ]
+            },
+            {
+              subtitle: '검증 & 품질',
+              list: [
+                '<strong>code-reviewer</strong> — 100점 스코어링 (가독성, 유지보수성, 성능, 테스트, BP)',
+                '<strong>code-formatter</strong> — 자동 포맷팅, 린트 수정, 코딩 표준 적용',
+                '<strong>parallel-review-coordinator</strong> — 3개 병렬 리뷰어 조율 + Security Zero-Tolerance'
+              ]
+            }
+          ]
+        },
+        {
+          title: '3 Commands',
+          content: '슬래시 커맨드로 즉시 실행 가능한 핵심 워크플로우입니다.',
           subsections: [
             {
               subtitle: '/prd',
-              content: '모호한 기능 요청을 구조화된 PRD 문서로 자동 변환'
-            },
-            {
-              subtitle: '/digging',
-              content: 'PRD 문서의 취약점, 간극, 리스크를 분석하여 구현 전 개선점 도출'
+              content: '모호한 기능 요청을 구조화된 PRD 문서로 자동 변환. 바이브 코딩 친화 — "~하는거 만들고 싶어"만으로 시작 가능.'
             },
             {
               subtitle: '/implement',
-              content: 'PRD 명세에 기반한 체계적인 구현 계획 수립 및 실행'
-            },
-            {
-              subtitle: '/code-review',
-              content: '가독성, 유지보수성, 성능, 베스트 프랙티스 관점의 종합 코드 리뷰'
+              content: 'PRD 명세 기반 체계적 구현. 아키텍처 분석 → 팀 배정 → 병렬 빌드 → Context Harvesting으로 프로젝트 패턴 자동 학습.'
             },
             {
               subtitle: '/auto-commit',
-              content: '변경 사항 분석 → 품질 검증 → 지능형 커밋 메시지 자동 생성'
+              content: '변경 분석 → Quality Gate(100점 스코어링) → Safety Guard → 지능형 커밋 메시지 생성 → 자동 푸시.'
+            }
+          ]
+        },
+        {
+          title: '3 Skills',
+          content: '에이전트들이 참조하는 레퍼런스 시스템입니다.',
+          subsections: [
+            {
+              subtitle: 'design-system-reference',
+              content: '16가지 디자인 스타일 가이드 (Editorial, Brutalist, Glassmorphism, Liquid Glass 등) + 색상·애니메이션·스페이싱 공통 규칙'
+            },
+            {
+              subtitle: 'code-review-levels',
+              content: 'Deep Review(Level 3)와 Architecture Review(Level 4) 참조 문서. code-reviewer 에이전트가 활용.'
+            },
+            {
+              subtitle: 'team-memory-protocol',
+              content: '팀 빌드 간 공유 컨텍스트(SHARED_CONTEXT) 관리 프로토콜. TaskCreate 연동 및 Auto Memory 규칙 정의.'
             }
           ]
         },
@@ -808,7 +853,7 @@ document.addEventListener('DOMContentLoaded', function() {
           content: '저는 주니어 AI 개발자들의 성장을 위한 크루 <strong>WIGTN</strong>을 리딩하고 있습니다. AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각하며, 이 플러그인은 그 철학을 실천하기 위한 결과물입니다.'
         }
       ],
-      tags: ['Claude Code', 'Skills Plugin', 'AI-Native', 'PRD', 'Code Review', 'Open Source']
+      tags: ['Claude Code', 'Plugin', 'AI-Native', '12 Agents', 'Parallel Build', 'Open Source']
     },
     'llm-loadtester': {
       title: 'Simple LLM Loadtester',
