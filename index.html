@@ -494,8 +494,8 @@
   <section class="section projects projects--educational" id="projects">
     <div class="container">
       <div class="section__header">
-        <h2 class="section__title">Projects</h2>
-        <p class="section__subtitle">Company Projects & Learning Projects</p>
+        <h2 class="section__title">Professional Projects</h2>
+        <p class="section__subtitle">Company Projects & Side Projects</p>
       </div>
 
       <!-- Project Filter Tabs -->
@@ -505,9 +505,6 @@
         <button class="projects__filter-btn" data-filter="project">Project</button>
         <button class="projects__filter-btn" data-filter="research">Research</button>
         <button class="projects__filter-btn" data-filter="opensource">Open Source</button>
-        <button class="projects__filter-btn projects__filter-btn--toy" data-filter="toy">
-          <i class="fa-solid fa-graduation-cap"></i> Learning
-        </button>
       </div>
 
       <div class="projects__grid">
@@ -726,8 +723,30 @@
           </div>
         </article>
 
+      </div>
+
+      <!-- 더보기 버튼 -->
+      <div class="projects__more-wrapper">
+        <button class="projects__more-btn" id="projectsMoreBtn">
+          <span class="projects__more-btn-text">더보기</span>
+          <i class="fa-solid fa-chevron-down projects__more-btn-icon"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Toy Projects Section -->
+  <section class="section projects-toy" id="projects-toy">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Toy Projects</h2>
+        <p class="section__subtitle">Learning & Side Projects</p>
+      </div>
+      <div class="projects__grid">
+
         <!-- Project: KOMI -->
-        <article class="project-card fade-in" data-project="komi" data-category="toy">
+        <article class="project-card fade-in" data-project="komi">
           <div class="project-card__image-wrapper">
             <img src="images/projects/komi_architecture.png" alt="KOMI Project" class="project-card__image">
           </div>
@@ -758,7 +777,7 @@
         </article>
 
         <!-- Project: BeMyMuse -->
-        <article class="project-card fade-in" data-project="bemymuse" data-category="toy">
+        <article class="project-card fade-in" data-project="bemymuse">
           <div class="project-card__image-wrapper">
             <img src="images/projects/bemymuse_main.png" alt="BeMyMuse Project" class="project-card__image">
           </div>
@@ -788,7 +807,7 @@
         </article>
 
         <!-- Project: PerfectPose -->
-        <article class="project-card fade-in" data-project="perfectpose" data-category="toy">
+        <article class="project-card fade-in" data-project="perfectpose">
           <div class="project-card__image-wrapper">
             <img src="images/projects/perfectposes_main.png" alt="PerfectPose Project" class="project-card__image">
           </div>
@@ -819,7 +838,7 @@
         </article>
 
         <!-- Project: EconDigest -->
-        <article class="project-card fade-in" data-project="econdigest" data-category="toy">
+        <article class="project-card fade-in" data-project="econdigest">
           <div class="project-card__image-wrapper">
             <img src="images/projects/econdigest_main.png" alt="EconDigest Project" class="project-card__image">
           </div>
@@ -849,6 +868,14 @@
           </div>
         </article>
 
+      </div>
+
+      <!-- Toy 더보기 버튼 -->
+      <div class="projects__more-wrapper">
+        <button class="projects__more-btn" id="toyMoreBtn">
+          <span class="projects__more-btn-text">더보기</span>
+          <i class="fa-solid fa-chevron-down projects__more-btn-icon"></i>
+        </button>
       </div>
 
     </div>

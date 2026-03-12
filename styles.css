@@ -230,6 +230,7 @@ img {
 
 .navbar__menu {
   display: flex;
+  align-items: center;
   gap: 2rem;
   list-style: none;
 }
@@ -1097,39 +1098,53 @@ img {
   font-weight: 600;
 }
 
-/* TOY 토글 버튼 스타일 */
-.projects__filter-btn--toy {
-  margin-left: 1rem;
-  padding: 0.4rem 0.8rem;
-  border: 1px dashed var(--color-border);
-  border-radius: 1rem;
-  font-size: 0.85rem;
-  opacity: 0.7;
+/* 더보기 버튼 */
+.projects__more-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.projects__more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
   transition: all var(--transition-base);
 }
 
-.projects__filter-btn--toy::after {
-  display: none !important;
-}
-
-.projects__filter-btn--toy:hover {
-  opacity: 1;
-  border-color: var(--color-primary-light);
-}
-
-.projects__filter-btn--toy.projects__filter-btn--active {
-  background: var(--color-primary);
-  color: white;
+.projects__more-btn:hover {
   border-color: var(--color-primary);
-  opacity: 1;
+  color: var(--color-primary);
 }
 
-.projects__filter-btn--toy i {
-  margin-right: 0.3rem;
+.projects__more-btn-icon {
+  font-size: 0.75rem;
+  transition: transform var(--transition-base);
 }
 
-.project-card--hidden {
-  display: none !important;
+.projects__more-btn--expanded .projects__more-btn-icon {
+  transform: rotate(180deg);
+}
+
+.projects__more-wrapper--hidden {
+  display: none;
+}
+
+/* Toy Projects Section */
+.projects-toy {
+  background: var(--color-dark);
+}
+
+.projects__grid .project-card--hidden {
+  display: none;
 }
 
 .projects__grid {
@@ -1357,45 +1372,6 @@ img {
 
 .project-card__footer-note i {
   font-size: 0.9rem;
-}
-
-/* Show More Button */
-.projects__show-more {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-}
-
-.show-more-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: var(--color-dark);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--transition-base);
-}
-
-.show-more-btn:hover {
-  background: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
-}
-
-.show-more-btn__icon {
-  font-size: 0.875rem;
-  transition: transform var(--transition-base);
-}
-
-.show-more-btn.expanded .show-more-btn__icon {
-  transform: rotate(180deg);
 }
 
 /* Project Modal */

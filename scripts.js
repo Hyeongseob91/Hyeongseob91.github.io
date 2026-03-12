@@ -127,66 +127,94 @@ document.addEventListener('DOMContentLoaded', function() {
   highlightNavLink(); // Initial check
 
   // =====================================================
-  // PROJECT FILTER
+  // PROJECT FILTER & 더보기 (공유 헬퍼)
   // =====================================================
-  const filterButtons = document.querySelectorAll('.projects__filter-btn');
-  const projectCardsAll = document.querySelectorAll('.project-card');
-  let showToyProjects = false;
+  const INITIAL_SHOW = 3;
 
-  // 초기 상태: TOY 프로젝트 숨기기
-  projectCardsAll.forEach(card => {
-    if (card.dataset.category === 'toy') {
-      card.classList.add('project-card--hidden');
+  function updateMoreButton(btn, expanded, totalCount) {
+    if (!btn) return;
+    if (totalCount > INITIAL_SHOW) {
+      btn.parentElement.classList.remove('projects__more-wrapper--hidden');
+      btn.classList.toggle('projects__more-btn--expanded', expanded);
+      btn.querySelector('.projects__more-btn-text').textContent = expanded ? '접기' : '더보기';
+    } else {
+      btn.parentElement.classList.add('projects__more-wrapper--hidden');
     }
-  });
+  }
+
+  // --- Professional Projects ---
+  const filterButtons = document.querySelectorAll('.projects__filter-btn');
+  const mainGrid = document.querySelector('#projects .projects__grid');
+  const mainCards = mainGrid ? mainGrid.querySelectorAll('.project-card') : [];
+  const moreBtn = document.getElementById('projectsMoreBtn');
+  let currentFilter = 'all';
+  let isExpanded = false;
+
+  function applyFilter() {
+    let visibleCount = 0;
+
+    mainCards.forEach(card => {
+      const matchesFilter = currentFilter === 'all' || card.dataset.category === currentFilter;
+
+      if (matchesFilter) {
+        visibleCount++;
+        if (currentFilter === 'all' && !isExpanded && visibleCount > INITIAL_SHOW) {
+          card.classList.add('project-card--hidden');
+        } else {
+          card.classList.remove('project-card--hidden');
+        }
+      } else {
+        card.classList.add('project-card--hidden');
+      }
+    });
+
+    const totalForFilter = Array.from(mainCards).filter(c =>
+      currentFilter === 'all' || c.dataset.category === currentFilter
+    ).length;
+    const showBtn = currentFilter === 'all' && totalForFilter > INITIAL_SHOW;
+    updateMoreButton(moreBtn, isExpanded, showBtn ? totalForFilter : 0);
+  }
+
+  applyFilter();
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', function() {
-      const filter = this.dataset.filter;
-
-      // TOY 버튼은 토글 방식으로 동작
-      if (filter === 'toy') {
-        showToyProjects = !showToyProjects;
-        this.classList.toggle('projects__filter-btn--active', showToyProjects);
-
-        projectCardsAll.forEach(card => {
-          if (card.dataset.category === 'toy') {
-            card.classList.toggle('project-card--hidden', !showToyProjects);
-          }
-        });
-        return;
-      }
-
-      // 다른 필터 버튼 클릭 시 (TOY 버튼 제외하고 active 상태 업데이트)
-      filterButtons.forEach(b => {
-        if (b.dataset.filter !== 'toy') {
-          b.classList.remove('projects__filter-btn--active');
-        }
-      });
+      filterButtons.forEach(b => b.classList.remove('projects__filter-btn--active'));
       this.classList.add('projects__filter-btn--active');
-
-      // Filter projects (TOY는 showToyProjects 상태에 따라 처리)
-      projectCardsAll.forEach(card => {
-        const category = card.dataset.category;
-
-        if (category === 'toy') {
-          // TOY 프로젝트는 showToyProjects 상태와 현재 필터에 따라 표시
-          if (showToyProjects && (filter === 'all' || filter === 'toy')) {
-            card.classList.remove('project-card--hidden');
-          } else {
-            card.classList.add('project-card--hidden');
-          }
-        } else {
-          // 일반 프로젝트는 필터에 따라 표시
-          if (filter === 'all' || category === filter) {
-            card.classList.remove('project-card--hidden');
-          } else {
-            card.classList.add('project-card--hidden');
-          }
-        }
-      });
+      currentFilter = this.dataset.filter;
+      isExpanded = false;
+      applyFilter();
     });
   });
+
+  if (moreBtn) {
+    moreBtn.addEventListener('click', function() {
+      isExpanded = !isExpanded;
+      applyFilter();
+    });
+  }
+
+  // --- Toy Projects ---
+  const toyGrid = document.querySelector('#projects-toy .projects__grid');
+  const toyCards = toyGrid ? toyGrid.querySelectorAll('.project-card') : [];
+  const toyMoreBtn = document.getElementById('toyMoreBtn');
+  let toyExpanded = false;
+
+  function applyToyLimit() {
+    toyCards.forEach((card, index) => {
+      card.classList.toggle('project-card--hidden', !toyExpanded && index >= INITIAL_SHOW);
+    });
+    updateMoreButton(toyMoreBtn, toyExpanded, toyCards.length);
+  }
+
+  applyToyLimit();
+
+  if (toyMoreBtn) {
+    toyMoreBtn.addEventListener('click', function() {
+      toyExpanded = !toyExpanded;
+      applyToyLimit();
+    });
+  }
 
   // =====================================================
   // PROJECT MODAL
