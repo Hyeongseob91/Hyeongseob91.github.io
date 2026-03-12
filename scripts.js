@@ -245,9 +245,17 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'Try Demo',
-          highlight: true,
-          content: '<a href="http://work.soundmind.life:12320" target="_blank" rel="noopener noreferrer"><strong>work.soundmind.life:12320</strong></a> 으로 접속하여 Try Demo 버튼을 통해 Guest Mode 체험이 가능합니다.'
+          title: 'Problem / Solution',
+          subsections: [
+            {
+              subtitle: 'Problem',
+              content: '음성 AI 전문 회사가 RAG 사업을 수주했지만, 동작하는 엔진도 고객 데모도 없었다. Senior 부재로 도메인별 데이터 구조화 전략도 없는 상황.'
+            },
+            {
+              subtitle: 'Solution',
+              content: '고객 문서 분석 → 도메인 최적화 RAG Pipeline 자동 생성 → 원클릭 Docker 배포 → PoC 즉시 시연까지 단독 설계/구현. 공공기관을 최종 고객으로 하는 파트너사 납품 구조에 적용, 현재 End User 테스트 진행 중.'
+            }
+          ]
         },
         {
           title: 'Overview',
@@ -403,6 +411,19 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
+          title: 'Problem / Solution',
+          subsections: [
+            {
+              subtitle: 'Problem',
+              content: '외국인·장애인의 전화 통역 접근성 문제를 해결하려 했지만, PSTN 협대역(8kHz) 환경에서는 에코 루프와 VAD 오작동으로 실시간 번역이 사실상 불가능했다. 글로벌 연구는 앱 기반 와이드밴드(16kHz+)에 집중되어 있고, 가장 큰 인프라인 PSTN은 연구 공백 상태.'
+            },
+            {
+              subtitle: 'Solution',
+              content: '해커톤 미완성 프로토타입에서 멈추지 않고, PSTN 실패 원인을 직접 분석. VAD 처리 + Dual-Session Echo Gate-3-Filtered 파이프라인을 자체 설계해 에코 루프 80%→0% 해결, 레이턴시 555ms 달성. ACL 2026 System Demonstrations 투고 및 MVP 플랫폼 구현.'
+            }
+          ]
+        },
+        {
           title: 'Overview',
           content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>OpenAI Realtime API + Twilio Media Streams 기반으로 레거시 PSTN 전화망 위에서 동작하는 서버사이드 릴레이 아키텍처.',
           subsections: [
@@ -532,6 +553,19 @@ document.addEventListener('DOMContentLoaded', function() {
         architecture: 'Qwen3-VL + LoRA + vLLM + BGE-M3'
       },
       sections: [
+        {
+          title: 'Problem / Solution',
+          subsections: [
+            {
+              subtitle: 'Problem',
+              content: '아무리 정교한 RAG Pipeline을 구축해도, 비정형 문서의 Chunking 과정에서 Data Loss가 발생해 성능 한계가 명확했다. B2B2G 납품 구조상 최종 End User가 누구인지, 어떤 문서가 들어올지 사전에 알 수 없어 도메인 데이터 분석 자체가 불가능한 상황. 범용적으로 문서 구조를 보존할 수 있는 파싱 전략이 필요했다.'
+            },
+            {
+              subtitle: 'Solution',
+              content: 'OSS OCR 모델 대신 Prompt를 이해하는 SLM을 활용하면 구조화 품질이 높아진다는 것을 Feasibility Study로 확인. Qwen3-VL-2B-Instruct 기반 Cumulation 학습으로 한국어 공문서 구조 보존 파싱 모델을 연구 중. EMNLP 2026 Industry Track 투고 목표.'
+            }
+          ]
+        },
         {
           title: 'Overview',
           content: '<strong>RAG 파이프라인에서 VLM 기반 문서 파싱의 구조 보존 효과를 종합 평가</strong><br><br>전통적 OCR(PyMuPDF, RapidOCR)은 텍스트 추출은 가능하나 문서 구조 보존에 실패(Structure F1 = 0%). VLM 기반 Two-Stage Parsing이 이를 해결한다.',
