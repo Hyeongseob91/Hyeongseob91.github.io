@@ -249,165 +249,229 @@ document.addEventListener('DOMContentLoaded', function() {
           subsections: [
             {
               subtitle: 'Problem',
-              content: '음성 AI 전문 회사가 RAG 사업을 수주했지만, 동작하는 엔진도 고객 데모도 없었다. Senior 부재로 도메인별 데이터 구조화 전략도 없는 상황.'
+              content: '음성 AI 전문 회사가 RAG 사업을 수주했지만, 동작하는 엔진도 고객 데모도 없었다. Senior 부재, 도메인별 데이터 구조화 전략도 전무한 상황.'
             },
             {
               subtitle: 'Solution',
-              content: '고객 문서 분석 → 도메인 최적화 RAG Pipeline 자동 생성 → 원클릭 Docker 배포 → PoC 즉시 시연까지 단독 설계/구현. 공공기관을 최종 고객으로 하는 파트너사 납품 구조에 적용, 현재 End User 테스트 진행 중.'
+              content: '고객 문서를 업로드하면 AI가 분석 → 도메인 최적화 RAG Pipeline 자동 생성 → 원클릭 Docker 배포 → PoC 즉시 시연까지 가능한 엔드투엔드 플랫폼을 단독 설계/구현. 현재 End User 테스트 진행 중.'
             }
           ]
         },
         {
-          title: 'Overview',
-          content: '<strong>9개 프로젝트, 161개 API로 구성된 B2B SaaS 플랫폼</strong><br><br>3단계 아키텍처 진화(Monolith → MSA → Multi-Platform)를 통해 엔터프라이즈급 AI 문서 분석 및 지능형 에이전트 서비스를 구축했습니다.',
+          title: 'What is this?',
+          content: '<strong>비개발자도 RAG 영업 사이클 전체를 운용할 수 있는 B2B2G SaaS 플랫폼</strong><br><br>문서 업로드 → AI 분석 → RAG Pipeline 자동 생성 → 배포 → PoC 시연 → 품질 평가 → 모니터링까지, 5개 플랫폼이 유기적으로 연동되어 전 과정을 자동화합니다.',
           subsections: [
             {
-              subtitle: '핵심 성과',
+              subtitle: '타겟 사용자',
+              list: [
+                '<strong>파트너사 영업/기술팀</strong> — 고객 문서로 즉시 PoC 데모를 구성하고 시연',
+                '<strong>공공기관 담당자</strong> — PlayGround에서 자체 문서 기반 AI 검색을 직접 체험',
+                '<strong>사내 운영팀</strong> — 통합 Console에서 분석·평가·모니터링을 한 화면에서 관리'
+              ]
+            },
+            {
+              subtitle: '규모',
+              list: [
+                '9개 프로젝트 · 161개 API · 15+ Docker 컨테이너',
+                '최대 99개 RAG Pipeline 동시 운용 (포트 9201~9299)',
+                '7종 문서 포맷 지원 (PDF, DOCX, XLSX, TXT, JSON, HWP, HWPX)'
+              ]
+            }
+          ]
+        },
+        {
+          title: '5 Platforms',
+          content: '각 플랫폼은 독립 배포·독립 확장이 가능하며, Docker 네트워크와 Registry API로 연결됩니다.',
+          subsections: [
+            {
+              subtitle: '1. AI Platform',
+              content: '고객이 직접 사용하는 PlayGround. RAG Agent(문서 기반 Q&A)와 AI Agent(자율 도구 사용)를 제공합니다.'
+            },
+            {
+              subtitle: '2. Analysis Platform',
+              content: '문서를 업로드하면 AI가 분석하고, 최적 RAG 전략을 추천하여 독립 Pipeline을 자동 생성·배포하는 Pipeline Factory.'
+            },
+            {
+              subtitle: '3. AI Console',
+              content: '분산된 3개 도구(Analysis, Eval, Grafana)를 하나로 통합한 운영 대시보드. 비개발자도 전체 워크플로우를 한 화면에서 운영.'
+            },
+            {
+              subtitle: '4. Eval Platform',
+              content: 'LLM-as-a-Judge 방식 5차원 품질 평가 + A/B 테스트 통계 검증으로 Pipeline 전략 변경 효과를 측정.'
+            },
+            {
+              subtitle: '5. Monitoring Platform',
+              content: 'Grafana + Loki + Promtail 기반. 전체 에코시스템의 로그를 중앙 수집하여 4개 전용 대시보드로 실시간 시각화.'
+            }
+          ]
+        },
+        {
+          title: 'How It Works',
+          content: '5개 플랫폼이 하나의 워크플로우로 연결됩니다.',
+          image: {
+            src: 'images/projects/soundmind_ecosystem_workflow.png',
+            alt: 'SoundMind Ecosystem Workflow Diagram',
+            caption: '전체 워크플로우: Console에서 문서 업로드 → Analysis가 분석·배포 → AI Platform이 자동 감지·서비스 연결 → Eval이 품질 검증 → Monitoring이 전체 관측'
+          }
+        },
+        {
+          title: 'Architecture',
+          image: {
+            src: 'images/projects/soundmind_ecosystem_architecture.png',
+            alt: 'SoundMind Ecosystem Architecture Diagram',
+            caption: 'Multi-Platform 아키텍처: 5개 플랫폼 + 공유 모델 서빙 인프라 + Docker 네트워크'
+          }
+        },
+        {
+          title: 'Key Metrics',
+          subsections: [
+            {
+              subtitle: '성과',
               list: [
                 '<strong>Ablation Study</strong>: 단계별 성능 기여도 분석으로 -8.8% 저하 구간 발견 → 아키텍처 재설계 근거 확보',
-                '<strong>Dual Vector DB</strong>: Weaviate(일반 문서) + Qdrant(정형 데이터) 전략으로 고객사별 최적 파이프라인 매핑',
-                '<strong>PoC 납품</strong>: DB 사업 회사 대상 34개 테스트 케이스, 3회 데모 리허설 포함 검수 프로세스'
+                '<strong>PoC 납품</strong>: DB 사업 회사 대상 34개 테스트 케이스, 3회 데모 리허설 포함 검수 프로세스 진행',
+                '<strong>Beta 운용</strong>: 15명 동시 사용 대비 동시성 처리 구현'
               ]
             }
           ]
         },
         {
-          title: '3단계 아키텍처 진화',
+          title: 'Roadmap',
+          content: '현재 시스템을 유지하면서 성능 최적화와 Data Parsing 고도화에 집중합니다.',
           subsections: [
             {
-              subtitle: 'Phase 1: Monolith',
-              content: '단일 서버에 RAG 파이프라인 + API + 프론트엔드 통합. 빠른 프로토타이핑에 적합했으나 확장성 한계.'
-            },
-            {
-              subtitle: 'Phase 2: MSA',
-              content: '8개 서비스 분리 (Web Console, API Gateway, General RAG, Structured RAG, Chat Agent, PostgreSQL, Weaviate, Qdrant). Docker Compose 오케스트레이션.'
-            },
-            {
-              subtitle: 'Phase 3: Multi-Platform (현재)',
-              content: 'AI Platform(인증/세션/Admin) + Analysis Platform(파이프라인 레지스트리) + Monitoring Platform(로그/메트릭) 3개 독립 플랫폼으로 분리.'
-            }
-          ]
-        },
-        {
-          title: 'Architecture Overview',
-          image: {
-            src: 'images/projects/soundmind_ai_platform_architecture.png',
-            alt: 'SoundMind AI Platform Architecture',
-            caption: '5계층 MSA 아키텍처: Presentation → API Gateway → Service → Data → External Model Services'
-          },
-          list: [
-            'Presentation Layer: React 19 + TypeScript + Vite + Tailwind',
-            'API Gateway Layer: FastAPI + JWT + SSE Streaming (BFF 패턴)',
-            'Service Layer: LangGraph ReAct Agent + Advanced RAG Pipeline',
-            'Data Layer: PostgreSQL 16 + Weaviate 1.27 + Qdrant 1.17',
-            'External Model Services: vLLM + Infinity (BGE-M3 Embedder/Reranker)'
-          ]
-        },
-        {
-          title: 'Advanced RAG Pipeline',
-          subsections: [
-            {
-              subtitle: '1. Semantic Chunking',
+              subtitle: 'VLM 기반 문서 파싱',
               list: [
-                '의미 단절점(Breakpoint: 0.90) 기반 문서 분할',
-                '2-Stage Chunking: 큰 청크 재분할, 작은 청크 병합 (100~2000 토큰)'
+                '텍스트 추출 중심 → VLM 기반으로 확장, 표·차트·레이아웃 등 시각적 구조까지 보존',
+                '3-Mode Parsing: Text → VLM → Hybrid 자동 선택',
+                '→ 진행 중인 WigtnOCR 연구(EMNLP 2026)의 성과를 Ecosystem에 직접 적용 예정'
               ]
             },
             {
-              subtitle: '2. Hybrid Search + Reranking',
+              subtitle: 'RAG Pipeline 최적화',
               list: [
-                'LLM 기반 Multi-Query Rewrite (1 → 5 Query Expansion)',
-                'Dense + Sparse + RRF 알고리즘 결합',
-                'BGE-Reranker-v2-M3 Cross-encoder로 Top-K 정밀도 향상'
-              ]
-            },
-            {
-              subtitle: '3. Observability & Trust UX',
-              list: [
-                'SSE 기반 Token Streaming + Thinking 과정 표시',
-                'Retrieval Insight: Query Transformation, Hybrid Search Score, Reranking 결과 시각화'
+                'Ablation Study 기반 Query Rewrite 재설계 (-8.8% 저하 구간 해소)',
+                'Eval 메트릭 고도화 (RAGAS 호환, MRR/NDCG)',
+                '평가 → 분석 → 재배포 Feedback Loop으로 자동 최적화 사이클 구축'
               ]
             }
           ]
         },
         {
-          title: 'Ablation Study 결과',
-          content: '<strong>RAG 파이프라인 단계별 성능 기여도 분석</strong>',
-          subsections: [
-            {
-              subtitle: '실험 설계',
-              list: [
-                'Baseline: Dense Search Only',
-                '+Sparse: Hybrid Search (Dense + BM25)',
-                '+RRF: Reciprocal Rank Fusion',
-                '+Rerank: Cross-encoder Reranking',
-                '+Query Rewrite: Multi-Query Expansion'
-              ]
-            },
-            {
-              subtitle: '핵심 발견',
-              list: [
-                '<strong>-8.8% 성능 저하 구간 발견</strong>: 특정 Query Rewrite 전략이 오히려 Retrieval 품질 저하',
-                '→ Rewrite 로직 재설계 근거 확보',
-                '→ "기능 추가 = 성능 개선" 가정의 위험성 입증'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Concurrency & Hook System',
-          content: 'Beta 출시(15명 동시 사용) 대비 동시성 처리 및 확장성 개선',
-          subsections: [
-            {
-              subtitle: '기술적 판단',
-              list: [
-                '<strong>Worker 1개 유지</strong>: TaskStore가 in-memory dict로 프로세스 간 공유 불가 → Worker 증가 시 상태 불일치',
-                '<strong>Semaphore(2)</strong>: Redis/Kafka 없이 최소한의 동시성 제어',
-                '<strong>Hook 시스템</strong>: 3단계 우선순위(CRITICAL/NORMAL/LOW)로 비즈니스 로직 확장 구조화'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Service Flow',
+          title: 'AI Platform',
           gallery: [
             {
               src: 'images/projects/soundmind_rag_agent_loginpage.png',
-              alt: 'Login Page',
-              caption: '1. Login Page - JWT 기반 인증'
+              alt: 'AI Platform - Login',
+              caption: '1. Login — JWT 기반 멀티테넌트 인증'
             },
             {
               src: 'images/projects/soundmind_rag_agent_portalpage.png',
-              alt: 'Portal Page',
-              caption: '2. Portal Page - AI Agent 서비스 선택'
+              alt: 'AI Platform - Portal',
+              caption: '2. Portal — RAG Agent · AI Agent 서비스 선택'
             },
             {
               src: 'images/projects/soundmind_rag_agent_dashboardpage.png',
-              alt: 'RAG Agent Dashboard',
-              caption: '3. RAG Agent Dashboard - 메인 작업 화면'
+              alt: 'AI Platform - RAG Agent',
+              caption: '3. RAG Agent — 문서 기반 Q&A 메인 화면'
             },
             {
               src: 'images/projects/soundmind_rag_agent_reference.png',
-              alt: 'Retrieval Insight',
-              caption: '4. Retrieval Insight - 자료 출처 및 근거 문서 표시'
+              alt: 'AI Platform - Retrieval Insight',
+              caption: '4. Retrieval Insight — 근거 문서 출처 및 검색 과정 시각화'
+            }
+          ]
+        },
+        {
+          title: 'Analysis Platform',
+          gallery: [
+            {
+              src: 'images/projects/soundmind_analysis_upload.png',
+              alt: 'Analysis - Document Upload',
+              caption: '1. 문서 업로드 — 7종 포맷 지원, AI 분석 시작'
+            },
+            {
+              src: 'images/projects/soundmind_analysis_result.png',
+              alt: 'Analysis - Strategy Recommendation',
+              caption: '2. 전략 추천 — 분석 결과 기반 최적 RAG 구성 제안'
+            },
+            {
+              src: 'images/projects/soundmind_analysis_deploy.png',
+              alt: 'Analysis - Pipeline Deploy',
+              caption: '3. 원클릭 배포 — Docker 컨테이너 자동 생성 및 서비스 등록'
+            }
+          ]
+        },
+        {
+          title: 'AI Console',
+          gallery: [
+            {
+              src: 'images/projects/soundmind_console_dashboard.png',
+              alt: 'Console - Dashboard',
+              caption: '1. Dashboard — 서비스 상태, GPU 할당, 모델 서빙 현황'
+            },
+            {
+              src: 'images/projects/soundmind_console_analysis.png',
+              alt: 'Console - Analysis',
+              caption: '2. Analysis — 문서 분석 → 전략 추천 → 배포 통합 워크플로우'
+            },
+            {
+              src: 'images/projects/soundmind_console_eval.png',
+              alt: 'Console - Evaluation',
+              caption: '3. Evaluation — A/B 테스트 실행 및 통계 결과 시각화'
+            },
+            {
+              src: 'images/projects/soundmind_console_infra.png',
+              alt: 'Console - Infrastructure',
+              caption: '4. Infrastructure — Pipeline 관리, 헬스체크, Grafana 임베딩'
+            },
+            {
+              src: 'images/projects/soundmind_console_admin.png',
+              alt: 'Console - Admin',
+              caption: '5. Admin — 사용자/회사 관리, 권한 설정, 사용량 대시보드'
+            }
+          ]
+        },
+        {
+          title: 'Eval & Monitoring',
+          gallery: [
+            {
+              src: 'images/projects/soundmind_eval_experiment.png',
+              alt: 'Eval - Experiment',
+              caption: '1. Eval — 5차원 LLM-as-Judge 평가 실행'
+            },
+            {
+              src: 'images/projects/soundmind_eval_abtest.png',
+              alt: 'Eval - A/B Test',
+              caption: '2. Eval — A/B 테스트 통계 검증 결과'
+            },
+            {
+              src: 'images/projects/soundmind_monitoring_overview.png',
+              alt: 'Monitoring - System Overview',
+              caption: '3. Monitoring — 전체 에코시스템 실시간 로그 대시보드'
+            },
+            {
+              src: 'images/projects/soundmind_monitoring_platform.png',
+              alt: 'Monitoring - Platform Detail',
+              caption: '4. Monitoring — 플랫폼별 상세 메트릭 및 에러 추적'
             }
           ]
         }
       ],
-      tags: ['LangGraph', 'RAG', 'MSA', 'Weaviate', 'Qdrant', 'FastAPI', 'vLLM', 'BGE-M3', 'Ablation Study']
+      tags: ['LangGraph', 'Advanced RAG', 'MSA', 'Dual Vector DB', 'VLM', 'FastAPI', 'Docker', 'LLM-as-Judge']
     },
     'wigvo': {
       title: 'WIGVO - 실시간 PSTN 음성 번역',
       image: 'images/companies/soundmind.png',
       meta: {
-        organization: 'Soundmind-Labs (ACL 2026 Under Review)',
+        organization: 'WIGTN Crew (ACL 2026 Under Review)',
         role: '100% 단독 개발',
         period: '2025.09 ~ 2026.03',
         architecture: 'FastAPI + OpenAI Realtime + Twilio + Cloud Run'
       },
       disclaimer: {
         show: true,
-        text: '본 프로젝트는 ACL 2026에 투고 중인 연구 프로젝트입니다. 169건의 프로덕션 통화로 검증되었습니다.'
+        text: 'WIGTN Crew 독립 연구로 진행된 프로젝트입니다. 169건의 프로덕션 통화로 검증되었습니다.'
       },
       sections: [
         {
@@ -415,142 +479,58 @@ document.addEventListener('DOMContentLoaded', function() {
           subsections: [
             {
               subtitle: 'Problem',
-              content: '외국인·장애인의 전화 통역 접근성 문제를 해결하려 했지만, PSTN 협대역(8kHz) 환경에서는 에코 루프와 VAD 오작동으로 실시간 번역이 사실상 불가능했다. 글로벌 연구는 앱 기반 와이드밴드(16kHz+)에 집중되어 있고, 가장 큰 인프라인 PSTN은 연구 공백 상태.'
+              content: 'PSTN 협대역(8kHz) 환경에서 에코 루프와 VAD 오작동으로 실시간 번역이 불가능. 글로벌 연구는 앱 기반 와이드밴드(16kHz+)에 집중, PSTN은 연구 공백 상태.'
             },
             {
               subtitle: 'Solution',
-              content: '해커톤 미완성 프로토타입에서 멈추지 않고, PSTN 실패 원인을 직접 분석. VAD 처리 + Dual-Session Echo Gate-3-Filtered 파이프라인을 자체 설계해 에코 루프 80%→0% 해결, 레이턴시 555ms 달성. ACL 2026 System Demonstrations 투고 및 MVP 플랫폼 구현.'
+              content: 'PSTN 실패 원인을 직접 분석하여 3-Stage Audio Filter Pipeline을 자체 설계. 에코 루프 80%→0% 해결, 레이턴시 555ms 달성. ACL 2026 System Demonstrations 투고.'
             }
           ]
         },
         {
-          title: 'Overview',
-          content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>OpenAI Realtime API + Twilio Media Streams 기반으로 레거시 PSTN 전화망 위에서 동작하는 서버사이드 릴레이 아키텍처.',
+          title: 'What is this?',
+          content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>OpenAI Realtime API + Twilio Media Streams 기반, 레거시 PSTN 전화망 위에서 동작하는 서버사이드 릴레이 아키텍처.',
           subsections: [
             {
-              subtitle: '핵심 성과',
+              subtitle: '핵심 구성',
               list: [
-                '<strong>에코 루프 80% → 0%</strong>: 3-Stage Audio Filter Pipeline으로 자기 강화 번역 루프 완전 제거',
-                '<strong>레이턴시 555ms (P50)</strong>: 전문 동시통역 범위(2~5초) 내 실시간 번역 달성',
-                '<strong>169건 프로덕션 통화</strong>: 241.4분 총 통화 시간, $64.71 총 비용',
-                '<strong>테스트 430+</strong>: 단위·통합·E2E 테스트 커버리지'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Problem: 에코 루프',
-          content: '<strong>에코 유발 자기 강화 번역 루프(echo-induced self-reinforcing translation loop)</strong><br><br>PSTN 전화망의 물리적 특성으로 AI가 생성한 TTS 음성이 되돌아와 VAD가 상대방 발화로 오인식 → 다시 번역 → 무한 반복. 프로토타입 단계에서 <strong>통화의 80%가 에코 루프로 실패</strong>했다.',
-          subsections: [
-            {
-              subtitle: '핵심 난이도',
-              content: '"에코와 실제 발화를 구분해야 하는데, 둘 다 같은 음성 스트림으로 들어온다"'
-            }
-          ]
-        },
-        {
-          title: 'Solution: 3-Stage Audio Filter',
-          subsections: [
-            {
-              subtitle: 'Stage 0: Echo Gate (결정론적 차단)',
-              list: [
-                'TTS 재생 중 mu-law silence(0xFF)로 VAD 입력 차단',
-                '동적 쿨다운: cooldown = remaining_playback + echo_margin(0.3s)',
-                'Post-echo settling(0.5~1.5s)으로 에코 꼬리 감쇠 대기'
-              ]
-            },
-            {
-              subtitle: 'Stage 1: RMS Energy Gate',
-              list: [
-                'Echo window 중 400 RMS 이상만 통과',
-                'Window 밖에서 150 RMS 미만 silence 처리'
-              ]
-            },
-            {
-              subtitle: 'Stage 2: Silero VAD',
-              list: [
-                '비대칭 히스테리시스(onset 96ms / offset 480ms)',
-                '8kHz → 16kHz 업샘플링 + 512 sample 프레임 어댑터',
-                'Cloud Run gVisor 환경 호환 처리'
+                '<strong>3-Stage Audio Filter</strong> — Echo Gate(결정론적 차단) + RMS Energy Gate + Silero VAD',
+                '<strong>Strategy 패턴</strong> — VoiceToVoice · TextToVoice · FullAgent 3개 파이프라인',
+                '<strong>Whisper 환각 필터</strong> — 4단계 가드레일로 169건 통화 중 109건 환각 차단',
+                '<strong>COMET 품질 평가</strong> — EN→KO 0.7078 / KO→EN 0.6242'
               ]
             }
           ]
         },
         {
-          title: 'Strategy 패턴 파이프라인',
-          content: '<strong>557줄 God Object → 3개 파이프라인 분리</strong>',
+          title: 'Key Metrics',
+          content: '<strong>169건 프로덕션 통화 · 241.4분 총 통화 시간 · 430+ 테스트</strong>',
           subsections: [
             {
-              subtitle: '아키텍처 개선',
+              subtitle: '성능',
               list: [
-                '<strong>BasePipeline (ABC)</strong>: 144줄, 공통 인터페이스',
-                '<strong>VoiceToVoicePipeline</strong>: 615줄, 양방향 음성 번역',
-                '<strong>TextToVoicePipeline</strong>: 615줄, 텍스트→음성',
-                '<strong>FullAgentPipeline</strong>: 72줄, TextToVoice 상속 + Agent',
-                '<strong>EchoGateManager</strong>: 329줄, V2V/T2V 공유 모듈'
-              ]
-            },
-            {
-              subtitle: '결과',
-              list: [
-                'AudioRouter <strong>72% 코드량 감소</strong> (557 → 153줄)',
-                '모드별 독립 테스트 가능',
-                '~120줄 중복 코드 제거'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Whisper Hallucination 4단계 필터',
-          content: 'Whisper STT가 무음/잡음 구간에서 의미 없는 텍스트를 생성하는 환각 현상 차단 (총 663줄)',
-          subsections: [
-            {
-              subtitle: '가드레일 시스템',
-              list: [
-                '<strong>Dictionary (143줄)</strong>: 다국어 차단 사전 (4개 언어, 100+ 항목)',
-                '<strong>Filter (186줄)</strong>: 정규식 + 키워드 매칭, 100자/초 초과 시 환각 판정',
-                '<strong>Checker (199줄)</strong>: 3단계 심각도 분류 (PASS/비동기 교정/동기 차단)',
-                '<strong>Fallback LLM (124줄)</strong>: GPT-4o-mini로 Level 2/3 교정'
-              ]
-            },
-            {
-              subtitle: '성과',
-              content: '169건 통화에서 <strong>109건 환각 차단</strong> (통화당 0.7회)'
-            }
-          ]
-        },
-        {
-          title: 'Metrics (169건 프로덕션 통화)',
-          subsections: [
-            {
-              subtitle: '레이턴시',
-              list: [
-                'Session A: <strong>555ms / 1,156ms</strong> (P50/P95)',
-                'Session B E2E: <strong>2,868ms / 15,482ms</strong> (P50/P95)',
-                '첫 메시지: <strong>1,215ms / 6,890ms</strong> (P50/P95)'
-              ]
-            },
-            {
-              subtitle: '품질 & 비용',
-              list: [
-                '에코 루프: <strong>0건</strong> (80% → 0%)',
-                '번역 품질 (COMET): EN→KO 0.7078 / KO→EN 0.6242',
+                '에코 루프: <strong>80% → 0%</strong>',
+                '레이턴시 (P50): <strong>555ms</strong> — 전문 동시통역 범위(2~5초) 이내',
                 '통화당 비용: <strong>$0.27~0.28/분</strong> (전문 통역 $1~3/분 대비 1/4~1/10)'
               ]
             }
           ]
         }
       ],
-      tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'asyncio', 'Strategy Pattern', 'ACL 2026']
+      tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'ACL 2026']
     },
-    'vlm-research': {
-      title: 'VLM 기반 문서 파싱 구조 보존 연구',
+    'wigtn-ocr': {
+      title: 'WigtnOCR - VLM 문서 구조 보존 파싱',
       image: 'images/companies/soundmind.png',
       meta: {
-        organization: 'Soundmind-Labs (EMNLP 2026 In Preparation)',
+        organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
         role: '100% 단독 연구',
         period: '2026.01 ~ 현재',
         architecture: 'Qwen3-VL + LoRA + vLLM + BGE-M3'
+      },
+      disclaimer: {
+        show: true,
+        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라를 활용하고 있습니다.'
       },
       sections: [
         {
@@ -558,201 +538,52 @@ document.addEventListener('DOMContentLoaded', function() {
           subsections: [
             {
               subtitle: 'Problem',
-              content: '아무리 정교한 RAG Pipeline을 구축해도, 비정형 문서의 Chunking 과정에서 Data Loss가 발생해 성능 한계가 명확했다. B2B2G 납품 구조상 최종 End User가 누구인지, 어떤 문서가 들어올지 사전에 알 수 없어 도메인 데이터 분석 자체가 불가능한 상황. 범용적으로 문서 구조를 보존할 수 있는 파싱 전략이 필요했다.'
+              content: 'RAG Pipeline을 아무리 정교하게 구축해도 문서 Chunking 과정에서 구조 정보가 소실(Structure F1 = 0%)되어 성능 한계가 명확. B2B2G 구조상 어떤 문서가 들어올지 사전에 알 수 없어 범용 파싱 전략이 필요했다.'
             },
             {
               subtitle: 'Solution',
-              content: 'OSS OCR 모델 대신 Prompt를 이해하는 SLM을 활용하면 구조화 품질이 높아진다는 것을 Feasibility Study로 확인. Qwen3-VL-2B-Instruct 기반 Cumulation 학습으로 한국어 공문서 구조 보존 파싱 모델을 연구 중. EMNLP 2026 Industry Track 투고 목표.'
+              content: 'Prompt를 이해하는 VLM(Qwen3-VL-2B)을 활용한 Two-Stage Parsing으로 Structure F1을 0% → 79%로 개선. EMNLP 2026 Industry Track 투고 목표로 연구 진행 중.'
             }
           ]
         },
         {
-          title: 'Overview',
-          content: '<strong>RAG 파이프라인에서 VLM 기반 문서 파싱의 구조 보존 효과를 종합 평가</strong><br><br>전통적 OCR(PyMuPDF, RapidOCR)은 텍스트 추출은 가능하나 문서 구조 보존에 실패(Structure F1 = 0%). VLM 기반 Two-Stage Parsing이 이를 해결한다.',
+          title: 'What is this?',
+          content: '<strong>VLM 기반 문서 파싱의 구조 보존 효과를 종합 평가하는 연구</strong><br><br>전통적 OCR은 텍스트 추출은 가능하나 표·헤더·레이아웃 등 문서 구조를 보존하지 못합니다. VLM Two-Stage Parsing이 이 문제를 해결하며, SoundMind Ecosystem의 Analysis Platform에 직접 적용될 예정.',
           subsections: [
             {
-              subtitle: '핵심 성과',
+              subtitle: '연구 구성',
               list: [
-                '<strong>Structure F1: 0% → 79%</strong> (79pp 개선)',
-                '<strong>3단계 평가 프레임워크</strong>: CER/WER → Structure F1 → BC/CS',
-                '<strong>39개 arXiv 논문</strong> 자동 GT 생성 파이프라인 구축 (성공률 80%)'
+                '<strong>4-Parser 비교 실험</strong> — Text/Image × Baseline/Advanced 조합',
+                '<strong>3단계 평가 프레임워크</strong> — CER/WER → Structure F1 → BC/CS(청킹 품질)',
+                '<strong>arXiv GT 자동 생성</strong> — LaTeX → Markdown 변환 파이프라인 (39개 논문, 성공률 80%)',
+                '<strong>3-Tier VLM 서빙</strong> — Qwen3-VL 30B/8B/2B 역할 분리 운용'
               ]
             }
           ]
         },
         {
-          title: '3개 연구 질문',
+          title: 'Key Metrics',
           subsections: [
             {
-              subtitle: 'RQ1: OCR 추출 품질 (전제 검증)',
-              content: 'CER/WER 메트릭으로 OCR 추출 품질이 VLM 입력으로 충분한지 검증'
-            },
-            {
-              subtitle: 'RQ2: 구조 보존 효과 (핵심 가설)',
-              content: 'Structure F1 메트릭으로 VLM Two-Stage Parsing의 구조 보존 효과 검증'
-            },
-            {
-              subtitle: 'RQ3: 다운스트림 효과',
-              content: 'BC(Boundary Clarity)/CS(Chunk Stickiness) 메트릭으로 시맨틱 청킹 품질 검증'
-            }
-          ]
-        },
-        {
-          title: '4-Parser 실험 설계',
-          list: [
-            '<strong>Text-Baseline</strong>: PyMuPDF (디지털 PDF, 속도 우선)',
-            '<strong>Image-Baseline</strong>: RapidOCR (스캔 PDF, 속도 우선)',
-            '<strong>Text-Advanced</strong>: PyMuPDF + Qwen3-VL-2B (디지털 PDF, 구조 우선)',
-            '<strong>Image-Advanced</strong>: RapidOCR + Qwen3-VL-2B (스캔 PDF, 구조 우선)'
-          ]
-        },
-        {
-          title: 'Structure F1 결과',
-          content: '<strong>핵심 결과: 학술 논문(test_3)에서 F1 79.25% 달성</strong>',
-          subsections: [
-            {
-              subtitle: 'Precision/Recall 상세',
+              subtitle: '성능',
               list: [
-                '<strong>Text-Baseline</strong>: P=0%, R=0%, F1=0% (TP=0, FP=11, FN=24)',
-                '<strong>Text-Advanced</strong>: P=72.41%, R=87.50%, F1=79.25% (TP=21, FP=8, FN=3)'
+                'Structure F1: <strong>0% → 79.25%</strong> (+79pp)',
+                'CER Trade-off: 40.79% → 57.71% (+17pp)',
+                'Latency Trade-off: 0.27s → 42.92s (x159)',
+                '프롬프트 v1(0%) → v2(79.25%): 2B 소형 모델에서 명시적 규칙이 핵심'
               ]
             },
             {
-              subtitle: 'Trade-off',
+              subtitle: '인프라',
               list: [
-                'CER: 40.79% → 57.71% (+17pp)',
-                'Structure F1: 0% → 79.25% (+79pp)',
-                'Latency: 0.27s → 42.92s (x159)'
-              ]
-            }
-          ]
-        },
-        {
-          title: '프롬프트 엔지니어링 발견',
-          content: '<strong>프롬프트 v1(0%) → v2(79.25%)</strong>: 2B 소형 모델에서 명시적 규칙이 핵심',
-          subsections: [
-            {
-              subtitle: '핵심 인사이트',
-              list: [
-                'CRITICAL RULES + 명시적 헤딩 매핑 ("1 → ##, 2.1 → ###")',
-                'System/User 프롬프트 분리가 구조 생성 품질 향상',
-                '"MUST", "NEVER" 같은 명시적 규칙이 암시적 지시보다 효과적'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'arXiv GT 자동 생성 파이프라인',
-          content: 'LaTeX → pandoc → Markdown GT 자동 변환 (수동 작성 없이)',
-          subsections: [
-            {
-              subtitle: '5회 점진적 해결',
-              list: [
-                'pandoc LaTeX 조건문 크래시 → strip_conditionals() 추가',
-                '.bbl 파일 regex 특수문자 → lambda 패턴',
-                'pandoc \\end{abstract} 거부 → 2단계 전략 파이프라인',
-                '\\newcommand 매개변수 → 중괄호 균형 추적',
-                '성공률: 20% → <strong>80%</strong> (39개 논문 확보)'
-              ]
-            }
-          ]
-        },
-        {
-          title: '인프라',
-          subsections: [
-            {
-              subtitle: '하드웨어',
-              content: 'Dual RTX PRO 6000 Blackwell (각 96GB VRAM), 128GB DDR5 RAM'
-            },
-            {
-              subtitle: '3-Tier VLM 서빙',
-              list: [
-                '<strong>Qwen3-VL-30B-A3B-Thinking</strong> (port 8000): Pseudo GT 생성용',
-                '<strong>Qwen3-VL-8B-Thinking-FP8</strong> (port 8004): 검증/어블레이션용',
-                '<strong>Qwen3-VL-2B-Instruct</strong> (port 8010): 프로덕션 추론 + LoRA 베이스'
+                'Dual RTX PRO 6000 Blackwell (각 96GB VRAM), 128GB DDR5 RAM',
+                '39개 arXiv 논문 GT 자동 생성 (성공률 20% → 80%)'
               ]
             }
           ]
         }
       ],
-      tags: ['Qwen3-VL', 'LoRA', 'vLLM', 'BGE-M3', 'Structure F1', 'Ablation Study', 'arXiv', 'EMNLP 2026']
-    },
-    'kocca': {
-      title: 'KOCCA - AI 한국어 말하기 평가 시스템',
-      image: 'images/companies/soundmind.png',
-      meta: {
-        organization: '정부 R&D 컨소시엄 (한국콘텐츠진흥원)',
-        role: 'System Architect',
-        period: '2026.01 ~ 현재',
-        architecture: 'WhisperX + EXAONE-Score + FastAPI'
-      },
-      sections: [
-        {
-          title: 'Overview',
-          content: '<strong>외국인 한국어 말하기 능력을 AI로 자동 평가하는 시스템</strong><br><br>대학 연구진의 AI 채점 모델(EXAONE-Score)을 연동하여 음성 녹음 → STT → 채점 → 6등급 매핑 파이프라인을 구축.',
-          subsections: [
-            {
-              subtitle: '핵심 역할',
-              list: [
-                '<strong>전체 시스템 아키텍처 설계</strong>: STT → 채점 → 등급 매핑 파이프라인',
-                '<strong>선행-후행 2단계 로드맵</strong> 수립: CLI Prototype → 50인 동시 시험 플랫폼',
-                '<strong>대학 연구진 AI 모델 연동</strong>: EXAONE-Score 채점 API 통합'
-              ]
-            }
-          ]
-        },
-        {
-          title: '2단계 로드맵',
-          subsections: [
-            {
-              subtitle: '선행: CLI Prototype (현재)',
-              list: [
-                '텍스트 입력 → EXAONE-Score 채점 → 점수 + 등급 출력',
-                '단일/배치(CSV) 테스트 지원',
-                '<strong>21,505건 test.csv</strong> 배치 채점으로 모델 정확도 검증'
-              ]
-            },
-            {
-              subtitle: '후행: 시험 플랫폼',
-              list: [
-                '음성 녹음 → WhisperX STT → 채점 → 결과 표시',
-                '<strong>50인 동시</strong> 시험 처리 가능한 웹 플랫폼',
-                '시험 관리자용 대시보드'
-              ]
-            }
-          ]
-        },
-        {
-          title: '6등급 체계',
-          content: '총점(언어+내용 평균, 0~5) 기반 등급 매핑. config.yaml에서 범위 변경 가능.',
-          list: [
-            '1급: 0.0 ~ 0.9',
-            '2급: 1.0 ~ 1.9',
-            '3급: 2.0 ~ 2.9',
-            '4급: 3.0 ~ 3.9',
-            '5급: 4.0 ~ 4.9',
-            '6급: 5.0'
-          ]
-        },
-        {
-          title: '기술적 판단',
-          subsections: [
-            {
-              subtitle: '선행-후행 분리 이유',
-              content: 'EXAONE-Score 채점 모델의 정확도가 검증되지 않은 상태에서 바로 시험 플랫폼을 구축하면, 채점 정확도 문제가 플랫폼 전체의 신뢰성을 훼손할 수 있다. CLI Prototype으로 먼저 21,505건의 테스트 데이터에 대해 채점 정확도를 검증하고, 그 결과에 따라 모델 개선 또는 플랫폼 구축을 결정하는 것이 리스크를 최소화하는 접근.'
-            },
-            {
-              subtitle: '알려진 한계',
-              list: [
-                'EXAONE-Score는 question-answer 쌍만으로 채점 (expected_answer 미활용)',
-                'temperature=0.7로 동일 입력에도 점수 소폭 변동 가능',
-                'GEN_LOCK으로 동시 1개 배치만 처리 → 후행에서 큐 기반 비동기 처리 필요'
-              ]
-            }
-          ]
-        }
-      ],
-      tags: ['WhisperX', 'EXAONE', 'FastAPI', 'EdTech', 'Government R&D', 'STT', 'Korean NLP']
+      tags: ['Qwen3-VL', 'LoRA', 'vLLM', 'Structure F1', 'arXiv', 'EMNLP 2026']
     },
     'wigtn-coding': {
       title: 'WIGTN Claude Code Skills Plugins',
@@ -765,92 +596,22 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'Overview',
-          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인입니다. 12개의 전문 에이전트, 3개의 커맨드, 3개의 레퍼런스 스킬로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.<br><br>⭐ GitHub Stars 14 · v2.0.0',
+          title: 'What is this?',
+          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인. 12개의 전문 에이전트, 3개의 커맨드, 3개의 레퍼런스 스킬로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.<br><br>⭐ GitHub Stars 14 · v2.0.0',
           subsections: [
             {
-              subtitle: '핵심 가치',
+              subtitle: '핵심 구성',
               list: [
-                '<strong>PRD → 구현 → 검증 → 배포</strong> 전 과정을 AI와 협업하여 가속화',
-                '초보자도 시니어 수준의 개발 프로세스를 경험할 수 있는 가이드 제공',
-                '팀 빌드 병렬화 — 백엔드·프론트엔드·AI·Ops 팀 동시 구현',
-                '오픈소스로 공개하여 커뮤니티 기여'
-              ]
-            }
-          ]
-        },
-        {
-          title: '12 Agents',
-          content: '각 도메인에 특화된 전문 에이전트가 자동으로 호출되어 작업을 수행합니다.',
-          subsections: [
-            {
-              subtitle: '기획 & 분석',
-              list: [
-                '<strong>prd-reviewer</strong> — PRD 품질 분석 (완성도, 실현가능성, 보안, 일관성)',
-                '<strong>architecture-decision</strong> — MSA vs Monolithic 아키텍처 의사결정',
-                '<strong>parallel-digging-coordinator</strong> — 4개 병렬 에이전트를 조율하여 PRD 취약점 심층 분석'
+                '<strong>12 Agents</strong> — 기획(PRD 분석, 아키텍처 결정) · 구현(팀 병렬 빌드, FE/BE/Mobile/AI) · 검증(100점 코드 리뷰, 포맷팅)',
+                '<strong>3 Commands</strong> — /prd(PRD 자동 생성) · /implement(팀 빌드 실행) · /auto-commit(Quality Gate + 자동 커밋)',
+                '<strong>3 Skills</strong> — 16가지 디자인 스타일 가이드 · 코드 리뷰 레벨 참조 · 팀 메모리 프로토콜'
               ]
             },
             {
-              subtitle: '구현 & 빌드',
-              list: [
-                '<strong>team-build-coordinator</strong> — Backend·Frontend·AI·Ops 팀 병렬 빌드 조율',
-                '<strong>frontend-developer</strong> — React 19, Next.js 16, 12+ 디자인 스타일 지원',
-                '<strong>backend-architect</strong> — 백엔드 아키텍처 설계 및 고급 패턴 구현',
-                '<strong>mobile-developer</strong> — React Native / Expo 크로스플랫폼 모바일 개발',
-                '<strong>ai-agent</strong> — STT, LLM, AI 서비스 통합 (OpenAI, Anthropic 등)',
-                '<strong>design-discovery</strong> — VS(Verbalized Sampling) 기법 기반 디자인 탐색'
-              ]
-            },
-            {
-              subtitle: '검증 & 품질',
-              list: [
-                '<strong>code-reviewer</strong> — 100점 스코어링 (가독성, 유지보수성, 성능, 테스트, BP)',
-                '<strong>code-formatter</strong> — 자동 포맷팅, 린트 수정, 코딩 표준 적용',
-                '<strong>parallel-review-coordinator</strong> — 3개 병렬 리뷰어 조율 + Security Zero-Tolerance'
-              ]
+              subtitle: 'WIGTN Crew',
+              content: '주니어 AI 개발자들의 성장을 위한 크루 WIGTN을 리딩하고 있습니다. AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각하며, 이 플러그인은 그 철학을 실천하기 위한 결과물입니다.'
             }
           ]
-        },
-        {
-          title: '3 Commands',
-          content: '슬래시 커맨드로 즉시 실행 가능한 핵심 워크플로우입니다.',
-          subsections: [
-            {
-              subtitle: '/prd',
-              content: '모호한 기능 요청을 구조화된 PRD 문서로 자동 변환. 바이브 코딩 친화 — "~하는거 만들고 싶어"만으로 시작 가능.'
-            },
-            {
-              subtitle: '/implement',
-              content: 'PRD 명세 기반 체계적 구현. 아키텍처 분석 → 팀 배정 → 병렬 빌드 → Context Harvesting으로 프로젝트 패턴 자동 학습.'
-            },
-            {
-              subtitle: '/auto-commit',
-              content: '변경 분석 → Quality Gate(100점 스코어링) → Safety Guard → 지능형 커밋 메시지 생성 → 자동 푸시.'
-            }
-          ]
-        },
-        {
-          title: '3 Skills',
-          content: '에이전트들이 참조하는 레퍼런스 시스템입니다.',
-          subsections: [
-            {
-              subtitle: 'design-system-reference',
-              content: '16가지 디자인 스타일 가이드 (Editorial, Brutalist, Glassmorphism, Liquid Glass 등) + 색상·애니메이션·스페이싱 공통 규칙'
-            },
-            {
-              subtitle: 'code-review-levels',
-              content: 'Deep Review(Level 3)와 Architecture Review(Level 4) 참조 문서. code-reviewer 에이전트가 활용.'
-            },
-            {
-              subtitle: 'team-memory-protocol',
-              content: '팀 빌드 간 공유 컨텍스트(SHARED_CONTEXT) 관리 프로토콜. TaskCreate 연동 및 Auto Memory 규칙 정의.'
-            }
-          ]
-        },
-        {
-          title: 'WIGTN Crew',
-          content: '저는 주니어 AI 개발자들의 성장을 위한 크루 <strong>WIGTN</strong>을 리딩하고 있습니다. AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각하며, 이 플러그인은 그 철학을 실천하기 위한 결과물입니다.'
         }
       ],
       tags: ['Claude Code', 'Plugin', 'AI-Native', '12 Agents', 'Parallel Build', 'Open Source']
@@ -867,119 +628,29 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'Background',
-          content: '<strong>"우리 LLM 서버, 동시 접속자 몇 명까지 가능할까요?"</strong><br><br>금요일 퇴근 무렵, 상사분의 질문에서 이 프로젝트가 시작되었습니다.<br><br>제가 있는 규모가 작은 조직에서는 "인프라 평가 / 성능 테스트"가 담당자에게 축적되기보다, 필요할 때마다 누군가가 임시로 맡아서 처리하게 됩니다. 그러면 <strong>"비개발자도 누구나 돌려볼 수 있는 사내 공용 LLM LoadTester"</strong>를 만들어보자는 생각으로 주말 프로젝트를 시작했습니다.'
-        },
-        {
-          title: 'Problem',
+          title: 'Problem / Solution',
           subsections: [
             {
-              subtitle: '기술적 문제',
-              content: '기존 벤치마킹 도구들은 개발자 친화적이라, 비개발직군의 LLM 특화 메트릭(TTFT, TPOT, ITL) 시각화 지원이 부족합니다.'
+              subtitle: 'Problem',
+              content: '기존 LLM 벤치마킹 도구는 CLI 기반에 개발자 전용. 비개발 직군은 LLM 서빙 성능 테스트에 접근하기 어렵고, SLO 기반 품질 평가(Goodput) 기능도 부재.'
             },
             {
-              subtitle: '접근성 문제',
-              content: '기존 도구들은 CLI 기반에 복잡한 설정이 필요해, 비개발 직군이나 비전공자가 쉽게 접근하기 어렵습니다.'
-            },
-            {
-              subtitle: '품질 평가 문제',
-              content: '단순 처리량만 측정하고, SLO 기반 품질 평가(Goodput)를 지원하지 않습니다.'
+              subtitle: 'Solution',
+              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 2일 만에 풀스택 완성.'
             }
           ]
         },
         {
-          title: 'Solution',
-          list: [
-            'OpenAI 호환 API 서버 지원 (vLLM, SGLang, Ollama, LMDeploy, TensorRT-LLM)',
-            'LLM 특화 메트릭: TTFT, TPOT, E2E Latency, ITL, Throughput',
-            'Goodput 메트릭: SLO 임계값 기반 품질 평가',
-            '실시간 WebSocket 기반 진행 상황 모니터링',
-            'GPU 메트릭 수집 (메모리, 사용률, 온도, 전력)',
-            '인프라 추천 엔진'
-          ]
-        },
-        {
-          title: 'AI-Native Fast Build',
-          content: '<strong>WIGTN과 AI-Native 개발</strong><br><br>저는 <strong>WIGTN</strong>이라는 주니어 개발자 크루를 이끌고 있습니다. 저희는 AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각합니다.<br><br>그래서 Coding Agent인 Claude Code에 설치하여 사용할 수 있는 Workflow Tool Set, <strong>Claude Code Skills Plugins</strong>를 구축했습니다. 본 프로젝트는 해당 플러그인을 활용한 Fast Build 기반 프로젝트로, <strong>단 2일 만에</strong> 완성도 높은 풀스택 애플리케이션을 구축했습니다.',
+          title: 'What is this?',
+          content: '<strong>비개발직군도 사용할 수 있는 Web 기반 LLM 서빙 성능 벤치마킹 도구</strong><br><br>OpenAI 호환 API 서버(vLLM, SGLang, Ollama 등)를 대상으로 LLM 특화 메트릭을 측정하고 시각화합니다.',
           subsections: [
             {
-              subtitle: '사용한 도구',
+              subtitle: '핵심 기능',
               list: [
-                '<strong>Claude Code</strong>: Anthropic의 AI 코딩 어시스턴트',
-                '<strong>Claude Code Skills Plugins</strong>: 체계적인 개발 워크플로우 자동화',
-                '/prd: 요구사항 문서 자동 생성',
-                '/digging: PRD 취약점 분석',
-                '/implement: 구현 계획 수립',
-                '/auto-commit: 품질 검증 후 자동 커밋'
-              ]
-            },
-            {
-              subtitle: '개발 과정',
-              list: [
-                '<strong>Day 1</strong>: 요구사항 정의 → 아키텍처 설계 → 백엔드 핵심 로직 구현',
-                '<strong>Day 2</strong>: 프론트엔드 대시보드 → 통합 테스트 → Docker 배포 설정'
-              ]
-            },
-            {
-              subtitle: '핵심 인사이트',
-              content: 'AI 협업 개발은 단순히 코드를 대신 작성하는 것이 아닙니다. PRD 작성, 아키텍처 검토, 코드 리뷰, 테스트 등 전체 개발 라이프사이클을 가속화합니다.'
-            }
-          ]
-        },
-        {
-          title: 'Try Claude Code Skills Plugins',
-          highlight: true,
-          content: '<a href="https://github.com/wigtn/wigtn-plugins-with-claude-code.git" target="_blank">🔗 Claude Code Skills Plugins GitHub</a>'
-        },
-        {
-          title: 'Technical Details',
-          subsections: [
-            {
-              subtitle: '아키텍처',
-              content: 'MSA (Microservices Architecture) - API Service + Web Service'
-            },
-            {
-              subtitle: '비동기 설계',
-              content: 'asyncio + httpx로 고동시성 부하 생성'
-            },
-            {
-              subtitle: '어댑터 패턴',
-              content: '다양한 서버 타입 지원을 위한 확장 가능한 구조'
-            },
-            {
-              subtitle: '실시간 통신',
-              content: 'WebSocket으로 벤치마크 진행 상황 실시간 전달'
-            },
-            {
-              subtitle: '데이터 시각화',
-              content: 'Recharts를 활용한 인터랙티브 차트'
-            }
-          ]
-        },
-        {
-          title: 'Experiment Design',
-          content: 'Web 기반 시각화 + Setting 값 변경을 통한 반복 테스트가 가능한 <strong>플랫폼</strong> 형태로 구성했습니다.',
-          subsections: [
-            {
-              subtitle: 'Input: 실험 변수',
-              content: '유연한 의사결정을 돕는 핵심 변수들을 UI에서 직접 조정하며 반복 테스트가 가능합니다.',
-              list: [
-                '<strong>타겟 서버</strong>: vLLM, SGLang, Ollama 등 OpenAI 호환 API 서버',
-                '<strong>모델 설정</strong>: 테스트할 LLM 모델 선택',
-                '<strong>트래픽 규모</strong>: 동시 요청 수 (1, 10, 50, 100)',
-                '<strong>프롬프트 옵션</strong>: 입력/출력 토큰 길이 설정',
-                '<strong>SLO 기준값</strong>: 서비스 목표 임계값 (TTFT, TPOT)'
-              ]
-            },
-            {
-              subtitle: 'Output: 성능 지표',
-              content: '데이터 기반의 판단을 가능케 하는 지표들을 시각화합니다.',
-              list: [
-                '<strong>TTFT</strong> (Time To First Token): 첫 토큰까지의 지연 시간',
-                '<strong>TPOT</strong> (Time Per Output Token): 토큰당 생성 시간',
-                '<strong>p99 Latency</strong>: 99번째 백분위수 지연 시간',
-                '<strong>Throughput</strong>: 초당 처리량 (tokens/sec)',
-                '<strong>Goodput</strong>: SLO를 만족하는 유효 처리량'
+                '<strong>LLM 특화 메트릭</strong> — TTFT, TPOT, E2E Latency, ITL, Throughput',
+                '<strong>Goodput</strong> — SLO 임계값 기반 품질 평가 (단순 처리량이 아닌 유효 처리량)',
+                '<strong>실시간 모니터링</strong> — WebSocket 기반 진행 상황 + GPU 메트릭 수집',
+                '<strong>AI 분석 리포트</strong> — 벤치마크 결과 자동 분석 및 인프라 추천'
               ]
             }
           ]
@@ -990,17 +661,17 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               src: 'images/projects/llm-loadtester-dashboard.png',
               alt: 'LLM Loadtester Dashboard',
-              caption: '1. 대시보드 - 벤치마크 현황 및 히스토리'
+              caption: '1. 대시보드 — 벤치마크 현황 및 히스토리'
             },
             {
               src: 'images/projects/llm-loadtester-new.png',
               alt: 'New Benchmark Configuration',
-              caption: '2. 새 벤치마크 - 설정 및 실행'
+              caption: '2. 새 벤치마크 — 설정 및 실행'
             },
             {
               src: 'images/projects/llm-loadtester-result.png',
               alt: 'Benchmark Result',
-              caption: '3. 결과 - 메트릭 차트 및 Goodput 분석'
+              caption: '3. 결과 — 메트릭 차트 및 Goodput 분석'
             },
             {
               src: 'images/projects/llm-loadtester-analysis.png',
@@ -1008,58 +679,9 @@ document.addEventListener('DOMContentLoaded', function() {
               caption: '4. AI 분석 리포트 자동 생성'
             }
           ]
-        },
-        {
-          title: 'Open Source & Impact',
-          content: '<strong>누구나 무료로 사용할 수 있는 LLM 벤치마킹 도구</strong><br><br>이 프로젝트는 처음부터 오픈소스로 공개하기 위해 개발되었습니다.',
-          subsections: [
-            {
-              subtitle: '대상 사용자',
-              list: [
-                '<strong>주니어 개발자</strong>: AI 협업 개발 방법론 학습 및 실습',
-                '<strong>소규모 연구원</strong>: 복잡한 설정 없이 LLM 서빙 성능 실험',
-                '<strong>비전공자/기획자</strong>: 직관적인 UI로 LLM 서비스 도입 검증'
-              ]
-            },
-            {
-              subtitle: '오픈소스 기여 의의',
-              list: [
-                '상용 벤치마킹 도구 대비 무료로 핵심 기능 제공',
-                'Goodput 메트릭으로 실제 서비스 품질 평가 가능',
-                '커뮤니티 기여 및 피드백을 통한 지속적 개선'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Reflection',
-          content: '<strong>7개월차 주니어의 AI 협업 개발 경험</strong>',
-          subsections: [
-            {
-              subtitle: '성과',
-              list: [
-                '<strong>2일 완성</strong>: 주말 동안 AI-Native 개발 방법론으로 풀스택 애플리케이션 완성',
-                '<strong>개발 패러다임 전환</strong>: Claude Code Skills Plugins이 PRD → 구현 → 검증 전 과정을 지원',
-                '<strong>풀스택 경험</strong>: FastAPI + Next.js + Docker 통합 경험',
-                '<strong>실시간 시스템</strong>: WebSocket 기반 양방향 통신 구현'
-              ]
-            },
-            {
-              subtitle: '주니어로서의 인사이트',
-              content: '과거에 시니어가 되기까지 10년이 걸렸던 경험의 축적을, AI라는 강력한 파트너와 함께한다면 5년, 3년으로 압축할 수 있지 않을까요?<br><br>저와 같은 고민을 하는 주니어, 비전공자 분들에게 작은 도움이 될 수 있다면 좋겠습니다.'
-            },
-            {
-              subtitle: '향후 계획',
-              list: [
-                'Triton Inference Server 어댑터 완성',
-                '벤치마크 비교 기능 추가',
-                '커뮤니티 피드백 반영'
-              ]
-            }
-          ]
         }
       ],
-      tags: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'Docker', 'WebSocket', 'LLM', 'Claude Code', 'Open Source'],
+      tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'LLM', 'Open Source'],
       demoUrl: null
     },
     mcp: {
