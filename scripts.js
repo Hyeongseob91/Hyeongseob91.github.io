@@ -323,6 +323,46 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         },
         {
+          title: 'RAG Pipeline 고도화 과정',
+          content: '2026년 1월~3월, 6.5주 · 39개 커밋 · 3개 리포지토리에 걸친 단계적 진화.',
+          subsections: [
+            {
+              subtitle: '1단계 — Advanced RAG 구축 (1월)',
+              content: 'Query Rewrite (1→5 서브쿼리), Hybrid Search (Dense + Sparse + RRF), Reranking (Top-k=5), Generation 전 단계를 직접 구현. 한국어 문서 지원을 위해 Docling → pdfplumber + PaddleOCR로 파서 교체. Weaviate(Complex 질의 도메인, Hybrid Search 네이티브)와 Qdrant(Flat 구조 문서, Filter 기반)를 문서 복잡도에 따라 이원화 설계.'
+            },
+            {
+              subtitle: '2단계 — 정량 평가 (RAGAS 기반)',
+              content: 'RAGAS 기반 LLM-as-a-Judge 평가 프레임워크를 직접 구축. 평가 규모: 81개 Q&A Ground Truth · 11개 문서 · 3,678페이지. E2E 종합 점수: Naive RAG 68점 → Advanced RAG 71점. 기대 이하의 개선폭(+3점)을 확인.'
+            },
+            {
+              subtitle: '3단계 — Component 단위 Ablation Study',
+              content: '"왜 +3점밖에 안 나왔는가"를 규명하기 위해 E2E가 아닌 Component 단위 평가를 직접 설계·수행.<br><br>결과: <strong>Reranking 제거 시 -12.8%p</strong> (가장 임팩트 큰 핵심 컴포넌트), <strong>Query Decomposition 제거 시 +6.8%p</strong> (오히려 성능 향상 — 서브쿼리 품질 이슈 + 정보 희석 + GT의 81%가 Easy/Medium 질의로 구성된 데이터셋 특성).<br><br>핵심 인사이트: E2E 평가만으로는 Query Decomposition이 해롭다는 것을 발견 불가 → Node-level 평가의 필요성 입증.'
+            },
+            {
+              subtitle: '4단계 — 인사이트 → Ecosystem 설계 (3월)',
+              content: '"문서 특성에 따라 컴포넌트를 선택적으로 조립해야 한다"는 결론이 Analysis Platform 설계의 직접적 근거가 됨. 단일 모놀리틱 RAG(1월) → 모듈화 + Dual Pipeline(3월 초) → AI 기반 동적 파이프라인 라우팅(3월 5~8일)으로 진화. 실험 결과가 아키텍처 결정을 이끈 과정.'
+            }
+          ]
+        },
+        {
+          title: 'Analysis Platform — RAG 자동 추천 엔진',
+          content: '문서 업로드 → 3-Stage AI 분석 → 파이프라인 추천 → Docker 자동 배포. <strong>신규 RAG 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong>',
+          subsections: [
+            {
+              subtitle: 'Stage 1 — 병렬 문서 분석',
+              content: 'Gemini 2.5-flash(PDF 네이티브 분석 — 테이블·차트·레이아웃 시각 구조 인식)와 pdfplumber + Rule-based(텍스트 추출 후 구조/복잡도 스코어링)가 병렬 실행.'
+            },
+            {
+              subtitle: 'Stage 2 — 교차 검증',
+              content: 'GPT-4o가 Gemini 분석 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정.'
+            },
+            {
+              subtitle: 'Stage 3 — 전략 병합 및 동적 조립',
+              content: 'Strategy Engine이 Gemini + GPT + Rule-based 결과를 병합 → 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천. DynamicRAGPipeline이 ComponentRegistry → LangGraph StateGraph를 런타임에 동적으로 조립(6가지 그래프 토폴로지).'
+            }
+          ]
+        },
+        {
           title: 'Key Metrics',
           subsections: [
             {
