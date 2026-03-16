@@ -235,9 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
       image: 'images/companies/soundmind.png',
       meta: {
         organization: 'Soundmind-Labs',
-        role: 'AI Research Lead / System Architect',
+        role: 'AI Engineer & AI Researcher / AX Manager',
         period: '2025.07 ~ 현재',
-        architecture: 'MSA (9 Projects, 161 APIs)'
+        architecture: 'MSA (9 Projects · 161 APIs · ~9.4만 LoC · 803 소스파일 · 15+ Docker)'
       },
       disclaimer: {
         show: true,
@@ -251,67 +251,142 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '무엇을 하는 시스템인가',
               list: [
-                '고객 문서를 업로드하면 AI가 자동 분석하여 <strong>도메인 최적화 RAG Pipeline</strong>을 생성·배포',
-                '파트너사 영업팀은 <strong>PoC 데모를 즉시 구성</strong>하고, 담당자는 PlayGround에서 직접 체험',
-                '분석 → 배포 → 평가 → 모니터링까지 <strong>전 과정을 하나의 워크플로우</strong>로 자동화'
+                '고객 문서를 업로드하면 <strong>Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석</strong>으로 문서 특성을 자동 파악',
+                'AI가 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 <strong>최적 RAG Pipeline</strong>을 추천·생성·배포',
+                '고객사 담당 영업팀은 <strong>PoC 데모를 즉시 구성</strong>하고, 고객사는 PlayGround에서 직접 체험',
+                '분석 → 배포 → 평가 → 모니터링까지 <strong>전 과정을 하나의 워크플로우</strong>로 자동화',
+                '고객사 문서 도입시 <strong>신규 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축)</strong>'
               ]
             },
             {
               subtitle: '규모',
               list: [
-                '9개 프로젝트 · 161개 API · 15+ Docker 컨테이너',
+                '9개 프로젝트 · 161개 API · ~9.4만 줄 코드 · 803개 소스 파일 · 103+ 단위 테스트',
                 '최대 99개 RAG Pipeline 동시 운용 (포트 9201~9299)',
-                '7종 문서 포맷 지원 (PDF, DOCX, XLSX, TXT, JSON, HWP, HWPX)'
+                '9종 문서 포맷 지원 (PDF, DOCX, DOC, XLSX, XLS, TXT, JSON, HWP, HWPX)',
+                'LLM: OpenAI · Gemini 등 클라우드 API + vLLM 기반 로컬 모델 서빙'
               ]
             }
           ]
         },
         {
-          title: 'AI Platform — 고객 대면',
-          content: '고객과 파트너사가 직접 사용하는 서비스 플랫폼입니다.',
+          title: 'AI Platform — 고객 대면 (B2B SaaS)',
+          content: 'Console에서 생성된 맞춤형 RAG Pipeline을 고객이 현장에서 즉시 PoC 체험할 수 있는 서비스 플랫폼입니다. 3개의 독립 Agent 서비스를 제공하며, React 19 Web Console + FastAPI API Gateway(JWT 멀티테넌트 인증, SSE 스트리밍)로 구현되었습니다.',
           subsections: [
             {
-              subtitle: '기능',
+              subtitle: '① RAG Agent — 문서 기반 Q&A',
+              content: '고객이 업로드한 문서를 기반으로 질문에 답변하는 문서 특화 Q&A 에이전트입니다. Analysis Console에서 고객 문서 특성에 맞게 자동 생성·배포된 RAG Pipeline을 AI Platform이 자동으로 감지하여 연결합니다. 고객마다 서로 다른 맞춤형 파이프라인이 연결되므로, 동일한 플랫폼 위에서 고객별로 최적화된 검색·응답 경험을 제공합니다.',
               list: [
-                '<strong>RAG Agent</strong> — 업로드된 문서 기반 Q&A, 근거 문서 출처 및 검색 과정 시각화(Retrieval Insight)',
-                '<strong>AI Agent</strong> — 자율 도구 사용 기반 복합 태스크 수행',
-                '<strong>멀티테넌트 인증</strong> — JWT 기반 회사별 격리, 서비스별 접근 제어',
-                '<strong>자동 서비스 감지</strong> — Analysis에서 배포된 Pipeline을 자동 인식하여 PlayGround에 연결'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'AI Console — 운영·분석·평가 통합',
-          content: '문서 분석부터 품질 평가, 인프라 모니터링까지 운영 전체를 하나의 대시보드에서 관리하는 통합 플랫폼입니다.',
-          subsections: [
-            {
-              subtitle: 'Analysis',
-              list: [
-                '문서 업로드 → AI 분석 → 최적 RAG 전략 추천 → <strong>원클릭 Docker 배포</strong>',
-                'Pipeline Factory: 독립 컨테이너로 격리된 RAG Pipeline 자동 생성'
+                '<strong>Dynamic RAG Pipeline 연결</strong> — 최대 99개 파이프라인 동시 운용, Analysis에서 배포된 Pipeline을 자동 인식하여 연결',
+                '<strong>Retrieval Insight</strong> — 답변과 함께 근거 문서 출처와 검색 과정을 시각화하여 응답의 신뢰성 확보',
+                '<strong>Diversity-Aware Retrieval</strong> — Round-Robin 1st Pass + Score-Fill 2nd Pass로 다양한 관점의 정보를 균형 있게 검색',
+                'Semantic Chunking (threshold 0.90, 100~2000 tokens) · BGE-M3 임베딩 · BGE-Reranker-v2-M3'
               ]
             },
             {
-              subtitle: 'Console',
+              subtitle: '② Chat Agent — 자율형 AI 에이전트 (MVP 구현 완료)',
+              content: '문서에 국한되지 않고, LLM이 스스로 상황을 판단하여 필요한 도구를 선택·호출하는 자율형 에이전트입니다. LangGraph ReAct 아키텍처 기반으로 웹 검색, 계산, 코드 실행 등 복합 태스크를 단계적으로 수행합니다. 현재 MVP가 구현되어 내부 테스트 중입니다.'
+            },
+            {
+              subtitle: '③ AICC Agent — AI 컨택센터 (개발 예정)',
+              content: 'RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트입니다. 개발 예정.'
+            },
+            {
+              subtitle: '인증 · 권한',
               list: [
-                '분산된 Analysis·Eval·Grafana를 <strong>하나의 대시보드에 통합</strong>',
+                '무인증 → JWT → 게스트 → <strong>3-tier RBAC</strong>(Admin/Manager/Customer) → Guest BYOK',
+                'JWT 멀티테넌트 인증으로 고객사별 독립 환경 분리',
+                'Hook 시스템: 3단계 우선순위(CRITICAL/NORMAL/LOW) + fire-and-forget 패턴'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'AI Console — Analysis (문서 분석 → RAG 자동 배포)',
+          content: '고객 문서를 업로드하면 AI가 문서 특성을 다각도로 분석하고, 최적의 RAG Pipeline을 추천한 뒤 원클릭으로 Docker 컨테이너를 배포합니다. <strong>신규 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong>',
+          subsections: [
+            {
+              subtitle: '문서 분석 기준',
+              list: [
+                '<strong>문서 구조 복잡도</strong> — 표·차트·중첩 리스트·다단 레이아웃 등 시각적 구조 요소의 밀도와 복잡도를 스코어링',
+                '<strong>텍스트 밀도 및 도메인 특성</strong> — 텍스트 비율, 전문 용어 빈도, 문단 구조 패턴을 분석하여 도메인(법률·기술·일반) 분류',
+                '<strong>질의 난이도 예측</strong> — 문서 구조로부터 예상되는 질의 유형(단순 사실 조회 vs 다문서 종합 추론)을 예측',
+                '<strong>파싱 적합도</strong> — 텍스트 기반 파서로 충분한지, VLM 기반 시각 파싱이 필요한지 판단'
+              ]
+            },
+            {
+              subtitle: '3-Stage AI 분석 파이프라인',
+              list: [
+                '<strong>Stage 1</strong> — Gemini 2.5-flash(PDF 네이티브, 시각 구조 인식) + pdfplumber/Rule-based(텍스트 추출, 구조 스코어링) 병렬 실행',
+                '<strong>Stage 2</strong> — GPT-4o가 Stage 1 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정',
+                '<strong>Stage 3</strong> — Strategy Engine이 결과를 병합 → 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천'
+              ]
+            },
+            {
+              subtitle: '배포',
+              list: [
+                'DynamicRAGPipeline이 LangGraph StateGraph를 런타임에 동적 조립 (6가지 그래프 토폴로지)',
+                'Jinja2 템플릿 기반 Docker Compose 자동 생성 → 원클릭 배포',
+                'Pipeline Factory: 독립 컨테이너로 격리된 RAG Pipeline 자동 생성 (포트 9201~9299)'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'AI Console — Eval (RAG 품질 평가)',
+          content: '배포된 RAG Pipeline의 응답 품질을 정량적으로 평가하고, 전략 변경 전후의 효과를 통계적으로 검증합니다.',
+          subsections: [
+            {
+              subtitle: 'LLM-as-a-Judge 5차원 가중 평가',
+              list: [
+                '<strong>Faithfulness (30%)</strong> — 응답이 검색된 문맥에 충실한가',
+                '<strong>Relevance (25%)</strong> — 응답이 질문에 적절히 대응하는가',
+                '<strong>Completeness (20%)</strong> — 질문에 필요한 정보를 빠짐없이 포함하는가',
+                '<strong>Coherence (15%)</strong> — 응답이 논리적으로 일관되는가',
+                '<strong>Fluency (10%)</strong> — 자연스럽고 읽기 쉬운 문장인가'
+              ]
+            },
+            {
+              subtitle: 'A/B 테스트 통계 검증',
+              list: [
+                'Mann-Whitney U test + Bootstrap CI(1000회 리샘플링)로 전략 변경 효과를 통계적으로 검증',
+                'Cohen\'s d(효과 크기) + Holm-Bonferroni 보정으로 다중 비교 시 오류 방지',
+                'Redis 캐싱: Baseline 결과 캐싱으로 A/B 테스트 비용/시간 절반'
+              ]
+            },
+            {
+              subtitle: '추가 메트릭',
+              list: [
+                'Context Precision / Recall — 검색된 문맥의 정밀도와 재현율',
+                'Answer Correctness — Ground Truth 대비 정답률',
+                'Chunking Quality — 청킹 전략의 품질 평가'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'AI Console — Monitoring (실시간 모니터링)',
+          content: '전체 에코시스템의 로그를 중앙에서 수집·시각화하여 장애를 조기에 감지하고, 서비스 상태를 실시간으로 파악합니다.',
+          subsections: [
+            {
+              subtitle: '인프라 구성',
+              list: [
+                'Grafana 11.5.2 + Loki 3.4.2 + Promtail 3.4.2 기반 중앙 로그 수집',
+                'Docker 소켓 기반 비침투적(non-intrusive) 자동 수집 — 앱 코드 수정 불필요',
+                'ELK 대비 리소스 소비 현저히 낮음 — GPU 서버에서 모니터링 리소스 최소화'
+              ]
+            },
+            {
+              subtitle: '대시보드',
+              list: [
+                '4개 전용 대시보드: System Overview · AI Platform · Analysis · Eval',
+                'Model Serving 로그 대시보드 별도 운용',
                 '서비스 상태, GPU 할당, Pipeline 관리, 사용자/권한 설정까지 운영 전반 커버'
               ]
             },
             {
-              subtitle: 'Eval',
-              list: [
-                '<strong>LLM-as-a-Judge</strong> 5차원 품질 평가 (Faithfulness, Relevancy 등)',
-                'A/B 테스트 통계 검증으로 전략 변경 효과 정량 측정'
-              ]
-            },
-            {
-              subtitle: 'Monitoring',
-              list: [
-                'Grafana + Loki + Promtail 기반 중앙 로그 수집',
-                '4개 전용 대시보드로 전체 에코시스템 실시간 시각화'
-              ]
+              subtitle: '레이블 전략',
+              content: 'Labels(인덱스용, 카디널리티 낮음: level, platform, service)와 Structured Metadata(카디널리티 높음: logger, module, function)를 분리하여 Loki 인덱싱 효율을 최적화.'
             }
           ]
         },
@@ -333,11 +408,11 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: '2단계 — 정량 평가 (RAGAS 기반)',
-              content: 'RAGAS 기반 LLM-as-a-Judge 평가 프레임워크를 직접 구축. 평가 규모: 81개 Q&A Ground Truth · 11개 문서 · 3,678페이지. E2E 종합 점수: Naive RAG 68점 → Advanced RAG 71점. 기대 이하의 개선폭(+3점)을 확인.'
+              content: 'RAGAS 기반 LLM-as-a-Judge 평가 프레임워크를 직접 구축. 평가 규모: <strong>81개 Q&A Ground Truth · 11개 문서 · 3,678페이지</strong>.<br><br>핵심 실험 결과:<br>• Recursive 청킹이 Semantic 대비 <strong>600배 빠르면서 커버리지 유사</strong><br>• BGE-M3 임베딩: Hit@10=0.778, MRR=0.674<br>• Dense가 Hybrid 대비 MRR +2.3%p<br>• 리랭킹 MRR +3.9%p (지연시간 2.8배 증가)<br>• ROUGE-L(0.0501)/BLEU(0.0018) 사실상 무의미 → LLM Judge 중심 평가 결정의 근거<br><br>E2E 종합 점수: Naive RAG 68점 → Advanced RAG 71점. 기대 이하의 개선폭(+3점)을 확인.'
             },
             {
               subtitle: '3단계 — Component 단위 Ablation Study',
-              content: '"왜 +3점밖에 안 나왔는가"를 규명하기 위해 E2E가 아닌 Component 단위 평가를 직접 설계·수행.<br><br>결과: <strong>Reranking 제거 시 -12.8%p</strong> (가장 임팩트 큰 핵심 컴포넌트), <strong>Query Decomposition 제거 시 +6.8%p</strong> (오히려 성능 향상 — 서브쿼리 품질 이슈 + 정보 희석 + GT의 81%가 Easy/Medium 질의로 구성된 데이터셋 특성).<br><br>핵심 인사이트: E2E 평가만으로는 Query Decomposition이 해롭다는 것을 발견 불가 → Node-level 평가의 필요성 입증.'
+              content: '"왜 +3점밖에 안 나왔는가"를 규명하기 위해 E2E가 아닌 <strong>Component 단위 평가를 직접 설계·수행</strong>.<br><br>결과: <strong>Reranking 제거 시 -12.8%p</strong> (가장 임팩트 큰 핵심 컴포넌트), <strong>Query Decomposition 제거 시 +6.8%p</strong> (오히려 성능 향상 — 서브쿼리 품질 이슈 + 정보 희석 + GT의 81%가 Easy/Medium 질의로 구성된 데이터셋 특성).<br><br>핵심 인사이트: E2E 평가만으로는 Query Decomposition이 해롭다는 것을 발견 불가 → <strong>Node-level 평가의 필요성 입증</strong>. 이 발견이 Analysis Platform 자동 추천 시스템 설계의 직접적 근거가 됨.'
             },
             {
               subtitle: '4단계 — 인사이트 → Ecosystem 설계 (3월)',
@@ -346,20 +421,28 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: 'Analysis Platform — RAG 자동 추천 엔진',
-          content: '문서 업로드 → 3-Stage AI 분석 → 파이프라인 추천 → Docker 자동 배포. <strong>신규 RAG 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong>',
+          title: 'Analysis Platform — RAG 자동 추천 엔진 ("파이프라인 팩토리")',
+          content: '문서 업로드 → 3-Stage AI 분석 → 파이프라인 추천 → Docker 자동 배포. <strong>신규 RAG 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong><br><br>2-Tier 아키텍처: Analysis API(포트 9200, Control Plane) + 배포된 파이프라인(포트 9201~9299, Data Plane)',
           subsections: [
             {
-              subtitle: 'Stage 1 — 병렬 문서 분석',
-              content: 'Gemini 2.5-flash(PDF 네이티브 분석 — 테이블·차트·레이아웃 시각 구조 인식)와 pdfplumber + Rule-based(텍스트 추출 후 구조/복잡도 스코어링)가 병렬 실행.'
+              subtitle: 'Stage 1 — Dual-LLM 병렬 문서 분석',
+              content: '<strong>Gemini 2.5-flash</strong>(PDF 네이티브 분석 — 테이블·차트·레이아웃 시각 구조 인식)와 <strong>pdfplumber + Rule-based</strong>(텍스트 추출 후 구조/복잡도 스코어링)가 병렬 실행. Gemini 실패 시 다단계 폴백 전략으로 안정성 확보.'
             },
             {
-              subtitle: 'Stage 2 — 교차 검증',
-              content: 'GPT-4o가 Gemini 분석 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정.'
+              subtitle: 'Stage 2 — GPT-4o 교차 검증',
+              content: '<strong>GPT-4o</strong>가 Gemini 분석 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정. Dual-LLM 교차 검증으로 단일 모델 편향 방지.'
             },
             {
-              subtitle: 'Stage 3 — 전략 병합 및 동적 조립',
-              content: 'Strategy Engine이 Gemini + GPT + Rule-based 결과를 병합 → 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천. DynamicRAGPipeline이 ComponentRegistry → LangGraph StateGraph를 런타임에 동적으로 조립(6가지 그래프 토폴로지).'
+              subtitle: 'Stage 3 — 3-Layer 전략 아키텍처 & 동적 조립',
+              content: '<strong>Document Intelligence → Strategy Intelligence → Pipeline Assembly</strong> 3계층 구조.<br><br>Strategy Engine이 Gemini + GPT + Rule-based 결과를 병합 → <strong>4차원 전략 공간</strong>(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천.<br><br>DynamicRAGPipeline이 ComponentRegistry → LangGraph StateGraph를 <strong>런타임에 동적으로 조립</strong>(6가지 그래프 토폴로지). 정적 코드 완전 제거하고 uv workspace + 클린 아키텍처(ABC → 구현 → 오케스트레이션 → 앱) 적용.'
+            },
+            {
+              subtitle: '파이프라인 배포',
+              list: [
+                'Jinja2 템플릿 기반 Docker Compose 자동 생성',
+                'asyncio.Lock 동시성 보호 + 포트 자동 할당(9201-9299)',
+                '독립 컨테이너로 격리된 RAG Pipeline 자동 생성 및 서비스 등록'
+              ]
             }
           ]
         },
@@ -367,11 +450,20 @@ document.addEventListener('DOMContentLoaded', function() {
           title: 'Key Metrics',
           subsections: [
             {
-              subtitle: '성과',
+              subtitle: '정량적 성과',
               list: [
-                '<strong>Ablation Study</strong> — 단계별 성능 기여도 분석으로 -8.8% 저하 구간 발견 → 아키텍처 재설계 근거 확보',
-                '<strong>PoC 납품</strong> — DB 사업 회사 대상 34개 테스트 케이스, 3회 데모 리허설 포함 검수 프로세스 진행',
-                '<strong>Beta 운용</strong> — 15명 동시 사용 대비 동시성 처리 구현'
+                '<strong>배포 리드타임</strong> — 2주 → 5분 (99% 이상 단축)',
+                '<strong>RAG 품질</strong> — RAGAS 종합 점수 13%p 개선',
+                '<strong>Ablation Study</strong> — Reranking -12.8%p(핵심), Query Decomposition +6.8%p(성능 저하 요인) 도출',
+                '<strong>코드베이스</strong> — ~9.4만 줄 · 803 소스파일 · 161 API · 103+ 단위 테스트'
+              ]
+            },
+            {
+              subtitle: '비즈니스 성과',
+              list: [
+                '<strong>PoC 납품</strong> — DB 사업 회사 대상 8개 문서 · 34개 테스트 케이스 · Golden Path 3회 리허설 포함 검수 프로세스 완료',
+                '<strong>Beta 운용</strong> — 15명 동시 사용 대비 동시성 처리 구현',
+                '<strong>인프라</strong> — 15+ Docker 서비스, Grafana + Loki + Promtail 실시간 모니터링'
               ]
             }
           ]
@@ -501,101 +593,333 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     'wigvo': {
       title: 'WIGVO - 실시간 PSTN 음성 번역',
-      image: 'images/companies/soundmind.png',
+      image: 'images/projects/wigvo_logo.png',
+      imageContain: true,
       meta: {
-        organization: 'WIGTN Crew (ACL 2026 Under Review)',
-        role: '100% 단독 개발',
+        organization: 'WIGTN Crew (ACL 2026 Under Review, 제 1저자)',
+        role: '100% 단독 설계·개발 (228커밋 · 15일 · 55,269 LoC · 릴레이 서버 8,674 LoC)',
         period: '2025.09 ~ 2026.03',
-        architecture: 'FastAPI + OpenAI Realtime + Twilio + Cloud Run'
+        architecture: 'Python 3.12 FastAPI · OpenAI Realtime API · Twilio Media Streams · Next.js 16 · React Native/Expo · Supabase · Google Cloud Run'
       },
       disclaimer: {
         show: true,
-        text: 'WIGTN Crew 독립 연구로 진행된 프로젝트입니다. 169건의 프로덕션 통화로 검증되었습니다.'
+        text: 'WIGTN Crew 독립 연구로 진행된 프로젝트입니다. 169건의 프로덕션 통화(241.4분)로 검증되었으며, <strong>ACL 2026 System Demonstrations</strong>에 제 1저자로 논문을 투고했습니다.<br><em>"Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating"</em>'
       },
       sections: [
         {
-          title: 'Problem / Solution',
+          title: 'Overview',
+          content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>브라우저에서 말하면 상대방 전화기에서 번역된 음성이 들리고, 상대방이 대답하면 내 브라우저에 번역된 음성과 자막이 나타납니다. 상대방은 앱 설치 없이 일반 전화만 받으면 됩니다.',
           subsections: [
             {
-              subtitle: 'Problem',
-              content: 'PSTN 협대역(8kHz) 환경에서 에코 루프와 VAD 오작동으로 실시간 번역이 불가능. 글로벌 연구는 앱 기반 와이드밴드(16kHz+)에 집중, PSTN은 연구 공백 상태.'
+              subtitle: '누구를 위한 시스템인가',
+              list: [
+                '<strong>재한 외국인</strong> — 한국어로 전화할 수 없는 220만 거주 외국인 (2024)',
+                '<strong>해외 체류 한국인</strong> — 현지 언어로 전화할 수 없는 280만 해외 한국인',
+                '<strong>청각·언어 장애인</strong> — 음성 통화가 불가능한 39만 등록 장애인',
+                '<strong>콜포비아</strong> — 전화 자체를 기피하는 MZ세대 (~40%)'
+              ]
             },
             {
-              subtitle: 'Solution',
-              content: 'PSTN 실패 원인을 직접 분석하여 3-Stage Audio Filter Pipeline을 자체 설계. 에코 루프 80%→0% 해결, 레이턴시 555ms 달성. ACL 2026 System Demonstrations 투고.'
+              subtitle: '기존 시스템과의 차별점',
+              content: '기존 실시간 번역 시스템(SeamlessM4T, Moshi, Hibiki 등)은 앱 기반 와이드밴드(16kHz+) 오디오를 전제로 하며, Samsung Galaxy AI · SKT A.dot은 전용 하드웨어나 통신사 인프라가 필요합니다. <strong>WIGVO는 소프트웨어만으로 PSTN 전화망 위에서 양방향 실시간 음성 번역을 구현한 최초의 시스템</strong>입니다.'
             }
           ]
         },
         {
-          title: 'What is this?',
-          content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>OpenAI Realtime API + Twilio Media Streams 기반, 레거시 PSTN 전화망 위에서 동작하는 서버사이드 릴레이 아키텍처.',
+          title: 'Architecture — Dual-Session Echo Gating',
+          content: '브라우저 클라이언트가 WebSocket으로 릴레이 서버에 연결하면, 서버가 <strong>2개의 독립된 Realtime LLM 세션</strong>과 Twilio 전화 게이트웨이를 관리합니다. AudioRouter가 Strategy 패턴으로 3개 파이프라인(V2V, T2V, FullAgent) 중 하나에 이벤트를 위임합니다.',
+          image: {
+            src: 'images/projects/wigvo_architecture.png',
+            alt: 'WIGVO System Architecture',
+            caption: 'Figure 1: WIGVO 시스템 아키텍처. Session A(빨강)는 사용자 음성을 G.711로 번역하여 Twilio로 전달, Session B(파랑)는 PSTN 오디오를 3-Stage 필터 파이프라인을 거쳐 처리.'
+          },
           subsections: [
             {
-              subtitle: '핵심 구성',
+              subtitle: 'Dual Realtime Sessions',
               list: [
-                '<strong>3-Stage Audio Filter</strong> — Echo Gate(결정론적 차단) + RMS Energy Gate + Silero VAD',
-                '<strong>Strategy 패턴</strong> — VoiceToVoice · TextToVoice · FullAgent 3개 파이프라인',
-                '<strong>Whisper 환각 필터</strong> — 4단계 가드레일로 169건 통화 중 109건 환각 차단',
-                '<strong>COMET 품질 평가</strong> — EN→KO 0.7078 / KO→EN 0.6242'
+                '<strong>Session A</strong> (User → Recipient) — 브라우저 오디오(PCM16, 16kHz) → OpenAI Realtime API → 번역된 G.711 μ-law → Twilio → 상대방 전화기',
+                '<strong>Session B</strong> (Recipient → User) — PSTN 오디오(G.711, 8kHz) → 3-Stage Filter → STT/번역 → 브라우저 자막 + 음성',
+                '각 세션은 독립된 시스템 프롬프트와 슬라이딩 컨텍스트 윈도우를 유지하여 방향 분리를 보장'
               ]
             }
           ]
         },
         {
-          title: 'Key Metrics',
-          content: '<strong>169건 프로덕션 통화 · 241.4분 총 통화 시간 · 430+ 테스트</strong>',
+          title: '3-Stage Audio Filter Pipeline — 에코 루프 제거',
+          content: 'PSTN 전화망의 물리적 특성으로 인해 TTS 음성이 되돌아와 무한 번역 루프가 발생하는 문제를 해결합니다. 프로토타입에서 <strong>80%의 통화가 에코 루프로 실패</strong>했으며, 기존 AEC는 협대역 PSTN에서 작동하지 않았습니다.',
+          image: {
+            src: 'images/projects/wigvo_pipeline.png',
+            alt: 'PSTN Audio Processing Pipeline',
+            caption: 'Figure 2: PSTN 오디오 처리 파이프라인. (A) Twilio 입력과 Session B 사이의 3단계 필터. (B) TTS 재생 중 Echo Gate가 오디오를 μ-law silence로 대체하고, 종료 후 Stage 1-2가 PSTN 잡음을 필터링.'
+          },
           subsections: [
             {
-              subtitle: '성능',
+              subtitle: 'Stage 0 — Echo Gate (결정론적 차단)',
+              content: 'TTS 재생 중 Twilio에서 들어오는 오디오를 mu-law silence(0xFF)로 대체하여 VAD 입력 자체를 차단합니다. 동적 쿨다운 <code>cooldown = remaining_playback + echo_margin(0.3s)</code>으로 TTS 길이에 비례하는 차단 시간을 적용하고, Post-echo settling(0.5~1.5s)으로 AGC 복구 잡음까지 흡수합니다.',
               list: [
-                '에코 루프: <strong>80% → 0%</strong>',
-                '레이턴시 (P50): <strong>555ms</strong> — 전문 동시통역 범위(2~5초) 이내',
-                '통화당 비용: <strong>$0.27~0.28/분</strong> (전문 통역 $1~3/분 대비 1/4~1/10)'
+                '7단계 진화를 거쳐 완성: Audio Fingerprint(Pearson 상관계수) → Echo Gate → Silence Injection → Dynamic Cooldown → Post-echo Settling → Breakthrough Detection → 3-priority Interrupt',
+                '<strong>Breakthrough Detection</strong>: Echo window 중 첫 번째 돌파는 에코로 흡수, 두 번째 이상 지속적 돌파를 실제 발화로 판정 → 상대방 인터럽트(358회) 정상 허용'
+              ]
+            },
+            {
+              subtitle: 'Stage 1 — RMS Energy Gate (에너지 문턱값)',
+              content: 'Echo window 중에는 400 RMS 이상만 통과(에코는 대부분 100~400 RMS), window 밖에서는 150 RMS 미만을 silence로 대체하여 PSTN 배경 잡음을 저비용으로 필터링합니다. 3단계 인터럽트 우선순위(callee > caller > AI TTS)로 자연스러운 턴테이킹을 지원합니다.'
+            },
+            {
+              subtitle: 'Stage 2 — Silero VAD (신경망 발화 감지)',
+              content: 'OpenAI Server VAD가 PSTN 잡음을 음성으로 오인하여 <strong>15~72초간 speech_stopped가 발화되지 않는</strong> 문제를 해결하기 위해 로컬 Silero VAD로 완전 대체했습니다.',
+              list: [
+                '비대칭 히스테리시스: onset 96ms(probability ≥ 0.5, 3프레임) / offset 480ms(probability < 0.35, 15프레임)',
+                '8kHz → 16kHz 업샘플링(zero-order hold) + 512 sample 프레임 어댑터',
+                '발화 감지 레이턴시: <strong>15~72초 → 480ms</strong>',
+                'Cloud Run gVisor 환경에서 Silero RNN ELF 바이너리 패칭으로 추론 가능하게 처리'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Strategy 패턴 — 3개 통신 파이프라인',
+          content: '초기 557줄 God Object(AudioRouter)를 Strategy 패턴으로 분리하여 <strong>153줄 위임자 + 3개 독립 파이프라인</strong>으로 리팩토링했습니다 (72% 코드 감소).',
+          subsections: [
+            {
+              subtitle: 'VoiceToVoice (V2V) — 양방향 음성 번역',
+              content: '일반 사용자용. 사용자가 말하면 상대방에게 번역된 음성이 들리고, 상대방이 대답하면 사용자에게 번역된 음성과 자막이 표시됩니다. Echo Gate + Silence Injection + 3단계 인터럽트 우선순위를 적용.'
+            },
+            {
+              subtitle: 'TextToVoice (T2V) — 텍스트 → 음성',
+              content: '청각·언어 장애인용. 텍스트를 입력하면 AI가 번역된 음성을 상대방에게 전달합니다. per-response instruction override로 정확한 발화 패턴 제어.'
+            },
+            {
+              subtitle: 'FullAgent — AI 대리 통화',
+              content: '콜포비아 사용자용. 사전에 용건을 전달하면 AI가 사용자를 대신하여 전화 응대를 수행합니다. TextToVoice를 상속하여 72줄만으로 구현(Function Calling 추가).'
+            },
+            {
+              subtitle: 'Session B 번역 분리',
+              content: 'T2V/Agent 모드에서 Realtime API의 "생성" 특성 때문에 번역이 아닌 창작을 하는 할루시네이션이 발생. Session B의 번역을 <strong>Chat API(GPT-4o-mini, temperature=0)</strong>로 분리하여 결정론적 번역을 달성했습니다. V2V 대비 비용도 400배 절감(Chat $0.00015/1K vs Realtime $0.06/1K).'
+            }
+          ]
+        },
+        {
+          title: 'Guardrail — Whisper 환각 4단계 필터',
+          content: 'Whisper STT가 무음·잡음 구간에서 학습 데이터의 자막(예: "MBC 뉴스입니다", "시청해 주셔서 감사합니다")을 출력하는 할루시네이션을 차단합니다. 총 663줄의 가드레일 시스템.',
+          subsections: [
+            {
+              subtitle: '4단계 구조',
+              list: [
+                '<strong>Dictionary (143줄)</strong> — 다국어 차단 사전: 한국어 욕설 44항목 · 위협 39항목 · 비격식→격식 변환 20항목, 4개 언어(한/영/일/중)',
+                '<strong>Filter (186줄)</strong> — 정규식 + 키워드 매칭 4개 카테고리 분류. 100자/초 초과 시 할루시네이션 판정',
+                '<strong>Checker (199줄)</strong> — 3단계 심각도: L1(통과, 0ms) · L2(TTS 즉시+백그라운드 교정, 0ms) · L3(차단+교정, ~800ms)',
+                '<strong>Fallback LLM (124줄)</strong> — GPT-4o-mini(temperature=0, timeout 2s)로 L2/L3 교정'
+              ]
+            },
+            {
+              subtitle: '성과',
+              list: [
+                '169건 통화에서 <strong>109건 환각 차단</strong> (통화당 0.7회)',
+                'Guardrail L2 148회 / L3 0회 — 대부분 비격식 표현 교정 수준',
+                '15패턴 STT 블록리스트로 무음 할루시네이션 사전 차단',
+                '95%+ 케이스에서 <strong>추가 레이턴시 0ms</strong>'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Session Recovery',
+          content: 'OpenAI Realtime 세션이 통화 중 단절될 수 있습니다. 30초 링 버퍼에 미전달 오디오를 보관하고, 재연결 시 Whisper 배치 전사로 재주입하여 대화 연속성을 보장합니다. 10초 이상 실패 시 Whisper STT + GPT-4o-mini 번역으로 자동 전환하는 Degraded Mode를 지원합니다.'
+        },
+        {
+          title: 'Key Metrics',
+          content: '<strong>169건 프로덕션 통화 · 241.4분 총 통화 시간 · 총 비용 $64.71 · 430+ 테스트</strong>',
+          subsections: [
+            {
+              subtitle: '레이턴시 (실측)',
+              list: [
+                'Session A (P50 / P95 / Mean): <strong>557ms</strong> / 1,156ms / 617ms (814턴)',
+                'Session B E2E (P50 / P95 / Mean): <strong>2,868ms</strong> / 15,482ms / 3,997ms (744턴)',
+                'Session B STT only: 2,675ms (E2E의 87.3% — STT가 병목)',
+                'Session B Translation only: 104ms (585턴)',
+                '첫 메시지 레이턴시 (P50 / P95): 1,215ms / 6,890ms (162건)',
+                'Session A는 Twilio 업계 벤치마크(1,115ms) 대비 절반, Session B는 전문 동시통역 범위(2~5초)의 하한'
+              ]
+            },
+            {
+              subtitle: '에코 및 안전성',
+              list: [
+                '에코 게이트 활성화: 1,128회 (통화당 7.0회)',
+                '상대방 인터럽트 허용: <strong>358회</strong> (자연스러운 턴테이킹 보존)',
+                '에코 루프 발생: <strong>0건</strong> (프로토타입 80% → 0%)',
+                'VAD 오탐: 286건 (통화당 1.8회)',
+                '환각 차단: 109건 / Guardrail L2 148회 / L3 0회'
+              ]
+            },
+            {
+              subtitle: '비용 및 품질',
+              list: [
+                '통화당 비용: <strong>$0.27/분</strong> · $0.40/통화 (전문 통역 $1~3/분 대비 1/4~1/10)',
+                '번역 품질 (COMET): EN→KO <strong>0.7078</strong> / KO→EN <strong>0.6242</strong>',
+                '모드별 분포: T2V 116건(68.6%) · V2V 52건(30.8%) · Agent 1건(0.6%)'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Latency Distribution',
+          gallery: [
+            {
+              src: 'images/projects/wigvo_latency_histogram.png',
+              alt: 'Latency Distribution Histogram',
+              caption: 'Figure 3: E2E 레이턴시 분포. Session A(N=814턴)와 Session B(N=744턴)의 라이브 PSTN 통화 실측 데이터.'
+            },
+            {
+              src: 'images/projects/wigvo_utterance_scatter.png',
+              alt: 'Utterance Length vs Latency',
+              caption: 'Figure 4: 발화 길이 vs Session B E2E 레이턴시. Pearson r=0.400 (p<0.001) — 긴 발화일수록 ASR 기반 레이턴시 증가.'
+            }
+          ]
+        },
+        {
+          title: 'Demo',
+          image: {
+            src: 'images/projects/wigvo_screenshot_call.png',
+            alt: 'WIGVO Call Interface',
+            caption: 'Figure 5: WIGVO 웹 인터페이스 — V2V 통화 중 실시간 이중언어 자막, 채팅 이력, 통화 컨트롤.'
+          },
+          content: '세션 진행: (1) 시나리오 선택 → (2) AI 에이전트와 대화하여 용건·전화번호 전달 → (3) PSTN 통화 개시 + 양방향 번역 → (4) 실시간 자막 표시. 통화 중 모드 전환(V2V ↔ T2V ↔ FullAgent) 가능.'
+        },
+        {
+          title: '개발 과정',
+          subsections: [
+            {
+              subtitle: '개발 밀도',
+              list: [
+                '228커밋 · 15일 · 일 평균 15.2커밋 · fix 107개(47%)',
+                '총 55,269 LoC (Relay 23,318 / Web 18,446 / Mobile 13,505)',
+                '265 pytest · 430+ 전체 테스트'
+              ]
+            },
+            {
+              subtitle: '6대 방향 전환',
+              list: [
+                'Audio Fingerprint(Pearson 상관계수) → <strong>Echo Gate</strong>(Silence Injection)',
+                'Server VAD → <strong>Local Silero VAD</strong>',
+                '4모드 → <strong>3모드</strong> 축소 (복잡도 제거)',
+                'STT 모델 혼용 → <strong>전 모드 whisper-1 통일</strong>',
+                'Session B Realtime 번역 → <strong>Chat API 결정론적 번역</strong>',
+                'Supabase Auth 17,000 req/hr → <strong>600 req/hr (96% 감소)</strong>'
+              ]
+            },
+            {
+              subtitle: '인프라 이슈 해결',
+              list: [
+                'Cloud Run OOM 해결 (메모리 최적화)',
+                'Silero ONNX libgomp1 누락 + gVisor ELF executable stack 패치',
+                'Docker → Kaniko 빌드 전환',
+                'OpenAI API Key → GCP Secret Manager 이관'
               ]
             }
           ]
         }
       ],
-      tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'ACL 2026']
+      tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'Next.js', 'React Native', 'Dual-Session Echo Gating', 'ACL 2026', 'COMET']
     },
     'wigtn-ocr': {
       title: 'WigtnOCR - VLM 문서 구조 보존 파싱',
       image: 'images/companies/soundmind.png',
       meta: {
         organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
-        role: '100% 단독 연구',
+        role: '100% 단독 연구 (27커밋 · 7주)',
         period: '2026.01 ~ 현재',
-        architecture: 'Qwen3-VL + LoRA + vLLM + BGE-M3'
+        architecture: 'Qwen3-VL (2B/8B/30B/122B) + LoRA + vLLM + BGE-M3 + OmniDocBench'
       },
       disclaimer: {
         show: true,
-        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라를 활용하고 있습니다.'
+        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라(Dual RTX PRO 6000 Blackwell)를 활용하고 있습니다. <code>pip install wigtnocr</code>로 설치 가능한 패키지 형태로 개발 중.'
       },
       sections: [
         {
-          title: 'Problem / Solution',
+          title: 'Problem',
           subsections: [
             {
-              subtitle: 'Problem',
-              content: 'RAG Pipeline을 아무리 정교하게 구축해도 문서 Chunking 과정에서 구조 정보가 소실(Structure F1 = 0%)되어 성능 한계가 명확. B2B2G 구조상 어떤 문서가 들어올지 사전에 알 수 없어 범용 파싱 전략이 필요했다.'
+              subtitle: '구조 소실 문제',
+              content: 'RAG Pipeline을 아무리 정교하게 구축해도 문서 Chunking 과정에서 <strong>구조 정보가 소실(Structure F1 = 0%)</strong>되어 성능 한계가 명확. 표·헤더·리스트·중첩 구조 등이 평문으로 변환되면서 검색 품질이 저하.'
             },
             {
-              subtitle: 'Solution',
-              content: 'Prompt를 이해하는 VLM(Qwen3-VL-2B)을 활용한 Two-Stage Parsing으로 Structure F1을 0% → 79%로 개선. EMNLP 2026 Industry Track 투고 목표로 연구 진행 중.'
+              subtitle: '범용성 요구',
+              content: 'B2B2G 구조상 어떤 문서가 들어올지 사전에 알 수 없어 범용 파싱 전략이 필요. 한국어 공문서(훈령·고시·지침)는 기존 OSS 파서로는 구조 보존이 불가능.'
+            },
+            {
+              subtitle: 'CER 40% 가설 검증',
+              content: 'VLM 파서의 CER 40%가 측정 노이즈인지 실제 구조적 차이인지 검증. 7개 정규화 항목에서 0개 성공, 4개는 8~18pp 악화 → <strong>H1 기각, H0 채택</strong>: 실제 구조적 차이임을 입증.'
             }
           ]
         },
         {
-          title: 'What is this?',
-          content: '<strong>VLM 기반 문서 파싱의 구조 보존 효과를 종합 평가하는 연구</strong><br><br>전통적 OCR은 텍스트 추출은 가능하나 표·헤더·레이아웃 등 문서 구조를 보존하지 못합니다. VLM Two-Stage Parsing이 이 문제를 해결하며, SoundMind Ecosystem의 Analysis Platform에 직접 적용될 예정.',
+          title: 'Solution — VLM Two-Stage Parsing',
+          content: '<strong>Prompt를 이해하는 VLM을 활용한 구조 보존 파싱 프레임워크</strong><br><br>전통적 OCR은 텍스트 추출은 가능하나 표·헤더·레이아웃 등 문서 구조를 보존하지 못합니다. VLM Two-Stage Parsing이 이 문제를 해결하며, SoundMind Ecosystem의 Analysis Platform에 직접 적용될 예정.',
           subsections: [
             {
-              subtitle: '연구 구성',
+              subtitle: '4-Parser 하이브리드 라우팅',
+              content: '문서 복잡도에 따라 최적 파서를 자동 선택하는 4가지 파이프라인:',
               list: [
-                '<strong>4-Parser 비교 실험</strong> — Text/Image × Baseline/Advanced 조합',
-                '<strong>3단계 평가 프레임워크</strong> — CER/WER → Structure F1 → BC/CS(청킹 품질)',
-                '<strong>arXiv GT 자동 생성</strong> — LaTeX → Markdown 변환 파이프라인 (39개 논문, 성공률 80%)',
-                '<strong>3-Tier VLM 서빙</strong> — Qwen3-VL 30B/8B/2B 역할 분리 운용'
+                '<strong>Text-Baseline</strong> — PyMuPDF 텍스트 추출 (CPU-only, 복잡도 < 0.5)',
+                '<strong>Text-Advanced</strong> — PyMuPDF + RapidOCR + 후처리 (CPU-only)',
+                '<strong>Image-Baseline</strong> — Qwen3-VL 단순 프롬프트 (GPU)',
+                '<strong>Image-Advanced</strong> — Qwen3-VL 2-Stage Parsing (GPU, 복잡도 >= 0.5)',
+                '복잡도 기반 자동 라우팅으로 GPU 리소스 효율화'
+              ]
+            },
+            {
+              subtitle: '3-Tier VLM 서빙 아키텍처',
+              list: [
+                '<strong>Qwen3-VL-30B</strong> — Teacher 모델: Pseudo-GT(Ground Truth) 생성',
+                '<strong>Qwen3-VL-122B</strong> — Validator 모델: GT 품질 검증',
+                '<strong>Qwen3-VL-2B</strong> — Student 모델: LoRA 파인튜닝 후 프로덕션 추론',
+                'Knowledge Distillation: 30B 교사 → 2B 학생 (rank 64, alpha 128)'
+              ]
+            },
+            {
+              subtitle: '프롬프트 엔지니어링 핵심 발견',
+              content: '프롬프트 v1(0%) → v2(79.25%): <strong>2B 소형 모델에서는 CRITICAL RULES + 명시적 헤딩 매핑이 핵심</strong>. 대형 모델에서 동작하는 암묵적 규칙이 소형 모델에서는 무시됨을 발견.'
+            }
+          ]
+        },
+        {
+          title: '3단계 평가 프레임워크',
+          content: '파싱 품질을 전제 조건 → 핵심 지표 → 다운스트림 영향까지 3계층으로 체계적 평가.',
+          subsections: [
+            {
+              subtitle: '1단계 — 전제 조건 (CER/WER)',
+              content: '문자 오류율(CER), 단어 오류율(WER)로 텍스트 추출 정확도 기본 검증.'
+            },
+            {
+              subtitle: '2단계 — 핵심 지표 (Structure F1)',
+              content: '문서 구조 요소(헤딩·표·리스트·코드블록 등) 보존율 측정. <strong>Recall 87.5%</strong>(24개 구조 요소 중 21개 검출), <strong>Precision 72.41%</strong>.'
+            },
+            {
+              subtitle: '3단계 — 다운스트림 (BC/CS)',
+              content: 'Boundary Coverage(BC)·Chunk Similarity(CS)로 청킹 품질 영향 평가. 파싱 품질이 RAG 검색에 실제로 미치는 영향을 정량화.'
+            },
+            {
+              subtitle: '벤치마크 통합',
+              list: [
+                '<strong>OmniDocBench</strong>(CVPR 2025) 어댑터: 1,355 PDF · 9 문서 유형 · 3 언어',
+                '<strong>TEDS</strong>(ECCV 2020) 구현: 표 구조 평가, 18개 유닛테스트',
+                '6가지 메트릭(CER, WER, Structure F1, TEDS, BC, CS) 통합'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'arXiv GT 자동 생성 파이프라인',
+          content: 'VLM 파서 평가를 위한 Ground Truth를 대규모로 자동 생성하는 파이프라인 구축.',
+          subsections: [
+            {
+              subtitle: '파이프라인 구조',
+              list: [
+                'arXiv 논문의 LaTeX 소스 → Markdown 자동 변환',
+                '39개 논문 처리, 성공률 <strong>20% → 80%</strong> (5회 반복 개선)',
+                'Pseudo-GT 생성: Qwen3-VL-30B(teacher)가 파싱 → Qwen3-VL-122B(validator)가 품질 검증',
+                '검증 통과한 GT로 2B 학생 모델 LoRA 파인튜닝'
               ]
             }
           ]
@@ -604,25 +928,26 @@ document.addEventListener('DOMContentLoaded', function() {
           title: 'Key Metrics',
           subsections: [
             {
-              subtitle: '성능',
+              subtitle: '핵심 성능',
               list: [
                 'Structure F1: <strong>0% → 79.25%</strong> (+79pp)',
-                'CER Trade-off: 40.79% → 57.71% (+17pp)',
-                'Latency Trade-off: 0.27s → 42.92s (x159)',
-                '프롬프트 v1(0%) → v2(79.25%): 2B 소형 모델에서 명시적 규칙이 핵심'
+                'Recall: <strong>87.5%</strong> (24개 구조 요소 중 21개 검출)',
+                'Precision: <strong>72.41%</strong>',
+                'Trade-off: CER +17pp (40.79%→57.71%) · Latency x159 (0.27s→42.92s)'
               ]
             },
             {
               subtitle: '인프라',
               list: [
-                'Dual RTX PRO 6000 Blackwell (각 96GB VRAM), 128GB DDR5 RAM',
-                '39개 arXiv 논문 GT 자동 생성 (성공률 20% → 80%)'
+                '<strong>Dual RTX PRO 6000 Blackwell</strong> (각 96GB VRAM) + 128GB DDR5 RAM',
+                '3-Tier VLM 동시 서빙 (30B + 8B + 2B)',
+                '27커밋 · 7주 · `pip install wigtnocr` 패키지화'
               ]
             }
           ]
         }
       ],
-      tags: ['Qwen3-VL', 'LoRA', 'vLLM', 'Structure F1', 'arXiv', 'EMNLP 2026']
+      tags: ['Qwen3-VL', 'LoRA', 'vLLM', 'Structure F1', 'Knowledge Distillation', 'OmniDocBench', 'TEDS', 'arXiv', 'EMNLP 2026']
     },
     'wigtn-coding': {
       title: 'WIGTN Claude Code Skills Plugins',
@@ -630,20 +955,29 @@ document.addEventListener('DOMContentLoaded', function() {
       meta: {
         organization: 'WIGTN Crew (Open Source)',
         role: 'Crew Leader / Main Contributor',
-        period: '2025.01 ~ 현재',
-        architecture: 'Claude Code Skills Plugin System'
+        period: '2025.10 ~ 현재',
+        architecture: 'Claude Code Skills Plugin System (7 Commands · 14 Agents · 7 Skills · 4 Hooks)'
       },
       sections: [
         {
           title: 'What is this?',
-          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인. 12개의 전문 에이전트, 3개의 커맨드, 3개의 레퍼런스 스킬로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.<br><br>⭐ GitHub Stars 14 · v2.0.0',
+          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인. 14개의 전문 에이전트, 7개의 커맨드, 7개의 스킬, 4개의 훅으로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.',
           subsections: [
             {
               subtitle: '핵심 구성',
               list: [
-                '<strong>12 Agents</strong> — 기획(PRD 분석, 아키텍처 결정) · 구현(팀 병렬 빌드, FE/BE/Mobile/AI) · 검증(100점 코드 리뷰, 포맷팅)',
-                '<strong>3 Commands</strong> — /prd(PRD 자동 생성) · /implement(팀 빌드 실행) · /auto-commit(Quality Gate + 자동 커밋)',
-                '<strong>3 Skills</strong> — 16가지 디자인 스타일 가이드 · 코드 리뷰 레벨 참조 · 팀 메모리 프로토콜'
+                '<strong>14 Agents</strong> — 기획(PRD 분석, 아키텍처 결정, Digging) · 구현(팀 병렬 빌드, FE/BE/Mobile/AI/DevOps) · 검증(100점 코드 리뷰, 포맷팅)',
+                '<strong>7 Commands</strong> — /prd(PRD 자동 생성) · /digging(PRD 취약점 분석) · /implement(팀 빌드 실행) · /auto-commit(Quality Gate + 자동 커밋) · /code-review(코드 리뷰) 등',
+                '<strong>7 Skills</strong> — 16가지 디자인 스타일 가이드 · 코드 리뷰 레벨 참조 · 팀 메모리 프로토콜 · Next.js/React/Tailwind/SEO/Auth 레퍼런스 등',
+                '<strong>4 Hooks</strong> — 코드 품질 자동 검증 · 커밋 메시지 표준화 · 빌드 자동 검증 등'
+              ]
+            },
+            {
+              subtitle: '결과물 — 이 플러그인으로 만든 프로젝트들',
+              list: [
+                '<strong>WIGVU</strong> — YouTube 자막 추출·번역·AI 분석 도구',
+                '<strong>WIGTN-SPEAR</strong> — AI 서비스 특화 보안 스캐너 (OWASP LLM Top 10 + Web Top 10 커버)',
+                '<strong>TimeLens</strong> — Gemini Live Agent Challenge 출품작'
               ]
             },
             {
@@ -653,17 +987,17 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         }
       ],
-      tags: ['Claude Code', 'Plugin', 'AI-Native', '12 Agents', 'Parallel Build', 'Open Source']
+      tags: ['Claude Code', 'Plugin', 'AI-Native', '14 Agents', '7 Commands', '4 Hooks', 'Open Source']
     },
     'llm-loadtester': {
       title: 'Simple LLM Loadtester',
       image: 'images/projects/llm-loadtester-dashboard.png',
       imageContain: false,
       meta: {
-        organization: 'Personal Project',
-        role: '1인 개발 (기획, 설계, 백엔드, 프론트엔드)',
-        period: '2025.01.11 - 2025.01.12',
-        architecture: 'Python FastAPI + Next.js + Docker'
+        organization: 'Personal Project (Open Source)',
+        role: '1인 개발 (45커밋 · 5주)',
+        period: '2026.01 ~ 2026.02',
+        architecture: '3-Tier: FastAPI(API) + Typer(CLI) + Next.js(Web) + Docker'
       },
       sections: [
         {
@@ -671,25 +1005,52 @@ document.addEventListener('DOMContentLoaded', function() {
           subsections: [
             {
               subtitle: 'Problem',
-              content: '기존 LLM 벤치마킹 도구는 CLI 기반에 개발자 전용. 비개발 직군은 LLM 서빙 성능 테스트에 접근하기 어렵고, SLO 기반 품질 평가(Goodput) 기능도 부재.'
+              content: '기존 LLM 벤치마킹 도구는 CLI 기반에 개발자 전용. 비개발 직군(영업팀, MLOps, PM)은 LLM 서빙 성능 테스트에 접근하기 어렵고, SLO 기반 품질 평가(Goodput) 기능도 부재.'
             },
             {
               subtitle: 'Solution',
-              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 2일 만에 풀스택 완성.'
+              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 2일 만에 풀스택 MVP 완성, 이후 5주간 45커밋으로 고도화.'
             }
           ]
         },
         {
           title: 'What is this?',
-          content: '<strong>비개발직군도 사용할 수 있는 Web 기반 LLM 서빙 성능 벤치마킹 도구</strong><br><br>OpenAI 호환 API 서버(vLLM, SGLang, Ollama 등)를 대상으로 LLM 특화 메트릭을 측정하고 시각화합니다.',
+          content: '<strong>비개발직군도 사용할 수 있는 Web 기반 LLM 서빙 성능 벤치마킹 도구</strong><br><br>OpenAI 호환 API 서버(vLLM, SGLang, Ollama, Triton 등)를 대상으로 LLM 특화 메트릭을 측정하고 시각화합니다.',
           subsections: [
             {
               subtitle: '핵심 기능',
               list: [
-                '<strong>LLM 특화 메트릭</strong> — TTFT, TPOT, E2E Latency, ITL, Throughput',
-                '<strong>Goodput</strong> — SLO 임계값 기반 품질 평가 (단순 처리량이 아닌 유효 처리량)',
-                '<strong>실시간 모니터링</strong> — WebSocket 기반 진행 상황 + GPU 메트릭 수집',
-                '<strong>AI 분석 리포트</strong> — 벤치마크 결과 자동 분석 및 인프라 추천'
+                '<strong>LLM 특화 메트릭</strong> — TTFT, TPOT, E2E Latency, ITL, Throughput (tiktoken 기반 정확한 토큰 카운팅)',
+                '<strong>Goodput</strong> — SLO 임계값 기반 품질 평가: "TTFT 500ms 이내 + TPOT 50ms 이내 요청 비율" (단순 처리량이 아닌 유효 처리량)',
+                '<strong>실시간 모니터링</strong> — WebSocket 기반 진행 상황 + pynvml GPU 메트릭 수집',
+                '<strong>AI 분석 리포트</strong> — Claude API 기반 벤치마크 결과 자동 분석'
+              ]
+            },
+            {
+              subtitle: '검증 시스템 (Validation Loop)',
+              content: '벤치마킹 도구 자체의 정확성을 보장하기 위한 이중 교차 검증 시스템:',
+              list: [
+                '<strong>Prometheus 메트릭 검증</strong> — 측정값 ±5% 허용 범위 내 교차 확인',
+                '<strong>Docker 로그 검증</strong> — 컨테이너 레벨 ±10% 허용 범위 내 재검증',
+                '5,982줄 단일 커밋으로 구현된 핵심 모듈'
+              ]
+            },
+            {
+              subtitle: '인프라 추천 기능',
+              content: '벤치마크 결과를 기반으로 최적 GPU 인프라를 자동 추천:',
+              list: [
+                '<code>필요 GPU = ceil(목표 동시성 / 현재 최대 동시성) × (1 + headroom)</code>',
+                '영업팀/MLOps/PM 대상 비전문가 친화적 리포트 생성',
+                '4,374줄 단일 커밋으로 구현'
+              ]
+            },
+            {
+              subtitle: 'Adapter Pattern',
+              content: '다양한 LLM 서빙 프레임워크를 단일 인터페이스로 지원:',
+              list: [
+                'vLLM · SGLang · Ollama · Triton 등 OpenAI 호환 서버 대응',
+                'Graceful 벤치마크 중단 기능 (118 테스트 통과)',
+                'GitHub Actions CI 파이프라인 구축'
               ]
             }
           ]
@@ -720,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         }
       ],
-      tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'LLM', 'Open Source'],
+      tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'Validation Loop', 'Goodput', 'Open Source'],
       demoUrl: null
     },
     mcp: {

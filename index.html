@@ -92,17 +92,21 @@
           </p>
           <p class="about__text">
             현재는 <strong>SoundMind Inc.</strong>에서 <span class="about__highlight">AI Research Engineer</span>로서 실무와 연구를 병행하고 있습니다.
-            담당 프로젝트 리드로서 사용자가 문서를 업로드하면 분석 후 <strong>맞춤형 RAG Pipeline을 자동으로 구축하는 B2B2G SaaS 플랫폼 영업 지원 도구</strong>와,
-            Build된 RAG Pipeline을 바로 테스트 할 수 있는 <strong>PlayGround형 PoC 도구</strong>를 구축하고 있습니다.<br>
-            내부에는 <strong>Chat Agent</strong>를 포함한 다양한 AI Agent 시스템도 함께 개발하고 있습니다.
+            담당 프로젝트 리드로서 고객 문서 업로드부터 <strong>Gemini + GPT 3-Stage 병렬 분석 → 최적 RAG 전략 자동 추천 → 원클릭 Docker 배포</strong>까지
+            단일 워크플로우로 구현한 <strong>AI Sales Enablement Platform</strong>을 설계·개발했으며,<br>
+            배포 리드타임을 <strong>2주에서 5분으로 99% 이상 단축</strong>했습니다.<br>
+            또한 RAGAS 기반 정량 평가 프레임워크를 구축하고 Ablation Study를 통해 RAG 품질 종합 점수를 <strong>13%p 개선</strong>하는 등
+            AI R&D도 함께 수행하고 있습니다.
           </p>
           <p class="about__text">
             이 외에도 사내 개발자 크루 <span class="about__highlight">WIGTN</span>을 리드하며 팀원들과 다양한 연구를 진행하고 있습니다.
           </p>
           <p class="about__text">
-            근래에는 PSTN 전화망에서 발생하는 <strong>에코 루프 문제</strong>를 연구하여 새로운 오디오 필터 아키텍처를 설계하고,<br>
-            <span class="about__highlight">ACL 2026 System Demonstrations</span>에 논문을 투고했습니다.<br>
-            현재는 <strong>VLM 기반 문서 구조 보존 파싱</strong> 연구를 진행하고 있으며 <span class="about__highlight">EMLNP 2026</span>을 목표로 진행중입니다.
+            근래에는 PSTN 전화망에서 발생하는 <strong>에코 루프 문제</strong>를 연구하여
+            <strong>Dual-Session Echo Gating 아키텍처</strong>를 설계하고,<br>
+            <span class="about__highlight">ACL 2026 System Demonstrations</span>에 제 1저자로 논문을 투고했습니다.<br>
+            현재는 <strong>Qwen3-VL 기반 문서 구조 보존 파싱</strong> 연구를 진행하고 있으며 (구조 보존율 <strong>0% → 79.25%</strong>),
+            <span class="about__highlight">EMNLP 2026</span>을 목표로 진행중입니다.
           </p>
         </div>
       </div>
@@ -125,23 +129,66 @@
           <h3 class="timeline__title">(주)사운드마인드</h3>
           <p class="timeline__subtitle">AX / AI Research Engineer / Manager</p>
           <div class="timeline__description">
-            <span class="about__highlight">[PRODUCT]</span>
-            <br><strong>SoundMind AI Ecosystem</strong> (단독 개발, 9 Projects 통합 Beta 버전 배포)
+            <span class="about__highlight">[AI Product Engineering]</span> <small>(2025.10 ~, AI Engineer | AX Manager)</small>
+            <br><strong>SoundMind AI Ecosystem</strong>
             <ol style="margin-left: 20px;">
               <li>
-                <strong>SoundMind-AI-Console</strong>: 분산된 3개 Platform을 통합한 Admin 대시보드
+                <strong>SoundMind-AI-Console</strong> (Admin Dashboard)
                 <ul>
-                  <li>Analysis: 문서 분석 (Gemini+GPT 2-Stage) → RAG Component 자동 추천 → 원클릭 Docker 자동 배포</li>
-                  <li>Eval: LLM-as-a-Judge 기반 RAG Pipeline 성능 평가</li>
-                  <li>Monitoring: Grafana + Loki 임베딩</li>
+                  <li>분석·평가·모니터링 플랫폼 3종을 단일 콘솔로 통합 설계하여, 비개발자도 RAG 영업 사이클 전체를 운용할 수 있는 통합 Admin 대시보드 설계 및 E2E 개발</li>
+                  <li>고객 문서 업로드 → Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석 → 최적 RAG 전략 자동 추천 → 원클릭 Docker 배포까지 단일 워크플로우 구현</li>
+                  <li>신규 엔진 Prototype 배포 리드타임 <strong>2주 → 5분</strong> (99% 이상 단축), 현장 실증 가능</li>
+                  <li>Grafana + Loki 연동 전체 에코시스템 실시간 모니터링 내재화</li>
                 </ul>
               </li>
               <li>
-                <strong>SoundMind-AI-Platform</strong>: Console 결과물로 PoC 운용하는 고객용 PlayGround
+                <strong>SoundMind-AI-Platform</strong> (B2B SaaS)
                 <ul>
-                  <li>Web Console (React 19) + API Gateway (FastAPI, JWT, SSE)</li>
-                  <li>RAG Agent: Console에서 생성한 맞춤형 RAG Pipeline 연동</li>
-                  <li>AI Agent: LangGraph ReAct + 멀티 프로바이더 LLM + Tool Use</li>
+                  <li>Console에서 생성된 맞춤형 RAG Pipeline을 고객이 현장에서 즉시 PoC 체험할 수 있는 서비스 레이어 설계 및 개발</li>
+                  <li>Chat Agent (자율 도구 사용) · RAG Agent (문서 기반 Q&A) 이원화 제공으로 고객 시나리오별 맞춤 데모 구성</li>
+                  <li>React 19 Web Console + FastAPI 기반 API Gateway (JWT 멀티테넌트 인증, SSE 스트리밍)</li>
+                  <li>최대 <strong>99개 RAG Pipeline</strong> 동시 운용으로 고객사별 독립 환경 분리</li>
+                </ul>
+              </li>
+            </ol>
+
+            <span class="about__highlight">[AI R&D]</span> <small>(2025.07 ~, AI Researcher | AX Manager)</small>
+            <ol style="margin-left: 20px;">
+              <li>
+                <strong>Advanced RAG 파이프라인 설계 및 성능 최적화</strong>
+                <ul>
+                  <li>Query Rewrite, Hybrid Search, Reranking, Generation 전 단계 직접 구현 및 최적화</li>
+                  <li>RAGAS 기반 LLM-as-a-Judge 정량 평가 프레임워크 구축 (81개 Q&A Ground Truth · 11개 문서 · 3,678페이지) — 품질 종합 점수 <strong>13%p 개선</strong></li>
+                  <li>Component 단위 Ablation Study 설계·수행 — Reranking 제거 시 <strong>-12.8%p</strong> (핵심 기여 요인), Query Decomposition 제거 시 <strong>+6.8%p</strong> (성능 저하 요인) 도출</li>
+                  <li>→ AI Console 자동 추천 시스템 설계의 직접적 근거로 활용</li>
+                  <li>문서 구조 복잡도에 따른 VectorDB 이원화 설계 — Weaviate(Hybrid Search) / Qdrant(Filter 기반) 선택적 적용</li>
+                </ul>
+              </li>
+              <li>
+                <strong>WIGVO:</strong> 레거시 PSTN 환경 실시간 양방향 음성 번역 시스템 (<strong>ACL 2026 Under Review, 제 1저자</strong>)
+                <ul>
+                  <li>Dual-Session Echo Gating 아키텍처 + 3-Stage 오디오 필터 파이프라인 (Echo Gate → Energy Gate → Silero VAD) 자체 설계 및 개발</li>
+                  <li><small><em>Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small></li>
+                </ul>
+              </li>
+              <li>
+                <strong>WigtnOCR:</strong> VLM 기반 한국어 공문서 구조 보존 Data Parsing 프레임워크 연구
+                <ul>
+                  <li>Qwen3-VL 2-Stage Parsing으로 문서 구조 보존율, OSS 대비 <strong>0% → 79.25%</strong> 달성</li>
+                  <li>Qwen3-VL-30B (teacher) / 122B (validator) 활용 Pseudo-GT 생성 파이프라인 구축 중</li>
+                </ul>
+              </li>
+            </ol>
+
+            <span class="about__highlight">[Self-Initiated R&D / Community]</span> <small>(2025.10 ~, Crew Lead)</small>
+            <br><strong>Team-WIGTN Crew Lead</strong> — AI-Native 사내 개발자 Crew
+            <ol style="margin-left: 20px;">
+              <li>
+                <strong>WIGTN-Coding</strong> (Claude Code Plugin)
+                <ul>
+                  <li>7 Commands, 14 Agents, 7 Skills, 4 Hooks 구성</li>
+                  <li>슬래시 커맨드 기반 기획 → 구현 → 배포 워크플로우 자동화</li>
+                  <li>결과물: WIGVU (YouTube 자막 추출·번역·AI 분석), WIGTN-SPEAR (AI 서비스 특화 보안 스캐너, OWASP LLM/Web Top 10 커버), TimeLens (Gemini Live Agent Challenge 출품작)</li>
                 </ul>
               </li>
             </ol>
@@ -149,29 +196,7 @@
             <span class="about__highlight">[PROJECT]</span>
             <br><strong>KOCCA R&D:</strong> AI 한국어 말하기 발화 평가 시스템 (정부 R&D 컨소시엄, 시스템 아키텍트)
 
-            <br><br><span class="about__highlight">[Community]</span>
-            <br><strong>WIGTN Crew</strong> - AI-Native 사내 개발자 Crew Lead
-            <ol style="margin-left: 20px;">
-              <li>R&D (논문 투고)
-                <ul>
-                  <li><strong>WIGVO:</strong> 실시간 PSTN 양방향 음성 번역 시스템 (ACL 2026 Under Review)
-                    <br><small><em>Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small>
-                  </li>
-                  <li><strong>WigtnOCR:</strong> VLM 기반 한국어 공문서 구조 보존 파싱 (EMNLP 2026 준비)
-                    <br><small><em>Open-Source VLM-Based Document Parsing for Korean Government Documents</em></small>
-                  </li>
-                </ul>
-              </li>
-              <li>오픈소스 기여
-                <ul>
-                  <li><strong>WIGTN-Coding:</strong> AI-Native Vibe Coding 워크플로우 자동화 도구 - Claude Code Plugin (12 Agents, 3 Commands, 3 Skills)
-                    <br><small>PRD 자동 생성 → 병렬 팀 빌드(BE·FE·AI·Ops) → 100점 Quality Gate → 자동 커밋/배포</small>
-                  </li>
-                </ul>
-              </li>
-            </ol>
-
-            <span class="about__highlight">[OpenSources]</span>
+            <br><br><span class="about__highlight">[OpenSources]</span>
             <br><strong>Independent Development</strong>
             <ol style="margin-left: 20px;">
               <li><strong>LLM Loadtester:</strong> 비개발직군용 LLM 서빙 성능 벤치마킹 도구 (TTFT/TPOT/Goodput 시각화)</li>
@@ -523,7 +548,8 @@
               </span>
             </h3>
             <p class="project-card__description">
-              고객 문서 기반 RAG PoC를 자동 생성·배포·시연할 수 있는 AI Sales Enablement Platform.
+              고객 문서 업로드 → Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석 → 최적 RAG 전략 자동 추천 → 원클릭 Docker 배포.
+              배포 리드타임 2주→5분(99%+ 단축). 최대 99개 Pipeline 동시 운용.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">LangGraph</span>
@@ -543,7 +569,7 @@
         <!-- Project: WIGVO -->
         <article class="project-card fade-in" data-project="wigvo" data-category="research">
           <div class="project-card__image-wrapper">
-            <img src="images/companies/soundmind.png" alt="WIGVO - Real-Time Speech Translation" class="project-card__image">
+            <img src="images/projects/wigvo_logo.png" alt="WIGVO - Real-Time Speech Translation" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -553,7 +579,8 @@
               </span>
             </h3>
             <p class="project-card__description">
-              PSTN 전화망 위에서 동작하는 실시간 양방향 음성 번역 시스템.
+              Dual-Session Echo Gating 아키텍처 + 3-Stage 오디오 필터 파이프라인 (Echo Gate → Energy Gate → Silero VAD) 자체 설계.
+              레거시 PSTN 전화망 위에서 동작하는 실시간 양방향 음성 번역 시스템. (제 1저자)
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">OpenAI Realtime</span>
@@ -583,7 +610,8 @@
               </span>
             </h3>
             <p class="project-card__description">
-              RAG Pipeline의 근본적 한계인 문서 구조 소실 문제를 VLM 기반 파싱으로 해결하는 연구.
+              Qwen3-VL 2-Stage Parsing으로 문서 구조 보존율 OSS 대비 0% → 79.25% 달성.
+              Qwen3-VL-30B/122B 활용 Pseudo-GT 생성 파이프라인 구축 중.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Qwen3-VL</span>
@@ -645,7 +673,8 @@
             </h3>
             <p class="project-card__description">
               Claude Code용 AI-Native 개발 워크플로우 자동화 플러그인.
-              12 Agents, 3 Commands, 3 Skills — 기획부터 배포까지 Zero Friction.
+              7 Commands, 14 Agents, 7 Skills, 4 Hooks — 기획부터 배포까지 Zero Friction.
+              결과물: WIGVU, WIGTN-SPEAR (OWASP LLM/Web Top 10 커버), TimeLens.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Claude Code</span>
