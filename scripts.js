@@ -241,32 +241,19 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       disclaimer: {
         show: true,
-        text: '본 프로젝트는 Soundmind-Labs 소속 AI Research Engineer로서 설계·구축한 B2B SaaS 플랫폼입니다.<br>상용 소스코드 및 영업 정보는 포함되어 있지 않으며 아키텍처 설계와 기술적 의사결정 경험을 중심으로 정리했습니다.'
+        text: '본 프로젝트는 Soundmind-Labs 소속 AI Research Engineer로서 설계·구축한 AI Sales Enablement Platform입니다.<br>상용 소스코드 및 영업 정보는 포함되어 있지 않으며 아키텍처 설계와 기술적 의사결정 경험을 중심으로 정리했습니다.'
       },
       sections: [
         {
-          title: 'Problem / Solution',
+          title: 'Overview',
+          content: '<strong>고객 문서 기반 RAG PoC를 자동 생성·배포·시연할 수 있는 AI Sales Enablement Platform</strong>',
           subsections: [
             {
-              subtitle: 'Problem',
-              content: '음성 AI 전문 회사가 RAG 사업을 수주했지만, 동작하는 엔진도 고객 데모도 없었다. Senior 부재, 도메인별 데이터 구조화 전략도 전무한 상황.'
-            },
-            {
-              subtitle: 'Solution',
-              content: '고객 문서를 업로드하면 AI가 분석 → 도메인 최적화 RAG Pipeline 자동 생성 → 원클릭 Docker 배포 → PoC 즉시 시연까지 가능한 엔드투엔드 플랫폼을 단독 설계/구현. 현재 End User 테스트 진행 중.'
-            }
-          ]
-        },
-        {
-          title: 'What is this?',
-          content: '<strong>비개발자도 RAG 영업 사이클 전체를 운용할 수 있는 B2B2G SaaS 플랫폼</strong><br><br>문서 업로드 → AI 분석 → RAG Pipeline 자동 생성 → 배포 → PoC 시연 → 품질 평가 → 모니터링까지, 5개 플랫폼이 유기적으로 연동되어 전 과정을 자동화합니다.',
-          subsections: [
-            {
-              subtitle: '타겟 사용자',
+              subtitle: '무엇을 하는 시스템인가',
               list: [
-                '<strong>파트너사 영업/기술팀</strong> — 고객 문서로 즉시 PoC 데모를 구성하고 시연',
-                '<strong>공공기관 담당자</strong> — PlayGround에서 자체 문서 기반 AI 검색을 직접 체험',
-                '<strong>사내 운영팀</strong> — 통합 Console에서 분석·평가·모니터링을 한 화면에서 관리'
+                '고객 문서를 업로드하면 AI가 자동 분석하여 <strong>도메인 최적화 RAG Pipeline</strong>을 생성·배포',
+                '파트너사 영업팀은 <strong>PoC 데모를 즉시 구성</strong>하고, 담당자는 PlayGround에서 직접 체험',
+                '분석 → 배포 → 평가 → 모니터링까지 <strong>전 과정을 하나의 워크플로우</strong>로 자동화'
               ]
             },
             {
@@ -280,46 +267,60 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: '5 Platforms',
-          content: '각 플랫폼은 독립 배포·독립 확장이 가능하며, Docker 네트워크와 Registry API로 연결됩니다.',
+          title: 'AI Platform — 고객 대면',
+          content: '고객과 파트너사가 직접 사용하는 서비스 플랫폼입니다.',
           subsections: [
             {
-              subtitle: '1. AI Platform',
-              content: '고객이 직접 사용하는 PlayGround. RAG Agent(문서 기반 Q&A)와 AI Agent(자율 도구 사용)를 제공합니다.'
-            },
-            {
-              subtitle: '2. Analysis Platform',
-              content: '문서를 업로드하면 AI가 분석하고, 최적 RAG 전략을 추천하여 독립 Pipeline을 자동 생성·배포하는 Pipeline Factory.'
-            },
-            {
-              subtitle: '3. AI Console',
-              content: '분산된 3개 도구(Analysis, Eval, Grafana)를 하나로 통합한 운영 대시보드. 비개발자도 전체 워크플로우를 한 화면에서 운영.'
-            },
-            {
-              subtitle: '4. Eval Platform',
-              content: 'LLM-as-a-Judge 방식 5차원 품질 평가 + A/B 테스트 통계 검증으로 Pipeline 전략 변경 효과를 측정.'
-            },
-            {
-              subtitle: '5. Monitoring Platform',
-              content: 'Grafana + Loki + Promtail 기반. 전체 에코시스템의 로그를 중앙 수집하여 4개 전용 대시보드로 실시간 시각화.'
+              subtitle: '기능',
+              list: [
+                '<strong>RAG Agent</strong> — 업로드된 문서 기반 Q&A, 근거 문서 출처 및 검색 과정 시각화(Retrieval Insight)',
+                '<strong>AI Agent</strong> — 자율 도구 사용 기반 복합 태스크 수행',
+                '<strong>멀티테넌트 인증</strong> — JWT 기반 회사별 격리, 서비스별 접근 제어',
+                '<strong>자동 서비스 감지</strong> — Analysis에서 배포된 Pipeline을 자동 인식하여 PlayGround에 연결'
+              ]
             }
           ]
         },
         {
-          title: 'How It Works',
-          content: '5개 플랫폼이 하나의 워크플로우로 연결됩니다.',
-          image: {
-            src: 'images/projects/soundmind_ecosystem_workflow.png',
-            alt: 'SoundMind Ecosystem Workflow Diagram',
-            caption: '전체 워크플로우: Console에서 문서 업로드 → Analysis가 분석·배포 → AI Platform이 자동 감지·서비스 연결 → Eval이 품질 검증 → Monitoring이 전체 관측'
-          }
+          title: 'AI Console — 운영·분석·평가 통합',
+          content: '문서 분석부터 품질 평가, 인프라 모니터링까지 운영 전체를 하나의 대시보드에서 관리하는 통합 플랫폼입니다.',
+          subsections: [
+            {
+              subtitle: 'Analysis',
+              list: [
+                '문서 업로드 → AI 분석 → 최적 RAG 전략 추천 → <strong>원클릭 Docker 배포</strong>',
+                'Pipeline Factory: 독립 컨테이너로 격리된 RAG Pipeline 자동 생성'
+              ]
+            },
+            {
+              subtitle: 'Console',
+              list: [
+                '분산된 Analysis·Eval·Grafana를 <strong>하나의 대시보드에 통합</strong>',
+                '서비스 상태, GPU 할당, Pipeline 관리, 사용자/권한 설정까지 운영 전반 커버'
+              ]
+            },
+            {
+              subtitle: 'Eval',
+              list: [
+                '<strong>LLM-as-a-Judge</strong> 5차원 품질 평가 (Faithfulness, Relevancy 등)',
+                'A/B 테스트 통계 검증으로 전략 변경 효과 정량 측정'
+              ]
+            },
+            {
+              subtitle: 'Monitoring',
+              list: [
+                'Grafana + Loki + Promtail 기반 중앙 로그 수집',
+                '4개 전용 대시보드로 전체 에코시스템 실시간 시각화'
+              ]
+            }
+          ]
         },
         {
           title: 'Architecture',
           image: {
             src: 'images/projects/soundmind_ecosystem_architecture.png',
             alt: 'SoundMind Ecosystem Architecture Diagram',
-            caption: 'Multi-Platform 아키텍처: 5개 플랫폼 + 공유 모델 서빙 인프라 + Docker 네트워크'
+            caption: '2개 플랫폼 축(AI Platform ↔ AI Console) + 공유 모델 서빙 인프라 + Docker 네트워크'
           }
         },
         {
@@ -368,9 +369,9 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '성과',
               list: [
-                '<strong>Ablation Study</strong>: 단계별 성능 기여도 분석으로 -8.8% 저하 구간 발견 → 아키텍처 재설계 근거 확보',
-                '<strong>PoC 납품</strong>: DB 사업 회사 대상 34개 테스트 케이스, 3회 데모 리허설 포함 검수 프로세스 진행',
-                '<strong>Beta 운용</strong>: 15명 동시 사용 대비 동시성 처리 구현'
+                '<strong>Ablation Study</strong> — 단계별 성능 기여도 분석으로 -8.8% 저하 구간 발견 → 아키텍처 재설계 근거 확보',
+                '<strong>PoC 납품</strong> — DB 사업 회사 대상 34개 테스트 케이스, 3회 데모 리허설 포함 검수 프로세스 진행',
+                '<strong>Beta 운용</strong> — 15명 동시 사용 대비 동시성 처리 구현'
               ]
             }
           ]
@@ -383,7 +384,6 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: 'VLM 기반 문서 파싱',
               list: [
                 '텍스트 추출 중심 → VLM 기반으로 확장, 표·차트·레이아웃 등 시각적 구조까지 보존',
-                '3-Mode Parsing: Text → VLM → Hybrid 자동 선택',
                 '→ 진행 중인 WigtnOCR 연구(EMNLP 2026)의 성과를 Ecosystem에 직접 적용 예정'
               ]
             },
@@ -391,7 +391,6 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: 'RAG Pipeline 최적화',
               list: [
                 'Ablation Study 기반 Query Rewrite 재설계 (-8.8% 저하 구간 해소)',
-                'Eval 메트릭 고도화 (RAGAS 호환, MRR/NDCG)',
                 '평가 → 분석 → 재배포 Feedback Loop으로 자동 최적화 사이클 구축'
               ]
             }
