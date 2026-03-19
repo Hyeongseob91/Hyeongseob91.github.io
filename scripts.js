@@ -823,131 +823,161 @@ document.addEventListener('DOMContentLoaded', function() {
       tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'Next.js', 'React Native', 'Dual-Session Echo Gating', 'ACL 2026', 'COMET']
     },
     'wigtn-ocr': {
-      title: 'WigtnOCR - VLM 문서 구조 보존 파싱',
+      title: 'WigtnOCR - 한국 공공문서 전용 VLM 파싱 프레임워크',
       image: 'images/companies/soundmind.png',
       meta: {
         organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
-        role: '100% 단독 연구 (27커밋 · 7주)',
+        role: '100% 단독 연구 (파이프라인 설계·학습·평가·배포)',
         period: '2026.01 ~ 현재',
-        architecture: 'Qwen3-VL (2B/8B/30B/122B) + LoRA + vLLM + BGE-M3 + OmniDocBench'
+        architecture: 'Qwen3-VL-2B + LoRA + vLLM + BGE-M3 + FAISS'
       },
       disclaimer: {
         show: true,
-        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라(Dual RTX PRO 6000 Blackwell)를 활용하고 있습니다. <code>pip install wigtnocr</code>로 설치 가능한 패키지 형태로 개발 중.'
+        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라(2× RTX PRO 6000 Blackwell, 96GB each)를 활용하고 있습니다.'
       },
       sections: [
         {
-          title: 'Problem',
+          title: 'Problem / Solution',
           subsections: [
             {
-              subtitle: '구조 소실 문제',
-              content: 'RAG Pipeline을 아무리 정교하게 구축해도 문서 Chunking 과정에서 <strong>구조 정보가 소실(Structure F1 = 0%)</strong>되어 성능 한계가 명확. 표·헤더·리스트·중첩 구조 등이 평문으로 변환되면서 검색 품질이 저하.'
+              subtitle: 'Problem',
+              content: 'B2B2G RAG 서비스 개발 중, 한국 정부 공공문서의 복잡한 표·양식·다단 레이아웃을 기존 파서들이 처리하지 못하는 문제에 직면. PyMuPDF4LLM 같은 rule-based 파서는 구조 인식률이 0%에 가까웠고, dots.ocr·olmOCR 등 최신 VLM 파서는 영어/중국어 중심으로 한국 문서에 최적화되지 않았으며, 30B급 VLM은 성능은 좋지만 듀얼 GPU가 필요해 실무 배포가 어려웠다.'
             },
             {
-              subtitle: '범용성 요구',
-              content: 'B2B2G 구조상 어떤 문서가 들어올지 사전에 알 수 없어 범용 파싱 전략이 필요. 한국어 공문서(훈령·고시·지침)는 기존 OSS 파서로는 구조 보존이 불가능.'
-            },
-            {
-              subtitle: 'CER 40% 가설 검증',
-              content: 'VLM 파서의 CER 40%가 측정 노이즈인지 실제 구조적 차이인지 검증. 7개 정규화 항목에서 0개 성공, 4개는 8~18pp 악화 → <strong>H1 기각, H0 채택</strong>: 실제 구조적 차이임을 입증.'
+              subtitle: 'Solution',
+              content: 'Qwen3-VL-2B-Instruct를 한국 공공문서 2,667장으로 LoRA fine-tuning하여, <strong>15배 큰 Teacher 모델(30B)과 동등하거나 일부 메트릭에서 초과하는 성능을 달성</strong>. 모델 가중치·학습 데이터·평가 코드를 전부 오픈소스로 공개.'
             }
           ]
         },
         {
-          title: 'Solution — VLM Two-Stage Parsing',
-          content: '<strong>Prompt를 이해하는 VLM을 활용한 구조 보존 파싱 프레임워크</strong><br><br>전통적 OCR은 텍스트 추출은 가능하나 표·헤더·레이아웃 등 문서 구조를 보존하지 못합니다. VLM Two-Stage Parsing이 이 문제를 해결하며, SoundMind Ecosystem의 Analysis Platform에 직접 적용될 예정.',
+          title: 'Contribution Stack (3계층)',
           subsections: [
             {
-              subtitle: '4-Parser 하이브리드 라우팅',
-              content: '문서 복잡도에 따라 최적 파서를 자동 선택하는 4가지 파이프라인:',
-              list: [
-                '<strong>Text-Baseline</strong> — PyMuPDF 텍스트 추출 (CPU-only, 복잡도 < 0.5)',
-                '<strong>Text-Advanced</strong> — PyMuPDF + RapidOCR + 후처리 (CPU-only)',
-                '<strong>Image-Baseline</strong> — Qwen3-VL 단순 프롬프트 (GPU)',
-                '<strong>Image-Advanced</strong> — Qwen3-VL 2-Stage Parsing (GPU, 복잡도 >= 0.5)',
-                '복잡도 기반 자동 라우팅으로 GPU 리소스 효율화'
-              ]
+              subtitle: 'Layer 1 — Benchmark',
+              content: '<strong>KoGovDoc-Bench</strong>: 한국 정부 문서 평가셋 (val 294장, pseudo-GT 기반)'
             },
             {
-              subtitle: '3-Tier VLM 서빙 아키텍처',
-              list: [
-                '<strong>Qwen3-VL-30B</strong> — Teacher 모델: Pseudo-GT(Ground Truth) 생성',
-                '<strong>Qwen3-VL-122B</strong> — Validator 모델: GT 품질 검증',
-                '<strong>Qwen3-VL-2B</strong> — Student 모델: LoRA 파인튜닝 후 프로덕션 추론',
-                'Knowledge Distillation: 30B 교사 → 2B 학생 (rank 64, alpha 128)'
-              ]
+              subtitle: 'Layer 2 — Fine-tuned Model',
+              content: '<strong>Wigtn/Qwen3-VL-2B-WigtnOCR</strong>: LoRA domain-adaptive fine-tuning 가중치 (HuggingFace 공개)'
             },
             {
-              subtitle: '프롬프트 엔지니어링 핵심 발견',
-              content: '프롬프트 v1(0%) → v2(79.25%): <strong>2B 소형 모델에서는 CRITICAL RULES + 명시적 헤딩 매핑이 핵심</strong>. 대형 모델에서 동작하는 암묵적 규칙이 소형 모델에서는 무시됨을 발견.'
+              subtitle: 'Layer 3 — Framework',
+              content: '<strong>wigtnocr</strong>: pip install 가능한 OSS 라이브러리 (파싱→구조화 마크다운→청킹 통합 파이프라인)'
             }
           ]
         },
         {
-          title: '3단계 평가 프레임워크',
-          content: '파싱 품질을 전제 조건 → 핵심 지표 → 다운스트림 영향까지 3계층으로 체계적 평가.',
+          title: '실행 파이프라인 (9 Stages)',
           subsections: [
             {
-              subtitle: '1단계 — 전제 조건 (CER/WER)',
-              content: '문자 오류율(CER), 단어 오류율(WER)로 텍스트 추출 정확도 기본 검증.'
-            },
-            {
-              subtitle: '2단계 — 핵심 지표 (Structure F1)',
-              content: '문서 구조 요소(헤딩·표·리스트·코드블록 등) 보존율 측정. <strong>Recall 87.5%</strong>(24개 구조 요소 중 21개 검출), <strong>Precision 72.41%</strong>.'
-            },
-            {
-              subtitle: '3단계 — 다운스트림 (BC/CS)',
-              content: 'Boundary Coverage(BC)·Chunk Similarity(CS)로 청킹 품질 영향 평가. 파싱 품질이 RAG 검색에 실제로 미치는 영향을 정량화.'
-            },
-            {
-              subtitle: '벤치마크 통합',
+              subtitle: 'Stage 1-3: 데이터 준비',
               list: [
-                '<strong>OmniDocBench</strong>(CVPR 2025) 어댑터: 1,355 PDF · 9 문서 유형 · 3 언어',
-                '<strong>TEDS</strong>(ECCV 2020) 구현: 표 구조 평가, 18개 유닛테스트',
-                '6가지 메트릭(CER, WER, Structure F1, TEDS, BC, CS) 통합'
+                '<strong>Pseudo-GT 생성</strong> — Qwen3-VL-30B-Instruct(Teacher)로 4,501페이지(KoGovDoc 3,637 + arXiv 864) 처리',
+                '<strong>GT 품질 검증</strong> — Qwen3.5-122B Judge로 5점 척도 평가 (KoGovDoc 합격률 75.1%, arXiv 73.8%)',
+                '<strong>데이터 정제</strong> — max_doc_ratio=0.25 편향 제어, 30B-Thinking 모델 reasoning 잔여물 정제 → 최종 train 2,667 + val 294'
+              ]
+            },
+            {
+              subtitle: 'Stage 4: LoRA Fine-tuning',
+              list: [
+                'Base: Qwen3-VL-2B-Instruct, LoRA r=8 α=32, all-linear layers',
+                'Vision Encoder·Aligner 동결 (시각 인식은 충분, 텍스트 생성 정확도가 부족했기 때문)',
+                'DeepSpeed ZeRO-2, <strong>학습 시간 31분</strong>, final loss 0.075',
+                'Ablation: v1(r=8) vs v2(r=32) — v2는 수식 +0.9pp지만 테이블 -4.9pp, 텍스트 +2.1pp 퇴보 → v1 확정'
+              ]
+            },
+            {
+              subtitle: 'Stage 5-6: 벤치마크 평가',
+              content: '<strong>OmniDocBench (CVPR 2025)</strong> 국제 벤치마크 + <strong>KoGovDoc Val</strong> 한국 문서 평가'
+            },
+            {
+              subtitle: 'Stage 7-8: 청킹·검색 품질 평가',
+              list: [
+                '<strong>Stage 7 (진행 중)</strong> — MoC BC/CS(ACL 2025) 메트릭으로 "구조화 파싱 → 더 좋은 청크?" 검증',
+                '3가지 청킹 전략: Header-based(구조화 전용) / Fixed-size(baseline) / Semantic(핵심 공정 비교)',
+                '<strong>Stage 8 (대기)</strong> — BGE-M3 + FAISS로 "더 좋은 청크 → 더 좋은 검색?" 검증 (Hit@K, MRR, nDCG)'
+              ]
+            },
+            {
+              subtitle: 'Stage 9: 배포 및 논문',
+              content: 'HuggingFace 모델 가중치 업로드, PyPI 패키지 공개, EMNLP 2026 Industry Track 투고 예정'
+            }
+          ]
+        },
+        {
+          title: 'OmniDocBench 성능 비교 (핵심 결과)',
+          content: [
+            '<table class="modal__benchmark-table">',
+            '<caption>OmniDocBench (CVPR 2025) — 4 Models Comparison</caption>',
+            '<thead><tr>',
+            '<th scope="col">모델</th><th scope="col">Text NED↓</th><th scope="col">Table TEDS↑</th>',
+            '<th scope="col">TEDS-S↑</th><th scope="col">Formula CDM↑</th><th scope="col">RO NED↓</th>',
+            '</tr></thead><tbody>',
+            '<tr><td>Qwen3-VL-30B (Teacher)</td>',
+            '<td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.227</td></tr>',
+            '<tr><td>Qwen3-VL-2B (Base)</td>',
+            '<td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.300</td></tr>',
+            '<tr><td>Marker (Rule-based)</td>',
+            '<td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.165</td></tr>',
+            '<tr class="tr--highlight"><td>WigtnOCR v1 (Ours)</td>',
+            '<td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td></tr>',
+            '</tbody></table>'
+          ].join(''),
+          subsections: [
+            {
+              subtitle: '핵심 성과',
+              list: [
+                '<strong>Text NED</strong>: 30B Teacher와 동등 (0.288 vs 0.289)',
+                '<strong>Table TEDS/TEDS-S</strong>: 전체 1위 (30B, Marker 모두 초과)',
+                '<strong>Reading Order</strong>: 30B Teacher 초과 (0.211 vs 0.227)',
+                'Base 2B 대비 — Text NED 21%↑, Table TEDS 16%↑, Reading Order 30%↑'
               ]
             }
           ]
         },
         {
-          title: 'arXiv GT 자동 생성 파이프라인',
-          content: 'VLM 파서 평가를 위한 Ground Truth를 대규모로 자동 생성하는 파이프라인 구축.',
-          subsections: [
-            {
-              subtitle: '파이프라인 구조',
-              list: [
-                'arXiv 논문의 LaTeX 소스 → Markdown 자동 변환',
-                '39개 논문 처리, 성공률 <strong>20% → 80%</strong> (5회 반복 개선)',
-                'Pseudo-GT 생성: Qwen3-VL-30B(teacher)가 파싱 → Qwen3-VL-122B(validator)가 품질 검증',
-                '검증 통과한 GT로 2B 학생 모델 LoRA 파인튜닝'
-              ]
-            }
+          title: 'Practical Findings',
+          list: [
+            '<strong>Thinking vs Instruct</strong> — Document transcription에서 reasoning 모델은 출력 불안정(think 태그 오염, 토큰 잘림), Instruct 모델이 안정적',
+            '<strong>LoRA rank 최적점</strong> — 데이터 2,667개 규모에서 r=8이 최적, r=32로 올리면 테이블 성능 퇴보 (-4.9pp)',
+            '<strong>CS O(n²) 해결</strong> — MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 대표성 유지하면서 계산량 1,225쌍으로 제한',
+            '<strong>페이지→문서 단위 전환</strong> — 페이지 단위 청킹은 텍스트가 짧아 BC/CS 계산 불가 → 문서 단위 합산으로 해결'
           ]
         },
         {
-          title: 'Key Metrics',
+          title: 'Tech Stack',
           subsections: [
             {
-              subtitle: '핵심 성능',
+              subtitle: 'Model & Training',
               list: [
-                'Structure F1: <strong>0% → 79.25%</strong> (+79pp)',
-                'Recall: <strong>87.5%</strong> (24개 구조 요소 중 21개 검출)',
-                'Precision: <strong>72.41%</strong>',
-                'Trade-off: CER +17pp (40.79%→57.71%) · Latency x159 (0.27s→42.92s)'
+                '<strong>Student</strong>: Qwen3-VL-2B-Instruct (fine-tuning 대상)',
+                '<strong>Teacher</strong>: Qwen3-VL-30B-Instruct (Pseudo-GT 생성)',
+                '<strong>Judge</strong>: Qwen3.5-122B (GT 품질 검증)',
+                '<strong>Framework</strong>: ms-swift, LoRA, DeepSpeed ZeRO-2',
+                '<strong>Serving</strong>: vLLM (Docker, TP=2)'
               ]
             },
             {
-              subtitle: '인프라',
+              subtitle: 'Evaluation & Retrieval',
               list: [
-                '<strong>Dual RTX PRO 6000 Blackwell</strong> (각 96GB VRAM) + 128GB DDR5 RAM',
-                '3-Tier VLM 동시 서빙 (30B + 8B + 2B)',
-                '27커밋 · 7주 · `pip install wigtnocr` 패키지화'
+                '<strong>Benchmark</strong>: OmniDocBench (CVPR 2025) + KoGovDoc-Bench',
+                '<strong>Chunking</strong>: Header-based / Semantic / Fixed-size (3전략)',
+                '<strong>Chunking 평가</strong>: MoC BC/CS (ACL 2025, Qwen2.5-1.5B PPL)',
+                '<strong>Embedding</strong>: BGE-M3 (Infinity server)',
+                '<strong>Vector DB</strong>: FAISS'
+              ]
+            },
+            {
+              subtitle: 'Infrastructure',
+              list: [
+                '<strong>GPU</strong>: 2× NVIDIA RTX PRO 6000 Blackwell (96GB each)',
+                '<strong>배포</strong>: HuggingFace (Wigtn org), GitHub (wigtn), PyPI 예정'
               ]
             }
           ]
         }
       ],
-      tags: ['Qwen3-VL', 'LoRA', 'vLLM', 'Structure F1', 'Knowledge Distillation', 'OmniDocBench', 'TEDS', 'arXiv', 'EMNLP 2026']
+      tags: ['Qwen3-VL-2B', 'LoRA', 'Pseudo-Label Distillation', 'OmniDocBench', 'vLLM', 'Open Source', 'EMNLP 2026']
     },
     'wigtn-coding': {
       title: 'WIGTN Claude Code Skills Plugins',
@@ -1965,6 +1995,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
+  // Block-level HTML detection for modal content rendering
+  const isBlockLevelHtml = (content) =>
+    typeof content === 'string' && /^<(table|div|ul|ol|dl|section|figure|blockquote|pre)/.test(content);
+
   // Open modal
   projectCards.forEach(card => {
     card.addEventListener('click', function(e) {
@@ -2062,7 +2096,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }
 
           if (section.content) {
-            contentHTML += `<p>${section.content}</p>`;
+            contentHTML += isBlockLevelHtml(section.content)
+              ? `<div>${section.content}</div>`
+              : `<p>${section.content}</p>`;
           }
           if (section.list) {
             contentHTML += `<ul>${section.list.map(item => `<li>${item}</li>`).join('')}</ul>`;
@@ -2100,7 +2136,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 contentHTML += `</div>`;
               }
               if (sub.content) {
-                contentHTML += `<p>${sub.content}</p>`;
+                contentHTML += isBlockLevelHtml(sub.content)
+                  ? `<div>${sub.content}</div>`
+                  : `<p>${sub.content}</p>`;
               }
               if (sub.list) {
                 contentHTML += `<ul>${sub.list.map(item => `<li>${item}</li>`).join('')}</ul>`;
