@@ -523,6 +523,7 @@
         <button class="projects__filter-btn" data-filter="product">Product</button>
         <button class="projects__filter-btn" data-filter="research">Research</button>
         <button class="projects__filter-btn" data-filter="opensource">Open Source</button>
+        <button class="projects__filter-btn" data-filter="crew">WIGTN Crew</button>
       </div>
 
       <div class="projects__grid">
@@ -540,8 +541,8 @@
               </span>
             </h3>
             <p class="project-card__description">
-              고객 문서 업로드 → Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석 → 최적 RAG 전략 자동 추천 → 원클릭 Docker 배포.
-              배포 리드타임 2주→5분(99%+ 단축). 최대 99개 Pipeline 동시 운용.
+              고객 문서 업로드 한 번이면 맞춤형 RAG Pipeline을 자동 생성·Docker 배포까지.
+              PoC 리드타임 2주→5분, 최대 99개 Pipeline 동시 운용하는 AI Sales 플랫폼.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">LangGraph</span>
@@ -571,7 +572,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              2B 모델로 15배 큰 30B Teacher와 동등 성능 달성. 한국 공공문서 2,667장 LoRA fine-tuning, OmniDocBench 테이블 파싱 1위.
+              2B 모델로 15배 큰 30B Teacher와 동등 성능 달성. 한국 공공문서 2,667장 LoRA fine-tuning, OmniDocBench(CVPR 2025) 테이블 파싱 1위.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Qwen3-VL-2B</span>
@@ -619,16 +620,16 @@
           </div>
         </article>
 
-        <!-- Project: Simple LLM Loadtester -->
+        <!-- Project: Engineering LLM Loadtester -->
         <article class="project-card fade-in" data-project="llm-loadtester" data-category="opensource">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/llm-loadtester-dashboard.png" alt="Simple LLM Loadtester Dashboard" class="project-card__image">
+            <img src="images/projects/llm-loadtester-dashboard.png" alt="Engineering LLM Loadtester Dashboard" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
               <span class="project-card__category-text">[Open Source]</span>
               <span class="project-card__title-main">
-                Simple LLM Loadtester
+                Engineering LLM Loadtester
               </span>
             </h3>
             <p class="project-card__description">
@@ -642,7 +643,7 @@
             </div>
           </div>
           <div class="project-card__footer">
-            <a href="https://github.com/Hyeongseob91/Simple-llm-loadtester" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer"
               class="project-card__github-btn" onclick="event.stopPropagation()">
               <i class="fa-brands fa-github"></i>
               GitHub
@@ -653,7 +654,7 @@
         <!-- Project: WIGTN-Coding -->
         <article class="project-card fade-in" data-project="wigtn-coding" data-category="opensource">
           <div class="project-card__image-wrapper">
-            <img src="images/companies/soundmind.png" alt="WIGTN Claude Code Skills Plugins" class="project-card__image">
+            <img src="images/projects/wigtn_logo.png" alt="WIGTN Claude Code Skills Plugins" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -682,30 +683,8 @@
           </div>
         </article>
 
-      </div>
-
-      <!-- 더보기 버튼 -->
-      <div class="projects__more-wrapper">
-        <button class="projects__more-btn" id="projectsMoreBtn">
-          <span class="projects__more-btn-text">더보기</span>
-          <i class="fa-solid fa-chevron-down projects__more-btn-icon"></i>
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Toy Projects Section -->
-  <section class="section projects-toy" id="projects-toy">
-    <div class="container">
-      <div class="section__header">
-        <h2 class="section__title">Toy Projects</h2>
-        <p class="section__subtitle">Learning & Side Projects</p>
-      </div>
-      <div class="projects__grid">
-
         <!-- Project: TimeLens -->
-        <article class="project-card fade-in" data-project="timelens">
+        <article class="project-card fade-in" data-project="timelens" data-category="crew">
           <div class="project-card__image-wrapper">
             <img src="images/projects/timelens_logo.png" alt="TimeLens - AI Museum Curator" class="project-card__image">
           </div>
@@ -735,6 +714,28 @@
             </a>
           </div>
         </article>
+
+      </div>
+
+      <!-- 더보기 버튼 -->
+      <div class="projects__more-wrapper">
+        <button class="projects__more-btn" id="projectsMoreBtn">
+          <span class="projects__more-btn-text">더보기</span>
+          <i class="fa-solid fa-chevron-down projects__more-btn-icon"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Toy Projects Section -->
+  <section class="section projects-toy" id="projects-toy">
+    <div class="container">
+      <div class="section__header">
+        <h2 class="section__title">Toy Projects</h2>
+        <p class="section__subtitle">Learning & Side Projects</p>
+      </div>
+      <div class="projects__grid">
 
         <!-- Project: VALORITHM -->
         <article class="project-card fade-in" data-project="mcp">

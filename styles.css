@@ -1659,7 +1659,7 @@ img {
 }
 
 .modal__section li::before {
-  content: '▹';
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--color-primary-light);

@@ -1145,8 +1145,9 @@ document.addEventListener('DOMContentLoaded', function() {
       tags: ['Qwen3-VL-2B', 'LoRA', 'Pseudo-Label Distillation', 'OmniDocBench', 'KoGovDoc-Bench', 'vLLM', 'Open Source', 'EMNLP 2026']
     },
     'wigtn-coding': {
-      title: 'WIGTN Claude Code Skills Plugins',
-      image: 'images/companies/soundmind.png',
+      title: 'WIGTN-Coding — Claude Code 통합 개발 워크플로우 플러그인',
+      image: 'images/projects/wigtn_logo.png',
+      imageContain: true,
       meta: {
         organization: 'WIGTN Crew (Open Source)',
         role: 'Crew Leader / Main Contributor',
@@ -1155,39 +1156,116 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'What is this?',
-          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>Claude Code에 설치하여 사용하는 통합 개발 워크플로우 플러그인. 14개의 전문 에이전트, 7개의 커맨드, 7개의 스킬, 4개의 훅으로 구성되어 기획부터 배포까지 전 과정을 자동화합니다.',
+          title: 'Overview',
+          content: '<strong>AI-Native Vibe Coding — From Idea to Deploy, Zero Friction.</strong><br><br>AI가 코드를 짜주는 시대에 엔지니어의 진짜 실력은 구현 속도가 아니라 설계를 검증하고 의사결정을 내리는 "판단의 밀도"에서 생긴다. 시니어가 부재한 주니어 5명의 팀에서, 판단의 과정 자체를 시스템화하여 팀 전체의 판단 표준을 시니어 수준으로 상향 평준화하기 위해 만들었다.<br><br>Claude Code에 설치하여 <code>/prd → /implement → /auto-commit</code> 슬래시 커맨드 한 줄로 기획부터 배포까지 전 과정을 자동화하는 통합 개발 워크플로우 플러그인.<br><br>GitHub Stars 14 · Forks 2',
           subsections: [
             {
-              subtitle: '핵심 구성',
+              subtitle: '링크',
               list: [
-                '<strong>14 Agents</strong> — 기획(PRD 분석, 아키텍처 결정, Digging) · 구현(팀 병렬 빌드, FE/BE/Mobile/AI/DevOps) · 검증(100점 코드 리뷰, 포맷팅)',
-                '<strong>7 Commands</strong> — /prd(PRD 자동 생성) · /digging(PRD 취약점 분석) · /implement(팀 빌드 실행) · /auto-commit(Quality Gate + 자동 커밋) · /code-review(코드 리뷰) 등',
-                '<strong>7 Skills</strong> — 16가지 디자인 스타일 가이드 · 코드 리뷰 레벨 참조 · 팀 메모리 프로토콜 · Next.js/React/Tailwind/SEO/Auth 레퍼런스 등',
-                '<strong>4 Hooks</strong> — 코드 품질 자동 검증 · 커밋 메시지 표준화 · 빌드 자동 검증 등'
+                '<strong>GitHub</strong>: <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code" target="_blank" rel="noopener noreferrer">wigtn/wigtn-plugins-with-claude-code</a>',
+                '<strong>개발 철학</strong>: <a href="https://www.linkedin.com/pulse/10%EB%85%84-%EC%B0%A8-%EA%B1%B4%EC%84%A4-pm%EC%9D%B4-ai-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A1%9C-%EC%A0%84%ED%96%A5%ED%95%98%EB%A9%B0-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%83%9D%EC%A1%B4%EB%B2%95-%EB%8B%A4%EC%9E%91%E5%A4%9A%E4%BD%9C%EA%B3%BC-%ED%8C%90%EB%8B%A8%EC%9D%98-%EC%8B%9C%EC%8A%A4%ED%85%9C%ED%99%94-hyeongseob-kim-srq1c/" target="_blank" rel="noopener noreferrer">LinkedIn Article — 판단의 시스템화</a>'
               ]
-            },
-            {
-              subtitle: '결과물 — 이 플러그인으로 만든 프로젝트들',
-              list: [
-                '<strong>WIGVU</strong> — YouTube 자막 추출·번역·AI 분석 도구',
-                '<strong>WIGTN-SPEAR</strong> — AI 서비스 특화 보안 스캐너 (OWASP LLM Top 10 + Web Top 10 커버)',
-                '<strong>TimeLens</strong> — Gemini Live Agent Challenge 출품작'
-              ]
-            },
-            {
-              subtitle: 'WIGTN Crew',
-              content: '주니어 AI 개발자들의 성장을 위한 크루 WIGTN을 리딩하고 있습니다. AI 시대에 주니어 개발자가 나아가야 할 방향은 AI를 활용하는 역량에 달려 있다고 생각하며, 이 플러그인은 그 철학을 실천하기 위한 결과물입니다.'
             }
+          ]
+        },
+        {
+          title: '왜 만들었나 — 판단의 밀도',
+          subsections: [
+            {
+              subtitle: '문제 인식',
+              content: '건설 현장 PM 10년의 경험에서 배운 것은, 좋은 엔지니어는 "빨리 짓는 사람"이 아니라 "올바르게 판단하는 사람"이라는 것이었다. AI가 코드를 초 단위로 뽑아내는 시대에 주니어의 생존 전략은 "판단의 밀도를 얼마나 촘촘하고 빠르게 가져가느냐"에 달려 있다.'
+            },
+            {
+              subtitle: '해결 방향',
+              content: '시니어가 부재한 주니어 5명의 팀에서, 엔지니어가 거쳐야 할 "판단의 과정" 자체를 시스템화했다. 80점 이상의 Quality Gate를 통과해야만 커밋이 허용되는 엄격한 루프로 팀 전체의 판단 표준을 상향 평준화. 단순한 코드 공유가 아닌 <strong>판단 로직의 오픈소스화</strong>.'
+            }
+          ]
+        },
+        {
+          title: '핵심 설계 원칙 — "Claude가 모르는 것만 가르쳐라"',
+          content: 'Anthropic의 skill-creator 도구로 플러그인을 분석한 결과, 54개 도구 중 55.6%가 "Claude가 이미 할 수 있지만 팀 방식을 강제하는 것(Encoded Preference)"이었다. 재설계 기준: Claude가 모르는 사실 → Skill 유지, Claude가 할 수 있지만 팀 방식 → Agent 전환, Claude가 이미 잘하는 것 → 삭제. Skills 22개를 삭제하고 핵심 7개만 남겼다.',
+          subsections: [
+            {
+              subtitle: 'Claude Code 트리거 메커니즘 활용',
+              list: [
+                '<strong>Skills</strong> — Claude가 자율적으로 판단하여 로드 (Claude가 추론 불가능한 것만)',
+                '<strong>Agents</strong> — description이 항상 노출, 매칭 시 주입 (팀 방식 강제)',
+                '<strong>Commands</strong> — 사용자가 명시적으로 호출 (/prd, /implement, /auto-commit)'
+              ]
+            }
+          ]
+        },
+        {
+          title: '핵심 파이프라인 — /prd → /implement → /auto-commit',
+          subsections: [
+            {
+              subtitle: '/prd — 기획 자동화',
+              content: '자연어 아이디어를 구조화된 PRD로 변환. /digging으로 PRD 취약점을 4개 카테고리(완성도·실현가능성·보안·일관성)로 분석하여 구현 전에 문제를 차단.'
+            },
+            {
+              subtitle: '/implement — 팀 병렬 빌드',
+              content: 'PRD를 분석하여 Backend · Frontend · AI · Ops 팀을 동적으로 할당하고 동시에 투입. SHARED_CONTEXT로 팀 간 API 계약을 실시간 공유하여, 백엔드가 만든 API를 프론트엔드가 즉시 참조.'
+            },
+            {
+              subtitle: '/auto-commit — Quality Gate',
+              content: '100점 만점 코드 리뷰를 거쳐 80점 이상이어야 커밋 허용. 60~79점은 자동 개선 시도, 60점 미만은 차단. Security Critical 이슈 발견 시 점수 무관 강제 차단.'
+            }
+          ]
+        },
+        {
+          title: '3계층 메모리 시스템',
+          subsections: [
+            {
+              subtitle: '구조',
+              list: [
+                '<strong>Layer 1 — Auto Memory (MEMORY.md)</strong>: 프로젝트 핵심 기술 스택, 레포지토리 패턴 등 세션 간 영구 정보',
+                '<strong>Layer 2 — SHARED_CONTEXT</strong>: 백엔드 API 계약을 프론트엔드가 실시간 참조하는 에이전트 간 정보 공유',
+                '<strong>Layer 3 — TaskCreate</strong>: 현재 대화 내 태스크 의존성 추적, 선행 작업 완료 시 다음 작업 자동 수행'
+              ]
+            },
+            {
+              subtitle: '효과',
+              content: '쓸수록 프로젝트를 더 잘 이해하고 팀의 맥락을 기억하는 "살아있는 개발 팀". 며칠씩 소요되던 아키텍처 결정이 5분 만의 검증으로 결론. 전체 파이프라인 속도 3배 이상 향상.'
+            }
+          ]
+        },
+        {
+          title: '구성 요소',
+          subsections: [
+            {
+              subtitle: '14 Agents',
+              content: '기획(PRD 분석, 아키텍처 결정, Digging) · 구현(팀 병렬 빌드, FE/BE/Mobile/AI/DevOps) · 검증(100점 코드 리뷰, 병렬 리뷰, 포맷팅)'
+            },
+            {
+              subtitle: '7 Commands',
+              content: '/prd · /digging · /implement · /auto-commit · /code-review · /clarify · /loop'
+            },
+            {
+              subtitle: '7 Skills',
+              content: '디자인 시스템 레퍼런스(16가지 스타일) · 코드 리뷰 레벨 참조 · 팀 메모리 프로토콜 등 — Claude가 추론 불가능한 것만 남긴 핵심 7개'
+            },
+            {
+              subtitle: '4 Hooks',
+              content: '코드 품질 자동 검증 · 커밋 메시지 표준화 · 빌드 자동 검증 · 프리커밋 린트'
+            }
+          ]
+        },
+        {
+          title: '실전 결과물 — 이 플러그인으로 만든 프로젝트들',
+          list: [
+            '<strong>WIGVU</strong> — 외국인을 위한 한국어 스터디 앱 (Next.js 16 + NestJS 10 + FastAPI MSA, App 배포 목표)',
+            '<strong>WIGVO</strong> — PSTN 실시간 양방향 음성 번역 시스템 (ACL 2026 Under Review)',
+            '<strong>TimeLens</strong> — Gemini Live Agent Challenge 출품작 (Google Global 해커톤)',
+            '<strong>WIGTN-SPEAR</strong> — AI 서비스 특화 보안 스캐너 (OWASP LLM Top 10 + Web Top 10)',
+            '<strong>LLM Loadtester</strong> — 비개발직군용 LLM 서빙 벤치마킹 도구 (오픈소스)'
           ]
         }
       ],
-      tags: ['Claude Code', 'Plugin', 'AI-Native', '14 Agents', '7 Commands', '4 Hooks', 'Open Source']
+      tags: ['Claude Code', 'Plugin', 'AI-Native', 'Quality Gate', 'Agent Teams', 'Open Source']
     },
     'llm-loadtester': {
-      title: 'Simple LLM Loadtester',
+      title: 'Engineering LLM Loadtester — 비개발직군용 LLM 서빙 벤치마킹 도구',
       image: 'images/projects/llm-loadtester-dashboard.png',
-      imageContain: false,
       meta: {
         organization: 'Personal Project (Open Source)',
         role: '1인 개발',
@@ -1196,56 +1274,61 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'Problem / Solution',
+          title: 'Overview',
+          content: '<strong>비개발직군도 브라우저에서 바로 LLM 서빙 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구</strong><br><br>상사로부터 "LLM 서버의 동시 접속 가능 인원은 몇 명인가?"라는 질문을 받았다. 인프라 평가와 성능 테스트가 담당자에게 축적되지 않고, 필요할 때마다 임시로 담당자를 정해 처리하는 구조가 문제였다. "비개발자도 누구나 사용 가능한 사내 공용 LLM LoadTester"를 제안하고 직접 만들었다.<br><br>GitHub Stars 2 · WIGTN-Coding 플러그인으로 주말에 MVP 완성 후 고도화.',
           subsections: [
             {
-              subtitle: 'Problem',
-              content: '기존 LLM 벤치마킹 도구는 CLI 기반에 개발자 전용. 비개발 직군(영업팀, MLOps, PM)은 LLM 서빙 성능 테스트에 접근하기 어렵고, SLO 기반 품질 평가(Goodput) 기능도 부재.'
+              subtitle: '링크',
+              list: [
+                '<strong>GitHub</strong>: <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer">Hyeongseob91/engineering-llm-loadtester</a>',
+                '<strong>개발 후기</strong>: <a href="https://www.linkedin.com/posts/harrison-hyeongseob-kim_%EC%A4%91%EA%B3%A0-%EC%8B%A0%EC%9E%85-%EC%A3%BC%EB%8B%88%EC%96%B4%EC%9D%98-%EC%83%9D%EC%A1%B4%EA%B8%B0-1-ai-native-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0-activity-7417243655469477888-5mo8" target="_blank" rel="noopener noreferrer">LinkedIn — AI-Native 프로젝트 개발 후기</a>'
+              ]
             },
             {
-              subtitle: 'Solution',
-              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 풀스택 MVP 완성 후 고도화.'
+              subtitle: '외부 반응',
+              content: 'Ex-Google ML/AI 엔지니어(NextToken 빌더)로부터 콜드 아웃리치 메일 수신. GitHub 프로필에서 engineering-llm-loadtester 레포를 발견하고 "quite relevant"하다며 연락. 실제로 프로젝트 위에 interactive app을 만들어 피드백을 주고받는 경험.'
             }
           ]
         },
         {
-          title: 'What is this?',
-          content: '<strong>비개발직군도 사용할 수 있는 Web 기반 LLM 서빙 성능 벤치마킹 도구</strong><br><br>OpenAI 호환 API 서버(vLLM, SGLang, Ollama, Triton 등)를 대상으로 LLM 특화 메트릭을 측정하고 시각화합니다.',
+          title: '왜 만들었나',
           subsections: [
             {
-              subtitle: '핵심 기능',
+              subtitle: '실무 배경',
+              content: '인프라 성능 테스트가 특정 담당자에게만 가능한 구조. LLM 서빙 성능을 평가하려면 CLI 도구(llmperf, vllm benchmark 등)를 직접 다뤄야 했고, 영업팀·MLOps·PM은 접근 자체가 어려웠다.'
+            },
+            {
+              subtitle: '해결 방향',
+              content: 'UI에서 직접 조정 가능한 반복 테스트 환경. 입력(타겟 서버, 트래픽 규모, 프롬프트, SLO 기준값)은 유연하게, 출력(TTFT, TPOT, p99, Goodput)은 데이터 기반으로 명확하게. "누군가를 거치지 않고 직접 도전할 수 있는 Fast Build의 매력".'
+            }
+          ]
+        },
+        {
+          title: '핵심 기능',
+          subsections: [
+            {
+              subtitle: 'LLM 특화 메트릭',
               list: [
-                '<strong>LLM 특화 메트릭</strong> — TTFT, TPOT, E2E Latency, ITL, Throughput (tiktoken 기반 정확한 토큰 카운팅)',
-                '<strong>Goodput</strong> — SLO 임계값 기반 품질 평가: "TTFT 500ms 이내 + TPOT 50ms 이내 요청 비율" (단순 처리량이 아닌 유효 처리량)',
-                '<strong>실시간 모니터링</strong> — WebSocket 기반 진행 상황 + pynvml GPU 메트릭 수집',
-                '<strong>AI 분석 리포트</strong> — Claude API 기반 벤치마크 결과 자동 분석'
+                '<strong>TTFT</strong> (Time To First Token) — 첫 토큰까지의 응답 시간',
+                '<strong>TPOT</strong> (Time Per Output Token) — 토큰당 생성 시간',
+                '<strong>Goodput</strong> — SLO 임계값 기반 유효 처리량: "TTFT 500ms 이내 + TPOT 50ms 이내 요청 비율"',
+                '<strong>E2E Latency / ITL / Throughput</strong> — tiktoken 기반 정확한 토큰 카운팅'
               ]
+            },
+            {
+              subtitle: '실시간 모니터링',
+              content: 'WebSocket 기반 진행 상황 + pynvml GPU 메트릭(VRAM, 온도, 사용률) 실시간 수집.'
+            },
+            {
+              subtitle: 'AI 분석 리포트',
+              content: 'Claude API 기반 벤치마크 결과 자동 분석. 병목 구간 식별 + 최적 GPU 인프라 자동 추천(<code>필요 GPU = ceil(목표 동시성 / 현재 최대 동시성) × (1 + headroom)</code>).'
             },
             {
               subtitle: '검증 시스템 (Validation Loop)',
-              content: '벤치마킹 도구 자체의 정확성을 보장하기 위한 이중 교차 검증 시스템:',
               list: [
                 '<strong>Prometheus 메트릭 검증</strong> — 측정값 ±5% 허용 범위 내 교차 확인',
                 '<strong>Docker 로그 검증</strong> — 컨테이너 레벨 ±10% 허용 범위 내 재검증',
-                'Prometheus + Docker 이중 교차 검증으로 측정 정확성 보장'
-              ]
-            },
-            {
-              subtitle: '인프라 추천 기능',
-              content: '벤치마크 결과를 기반으로 최적 GPU 인프라를 자동 추천:',
-              list: [
-                '<code>필요 GPU = ceil(목표 동시성 / 현재 최대 동시성) × (1 + headroom)</code>',
-                '영업팀/MLOps/PM 대상 비전문가 친화적 리포트 생성',
-                '벤치마크 결과 기반 자동 GPU 스케일링 산출'
-              ]
-            },
-            {
-              subtitle: 'Adapter Pattern',
-              content: '다양한 LLM 서빙 프레임워크를 단일 인터페이스로 지원:',
-              list: [
-                'vLLM · SGLang · Ollama · Triton 등 OpenAI 호환 서버 대응',
-                'Graceful 벤치마크 중단 기능 (118 테스트 통과)',
-                'GitHub Actions CI 파이프라인 구축'
+                'Adapter Pattern: vLLM · SGLang · Ollama · Triton 등 OpenAI 호환 서버 단일 인터페이스 대응'
               ]
             }
           ]
@@ -1274,10 +1357,38 @@ document.addEventListener('DOMContentLoaded', function() {
               caption: '4. AI 분석 리포트 자동 생성'
             }
           ]
+        },
+        {
+          title: 'Tech Stack',
+          subsections: [
+            {
+              subtitle: 'Backend',
+              list: [
+                '<strong>API</strong>: Python 3.12, FastAPI, asyncio',
+                '<strong>CLI</strong>: Typer (터미널 직접 사용 가능)',
+                '<strong>GPU 모니터링</strong>: pynvml',
+                '<strong>검증</strong>: Prometheus + Docker 이중 교차 검증'
+              ]
+            },
+            {
+              subtitle: 'Frontend',
+              list: [
+                '<strong>Web</strong>: Next.js, React, Recharts (메트릭 시각화)',
+                '<strong>실시간</strong>: WebSocket 기반 진행 상황 스트리밍'
+              ]
+            },
+            {
+              subtitle: 'Infrastructure',
+              list: [
+                '<strong>Docker</strong>: docker-compose 원클릭 배포',
+                '<strong>CI</strong>: GitHub Actions (118 테스트)',
+                '<strong>AI</strong>: Claude API (분석 리포트 생성)'
+              ]
+            }
+          ]
         }
       ],
-      tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'Validation Loop', 'Goodput', 'Open Source'],
-      demoUrl: null
+      tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'Goodput', 'Validation Loop', 'Open Source']
     },
     timelens: {
       title: 'TimeLens - 음성+카메라 멀티모달 AI 박물관 큐레이터',
