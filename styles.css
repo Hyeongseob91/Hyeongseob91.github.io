@@ -324,6 +324,35 @@ img {
   background: rgba(99, 102, 241, 0.1);
 }
 
+/* Navbar Social Links */
+.navbar__social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 1rem;
+}
+
+.navbar__social-link {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  transition: color var(--transition-fast);
+}
+
+.navbar__social-link:hover {
+  color: var(--color-primary);
+}
+
+.navbar__social-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.navbar__social-link:hover .navbar__social-icon {
+  opacity: 1;
+}
+
 .navbar__toggle {
   display: none;
   flex-direction: column;
@@ -343,6 +372,11 @@ img {
 }
 
 @media (max-width: 768px) {
+  .navbar__social {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+
   .navbar__toggle {
     display: flex;
   }

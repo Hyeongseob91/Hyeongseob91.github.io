@@ -904,23 +904,28 @@ document.addEventListener('DOMContentLoaded', function() {
         architecture: 'Qwen3-VL-2B + LoRA + ms-swift + vLLM + BGE-M3 + FAISS'
       },
       disclaimer: {
-        show: true,
-        text: 'WIGTN Crew 자체 연구로 진행되며, 회사 GPU 인프라(2× RTX PRO 6000 Blackwell, 96GB each)를 활용하고 있습니다.'
+        show: false,
+        text: ''
       },
       sections: [
         {
           title: 'Overview',
-          content: '<strong>VLM 기반 한국 공공기관 문서 전용 파싱 프레임워크</strong><br><br>SoundMind Inc.에서 B2B2G RAG 서비스를 개발하며 직면한 문제에서 출발한 연구 프로젝트. End User가 어떤 구조의 문서를 활용하는지 사전에 알 수 없는 B2B2G 환경에서, "한국 정부 공공문서"라는 도메인만은 확정되어 있었기 때문에, 실무 인프라 여건(제한된 GPU, 비용)에 충족되는 SLM 기반 Document Parser를 만드는 것이 목표였다.<br><br>Qwen3-VL-2B-Instruct를 한국 공공문서 2,667장으로 LoRA fine-tuning한 결과, <strong>15배 큰 Teacher 모델(30B)과 동등하거나 일부 메트릭에서 초과하는 성능을 달성</strong>했고, 모델 가중치·학습 데이터·평가 코드를 전부 오픈소스로 공개했다.',
+          content: '<strong>VLM 기반 한국 공공기관 문서 전용 파싱 프레임워크</strong><br><br>SoundMind Inc.에서 B2B2G(정부 대상 간접 납품) RAG 서비스를 개발하며 직면한 문제에서 출발한 연구 프로젝트. End User가 어떤 구조의 문서를 활용하는지 사전에 알 수 없는 B2B2G 환경에서, 한국 정부 공공문서라는 도메인만은 확정되어 있었기 때문에, 한국 정부 공공문서를 정확하게 읽고 구조화하여 저장할 수 있으며 실무 인프라 여건(제한된 GPU, 비용)에 충족되는 SLM 기반 Document Parser를 만드는 것이 목표였다.<br><br>"큰 모델이 좋다"는 단계를 넘어, <strong>LLM의 지능을 SLM으로 어떻게 효율적으로 전이할 것인가</strong>가 현재 AI 엔지니어링의 핵심 화두다. Orca(Microsoft, 2023)가 제시한 지식 증류(Knowledge Distillation) 패러다임 — LLM의 추론 과정을 SLM에 학습시켜 소형 모델로 대형 모델 수준의 성능을 달성하는 접근 — 을 한국 공공문서 파싱이라는 도메인에 적용했다.<br><br>Qwen3-VL-2B-Instruct를 한국 공공문서 2,667장으로 LoRA fine-tuning한 결과, <strong>15배 큰 Teacher 모델(30B)과 동등하거나 초과하는 파싱 성능을 달성</strong>했으며, <strong>6개 파서 비교에서 Retrieval 성능 1위</strong>를 기록하여 "구조화 파싱 → 청킹 품질 개선 → 검색 성능 향상"의 end-to-end 인과 관계를 검증했다. 모델 가중치·학습 데이터·평가 코드를 전부 오픈소스로 공개했다.<br><br><strong>배포:</strong> <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer">HuggingFace Model</a> · <a href="https://huggingface.co/datasets/Wigtn/KoGovDoc-Bench" target="_blank" rel="noopener noreferrer">HuggingFace Dataset</a> · <a href="https://github.com/Hyeongseob91/research-vlm-based-document-parsing" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://wigtn.com" target="_blank" rel="noopener noreferrer">WIGTN Crew</a>',
           subsections: [
             {
               subtitle: '연구 질문',
-              content: '"30B Teacher의 파싱 능력을 2B Student로 압축하면서 한국 공공문서에 특화된 성능을 달성할 수 있는가? 그리고 구조화된 파싱이 실제 RAG 파이프라인의 청킹·검색 품질로 이어지는가?"'
+              content: '"30B Teacher의 파싱 능력을 2B Student로 압축하면서 한국 공공문서에 특화된 성능을 달성할 수 있는가? 그리고 구조화된 파싱이 실제 RAG 파이프라인의 청킹·검색 품질로 이어지는가?"',
+              image: { src: 'images/projects/fig_highlights.png', alt: 'WigtnOCR 핵심 벤치마크 결과' }
             }
           ]
         },
         {
           title: '기술적 문제 — 왜 기존 파서로는 안 되는가',
           subsections: [
+            {
+              subtitle: '순수 OCR의 한계',
+              content: 'PaddleOCR 같은 전통적 OCR은 텍스트 인식은 하지만 문서 구조를 이해하지 못한다. 실제 평가에서 WigtnOCR 대비 3~30배 적은 텍스트만 추출했으며, 한국 공공문서의 표·양식·복잡 레이아웃을 대부분 놓쳤다.'
+            },
             {
               subtitle: 'Rule-based 파서의 한계',
               content: 'PyMuPDF4LLM 같은 rule-based 파서는 텍스트 추출은 빠르지만 구조 인식률이 0%에 가까워, 법령의 조/항/목 계층이나 표+다이어그램+텍스트 혼합 레이아웃을 전혀 보존하지 못했다.'
@@ -975,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           title: 'Stage 4: LoRA Fine-tuning',
-          content: 'Base Model: Qwen3-VL-2B-Instruct. LoRA rank=8, alpha=32, target=all-linear로 Language Model의 모든 linear layer에 어댑터 부착. <strong>Vision Encoder와 Aligner는 동결</strong> — 이전 연구에서 VLM의 시각 인식 능력은 충분(Structure F1 79%)하지만 텍스트 생성 정확도가 부족함을 확인했기 때문.',
+          content: 'Base Model: Qwen3-VL-2B-Instruct. LoRA rank=8, alpha=32, target=all-linear로 Language Model의 모든 linear layer에 어댑터 부착. <strong>Vision Encoder와 Aligner는 동결</strong> — 사전 예비 실험(pilot test)에서 VLM의 시각 인식 능력은 충분(Structure F1 79%)하지만 텍스트 생성 정확도가 부족함을 확인했기 때문.',
           subsections: [
             {
               subtitle: '학습 설정',
@@ -990,24 +995,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<table class="modal__benchmark-table">',
                 '<caption>LoRA Configuration 비교 (OmniDocBench)</caption>',
                 '<thead><tr>',
-                '<th scope="col">Config</th><th scope="col">Text NED↓</th><th scope="col">TEDS↑</th>',
-                '<th scope="col">CDM F1↑</th><th scope="col">RO NED↓</th><th scope="col">판정</th>',
+                '<th scope="col">Config</th><th scope="col">LoRA r</th><th scope="col">Epochs</th><th scope="col">Text NED↓</th><th scope="col">TEDS↑</th>',
+                '<th scope="col">TEDS-S↑</th><th scope="col">CDM F1↑</th><th scope="col">RO NED↓</th><th scope="col">Skip%↓</th><th scope="col">판정</th>',
                 '</tr></thead><tbody>',
-                '<tr class="tr--highlight"><td>v1: r=8, epoch=3</td><td>0.288</td><td>0.649</td><td>0.884</td><td>0.211</td><td>최종 모델</td></tr>',
-                '<tr><td>v2-best: r=32, epoch=3</td><td>0.309</td><td>0.600</td><td>0.893</td><td>0.215</td><td>테이블 퇴보</td></tr>',
-                '<tr><td>v2-last: r=32, epoch=5</td><td>0.306</td><td>0.610</td><td>0.892</td><td>—</td><td>과적합</td></tr>',
+                '<tr class="tr--highlight"><td>v1 (최종)</td><td>8</td><td>3</td><td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td><td>5.8%</td><td>Best overall</td></tr>',
+                '<tr><td>v2-best</td><td>32</td><td>3</td><td>0.309</td><td>0.600</td><td>0.697</td><td>—</td><td>0.215</td><td>0.7%</td><td>테이블 퇴보</td></tr>',
+                '<tr><td>v2-last</td><td>32</td><td>5</td><td>0.306</td><td>0.610</td><td>0.695</td><td>0.892</td><td>0.214</td><td>0.0%</td><td>과적합</td></tr>',
                 '</tbody></table>'
               ].join('')
             },
             {
               subtitle: 'Finding',
-              content: '데이터 2,667개 규모에서 rank를 8→32로 올리면 수식은 소폭 개선(+0.9pp)되지만 테이블(-4.9pp)과 텍스트(+2.1pp)가 퇴보한다. epoch을 5로 올리면 Val Loss가 상승하며 과적합이 발생한다.'
+              content: 'LoRA rank 8이 rank 32보다 우수 — rank를 올리면 수식은 소폭 개선되지만 테이블(-4.9pp)과 텍스트(+2.1pp)가 퇴보한다. Epoch 5는 Val Loss 상승으로 과적합. v2는 Skip Rate 0%를 달성하지만 핵심 파싱 품질이 희생되어 v1을 최종 모델로 확정.'
             }
           ]
         },
         {
           title: 'Stage 5: OmniDocBench 평가',
-          content: 'CVPR 2025에서 발표된 OmniDocBench(1,355 PDF 페이지, 사람이 만든 GT)로 4개 모델을 비교 평가. OmniDocBench 논문에 MinerU, Mathpix, GOT-OCR, GPT-4o 등의 공개 결과도 있어 논문에서 인용 비교가 가능하다.',
+          content: 'CVPR 2025에서 발표된 OmniDocBench(1,355 PDF 페이지, 사람이 만든 GT)로 4개 모델을 비교 평가.',
+          image: { src: 'images/projects/fig1_omnidocbench.png', alt: 'OmniDocBench evaluation overview', caption: 'Figure: OmniDocBench 평가 결과 — WigtnOCR v1이 Table TEDS 전체 1위' },
           subsections: [
             {
               subtitle: '성능 비교',
@@ -1016,16 +1022,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<caption>OmniDocBench (CVPR 2025) — 4 Models Comparison</caption>',
                 '<thead><tr>',
                 '<th scope="col">모델</th><th scope="col">Text NED↓</th><th scope="col">Table TEDS↑</th>',
-                '<th scope="col">TEDS-S↑</th><th scope="col">Formula CDM↑</th><th scope="col">RO NED↓</th>',
+                '<th scope="col">TEDS-S↑</th><th scope="col">CDM F1↑</th><th scope="col">CDM Exp↑</th><th scope="col">RO NED↓</th><th scope="col">Skip%↓</th>',
                 '</tr></thead><tbody>',
                 '<tr><td>Qwen3-VL-30B (Teacher)</td>',
-                '<td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.227</td></tr>',
+                '<td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.692</td><td>0.227</td><td>5.5%</td></tr>',
                 '<tr><td>Qwen3-VL-2B (Base)</td>',
-                '<td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.300</td></tr>',
+                '<td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.504</td><td>0.300</td><td>18.8%</td></tr>',
                 '<tr><td>Marker (Rule-based)</td>',
-                '<td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.165</td></tr>',
+                '<td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.582</td><td>0.165</td><td>0.4%</td></tr>',
                 '<tr class="tr--highlight"><td>WigtnOCR v1 (Ours)</td>',
-                '<td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td></tr>',
+                '<td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.600</td><td>0.211</td><td>5.8%</td></tr>',
                 '</tbody></table>'
               ].join('')
             },
@@ -1033,68 +1039,101 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: '핵심 결과',
               list: [
                 '<strong>Text NED</strong>: 30B Teacher와 동등 (0.288 vs 0.289)',
-                '<strong>Table TEDS/TEDS-S</strong>: 전체 1위 (30B, Marker 모두 초과)',
+                '<strong>Table TEDS</strong>: 전체 1위 — 0.649 (30B의 0.523 대비 +12.6pp)',
                 '<strong>Reading Order</strong>: 30B Teacher 초과 (0.211 vs 0.227)',
                 'Base 2B 대비 — Text NED 21%↑, Table TEDS 16%↑, Reading Order 30%↑',
-                '2B Student가 15배 큰 Teacher를 매칭하거나 초과한 것은 <strong>pseudo-label distillation의 효과를 입증</strong>'
+                'Student가 30B Teacher를 <strong>4/5 카테고리에서 매칭 또는 초과</strong> — pseudo-label distillation의 효과 입증'
               ]
             }
           ]
         },
         {
           title: 'Stage 6: KoGovDoc Val 평가',
-          content: 'OmniDocBench는 영어/중국어 중심이므로 한국 공공문서에서의 성능을 별도 검증. 학습에서 제외한 val 294장에 대해 페이지 전체 텍스트 기준 NED로 평가.',
+          content: '학습에서 제외한 val 294장에 대해 페이지 전체 텍스트 기준 NED 평가.',
           subsections: [
             {
               subtitle: '결과',
               content: [
                 '<table class="modal__benchmark-table">',
-                '<caption>KoGovDoc Val — v1 vs v2 비교</caption>',
+                '<caption>KoGovDoc Val — 3 Models Comparison</caption>',
                 '<thead><tr>',
-                '<th scope="col">Model</th><th scope="col">NED avg</th>',
+                '<th scope="col">Model</th><th scope="col">NED↓</th>',
                 '<th scope="col">평가 성공</th><th scope="col">에러</th>',
                 '</tr></thead><tbody>',
                 '<tr class="tr--highlight"><td>WigtnOCR v1</td><td>0.285</td><td>289/294</td><td>5</td></tr>',
-                '<tr><td>WigtnOCR v2-best</td><td>0.291</td><td>280/294</td><td>14</td></tr>',
+                '<tr><td>Qwen3-VL-30B (Teacher)</td><td>0.334</td><td>294/294</td><td>0</td></tr>',
+                '<tr><td>Qwen3-VL-2B (Base)</td><td>0.390</td><td>294/294</td><td>0</td></tr>',
                 '</tbody></table>'
               ].join('')
             },
             {
-              subtitle: '판정',
-              content: 'v1이 NED도 낮고 에러도 적어서 최종 배포 모델로 확정. PaddleOCR(RapidOCR) baseline 288장 추론도 완료하여 Stage 7 비교에 사용.'
+              subtitle: '핵심 결과',
+              content: 'WigtnOCR가 30B Teacher를 한국 공공문서에서도 초과 (NED 0.285 vs 0.334).'
             }
           ]
         },
         {
-          title: 'Stage 7-8: 청킹·검색 품질 평가',
-          content: '"구조화된 파싱이 실제 RAG에서 뭐가 좋은가?"에 답하기 위한 2단계 인과 평가. Stage 7(구조화 파싱 → 더 좋은 청크?)과 Stage 8(더 좋은 청크 → 더 좋은 검색?)로 나누어 파싱 품질이 최종 검색 성능까지 이어지는 인과 관계를 검증한다.',
+          title: 'Stage 7: BC/CS 청킹 품질 평가',
+          content: '"구조화 파싱이 실제로 더 좋은 청크를 만드는가?"를 검증. MoC(ACL 2025)의 BC/CS 메트릭으로 6개 파서를 비교. Semantic chunking(BGE-M3)을 핵심 비교 전략으로 사용 — 두 파서 모두 동일한 방법으로 청킹하되, 입력 텍스트의 구조화 여부만 달라 공정 비교가 가능하다.',
+          image: { src: 'images/projects/fig3_bc_vs_retrieval.png', alt: 'BC vs Hit@1 scatter plot', caption: 'Figure: BC/CS 청크 품질과 Retrieval Hit@1 상관관계 — BC/CS 1위(MinerU)가 Retrieval 5위인 역설' },
           subsections: [
             {
-              subtitle: '3가지 청킹 전략',
+              subtitle: 'KoGovDoc Semantic Chunking 결과 (6파서 비교)',
               content: [
                 '<table class="modal__benchmark-table">',
-                '<caption>청킹 전략별 비교 역할</caption>',
+                '<caption>BC/CS 청킹 품질 — Semantic Chunking</caption>',
                 '<thead><tr>',
-                '<th scope="col">전략</th><th scope="col">방법</th><th scope="col">핵심 비교 역할</th>',
+                '<th scope="col">Model</th><th scope="col">BC↑</th><th scope="col">CS↓</th>',
                 '</tr></thead><tbody>',
-                '<tr><td>Header-based</td><td># 헤딩으로 분할</td><td>구조화 전용 전략</td></tr>',
-                '<tr><td>Fixed-size</td><td>512자씩 기계적 분할</td><td>baseline</td></tr>',
-                '<tr class="tr--highlight"><td>Semantic</td><td>BGE-M3 임베딩 기반 의미 경계</td><td>핵심 공정 비교</td></tr>',
+                '<tr><td>MinerU</td><td>0.735</td><td>2.711</td></tr>',
+                '<tr class="tr--highlight"><td>WigtnOCR-2B</td><td>0.706</td><td>2.859</td></tr>',
+                '<tr><td>Qwen3-VL-30B</td><td>0.714</td><td>3.164</td></tr>',
+                '<tr><td>Marker</td><td>0.683</td><td>3.206</td></tr>',
+                '<tr><td>Qwen3-VL-2B</td><td>0.678</td><td>3.446</td></tr>',
+                '<tr><td>PaddleOCR</td><td>0.654</td><td>3.420</td></tr>',
                 '</tbody></table>'
               ].join('')
             },
             {
-              subtitle: 'BC/CS 평가 (Stage 7, 진행 중)',
-              content: 'MoC 프레임워크(ACL 2025)의 BC(Boundary Clarity)와 CS(Chunk Stickiness) 메트릭을 구현. 38개 문서 × 2파서 × 3전략 = 228건 평가 중 약 80% 진행.',
+              subtitle: 'Engineering Challenges',
               list: [
-                '초기 페이지 단위 청킹 → 텍스트가 짧아 BC/CS 계산 불가 → <strong>문서 단위 합산으로 전환</strong>',
-                'WigtnOCR가 PaddleOCR 대비 <strong>3~30배 많은 텍스트를 추출</strong> — 구조화 파싱의 장점',
-                'CS O(n²) 문제 → MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 계산량 1,225쌍으로 제한'
+                '초기 페이지 단위 청킹 → 대부분 청크 1개여서 BC/CS 계산 불가 → <strong>문서 단위 합산으로 전환</strong>',
+                'CS O(n²) 복잡도 → 대규모 문서(241청크, ~29,000쌍)에서 hang → <strong>MAX_CHUNKS_FOR_CS=50 균등 샘플링</strong>으로 해결',
+                'WigtnOCR가 PaddleOCR 대비 <strong>3~30배 많은 텍스트를 추출</strong> — 한국 공공문서의 표·양식·복잡 레이아웃을 순수 OCR이 놓치기 때문'
               ]
+            }
+          ]
+        },
+        {
+          title: 'Stage 8: Retrieval 평가 — End-to-End 검증',
+          content: 'BC/CS가 좋다고 검색이 반드시 좋은 건 아니다. Stage 8에서 최종 검색 성능을 측정하여 인과 체인을 완성. Semantic chunking → BGE-M3 벡터화 → FAISS 검색, 564개 쿼리 평가.',
+          image: { src: 'images/projects/fig2_retrieval.png', alt: 'Retrieval performance comparison', caption: 'Figure: 6개 파서 Retrieval 성능 비교 — WigtnOCR Hit@1, Hit@5, MRR@10 전체 1위' },
+          subsections: [
+            {
+              subtitle: 'Retrieval 결과 (6파서 비교)',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>KoGovDoc Retrieval — 564 Queries</caption>',
+                '<thead><tr>',
+                '<th scope="col">Model</th><th scope="col">Hit@1↑</th><th scope="col">Hit@5↑</th>',
+                '<th scope="col">MRR@10↑</th><th scope="col">nDCG@10↑</th>',
+                '</tr></thead><tbody>',
+                '<tr class="tr--highlight"><td>WigtnOCR-2B</td><td>0.739</td><td>0.855</td><td>0.788</td><td>0.437</td></tr>',
+                '<tr><td>Qwen3-VL-30B</td><td>0.716</td><td>0.839</td><td>0.771</td><td>0.411</td></tr>',
+                '<tr><td>Marker</td><td>0.711</td><td>0.853</td><td>0.771</td><td>0.412</td></tr>',
+                '<tr><td>Qwen3-VL-2B</td><td>0.709</td><td>0.814</td><td>0.756</td><td>0.444</td></tr>',
+                '<tr><td>MinerU</td><td>0.608</td><td>0.789</td><td>0.682</td><td>0.384</td></tr>',
+                '<tr><td>PaddleOCR</td><td>0.512</td><td>0.693</td><td>0.592</td><td>0.293</td></tr>',
+                '</tbody></table>'
+              ].join('')
             },
             {
-              subtitle: 'Retrieval 평가 (Stage 8, 대기)',
-              content: 'BC/CS 완료 후 BGE-M3 + FAISS로 벡터화하여 Hit@K, MRR, nDCG 측정 예정. Stage 7과 Stage 8이 연결되면 "구조화 파싱이 RAG 파이프라인 전체 품질을 향상시킨다"는 end-to-end 근거가 확보된다.'
+              subtitle: '핵심 발견',
+              list: [
+                '<strong>WigtnOCR가 Hit@1(0.739), Hit@5(0.855), MRR@10(0.788)에서 전체 1위</strong>',
+                'PaddleOCR 대비 Hit@1 +22.7pp, 30B Teacher 대비 +2.3pp',
+                '<strong>MinerU는 BC/CS 1위이지만 Retrieval 5위</strong> — 청크 경계 품질이 좋다고 검색이 좋은 건 아니며, 텍스트 풍부도와 구조적 충실도가 end-to-end RAG 성능에 더 중요'
+              ]
             }
           ]
         },
@@ -1103,6 +1142,7 @@ document.addEventListener('DOMContentLoaded', function() {
           list: [
             '<strong>Thinking vs Instruct</strong> — Document transcription에서 reasoning 모델은 출력 불안정(think 태그 오염, 토큰 잘림), Instruct 모델이 안정적',
             '<strong>LoRA rank 최적점</strong> — 데이터 2,667개 규모에서 r=8이 최적, r=32로 올리면 테이블 성능 퇴보 (-4.9pp)',
+            '<strong>BC/CS ≠ Retrieval</strong> — BC/CS 청크 품질 메트릭이 Retrieval 성능을 예측하지 못한다는 발견. MinerU BC/CS 1위이지만 Retrieval 5위. 텍스트 풍부도와 구조적 충실도가 end-to-end RAG에 더 중요',
             '<strong>CS O(n²) 해결</strong> — MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 대표성 유지하면서 계산량 제한',
             '<strong>페이지→문서 단위 전환</strong> — 페이지 단위 청킹은 텍스트가 짧아 BC/CS 계산 불가 → 문서 단위 합산으로 해결',
             '<strong>VLM 텍스트 추출량</strong> — WigtnOCR가 PaddleOCR 대비 3~30배 많은 텍스트 추출, 한국 공공문서의 표·양식·복잡 레이아웃을 순수 OCR이 놓치기 때문'
@@ -1126,9 +1166,10 @@ document.addEventListener('DOMContentLoaded', function() {
               list: [
                 '<strong>Benchmark</strong>: OmniDocBench (CVPR 2025) + KoGovDoc-Bench',
                 '<strong>Chunking</strong>: Header-based / Semantic / Fixed-size (3전략, 문서 단위)',
-                '<strong>Chunking 평가</strong>: MoC BC/CS (ACL 2025, Qwen2.5-1.5B PPL)',
-                '<strong>Embedding</strong>: BGE-M3 (Infinity server) — 청킹 경계 탐지 + 검색 벡터화',
-                '<strong>Vector DB</strong>: FAISS (Stage 8 검색 평가용)'
+                '<strong>Chunking 평가</strong>: MoC BC/CS (ACL 2025)',
+                '<strong>PPL Model</strong>: Qwen2.5-1.5B-Instruct (BC/CS perplexity 계산)',
+                '<strong>Embedding</strong>: BGE-M3 (Infinity server) — Semantic chunking + 검색 벡터화',
+                '<strong>Vector DB</strong>: FAISS (벡터 저장 + 유사도 검색)'
               ]
             },
             {
