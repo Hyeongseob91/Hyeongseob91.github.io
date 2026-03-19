@@ -592,24 +592,32 @@ document.addEventListener('DOMContentLoaded', function() {
       tags: ['LangGraph', 'Advanced RAG', 'MSA', 'Dual Vector DB', 'VLM', 'FastAPI', 'Docker', 'LLM-as-Judge']
     },
     'wigvo': {
-      title: 'WIGVO - 실시간 PSTN 음성 번역',
+      title: 'WIGVO - PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼',
       image: 'images/projects/wigvo_logo.png',
       imageContain: true,
       meta: {
-        organization: 'WIGTN Crew (ACL 2026 Under Review, 제 1저자)',
-        role: '100% 단독 설계·개발 (228커밋 · 15일 · 55,269 LoC · 릴레이 서버 8,674 LoC)',
+        organization: 'WIGTN Crew (ACL 2026 System Demonstrations Under Review, 제 1저자)',
+        role: 'Lead Developer (설계·개발·배포 주도, 팀원 테스트 협업) · 235커밋 · 15일 · 55,269 LoC · 434 테스트',
         period: '2025.09 ~ 2026.03',
-        architecture: 'Python 3.12 FastAPI · OpenAI Realtime API · Twilio Media Streams · Next.js 16 · React Native/Expo · Supabase · Google Cloud Run'
+        architecture: 'Python 3.12 FastAPI · OpenAI Realtime API (Whisper-1) · GPT-4o-mini · Twilio Media Streams · Silero VAD · Next.js 16 · React Native/Expo · Supabase · Google Cloud Run'
       },
       disclaimer: {
         show: true,
-        text: 'WIGTN Crew 독립 연구로 진행된 프로젝트입니다. 169건의 프로덕션 통화(241.4분)로 검증되었으며, <strong>ACL 2026 System Demonstrations</strong>에 제 1저자로 논문을 투고했습니다.<br><em>"Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating"</em>'
+        text: 'WIGTN Crew 독립 연구로 진행된 프로젝트입니다. 148건의 실제 통화 데이터로 검증되었습니다.<br><em>"Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating"</em>'
       },
       sections: [
         {
           title: 'Overview',
-          content: '<strong>외국인·장애인·콜포비아 사용자를 위한 AI 실시간 양방향 전화 통역 시스템</strong><br><br>브라우저에서 말하면 상대방 전화기에서 번역된 음성이 들리고, 상대방이 대답하면 내 브라우저에 번역된 음성과 자막이 나타납니다. 상대방은 앱 설치 없이 일반 전화만 받으면 됩니다.',
+          content: '<strong>PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼</strong><br><br>한 외국인의 서울 상경기에서 시작된 프로젝트. 병원 예약, 관공서 전화 한 통을 혼자 해결하지 못하는 장면을 보면서 "기술은 모두에게 평등하게 전달되어야 한다"는 생각이 출발점이었다.<br><br>고음역 대역폭(16~24kHz)에서만 가능하다고 여겨지던 실시간 양방향 음성 번역을 PSTN 저음역 대역폭(8kHz G.711 μ-law)에서 구현하기 위해, 에코 제거 루프와 VAD를 독립 아키텍처로 설계했다. 15일 개발, 235커밋, 55,269줄, 434개 테스트를 거쳐 프로덕션 배포했다.',
           subsections: [
+            {
+              subtitle: '데모 & 링크',
+              list: [
+                '<strong>데모 비디오</strong>: <a href="https://youtu.be/_ixVEnHJxjk?si=9tsInmz6ExIMbh3x" target="_blank" rel="noopener noreferrer">YouTube</a>',
+                '<strong>프로덕션</strong>: <a href="https://wigvo-web-gzjzn35jyq-du.a.run.app/" target="_blank" rel="noopener noreferrer">wigvo-web (Cloud Run)</a>',
+                '<strong>GitHub</strong>: <a href="https://github.com/wigtn/wigvo-v2" target="_blank" rel="noopener noreferrer">wigtn/wigvo-v2</a>'
+              ]
+            },
             {
               subtitle: '누구를 위한 시스템인가',
               list: [
@@ -618,10 +626,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<strong>청각·언어 장애인</strong> — 음성 통화가 불가능한 39만 등록 장애인',
                 '<strong>콜포비아</strong> — 전화 자체를 기피하는 MZ세대 (~40%)'
               ]
+            }
+          ]
+        },
+        {
+          title: '기술적 문제 — 왜 PSTN이 어려운가',
+          subsections: [
+            {
+              subtitle: '오디오 품질 차이',
+              content: 'PCM16(16~24kHz) 환경은 광대역 오디오와 클라이언트사이드 AEC를 전제. PSTN은 G.711 μ-law 8kHz 협대역 코덱, 80~600ms 가변 지연, 코덱 압축 노이즈가 상시 존재.'
             },
             {
-              subtitle: '기존 시스템과의 차별점',
-              content: '기존 실시간 번역 시스템(SeamlessM4T, Moshi, Hibiki 등)은 앱 기반 와이드밴드(16kHz+) 오디오를 전제로 하며, Samsung Galaxy AI · SKT A.dot은 전용 하드웨어나 통신사 인프라가 필요합니다. <strong>WIGVO는 소프트웨어만으로 PSTN 전화망 위에서 양방향 실시간 음성 번역을 구현한 최초의 시스템</strong>입니다.'
+              subtitle: '에코 루프',
+              content: 'AI가 번역한 TTS 음성이 PSTN을 통해 80~600ms 후 되돌아와 다시 STT → 번역 → TTS 파이프라인을 타는 무한 루프. <strong>초기 테스트 10건 중 8건에서 발생</strong>. 고음역 앱 환경의 클라이언트 AEC가 없는 PSTN에서는 소프트웨어로 직접 해결해야 한다.'
+            },
+            {
+              subtitle: 'VAD 실패',
+              content: 'OpenAI Server VAD는 깨끗한 광대역 오디오를 전제. PSTN 배경 노이즈(RMS 50~200)는 Server VAD 기준으로 "발화 중"으로 인식되어, <strong><code>speech_stopped</code>가 15~72초 뒤에야 발화되거나 아예 발화되지 않는다</strong>.'
+            },
+            {
+              subtitle: '기존 시스템과의 비교',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>PSTN 양방향 음성 번역 시스템 비교</caption>',
+                '<thead><tr>',
+                '<th scope="col">시스템</th><th scope="col">PSTN</th><th scope="col">양방향</th>',
+                '<th scope="col">S2S</th><th scope="col">에코 처리</th><th scope="col">접근성</th>',
+                '</tr></thead><tbody>',
+                '<tr><td>SeamlessM4T</td><td></td><td>O</td><td>O</td><td>N/A</td><td></td></tr>',
+                '<tr><td>Moshi / Hibiki</td><td></td><td></td><td>O</td><td>N/A</td><td></td></tr>',
+                '<tr><td>Google Duplex</td><td>O</td><td></td><td></td><td>N/D</td><td></td></tr>',
+                '<tr><td>Samsung Galaxy AI</td><td>O</td><td>O</td><td>O</td><td>HW AEC</td><td></td></tr>',
+                '<tr><td>SKT A.dot</td><td>O</td><td>O</td><td>O</td><td>통신사 인프라</td><td></td></tr>',
+                '<tr class="tr--highlight"><td>WIGVO</td><td>O</td><td>O</td><td>O</td><td>소프트웨어</td><td>O</td></tr>',
+                '</tbody></table>'
+              ].join('')
             }
           ]
         },
@@ -635,128 +674,137 @@ document.addEventListener('DOMContentLoaded', function() {
           },
           subsections: [
             {
-              subtitle: 'Dual Realtime Sessions',
+              subtitle: '3계층 구조',
               list: [
-                '<strong>Session A</strong> (User → Recipient) — 브라우저 오디오(PCM16, 16kHz) → OpenAI Realtime API → 번역된 G.711 μ-law → Twilio → 상대방 전화기',
-                '<strong>Session B</strong> (Recipient → User) — PSTN 오디오(G.711, 8kHz) → 3-Stage Filter → STT/번역 → 브라우저 자막 + 음성',
-                '각 세션은 독립된 시스템 프롬프트와 슬라이딩 컨텍스트 윈도우를 유지하여 방향 분리를 보장'
+                '<strong>Layer 1 — Transport</strong>: Twilio Media Streams(PSTN ↔ G.711 μ-law 8kHz) + Browser WebSocket(PCM 16kHz)',
+                '<strong>Layer 2 — Pipeline</strong>: AudioRouter(153줄)가 Strategy 패턴으로 V2V / T2V / Agent 모드에 이벤트를 위임',
+                '<strong>Layer 3 — Sessions</strong>: Session A(브라우저→전화) + Session B(전화→브라우저)가 독립 시스템 프롬프트와 6턴 슬라이딩 컨텍스트 유지'
               ]
+            },
+            {
+              subtitle: 'STT-번역 분리',
+              content: 'Realtime API에 번역까지 맡기면 원문에 없는 내용을 추가하는 할루시네이션이 발생. STT는 Realtime API 내 Whisper-1을 유지하고, 번역만 <strong>GPT-4o-mini Chat API(temperature=0)</strong>로 분리. <code>context_prune_keep=0</code>으로 Realtime 자체 번역을 완전 차단.'
             }
           ]
         },
         {
-          title: '3-Stage Audio Filter Pipeline — 에코 루프 제거',
-          content: 'PSTN 전화망의 물리적 특성으로 인해 TTS 음성이 되돌아와 무한 번역 루프가 발생하는 문제를 해결합니다. 프로토타입에서 <strong>80%의 통화가 에코 루프로 실패</strong>했으며, 기존 AEC는 협대역 PSTN에서 작동하지 않았습니다.',
+          title: 'Stage 1 — Echo Gate (7단계 진화)',
+          content: 'TTS 음성이 PSTN을 통해 되돌아오는 에코 루프를 소프트웨어로 차단합니다.',
           image: {
             src: 'images/projects/wigvo_pipeline.png',
             alt: 'PSTN Audio Processing Pipeline',
-            caption: 'Figure 2: PSTN 오디오 처리 파이프라인. (A) Twilio 입력과 Session B 사이의 3단계 필터. (B) TTS 재생 중 Echo Gate가 오디오를 μ-law silence로 대체하고, 종료 후 Stage 1-2가 PSTN 잡음을 필터링.'
+            caption: 'Figure 2: 3-Stage 오디오 필터 파이프라인. Echo Gate → Energy Gate → Silero VAD.'
           },
           subsections: [
             {
-              subtitle: 'Stage 0 — Echo Gate (결정론적 차단)',
-              content: 'TTS 재생 중 Twilio에서 들어오는 오디오를 mu-law silence(0xFF)로 대체하여 VAD 입력 자체를 차단합니다. 동적 쿨다운 <code>cooldown = remaining_playback + echo_margin(0.3s)</code>으로 TTS 길이에 비례하는 차단 시간을 적용하고, Post-echo settling(0.5~1.5s)으로 AGC 복구 잡음까지 흡수합니다.',
+              subtitle: '결정적 돌파구 — Drop vs Replace',
+              content: '오디오를 "차단(drop)"하면 Server VAD가 "스트림 중단"으로 해석하여 멈춤. μ-law 무음(0xFF)으로 "대체(replace)"하면 스트림 연속성은 유지되면서 VAD가 침묵으로 정상 인식. 이 "Drop vs Replace" 패러다임이 Echo Gate와 VAD 양쪽에서 동일하게 적용되는 핵심 원리.'
+            },
+            {
+              subtitle: '최종 Echo Gate 3단 구조',
               list: [
-                '7단계 진화를 거쳐 완성: Audio Fingerprint(Pearson 상관계수) → Echo Gate → Silence Injection → Dynamic Cooldown → Post-echo Settling → Breakthrough Detection → 3-priority Interrupt',
-                '<strong>Breakthrough Detection</strong>: Echo window 중 첫 번째 돌파는 에코로 흡수, 두 번째 이상 지속적 돌파를 실제 발화로 판정 → 상대방 인터럽트(358회) 정상 허용'
+                '<strong>에코 윈도우</strong> — TTS 재생 중 PSTN 오디오를 μ-law silence로 대체 + TTS 종료 후 0.5초 지터 마진',
+                '<strong>Dynamic Settling</strong> — TTS 길이 × 0.3 (0.5s~1.5s 클램프)로 AGC 회복 노이즈 억제, RMS ≥ 500은 실제 발화로 통과',
+                '<strong>일반 구간</strong> — RMS ≥ 150 에너지 임계치'
               ]
             },
             {
-              subtitle: 'Stage 1 — RMS Energy Gate (에너지 문턱값)',
-              content: 'Echo window 중에는 400 RMS 이상만 통과(에코는 대부분 100~400 RMS), window 밖에서는 150 RMS 미만을 silence로 대체하여 PSTN 배경 잡음을 저비용으로 필터링합니다. 3단계 인터럽트 우선순위(callee > caller > AI TTS)로 자연스러운 턴테이킹을 지원합니다.'
+              subtitle: '7단계 진화 과정',
+              list: [
+                'Audio Fingerprint(Pearson 상관계수) — G.711 μ-law 비선형 양자화로 상관관계 붕괴, 전혀 동작 안함',
+                '고정 Echo Gate(2.5초) — 에코 해결하나 대화 흐름 단절',
+                'Dynamic Cooldown — TTS 길이 비례 차단, 차단 해제 직후 AGC 노이즈 스파이크 문제',
+                '<strong>Silence Injection + RMS + Dynamic Settling + Silero</strong> — 최종 채택'
+              ]
             },
             {
-              subtitle: 'Stage 2 — Silero VAD (신경망 발화 감지)',
-              content: 'OpenAI Server VAD가 PSTN 잡음을 음성으로 오인하여 <strong>15~72초간 speech_stopped가 발화되지 않는</strong> 문제를 해결하기 위해 로컬 Silero VAD로 완전 대체했습니다.',
+              subtitle: '성과',
+              content: '에코 루프 발생률 <strong>초기 8/10건 → 프로덕션 0/148건</strong> (25커밋)'
+            }
+          ]
+        },
+        {
+          title: 'Stage 2 — PSTN VAD 독립 아키텍처',
+          subsections: [
+            {
+              subtitle: '문제',
+              content: 'OpenAI Server VAD는 블랙박스라 에코 구간에서 프레임 단위 제어 불가. RMS 임계치를 150→80→30→20까지 시도했으나 PSTN에서 안정적인 단일 임계치는 존재하지 않았다. <strong>Local Silero VAD로 전환</strong>하여 PSTN 특성에 맞는 독립 아키텍처를 구성.'
+            },
+            {
+              subtitle: '2단 독립 필터',
               list: [
-                '비대칭 히스테리시스: onset 96ms(probability ≥ 0.5, 3프레임) / offset 480ms(probability < 0.35, 15프레임)',
-                '8kHz → 16kHz 업샘플링(zero-order hold) + 512 sample 프레임 어댑터',
-                '발화 감지 레이턴시: <strong>15~72초 → 480ms</strong>',
-                'Cloud Run gVisor 환경에서 Silero RNN ELF 바이너리 패칭으로 추론 가능하게 처리'
+                '<strong>Stage 1 — RMS Energy Gate</strong>: 에코 윈도우 내 RMS ≥ 500, Settling RMS ≥ 200, 일반 RMS ≥ 150',
+                '<strong>Stage 2 — Silero VAD</strong>: 에너지 게이트 통과 프레임을 신경망 판단. 8kHz→16kHz zero-order hold 업샘플링',
+                '비대칭 히스테리시스: onset 160ms(5프레임) / offset 800ms(25프레임)',
+                '최소 발화 250ms, 최소 피크 RMS 300으로 약한 신호를 노이즈로 거부'
               ]
+            },
+            {
+              subtitle: '성과',
+              content: '<code>speech_stopped</code> 레이턴시 <strong>15~72초 → 480ms</strong> (25커밋)'
+            }
+          ]
+        },
+        {
+          title: 'Stage 3 — Whisper 할루시네이션 3-Stage 필터',
+          content: 'PSTN 노이즈가 Whisper-1에 입력되면 학습 데이터(유튜브, 방송)에서 학습한 "그럴듯한" 텍스트를 생성. "MBC 뉴스 이덕영입니다", "Thanks for watching" 같은 방송체 패턴이 번역 파이프라인으로 유입되어 수신자 전화기로 나가는 사고가 <strong>프로덕션에서 실제로 발생</strong>했다.',
+          subsections: [
+            {
+              subtitle: '3-Stage 파이프라인',
+              list: [
+                '<strong>Pre-STT (Stage 0)</strong> — Echo Gate + Silence Injection으로 오염된 오디오 자체를 Whisper에 넣지 않음',
+                '<strong>Post-STT (Stage 1)</strong> — 한국어 29패턴 + 영어 22패턴, 총 51개 방송체 블록리스트 + 최소 길이·침묵 timeout·반복 구절·신뢰도 조합 4-layer 텍스트 필터',
+                '<strong>Post-Translation (Stage 2)</strong> — 3-level Guardrail: L1(통과, 0ms) · L2(TTS 즉시+백그라운드 교정, 0ms) · L3(차단+GPT-4o-mini 교정, ~800ms)'
+              ]
+            },
+            {
+              subtitle: '성과',
+              content: '할루시네이션 유입률 <strong>0.3% 미만</strong>, 통화당 평균 0.7건 차단 (148건, 22커밋). 95%+ 케이스가 L1 처리로 추가 레이턴시 없음.'
             }
           ]
         },
         {
           title: 'Strategy 패턴 — 3개 통신 파이프라인',
-          content: '초기 557줄 God Object(AudioRouter)를 Strategy 패턴으로 분리하여 <strong>153줄 위임자 + 3개 독립 파이프라인</strong>으로 리팩토링했습니다 (72% 코드 감소).',
+          content: '초기 557줄 God Object(AudioRouter)를 Strategy 패턴으로 분리하여 <strong>153줄 위임자 + 3개 독립 파이프라인</strong>으로 리팩토링 (73% 코드 감소).',
           subsections: [
             {
-              subtitle: 'VoiceToVoice (V2V) — 양방향 음성 번역',
-              content: '일반 사용자용. 사용자가 말하면 상대방에게 번역된 음성이 들리고, 상대방이 대답하면 사용자에게 번역된 음성과 자막이 표시됩니다. Echo Gate + Silence Injection + 3단계 인터럽트 우선순위를 적용.'
-            },
-            {
-              subtitle: 'TextToVoice (T2V) — 텍스트 → 음성',
-              content: '청각·언어 장애인용. 텍스트를 입력하면 AI가 번역된 음성을 상대방에게 전달합니다. per-response instruction override로 정확한 발화 패턴 제어.'
-            },
-            {
-              subtitle: 'FullAgent — AI 대리 통화',
-              content: '콜포비아 사용자용. 사전에 용건을 전달하면 AI가 사용자를 대신하여 전화 응대를 수행합니다. TextToVoice를 상속하여 72줄만으로 구현(Function Calling 추가).'
-            },
-            {
-              subtitle: 'Session B 번역 분리',
-              content: 'T2V/Agent 모드에서 Realtime API의 "생성" 특성 때문에 번역이 아닌 창작을 하는 할루시네이션이 발생. Session B의 번역을 <strong>Chat API(GPT-4o-mini, temperature=0)</strong>로 분리하여 결정론적 번역을 달성했습니다. V2V 대비 비용도 400배 절감(Chat $0.00015/1K vs Realtime $0.06/1K).'
-            }
-          ]
-        },
-        {
-          title: 'Guardrail — Whisper 환각 4단계 필터',
-          content: 'Whisper STT가 무음·잡음 구간에서 학습 데이터의 자막(예: "MBC 뉴스입니다", "시청해 주셔서 감사합니다")을 출력하는 할루시네이션을 차단합니다. 총 663줄의 가드레일 시스템.',
-          subsections: [
-            {
-              subtitle: '4단계 구조',
+              subtitle: '파이프라인 구조',
               list: [
-                '<strong>Dictionary (143줄)</strong> — 다국어 차단 사전: 한국어 욕설 44항목 · 위협 39항목 · 비격식→격식 변환 20항목, 4개 언어(한/영/일/중)',
-                '<strong>Filter (186줄)</strong> — 정규식 + 키워드 매칭 4개 카테고리 분류. 100자/초 초과 시 할루시네이션 판정',
-                '<strong>Checker (199줄)</strong> — 3단계 심각도: L1(통과, 0ms) · L2(TTS 즉시+백그라운드 교정, 0ms) · L3(차단+교정, ~800ms)',
-                '<strong>Fallback LLM (124줄)</strong> — GPT-4o-mini(temperature=0, timeout 2s)로 L2/L3 교정'
-              ]
-            },
-            {
-              subtitle: '성과',
-              list: [
-                '169건 통화에서 <strong>109건 환각 차단</strong> (통화당 0.7회)',
-                'Guardrail L2 148회 / L3 0회 — 대부분 비격식 표현 교정 수준',
-                '15패턴 STT 블록리스트로 무음 할루시네이션 사전 차단',
-                '95%+ 케이스에서 <strong>추가 레이턴시 0ms</strong>'
+                '<strong>VoiceToVoice (V2V)</strong> — 양방향 음성 번역. Echo Gate + Silence Injection + 3단계 인터럽트 우선순위',
+                '<strong>TextToVoice (T2V)</strong> — 청각·언어 장애인용. 텍스트 입력 → AI 번역 음성 전달',
+                '<strong>FullAgent</strong> — 콜포비아용 AI 대리 통화. TextToVoice 상속 + Function Calling (72줄)',
+                '<strong>EchoGateManager</strong> (329줄) — 공통 에코 방지 로직, 파이프라인 간 공유',
+                '<strong>ChatTranslator</strong> (134줄) — T2V/Agent Session B 번역, GPT-4o-mini'
               ]
             }
           ]
         },
         {
-          title: 'Session Recovery',
-          content: 'OpenAI Realtime 세션이 통화 중 단절될 수 있습니다. 30초 링 버퍼에 미전달 오디오를 보관하고, 재연결 시 Whisper 배치 전사로 재주입하여 대화 연속성을 보장합니다. 10초 이상 실패 시 Whisper STT + GPT-4o-mini 번역으로 자동 전환하는 Degraded Mode를 지원합니다.'
-        },
-        {
-          title: 'Key Metrics',
-          content: '<strong>169건 프로덕션 통화 · 241.4분 총 통화 시간 · 총 비용 $64.71 · 430+ 테스트</strong>',
+          title: 'Key Metrics — 148건 프로덕션 통화',
           subsections: [
             {
-              subtitle: '레이턴시 (실측)',
+              subtitle: '레이턴시',
               list: [
-                'Session A (P50 / P95 / Mean): <strong>557ms</strong> / 1,156ms / 617ms (814턴)',
-                'Session B E2E (P50 / P95 / Mean): <strong>2,868ms</strong> / 15,482ms / 3,997ms (744턴)',
-                'Session B STT only: 2,675ms (E2E의 87.3% — STT가 병목)',
-                'Session B Translation only: 104ms (585턴)',
-                '첫 메시지 레이턴시 (P50 / P95): 1,215ms / 6,890ms (162건)',
-                'Session A는 Twilio 업계 벤치마크(1,115ms) 대비 절반, Session B는 전문 동시통역 범위(2~5초)의 하한'
+                'Session A P50: <strong>555ms</strong> / P95: 1,169ms',
+                'Session B P50: <strong>2,868ms</strong> (발화 길이와 상관 Pearson r=0.400)',
+                '첫 메시지 P50: 1,215ms (cold start)'
               ]
             },
             {
               subtitle: '에코 및 안전성',
               list: [
-                '에코 게이트 활성화: 1,128회 (통화당 7.0회)',
-                '상대방 인터럽트 허용: <strong>358회</strong> (자연스러운 턴테이킹 보존)',
-                '에코 루프 발생: <strong>0건</strong> (프로토타입 80% → 0%)',
-                'VAD 오탐: 286건 (통화당 1.8회)',
-                '환각 차단: 109건 / Guardrail L2 148회 / L3 0회'
+                '에코 루프 발생: <strong>0 / 148건</strong> (프로토타입 80% → 0%)',
+                '통화당 에코 게이트 활성화: 평균 7.0회',
+                '통화당 VAD 오탐: 평균 1.8건',
+                '통화당 할루시네이션 차단: 평균 0.7건',
+                'Guardrail L2 148회 (정상 교정) / L3 0회'
               ]
             },
             {
-              subtitle: '비용 및 품질',
+              subtitle: '비용',
               list: [
-                '통화당 비용: <strong>$0.27/분</strong> · $0.40/통화 (전문 통역 $1~3/분 대비 1/4~1/10)',
-                '번역 품질 (COMET): EN→KO <strong>0.7078</strong> / KO→EN <strong>0.6242</strong>',
+                'V2V: $0.30/min · T2V: $0.29/min',
+                '아키텍처 최적화 후: <strong>$0.18/min (33% 절감)</strong>',
                 '모드별 분포: T2V 116건(68.6%) · V2V 52건(30.8%) · Agent 1건(0.6%)'
               ]
             }
@@ -768,12 +816,12 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               src: 'images/projects/wigvo_latency_histogram.png',
               alt: 'Latency Distribution Histogram',
-              caption: 'Figure 3: E2E 레이턴시 분포. Session A(N=814턴)와 Session B(N=744턴)의 라이브 PSTN 통화 실측 데이터.'
+              caption: 'Figure 3: E2E 레이턴시 분포. Session A(N=814턴)와 Session B(N=744턴) 라이브 PSTN 통화 실측.'
             },
             {
               src: 'images/projects/wigvo_utterance_scatter.png',
               alt: 'Utterance Length vs Latency',
-              caption: 'Figure 4: 발화 길이 vs Session B E2E 레이턴시. Pearson r=0.400 (p<0.001) — 긴 발화일수록 ASR 기반 레이턴시 증가.'
+              caption: 'Figure 4: 발화 길이 vs Session B E2E 레이턴시. Pearson r=0.400 (p<0.001).'
             }
           ]
         },
@@ -787,34 +835,58 @@ document.addEventListener('DOMContentLoaded', function() {
           content: '세션 진행: (1) 시나리오 선택 → (2) AI 에이전트와 대화하여 용건·전화번호 전달 → (3) PSTN 통화 개시 + 양방향 번역 → (4) 실시간 자막 표시. 통화 중 모드 전환(V2V ↔ T2V ↔ FullAgent) 가능.'
         },
         {
-          title: '개발 과정',
+          title: 'Ablation Study',
           subsections: [
             {
-              subtitle: '개발 밀도',
+              subtitle: 'Echo Gate 설계 비교',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>Echo Gate 방식별 성능 비교</caption>',
+                '<thead><tr>',
+                '<th scope="col">방식</th><th scope="col">에코 루프</th>',
+                '<th scope="col">대화 지연</th><th scope="col">채택</th>',
+                '</tr></thead><tbody>',
+                '<tr><td>Audio Fingerprint (Pearson)</td><td>해결 불가</td><td>—</td><td></td></tr>',
+                '<tr><td>고정 Echo Gate (2.5초)</td><td>해결</td><td>단절</td><td></td></tr>',
+                '<tr><td>Dynamic Cooldown</td><td>해결</td><td>개선</td><td></td></tr>',
+                '<tr class="tr--highlight"><td>Silence Injection + RMS + Dynamic Settling + Silero</td><td>해결</td><td>최소화</td><td>O</td></tr>',
+                '</tbody></table>'
+              ].join('')
+            },
+            {
+              subtitle: 'Finding',
+              content: 'PSTN 환경에서 에코 감지는 신호 상관관계 방식이 동작하지 않는다. 에코 구간을 직접 제어하면서 무음 프레임으로 대체하는 방식만이 안정적이다. Realtime API의 생성 특성은 STT에는 적합하지만 번역에는 부적합하며, <code>temperature=0</code> Chat API 분리가 정확도와 안정성을 동시에 개선한다.'
+            }
+          ]
+        },
+        {
+          title: 'Tech Stack',
+          subsections: [
+            {
+              subtitle: 'AI & Audio',
               list: [
-                '228커밋 · 15일 · 일 평균 15.2커밋 · fix 107개(47%)',
-                '총 55,269 LoC (Relay 23,318 / Web 18,446 / Mobile 13,505)',
-                '265 pytest · 430+ 전체 테스트'
+                '<strong>STT</strong>: OpenAI Realtime API (Whisper-1)',
+                '<strong>번역</strong>: GPT-4o-mini Chat API (temperature=0)',
+                '<strong>VAD</strong>: Silero VAD (ONNX) + RMS Energy Gate',
+                '<strong>전화</strong>: Twilio Media Streams (PSTN G.711 μ-law 8kHz)'
               ]
             },
             {
-              subtitle: '6대 방향 전환',
+              subtitle: 'Backend & Frontend',
               list: [
-                'Audio Fingerprint(Pearson 상관계수) → <strong>Echo Gate</strong>(Silence Injection)',
-                'Server VAD → <strong>Local Silero VAD</strong>',
-                '4모드 → <strong>3모드</strong> 축소 (복잡도 제거)',
-                'STT 모델 혼용 → <strong>전 모드 whisper-1 통일</strong>',
-                'Session B Realtime 번역 → <strong>Chat API 결정론적 번역</strong>',
-                'Supabase Auth 17,000 req/hr → <strong>600 req/hr (96% 감소)</strong>'
+                '<strong>Backend</strong>: Python 3.12, FastAPI, uvicorn, asyncio',
+                '<strong>Frontend</strong>: Next.js 16, React 19, Zustand, shadcn/ui',
+                '<strong>Mobile</strong>: React Native (Expo SDK 54)',
+                '<strong>DB</strong>: Supabase (PostgreSQL + Auth + RLS)'
               ]
             },
             {
-              subtitle: '인프라 이슈 해결',
+              subtitle: 'Infrastructure',
               list: [
-                'Cloud Run OOM 해결 (메모리 최적화)',
-                'Silero ONNX libgomp1 누락 + gVisor ELF executable stack 패치',
-                'Docker → Kaniko 빌드 전환',
-                'OpenAI API Key → GCP Secret Manager 이관'
+                '<strong>Infra</strong>: Google Cloud Run, Cloud Build, Secret Manager',
+                '<strong>Build</strong>: Docker, Kaniko',
+                '<strong>평가</strong>: COMET, BLEU, chrF',
+                '<strong>테스트</strong>: pytest (434개)'
               ]
             }
           ]
@@ -824,10 +896,10 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     'wigtn-ocr': {
       title: 'WigtnOCR - 한국 공공문서 전용 VLM 파싱 프레임워크',
-      image: 'images/companies/soundmind.png',
+      image: 'images/projects/wigtnocr_logo.png',
       meta: {
         organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
-        role: '100% 단독 연구 (파이프라인 설계·학습·평가·배포)',
+        role: 'Independent Researcher (파이프라인 설계·학습·평가·배포)',
         period: '2026.01 ~ 현재',
         architecture: 'Qwen3-VL-2B + LoRA + vLLM + BGE-M3 + FAISS'
       },
