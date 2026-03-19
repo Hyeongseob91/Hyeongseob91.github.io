@@ -896,7 +896,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     'wigtn-ocr': {
       title: 'WigtnOCR - VLM 기반 한국 공공기관 문서 전용 파싱 프레임워크',
-      image: 'images/projects/wigtnocr_logo.png',
+      image: 'images/projects/wigtnocr-huggingface.png',
       meta: {
         organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
         role: 'Independent Researcher (파이프라인 설계·학습·평가·배포)',
@@ -915,7 +915,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '연구 질문',
               content: '"30B Teacher의 파싱 능력을 2B Student로 압축하면서 한국 공공문서에 특화된 성능을 달성할 수 있는가? 그리고 구조화된 파싱이 실제 RAG 파이프라인의 청킹·검색 품질로 이어지는가?"',
-              image: { src: 'images/projects/fig_highlights.png', alt: 'WigtnOCR 핵심 벤치마크 결과' }
+              image: { src: 'images/projects/wigtnocr-highlights.png', alt: 'WigtnOCR 핵심 벤치마크 결과' }
             }
           ]
         },
@@ -1013,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Stage 5: OmniDocBench 평가',
           content: 'CVPR 2025에서 발표된 OmniDocBench(1,355 PDF 페이지, 사람이 만든 GT)로 4개 모델을 비교 평가.',
-          image: { src: 'images/projects/fig1_omnidocbench.png', alt: 'OmniDocBench evaluation overview', caption: 'Figure: OmniDocBench 평가 결과 — WigtnOCR v1이 Table TEDS 전체 1위' },
+          image: { src: 'images/projects/wigtnocr-omnidocbench.png', alt: 'OmniDocBench evaluation overview', caption: 'Figure: OmniDocBench 평가 결과 — WigtnOCR v1이 Table TEDS 전체 1위' },
           subsections: [
             {
               subtitle: '성능 비교',
@@ -1075,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Stage 7: BC/CS 청킹 품질 평가',
           content: '"구조화 파싱이 실제로 더 좋은 청크를 만드는가?"를 검증. MoC(ACL 2025)의 BC/CS 메트릭으로 6개 파서를 비교. Semantic chunking(BGE-M3)을 핵심 비교 전략으로 사용 — 두 파서 모두 동일한 방법으로 청킹하되, 입력 텍스트의 구조화 여부만 달라 공정 비교가 가능하다.',
-          image: { src: 'images/projects/fig3_bc_vs_retrieval.png', alt: 'BC vs Hit@1 scatter plot', caption: 'Figure: BC/CS 청크 품질과 Retrieval Hit@1 상관관계 — BC/CS 1위(MinerU)가 Retrieval 5위인 역설' },
+          image: { src: 'images/projects/wigtnocr-bc-vs-retrieval.png', alt: 'BC vs Hit@1 scatter plot', caption: 'Figure: BC/CS 청크 품질과 Retrieval Hit@1 상관관계 — BC/CS 1위(MinerU)가 Retrieval 5위인 역설' },
           subsections: [
             {
               subtitle: 'KoGovDoc Semantic Chunking 결과 (6파서 비교)',
@@ -1107,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Stage 8: Retrieval 평가 — End-to-End 검증',
           content: 'BC/CS가 좋다고 검색이 반드시 좋은 건 아니다. Stage 8에서 최종 검색 성능을 측정하여 인과 체인을 완성. Semantic chunking → BGE-M3 벡터화 → FAISS 검색, 564개 쿼리 평가.',
-          image: { src: 'images/projects/fig2_retrieval.png', alt: 'Retrieval performance comparison', caption: 'Figure: 6개 파서 Retrieval 성능 비교 — WigtnOCR Hit@1, Hit@5, MRR@10 전체 1위' },
+          image: { src: 'images/projects/wigtnocr-retrieval.png', alt: 'Retrieval performance comparison', caption: 'Figure: 6개 파서 Retrieval 성능 비교 — WigtnOCR Hit@1, Hit@5, MRR@10 전체 1위' },
           subsections: [
             {
               subtitle: 'Retrieval 결과 (6파서 비교)',

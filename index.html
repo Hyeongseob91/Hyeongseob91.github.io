@@ -56,10 +56,10 @@
           <i class="fa-brands fa-github"></i>
         </a>
         <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="navbar__social-link" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
+          <i class="fa-brands fa-linkedin"></i>
         </a>
         <a href="https://harrison-kim.tistory.com/" target="_blank" rel="noopener noreferrer" class="navbar__social-link" aria-label="Blog">
-          <img src="images/tistory-logo.png" alt="Tistory Blog" class="navbar__social-icon">
+          <img src="images/navigation/tistory.svg" alt="Tistory Blog" class="navbar__social-icon">
         </a>
       </div>
       <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation">
@@ -101,15 +101,24 @@
             현재는 <span class="about__highlight">AI Research Engineer</span>로서 실무와 연구를 병행하고 있습니다.
           </p>
           <p class="about__text">
-            <strong>SoundMind Inc.</strong>에서 B2B 고객의 RAG 도입 장벽을 해소하기 위해
-            Pipeline 설계부터 고객 운용 환경까지 전 과정을 단독으로 설계·구축했습니다.
-            단순한 기술 검증에 그치지 않고, 비기술 직군도 직접 운용할 수 있는 UI 기반 PlayGround로 제품화하는 과정을 주도했습니다.
+            <strong>SoundMind Inc.</strong>에서 RAG Pipeline 설계·최적화부터
+            고객이 직접 운용할 수 있는 Admin Console과 B2B SaaS Platform까지,
+            <span class="about__highlight">AI Ecosystem 전체</span>를 설계하고 구축을 주도하고 있습니다.
           </p>
           <p class="about__text">
-            또한 사내 개발자 크루 <span class="about__highlight">WIGTN</span>을 리드하며
-            PSTN 음성 번역 시스템(<span class="about__highlight">ACL 2026</span>)과
-            VLM 기반 문서 파싱(<span class="about__highlight">EMNLP 2026</span>) 연구를 병행하고 있습니다.
-            현장 문제를 정의하는 감각과 AI 엔지니어링 실행력을 함께 갖춘 엔지니어입니다.
+            개발자 크루 <span class="about__highlight">WIGTN</span>을 리드하며
+            AI-Native 개발 도구(<span class="about__highlight">WIGTN-Coding</span>)를 오픈소스로 공개하고,
+            VLM 기반 한국 공공문서 파싱 모델(<span class="about__highlight">WigtnOCR</span>)을 HuggingFace에 오픈소스로 배포하며,
+            커뮤니티에 기여하고 있습니다.
+          </p>
+          <p class="about__text">
+            PSTN 저음역 대역폭(G.711 μ-law 8kHz)에서 실시간 양방향 음성 번역을 구현한
+            <span class="about__highlight">WIGVO</span>는
+            Dual-Session Echo Gating이라는 독자적인 아키텍처로 에코 루프를 소프트웨어만으로 제거하며,
+            실제 통화 데이터로 검증하여
+            <span class="about__highlight">ACL 2026 System Demonstrations</span>에 투고하였습니다.
+            <br>
+            앞으로도 좋은 연구로 세상에 도움이 되는 엔지니어가 되고 싶습니다.
           </p>
         </div>
       </div>
@@ -132,7 +141,7 @@
           <h3 class="timeline__title">(주)사운드마인드</h3>
           <p class="timeline__subtitle">AX / AI Research Engineer / Manager</p>
           <div class="timeline__description">
-            <span class="about__highlight">[AI Product Engineering]</span> <small>(2025.10 ~, AI Engineer | AX Manager)</small>
+            <span class="about__highlight">[AI Product Engineering]</span>
             <br><strong>SoundMind AI Ecosystem</strong>
             <ol style="margin-left: 20px;">
               <li>
@@ -155,7 +164,7 @@
               </li>
             </ol>
 
-            <span class="about__highlight">[AI R&D]</span> <small>(2025.07 ~, AI Researcher | AX Manager)</small>
+            <span class="about__highlight">[AI R&D]</span>
             <ol style="margin-left: 20px;">
               <li>
                 <strong>Advanced RAG 파이프라인 설계 및 성능 최적화</strong>
@@ -175,34 +184,22 @@
                 </ul>
               </li>
               <li>
-                <strong>WigtnOCR:</strong> VLM 기반 한국어 공문서 구조 보존 Data Parsing 프레임워크 연구
+                <strong>WigtnOCR:</strong> VLM 기반 한국 공공문서 전용 파싱 프레임워크
                 <ul>
-                  <li>Qwen3-VL 2-Stage Parsing으로 문서 구조 보존율, OSS 대비 <strong>0% → 79.25%</strong> 달성</li>
-                  <li>Qwen3-VL-30B (teacher) / 122B (validator) 활용 Pseudo-GT 생성 파이프라인 구축 중</li>
+                  <li>Qwen3-VL-2B LoRA fine-tuning으로 <strong>15배 큰 30B Teacher 성능 초과</strong></li>
+                  <li>OmniDocBench(CVPR 2025) 기준 4개 모델 비교에서 <strong>Table TEDS 1위</strong> (0.649)</li>
+                  <li>KoGovDoc 6개 파서 Retrieval 비교에서 <strong>Hit@1, MRR@10 최고 성능</strong></li>
                 </ul>
               </li>
             </ol>
 
-            <span class="about__highlight">[Self-Initiated R&D / Community]</span> <small>(2025.10 ~, Crew Lead)</small>
-            <br><strong>Team-WIGTN Crew Lead</strong> — AI-Native 사내 개발자 Crew
+            <span class="about__highlight">[Open Source]</span>
             <ol style="margin-left: 20px;">
-              <li>
-                <strong>WIGTN-Coding</strong> (Claude Code Plugin)
-                <ul>
-                  <li>7 Commands, 14 Agents, 7 Skills, 4 Hooks 구성</li>
-                  <li>슬래시 커맨드 기반 기획 → 구현 → 배포 워크플로우 자동화</li>
-                  <li>결과물: WIGVU (YouTube 자막 추출·번역·AI 분석), WIGTN-SPEAR (AI 서비스 특화 보안 스캐너, OWASP LLM/Web Top 10 커버), TimeLens (Gemini Live Agent Challenge 출품작)</li>
-                </ul>
-              </li>
-            </ol>
-
-            <span class="about__highlight">[PROJECT]</span>
-            <br><strong>KOCCA R&D:</strong> AI 한국어 말하기 발화 평가 시스템 (정부 R&D 컨소시엄, 시스템 아키텍트)
-
-            <br><br><span class="about__highlight">[OpenSources]</span>
-            <br><strong>Independent Development</strong>
-            <ol style="margin-left: 20px;">
+              <li><strong>WIGTN-Coding:</strong> Claude Code 기반 AI-Native 개발 워크플로우 플러그인 (7 Commands, 14 Agents, 7 Skills)</li>
               <li><strong>LLM Loadtester:</strong> 비개발직군용 LLM 서빙 성능 벤치마킹 도구 (TTFT/TPOT/Goodput 시각화)</li>
+              <li><strong>WIGVU:</strong> YouTube 자막 추출·번역·실시간 동기화 + AI 분석 서비스 (Next.js + NestJS + FastAPI MSA)</li>
+              <li><strong>WIGEX:</strong> 해외여행 경비 기록·관리 모바일 앱, AI 영수증 OCR (React Native + NestJS)</li>
+              <li><strong>TimeLens:</strong> 음성+카메라 멀티모달 AI 박물관 큐레이터 (Gemini Live Agent Challenge)</li>
             </ol>
           </div>
         </div>
@@ -375,7 +372,7 @@
         <div class="timeline__item">
           <div class="timeline__marker"></div>
           <span class="timeline__date">2022.12</span>
-          <h3 class="timeline__title">현대건설 2022년 기술경쟁력제고 부문 단체 수상</h3>
+          <h3 class="timeline__title">현대건설 2022년 기술경쟁력제고 부문 우수사원 수상</h3>
           <p class="timeline__subtitle">'H-Silent' 층간차음재 현장 실증 주도, 국토교통부 1등급 인증 획득 기여</p>
         </div>
 
@@ -573,7 +570,7 @@
         <!-- Project: WigtnOCR -->
         <article class="project-card fade-in" data-project="wigtn-ocr" data-category="research">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/wigtnocr_logo.png" alt="WigtnOCR - VLM Document Parsing" class="project-card__image">
+            <img src="images/projects/wigtnocr-logo.png" alt="WigtnOCR - VLM Document Parsing" class="project-card__image">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">
@@ -946,7 +943,7 @@
           <div class="contact__social-item">
             <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer"
               class="contact__social-link" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
+              <i class="fa-brands fa-linkedin"></i>
             </a>
             <span class="contact__social-label">LinkedIn</span>
           </div>
