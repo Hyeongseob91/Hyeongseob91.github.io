@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         organization: 'Soundmind-Labs',
         role: 'AI Engineer & AI Researcher / AX Manager',
         period: '2025.07 ~ 현재',
-        architecture: 'MSA (9 Projects · 161 APIs · ~9.4만 LoC · 803 소스파일 · 15+ Docker)'
+        architecture: 'MSA (9 Projects · 161 APIs · 15+ Docker)'
       },
       disclaimer: {
         show: true,
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '규모',
               list: [
-                '9개 프로젝트 · 161개 API · ~9.4만 줄 코드 · 803개 소스 파일 · 103+ 단위 테스트',
+                '9개 프로젝트 · 161개 API · 103+ 단위 테스트',
                 '최대 99개 RAG Pipeline 동시 운용 (포트 9201~9299)',
                 '9종 문서 포맷 지원 (PDF, DOCX, DOC, XLSX, XLS, TXT, JSON, HWP, HWPX)',
                 'LLM: OpenAI · Gemini 등 클라우드 API + vLLM 기반 로컬 모델 서빙'
@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           title: 'RAG Pipeline 고도화 과정',
-          content: '2026년 1월~3월, 6.5주 · 39개 커밋 · 3개 리포지토리에 걸친 단계적 진화.',
+          content: '2026년 1월~3월, 3개 리포지토리에 걸친 단계적 진화.',
           subsections: [
             {
               subtitle: '1단계 — Advanced RAG 구축 (1월)',
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<strong>배포 리드타임</strong> — 2주 → 5분 (99% 이상 단축)',
                 '<strong>RAG 품질</strong> — RAGAS 종합 점수 13%p 개선',
                 '<strong>Ablation Study</strong> — Reranking -12.8%p(핵심), Query Decomposition +6.8%p(성능 저하 요인) 도출',
-                '<strong>코드베이스</strong> — ~9.4만 줄 · 803 소스파일 · 161 API · 103+ 단위 테스트'
+                '<strong>코드베이스</strong> — 9개 프로젝트 · 161 API · 103+ 단위 테스트'
               ]
             },
             {
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
       imageContain: true,
       meta: {
         organization: 'WIGTN Crew (ACL 2026 System Demonstrations Under Review, 제 1저자)',
-        role: 'Lead Developer (설계·개발·배포 주도, 팀원 테스트 협업) · 235커밋 · 15일 · 55,269 LoC · 434 테스트',
+        role: 'Lead Developer (설계·개발·배포 주도, 팀원 테스트 협업)',
         period: '2025.09 ~ 2026.03',
         architecture: 'Python 3.12 FastAPI · OpenAI Realtime API (Whisper-1) · GPT-4o-mini · Twilio Media Streams · Silero VAD · Next.js 16 · React Native/Expo · Supabase · Google Cloud Run'
       },
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Overview',
-          content: '<strong>PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼</strong><br><br>한 외국인의 서울 상경기에서 시작된 프로젝트. 병원 예약, 관공서 전화 한 통을 혼자 해결하지 못하는 장면을 보면서 "기술은 모두에게 평등하게 전달되어야 한다"는 생각이 출발점이었다.<br><br>고음역 대역폭(16~24kHz)에서만 가능하다고 여겨지던 실시간 양방향 음성 번역을 PSTN 저음역 대역폭(8kHz G.711 μ-law)에서 구현하기 위해, 에코 제거 루프와 VAD를 독립 아키텍처로 설계했다. 15일 개발, 235커밋, 55,269줄, 434개 테스트를 거쳐 프로덕션 배포했다.',
+          content: '<strong>PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼</strong><br><br>한 외국인의 서울 상경기에서 시작된 프로젝트. 병원 예약, 관공서 전화 한 통을 혼자 해결하지 못하는 장면을 보면서 "기술은 모두에게 평등하게 전달되어야 한다"는 생각이 출발점이었다.<br><br>고음역 대역폭(16~24kHz)에서만 가능하다고 여겨지던 실시간 양방향 음성 번역을 PSTN 저음역 대역폭(8kHz G.711 μ-law)에서 구현하기 위해, 에코 제거 루프와 VAD를 독립 아키텍처로 설계하여 프로덕션 배포했다.',
           subsections: [
             {
               subtitle: '데모 & 링크',
@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: '3계층 구조',
               list: [
                 '<strong>Layer 1 — Transport</strong>: Twilio Media Streams(PSTN ↔ G.711 μ-law 8kHz) + Browser WebSocket(PCM 16kHz)',
-                '<strong>Layer 2 — Pipeline</strong>: AudioRouter(153줄)가 Strategy 패턴으로 V2V / T2V / Agent 모드에 이벤트를 위임',
+                '<strong>Layer 2 — Pipeline</strong>: AudioRouter가 Strategy 패턴으로 V2V / T2V / Agent 모드에 이벤트를 위임',
                 '<strong>Layer 3 — Sessions</strong>: Session A(브라우저→전화) + Session B(전화→브라우저)가 독립 시스템 프롬프트와 6턴 슬라이딩 컨텍스트 유지'
               ]
             },
@@ -719,7 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: '성과',
-              content: '에코 루프 발생률 <strong>초기 8/10건 → 프로덕션 0/148건</strong> (25커밋)'
+              content: '에코 루프 발생률 <strong>초기 8/10건 → 프로덕션 0/148건</strong>'
             }
           ]
         },
@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: '성과',
-              content: '<code>speech_stopped</code> 레이턴시 <strong>15~72초 → 480ms</strong> (25커밋)'
+              content: '<code>speech_stopped</code> 레이턴시 <strong>15~72초 → 480ms</strong>'
             }
           ]
         },
@@ -759,22 +759,22 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: '성과',
-              content: '할루시네이션 유입률 <strong>0.3% 미만</strong>, 통화당 평균 0.7건 차단 (148건, 22커밋). 95%+ 케이스가 L1 처리로 추가 레이턴시 없음.'
+              content: '할루시네이션 유입률 <strong>0.3% 미만</strong>, 통화당 평균 0.7건 차단 (148건 기준). 95%+ 케이스가 L1 처리로 추가 레이턴시 없음.'
             }
           ]
         },
         {
           title: 'Strategy 패턴 — 3개 통신 파이프라인',
-          content: '초기 557줄 God Object(AudioRouter)를 Strategy 패턴으로 분리하여 <strong>153줄 위임자 + 3개 독립 파이프라인</strong>으로 리팩토링 (73% 코드 감소).',
+          content: '초기 God Object(AudioRouter)를 Strategy 패턴으로 분리하여 <strong>얇은 위임자 + 3개 독립 파이프라인</strong>으로 리팩토링 (73% 코드 감소).',
           subsections: [
             {
               subtitle: '파이프라인 구조',
               list: [
                 '<strong>VoiceToVoice (V2V)</strong> — 양방향 음성 번역. Echo Gate + Silence Injection + 3단계 인터럽트 우선순위',
                 '<strong>TextToVoice (T2V)</strong> — 청각·언어 장애인용. 텍스트 입력 → AI 번역 음성 전달',
-                '<strong>FullAgent</strong> — 콜포비아용 AI 대리 통화. TextToVoice 상속 + Function Calling (72줄)',
-                '<strong>EchoGateManager</strong> (329줄) — 공통 에코 방지 로직, 파이프라인 간 공유',
-                '<strong>ChatTranslator</strong> (134줄) — T2V/Agent Session B 번역, GPT-4o-mini'
+                '<strong>FullAgent</strong> — 콜포비아용 AI 대리 통화. TextToVoice 상속 + Function Calling',
+                '<strong>EchoGateManager</strong> — 공통 에코 방지 로직, 파이프라인 간 공유',
+                '<strong>ChatTranslator</strong> — T2V/Agent Session B 번역, GPT-4o-mini'
               ]
             }
           ]
@@ -1097,7 +1097,7 @@ document.addEventListener('DOMContentLoaded', function() {
       imageContain: false,
       meta: {
         organization: 'Personal Project (Open Source)',
-        role: '1인 개발 (45커밋 · 5주)',
+        role: '1인 개발',
         period: '2026.01 ~ 2026.02',
         architecture: '3-Tier: FastAPI(API) + Typer(CLI) + Next.js(Web) + Docker'
       },
@@ -1111,7 +1111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
               subtitle: 'Solution',
-              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 2일 만에 풀스택 MVP 완성, 이후 5주간 45커밋으로 고도화.'
+              content: '비개발자도 브라우저에서 바로 LLM 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구. Claude Code Skills Plugins으로 풀스택 MVP 완성 후 고도화.'
             }
           ]
         },
@@ -1134,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', function() {
               list: [
                 '<strong>Prometheus 메트릭 검증</strong> — 측정값 ±5% 허용 범위 내 교차 확인',
                 '<strong>Docker 로그 검증</strong> — 컨테이너 레벨 ±10% 허용 범위 내 재검증',
-                '5,982줄 단일 커밋으로 구현된 핵심 모듈'
+                'Prometheus + Docker 이중 교차 검증으로 측정 정확성 보장'
               ]
             },
             {
@@ -1143,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
               list: [
                 '<code>필요 GPU = ceil(목표 동시성 / 현재 최대 동시성) × (1 + headroom)</code>',
                 '영업팀/MLOps/PM 대상 비전문가 친화적 리포트 생성',
-                '4,374줄 단일 커밋으로 구현'
+                '벤치마크 결과 기반 자동 GPU 스케일링 산출'
               ]
             },
             {
