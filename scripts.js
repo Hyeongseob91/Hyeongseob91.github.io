@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sections: [
         {
           title: 'Overview',
-          content: '<strong>PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼</strong><br><br>한 외국인의 서울 상경기에서 시작된 프로젝트. 병원 예약, 관공서 전화 한 통을 혼자 해결하지 못하는 장면을 보면서 "기술은 모두에게 평등하게 전달되어야 한다"는 생각이 출발점이었다.<br><br>고음역 대역폭(16~24kHz)에서만 가능하다고 여겨지던 실시간 양방향 음성 번역을 PSTN 저음역 대역폭(8kHz G.711 μ-law)에서 구현하기 위해, 에코 제거 루프와 VAD를 독립 아키텍처로 설계하여 프로덕션 배포했다.',
+          content: '<strong>PSTN 기반 AI 실시간 양방향 전화 통역 중계 플랫폼</strong><br><br>한 스타트업 대표에게 들은 이야기에서 시작된 프로젝트. 대구에서 근무하던 외국인 직원이 서울로 전근하면서 부동산을 구해야 했는데, 언어가 통하지 않아 전화 한 통 하기가 어려웠다고 한다. 번역 앱은 있지만 전화 통화에서는 한계가 있었고, 이런 경험을 겪는 사람이 많을 거라 생각해 그 벽을 허물고자 시작했다.<br><br>고음역 대역폭(16~24kHz)에서만 가능하다고 여겨지던 실시간 양방향 음성 번역을 PSTN 저음역 대역폭(8kHz G.711 μ-law)에서 구현하기 위해, 에코 제거 루프와 VAD를 독립 아키텍처로 설계하여 프로덕션 배포했다.',
           subsections: [
             {
               subtitle: '데모 & 링크',
@@ -895,13 +895,13 @@ document.addEventListener('DOMContentLoaded', function() {
       tags: ['FastAPI', 'OpenAI Realtime', 'Twilio', 'Silero VAD', 'Cloud Run', 'Next.js', 'React Native', 'Dual-Session Echo Gating', 'ACL 2026', 'COMET']
     },
     'wigtn-ocr': {
-      title: 'WigtnOCR - 한국 공공문서 전용 VLM 파싱 프레임워크',
+      title: 'WigtnOCR - VLM 기반 한국 공공기관 문서 전용 파싱 프레임워크',
       image: 'images/projects/wigtnocr_logo.png',
       meta: {
         organization: 'WIGTN Crew (EMNLP 2026 In Preparation)',
         role: 'Independent Researcher (파이프라인 설계·학습·평가·배포)',
         period: '2026.01 ~ 현재',
-        architecture: 'Qwen3-VL-2B + LoRA + vLLM + BGE-M3 + FAISS'
+        architecture: 'Qwen3-VL-2B + LoRA + ms-swift + vLLM + BGE-M3 + FAISS'
       },
       disclaimer: {
         show: true,
@@ -909,15 +909,29 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       sections: [
         {
-          title: 'Problem / Solution',
+          title: 'Overview',
+          content: '<strong>VLM 기반 한국 공공기관 문서 전용 파싱 프레임워크</strong><br><br>SoundMind Inc.에서 B2B2G RAG 서비스를 개발하며 직면한 문제에서 출발한 연구 프로젝트. End User가 어떤 구조의 문서를 활용하는지 사전에 알 수 없는 B2B2G 환경에서, "한국 정부 공공문서"라는 도메인만은 확정되어 있었기 때문에, 실무 인프라 여건(제한된 GPU, 비용)에 충족되는 SLM 기반 Document Parser를 만드는 것이 목표였다.<br><br>Qwen3-VL-2B-Instruct를 한국 공공문서 2,667장으로 LoRA fine-tuning한 결과, <strong>15배 큰 Teacher 모델(30B)과 동등하거나 일부 메트릭에서 초과하는 성능을 달성</strong>했고, 모델 가중치·학습 데이터·평가 코드를 전부 오픈소스로 공개했다.',
           subsections: [
             {
-              subtitle: 'Problem',
-              content: 'B2B2G RAG 서비스 개발 중, 한국 정부 공공문서의 복잡한 표·양식·다단 레이아웃을 기존 파서들이 처리하지 못하는 문제에 직면. PyMuPDF4LLM 같은 rule-based 파서는 구조 인식률이 0%에 가까웠고, dots.ocr·olmOCR 등 최신 VLM 파서는 영어/중국어 중심으로 한국 문서에 최적화되지 않았으며, 30B급 VLM은 성능은 좋지만 듀얼 GPU가 필요해 실무 배포가 어려웠다.'
+              subtitle: '연구 질문',
+              content: '"30B Teacher의 파싱 능력을 2B Student로 압축하면서 한국 공공문서에 특화된 성능을 달성할 수 있는가? 그리고 구조화된 파싱이 실제 RAG 파이프라인의 청킹·검색 품질로 이어지는가?"'
+            }
+          ]
+        },
+        {
+          title: '기술적 문제 — 왜 기존 파서로는 안 되는가',
+          subsections: [
+            {
+              subtitle: 'Rule-based 파서의 한계',
+              content: 'PyMuPDF4LLM 같은 rule-based 파서는 텍스트 추출은 빠르지만 구조 인식률이 0%에 가까워, 법령의 조/항/목 계층이나 표+다이어그램+텍스트 혼합 레이아웃을 전혀 보존하지 못했다.'
             },
             {
-              subtitle: 'Solution',
-              content: 'Qwen3-VL-2B-Instruct를 한국 공공문서 2,667장으로 LoRA fine-tuning하여, <strong>15배 큰 Teacher 모델(30B)과 동등하거나 일부 메트릭에서 초과하는 성능을 달성</strong>. 모델 가중치·학습 데이터·평가 코드를 전부 오픈소스로 공개.'
+              subtitle: '최신 VLM 파서의 한계',
+              content: 'dots.ocr(RedNote), olmOCR(AI2) 같은 최신 VLM 기반 파서들은 영어·중국어 중심으로 학습되어 한국 정부 문서(복잡한 표·양식·도장, 스캔 문서 혼재, 다단 레이아웃)에 최적화되지 않았다.'
+            },
+            {
+              subtitle: '30B 모델의 실무 한계',
+              content: '30B급 VLM은 파싱 품질이 우수하지만 듀얼 GPU가 필요하고 추론이 느려 실무 배포가 어렵다. 2B 모델이면 단일 GPU에서 빠르게 서빙 가능하고 Edge 배포도 현실적이다.'
             }
           ]
         },
@@ -939,71 +953,148 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: '실행 파이프라인 (9 Stages)',
+          title: 'Stage 1-3: Pseudo-GT 생성 → 검증 → 정제',
           subsections: [
             {
-              subtitle: 'Stage 1-3: 데이터 준비',
+              subtitle: 'Pseudo-GT 생성',
+              content: 'PDF 페이지 이미지를 Qwen3-VL-30B-Instruct(Teacher)에 입력하여 구조화된 마크다운을 생성. KoGovDoc 10개 문서 3,637페이지 + arXiv 39개 논문 864페이지 = 총 4,501페이지 처리. 초기에 30B-Thinking 모델을 사용했으나 출력 불안정(think 태그 오염, 토큰 잘림)이 발생하여 Instruct 모델로 전환. <strong>Finding: document transcription에서는 reasoning 모델보다 instruction-tuned 모델이 안정적</strong>.'
+            },
+            {
+              subtitle: 'GT 품질 검증',
+              content: 'Qwen3.5-122B를 Judge로 사용하여 5점 척도 평가. "원본과 다른 부분"이 아니라 "출력물 자체가 학습 데이터로 쓸 만한 품질인가"를 판단하기 위해 이미지 없이 텍스트만으로 평가. 반복 루프, 텍스트 절단, 사고 과정 유출은 텍스트만 봐도 판별 가능. KoGovDoc 합격률 75.1%, arXiv 73.8%. 3점 미만 페이지는 학습에서 제외.'
+            },
+            {
+              subtitle: '데이터 정제',
               list: [
-                '<strong>Pseudo-GT 생성</strong> — Qwen3-VL-30B-Instruct(Teacher)로 4,501페이지(KoGovDoc 3,637 + arXiv 864) 처리',
-                '<strong>GT 품질 검증</strong> — Qwen3.5-122B Judge로 5점 척도 평가 (KoGovDoc 합격률 75.1%, arXiv 73.8%)',
-                '<strong>데이터 정제</strong> — max_doc_ratio=0.25 편향 제어, 30B-Thinking 모델 reasoning 잔여물 정제 → 최종 train 2,667 + val 294'
+                'kogov_008이 전체의 53%를 차지하는 편향 → <strong>max_doc_ratio=0.25</strong>로 제어',
+                '30B-Thinking 모델의 reasoning 잔여물(영어 사고 과정)이 GT에 섞인 오염 발견 → 20개 삭제, 257개 정리',
+                '최종 데이터: <strong>train 2,667개 + val 294개</strong>'
               ]
-            },
-            {
-              subtitle: 'Stage 4: LoRA Fine-tuning',
-              list: [
-                'Base: Qwen3-VL-2B-Instruct, LoRA r=8 α=32, all-linear layers',
-                'Vision Encoder·Aligner 동결 (시각 인식은 충분, 텍스트 생성 정확도가 부족했기 때문)',
-                'DeepSpeed ZeRO-2, <strong>학습 시간 31분</strong>, final loss 0.075',
-                'Ablation: v1(r=8) vs v2(r=32) — v2는 수식 +0.9pp지만 테이블 -4.9pp, 텍스트 +2.1pp 퇴보 → v1 확정'
-              ]
-            },
-            {
-              subtitle: 'Stage 5-6: 벤치마크 평가',
-              content: '<strong>OmniDocBench (CVPR 2025)</strong> 국제 벤치마크 + <strong>KoGovDoc Val</strong> 한국 문서 평가'
-            },
-            {
-              subtitle: 'Stage 7-8: 청킹·검색 품질 평가',
-              list: [
-                '<strong>Stage 7 (진행 중)</strong> — MoC BC/CS(ACL 2025) 메트릭으로 "구조화 파싱 → 더 좋은 청크?" 검증',
-                '3가지 청킹 전략: Header-based(구조화 전용) / Fixed-size(baseline) / Semantic(핵심 공정 비교)',
-                '<strong>Stage 8 (대기)</strong> — BGE-M3 + FAISS로 "더 좋은 청크 → 더 좋은 검색?" 검증 (Hit@K, MRR, nDCG)'
-              ]
-            },
-            {
-              subtitle: 'Stage 9: 배포 및 논문',
-              content: 'HuggingFace 모델 가중치 업로드, PyPI 패키지 공개, EMNLP 2026 Industry Track 투고 예정'
             }
           ]
         },
         {
-          title: 'OmniDocBench 성능 비교 (핵심 결과)',
-          content: [
-            '<table class="modal__benchmark-table">',
-            '<caption>OmniDocBench (CVPR 2025) — 4 Models Comparison</caption>',
-            '<thead><tr>',
-            '<th scope="col">모델</th><th scope="col">Text NED↓</th><th scope="col">Table TEDS↑</th>',
-            '<th scope="col">TEDS-S↑</th><th scope="col">Formula CDM↑</th><th scope="col">RO NED↓</th>',
-            '</tr></thead><tbody>',
-            '<tr><td>Qwen3-VL-30B (Teacher)</td>',
-            '<td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.227</td></tr>',
-            '<tr><td>Qwen3-VL-2B (Base)</td>',
-            '<td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.300</td></tr>',
-            '<tr><td>Marker (Rule-based)</td>',
-            '<td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.165</td></tr>',
-            '<tr class="tr--highlight"><td>WigtnOCR v1 (Ours)</td>',
-            '<td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td></tr>',
-            '</tbody></table>'
-          ].join(''),
+          title: 'Stage 4: LoRA Fine-tuning',
+          content: 'Base Model: Qwen3-VL-2B-Instruct. LoRA rank=8, alpha=32, target=all-linear로 Language Model의 모든 linear layer에 어댑터 부착. <strong>Vision Encoder와 Aligner는 동결</strong> — 이전 연구에서 VLM의 시각 인식 능력은 충분(Structure F1 79%)하지만 텍스트 생성 정확도가 부족함을 확인했기 때문.',
           subsections: [
             {
-              subtitle: '핵심 성과',
+              subtitle: '학습 설정',
+              list: [
+                'Hardware: 2× NVIDIA RTX PRO 6000 Blackwell (96GB each)',
+                'DeepSpeed ZeRO-2, <strong>학습 시간 31분</strong>, final loss 0.075'
+              ]
+            },
+            {
+              subtitle: 'Ablation Study',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>LoRA Configuration 비교 (OmniDocBench)</caption>',
+                '<thead><tr>',
+                '<th scope="col">Config</th><th scope="col">Text NED↓</th><th scope="col">TEDS↑</th>',
+                '<th scope="col">CDM F1↑</th><th scope="col">RO NED↓</th><th scope="col">판정</th>',
+                '</tr></thead><tbody>',
+                '<tr class="tr--highlight"><td>v1: r=8, epoch=3</td><td>0.288</td><td>0.649</td><td>0.884</td><td>0.211</td><td>최종 모델</td></tr>',
+                '<tr><td>v2-best: r=32, epoch=3</td><td>0.309</td><td>0.600</td><td>0.893</td><td>0.215</td><td>테이블 퇴보</td></tr>',
+                '<tr><td>v2-last: r=32, epoch=5</td><td>0.306</td><td>0.610</td><td>0.892</td><td>—</td><td>과적합</td></tr>',
+                '</tbody></table>'
+              ].join('')
+            },
+            {
+              subtitle: 'Finding',
+              content: '데이터 2,667개 규모에서 rank를 8→32로 올리면 수식은 소폭 개선(+0.9pp)되지만 테이블(-4.9pp)과 텍스트(+2.1pp)가 퇴보한다. epoch을 5로 올리면 Val Loss가 상승하며 과적합이 발생한다.'
+            }
+          ]
+        },
+        {
+          title: 'Stage 5: OmniDocBench 평가',
+          content: 'CVPR 2025에서 발표된 OmniDocBench(1,355 PDF 페이지, 사람이 만든 GT)로 4개 모델을 비교 평가. OmniDocBench 논문에 MinerU, Mathpix, GOT-OCR, GPT-4o 등의 공개 결과도 있어 논문에서 인용 비교가 가능하다.',
+          subsections: [
+            {
+              subtitle: '성능 비교',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>OmniDocBench (CVPR 2025) — 4 Models Comparison</caption>',
+                '<thead><tr>',
+                '<th scope="col">모델</th><th scope="col">Text NED↓</th><th scope="col">Table TEDS↑</th>',
+                '<th scope="col">TEDS-S↑</th><th scope="col">Formula CDM↑</th><th scope="col">RO NED↓</th>',
+                '</tr></thead><tbody>',
+                '<tr><td>Qwen3-VL-30B (Teacher)</td>',
+                '<td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.227</td></tr>',
+                '<tr><td>Qwen3-VL-2B (Base)</td>',
+                '<td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.300</td></tr>',
+                '<tr><td>Marker (Rule-based)</td>',
+                '<td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.165</td></tr>',
+                '<tr class="tr--highlight"><td>WigtnOCR v1 (Ours)</td>',
+                '<td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td></tr>',
+                '</tbody></table>'
+              ].join('')
+            },
+            {
+              subtitle: '핵심 결과',
               list: [
                 '<strong>Text NED</strong>: 30B Teacher와 동등 (0.288 vs 0.289)',
                 '<strong>Table TEDS/TEDS-S</strong>: 전체 1위 (30B, Marker 모두 초과)',
                 '<strong>Reading Order</strong>: 30B Teacher 초과 (0.211 vs 0.227)',
-                'Base 2B 대비 — Text NED 21%↑, Table TEDS 16%↑, Reading Order 30%↑'
+                'Base 2B 대비 — Text NED 21%↑, Table TEDS 16%↑, Reading Order 30%↑',
+                '2B Student가 15배 큰 Teacher를 매칭하거나 초과한 것은 <strong>pseudo-label distillation의 효과를 입증</strong>'
               ]
+            }
+          ]
+        },
+        {
+          title: 'Stage 6: KoGovDoc Val 평가',
+          content: 'OmniDocBench는 영어/중국어 중심이므로 한국 공공문서에서의 성능을 별도 검증. 학습에서 제외한 val 294장에 대해 페이지 전체 텍스트 기준 NED로 평가.',
+          subsections: [
+            {
+              subtitle: '결과',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>KoGovDoc Val — v1 vs v2 비교</caption>',
+                '<thead><tr>',
+                '<th scope="col">Model</th><th scope="col">NED avg</th>',
+                '<th scope="col">평가 성공</th><th scope="col">에러</th>',
+                '</tr></thead><tbody>',
+                '<tr class="tr--highlight"><td>WigtnOCR v1</td><td>0.285</td><td>289/294</td><td>5</td></tr>',
+                '<tr><td>WigtnOCR v2-best</td><td>0.291</td><td>280/294</td><td>14</td></tr>',
+                '</tbody></table>'
+              ].join('')
+            },
+            {
+              subtitle: '판정',
+              content: 'v1이 NED도 낮고 에러도 적어서 최종 배포 모델로 확정. PaddleOCR(RapidOCR) baseline 288장 추론도 완료하여 Stage 7 비교에 사용.'
+            }
+          ]
+        },
+        {
+          title: 'Stage 7-8: 청킹·검색 품질 평가',
+          content: '"구조화된 파싱이 실제 RAG에서 뭐가 좋은가?"에 답하기 위한 2단계 인과 평가. Stage 7(구조화 파싱 → 더 좋은 청크?)과 Stage 8(더 좋은 청크 → 더 좋은 검색?)로 나누어 파싱 품질이 최종 검색 성능까지 이어지는 인과 관계를 검증한다.',
+          subsections: [
+            {
+              subtitle: '3가지 청킹 전략',
+              content: [
+                '<table class="modal__benchmark-table">',
+                '<caption>청킹 전략별 비교 역할</caption>',
+                '<thead><tr>',
+                '<th scope="col">전략</th><th scope="col">방법</th><th scope="col">핵심 비교 역할</th>',
+                '</tr></thead><tbody>',
+                '<tr><td>Header-based</td><td># 헤딩으로 분할</td><td>구조화 전용 전략</td></tr>',
+                '<tr><td>Fixed-size</td><td>512자씩 기계적 분할</td><td>baseline</td></tr>',
+                '<tr class="tr--highlight"><td>Semantic</td><td>BGE-M3 임베딩 기반 의미 경계</td><td>핵심 공정 비교</td></tr>',
+                '</tbody></table>'
+              ].join('')
+            },
+            {
+              subtitle: 'BC/CS 평가 (Stage 7, 진행 중)',
+              content: 'MoC 프레임워크(ACL 2025)의 BC(Boundary Clarity)와 CS(Chunk Stickiness) 메트릭을 구현. 38개 문서 × 2파서 × 3전략 = 228건 평가 중 약 80% 진행.',
+              list: [
+                '초기 페이지 단위 청킹 → 텍스트가 짧아 BC/CS 계산 불가 → <strong>문서 단위 합산으로 전환</strong>',
+                'WigtnOCR가 PaddleOCR 대비 <strong>3~30배 많은 텍스트를 추출</strong> — 구조화 파싱의 장점',
+                'CS O(n²) 문제 → MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 계산량 1,225쌍으로 제한'
+              ]
+            },
+            {
+              subtitle: 'Retrieval 평가 (Stage 8, 대기)',
+              content: 'BC/CS 완료 후 BGE-M3 + FAISS로 벡터화하여 Hit@K, MRR, nDCG 측정 예정. Stage 7과 Stage 8이 연결되면 "구조화 파싱이 RAG 파이프라인 전체 품질을 향상시킨다"는 end-to-end 근거가 확보된다.'
             }
           ]
         },
@@ -1012,8 +1103,9 @@ document.addEventListener('DOMContentLoaded', function() {
           list: [
             '<strong>Thinking vs Instruct</strong> — Document transcription에서 reasoning 모델은 출력 불안정(think 태그 오염, 토큰 잘림), Instruct 모델이 안정적',
             '<strong>LoRA rank 최적점</strong> — 데이터 2,667개 규모에서 r=8이 최적, r=32로 올리면 테이블 성능 퇴보 (-4.9pp)',
-            '<strong>CS O(n²) 해결</strong> — MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 대표성 유지하면서 계산량 1,225쌍으로 제한',
-            '<strong>페이지→문서 단위 전환</strong> — 페이지 단위 청킹은 텍스트가 짧아 BC/CS 계산 불가 → 문서 단위 합산으로 해결'
+            '<strong>CS O(n²) 해결</strong> — MAX_CHUNKS_FOR_CS=50 균등 샘플링으로 대표성 유지하면서 계산량 제한',
+            '<strong>페이지→문서 단위 전환</strong> — 페이지 단위 청킹은 텍스트가 짧아 BC/CS 계산 불가 → 문서 단위 합산으로 해결',
+            '<strong>VLM 텍스트 추출량</strong> — WigtnOCR가 PaddleOCR 대비 3~30배 많은 텍스트 추출, 한국 공공문서의 표·양식·복잡 레이아웃을 순수 OCR이 놓치기 때문'
           ]
         },
         {
@@ -1033,23 +1125,24 @@ document.addEventListener('DOMContentLoaded', function() {
               subtitle: 'Evaluation & Retrieval',
               list: [
                 '<strong>Benchmark</strong>: OmniDocBench (CVPR 2025) + KoGovDoc-Bench',
-                '<strong>Chunking</strong>: Header-based / Semantic / Fixed-size (3전략)',
+                '<strong>Chunking</strong>: Header-based / Semantic / Fixed-size (3전략, 문서 단위)',
                 '<strong>Chunking 평가</strong>: MoC BC/CS (ACL 2025, Qwen2.5-1.5B PPL)',
-                '<strong>Embedding</strong>: BGE-M3 (Infinity server)',
-                '<strong>Vector DB</strong>: FAISS'
+                '<strong>Embedding</strong>: BGE-M3 (Infinity server) — 청킹 경계 탐지 + 검색 벡터화',
+                '<strong>Vector DB</strong>: FAISS (Stage 8 검색 평가용)'
               ]
             },
             {
-              subtitle: 'Infrastructure',
+              subtitle: 'Infrastructure & Deployment',
               list: [
                 '<strong>GPU</strong>: 2× NVIDIA RTX PRO 6000 Blackwell (96GB each)',
-                '<strong>배포</strong>: HuggingFace (Wigtn org), GitHub (wigtn), PyPI 예정'
+                '<strong>배포</strong>: HuggingFace (Wigtn org), GitHub (wigtn), PyPI 예정',
+                '<strong>논문</strong>: EMNLP 2026 Industry Track 투고 예정'
               ]
             }
           ]
         }
       ],
-      tags: ['Qwen3-VL-2B', 'LoRA', 'Pseudo-Label Distillation', 'OmniDocBench', 'vLLM', 'Open Source', 'EMNLP 2026']
+      tags: ['Qwen3-VL-2B', 'LoRA', 'Pseudo-Label Distillation', 'OmniDocBench', 'KoGovDoc-Bench', 'vLLM', 'Open Source', 'EMNLP 2026']
     },
     'wigtn-coding': {
       title: 'WIGTN Claude Code Skills Plugins',
@@ -1185,6 +1278,223 @@ document.addEventListener('DOMContentLoaded', function() {
       ],
       tags: ['Python', 'FastAPI', 'Next.js', 'Docker', 'WebSocket', 'Validation Loop', 'Goodput', 'Open Source'],
       demoUrl: null
+    },
+    timelens: {
+      title: 'TimeLens - 음성+카메라 멀티모달 AI 박물관 큐레이터',
+      image: 'images/projects/timelens_hero.png',
+      meta: {
+        organization: 'WIGTN Crew (Gemini Live Agent Challenge — Google Global Hackathon)',
+        role: 'Team Lead & Developer',
+        period: '2026.03',
+        architecture: 'Gemini Live API + Google ADK + Next.js 15 + React Native/Expo + Cloud Run + Firebase'
+      },
+      sections: [
+        {
+          title: 'Overview',
+          content: '<strong>Google Global 해커톤 — Gemini Live Agent Challenge 출품작</strong><br><br>박물관 단체 관람의 불편함에서 출발한 AI 큐레이터 서비스. "나만의 속도로 보기 어렵고, 궁금한 것을 바로 물어볼 수 없다"는 문제를 해결한다. 카메라로 유물을 비추고(See), AI 큐레이터의 설명을 듣고(Hear), 음성으로 질문하는(Speak) 흐름이 끊김 없이 이어지는 것이 핵심.',
+          subsections: [
+            {
+              subtitle: '데모 & 링크',
+              list: [
+                '<strong>데모 비디오</strong>: <a href="https://youtu.be/ITaMtVO5jFg?si=-lhV6uV97mytFLgb" target="_blank" rel="noopener noreferrer">YouTube</a>',
+                '<strong>GitHub</strong>: <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer">wigtn/wigtn-timelens</a>',
+                '<strong>개발기</strong>: <a href="https://harrison-kim.tistory.com/entry/Gemini-Live-Agent-Challenge-WigtnCrew-Time-Lens-%EA%B0%9C%EB%B0%9C%EA%B8%B0" target="_blank" rel="noopener noreferrer">블로그 포스트</a>'
+              ]
+            }
+          ]
+        },
+        {
+          title: '심사 기준 및 전략',
+          subsections: [
+            {
+              subtitle: '심사 항목',
+              list: [
+                '<strong>Innovation & Multimodal UX (40%)</strong> — 음성, 시각, 이미지의 자연스러운 통합',
+                '<strong>Technical Implementation & Agent Architecture (30%)</strong> — Google Cloud 네이티브 구현',
+                '<strong>Demo & Presentation (30%)</strong> — 실제 동작 화면 시연'
+              ]
+            },
+            {
+              subtitle: '보너스 포인트',
+              list: [
+                '개발 과정 공개 콘텐츠 발행: +0.6점',
+                'CI/CD 자동화 배포: +0.2점',
+                'Google Developer Group 멤버: +0.2점'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Architecture — 듀얼 파이프라인',
+          content: '단일 경로(Live API)만이 아닌, 연결 불안정 환경(박물관 Wi-Fi) 대응을 위한 다중 경로 설계.',
+          image: {
+            src: 'images/projects/timelens_architecture.jpeg',
+            alt: 'TimeLens System Architecture',
+            caption: 'Figure 1: TimeLens 시스템 아키텍처. Gemini Live API(메인) + ADK 멀티 에이전트(텍스트 폴백) 듀얼 파이프라인.'
+          },
+          subsections: [
+            {
+              subtitle: 'Gemini Live API 파이프라인 (메인)',
+              list: [
+                '음성 입력(PCM16/16kHz) + 카메라(JPEG 1fps)를 동일 WebSocket 세션에서 실시간 처리',
+                '<strong>Function Calling 4개</strong>로 오케스트레이션 대체 — 라우팅 로직, 인텐트 분류기, 상태 머신 전부 제거',
+                'barge-in 기능으로 AI 응답 중에도 자연스럽게 끊고 질문 가능'
+              ]
+            },
+            {
+              subtitle: 'ADK 멀티 에이전트 파이프라인 (텍스트 폴백)',
+              list: [
+                'timelens_orchestrator → curator / restoration / discovery / diary 4개 Sub-Agent',
+                'Live API와 동일한 백엔드 API를 공유하여 코드 중복 제거',
+                '어느 경로로 진입하든 동일한 함수를 호출 — 다른 건 진입점뿐'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Function Calling Workflow — 4개 도구',
+          content: '처음에는 인텐트 분류기, if/else 체인, 상태 머신을 계획했다. 최종적으로 시스템 프롬프트 + Function Declaration 4개만 남기고 나머지를 모델에 위임한 결과가 더 좋았다. <strong>"모델은 당신의 라우팅 로직보다 똑똑하다"</strong>가 핵심 인사이트.',
+          image: {
+            src: 'images/projects/timelens_function_calling.png',
+            alt: 'Function Calling Workflow',
+            caption: 'Figure 2: Function Calling 워크플로우. 4개 도구가 UX 전환의 분기점 역할을 하며, 폴백 시 ADK 멀티 에이전트로 위임.'
+          },
+          subsections: [
+            {
+              subtitle: '4가지 도구',
+              list: [
+                '<strong>recognize_artifact()</strong> — 카메라 프레임 분석 + Google Search Grounding으로 유물 인식·정보 검색',
+                '<strong>generate_restoration()</strong> — Gemini 2.5 Flash Image로 포토리얼리스틱 복원 이미지 생성',
+                '<strong>discover_nearby()</strong> — GPS 기반 Google Places API로 주변 박물관·유적지 탐색',
+                '<strong>create_diary()</strong> — 관람 세션 종료 시 Gemini 3 Pro Image로 방문 다이어리 자동 생성'
+              ]
+            }
+          ]
+        },
+        {
+          title: '에이전틱 카메라',
+          content: '사용자가 음성으로 촬영을 트리거하는 핵심 UX. 15개 언어별 정규식 패턴(한국어: "이거 뭐야", "이거 봐" / 영어: "what is this", "look at this" / 일본어·중국어·힌디어 등)으로 음성 명령을 감지한다.',
+          subsections: [
+            {
+              subtitle: '촬영 프로세스',
+              list: [
+                '음성 명령 감지 → 500ms 안정화 대기 (손 떨림 방지)',
+                '고해상도 사진 촬영 → iOS 스타일 흰색 플래시 오버레이 (0.2초 페이드)',
+                'Live API로 사용자 발화와 함께 전송 → AI 음성 피드백'
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Service Flow',
+          content: [
+            '<div class="modal__z-flow">',
+
+            '<div class="modal__z-row">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_01_landing.jpeg" alt="Landing" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 1</span><h4>랜딩 — 언어 선택</h4>',
+            '<p>한국어·영어·일본어·중국어·힌디어 5개 언어 지원. "Museums Come Alive" — 카메라와 마이크 권한을 요청하고 세션을 시작합니다.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row modal__z-row--reverse">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_02_permissions.jpeg" alt="Permissions" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 2</span><h4>권한 설정</h4>',
+            '<p>카메라와 마이크 접근 권한을 부여합니다. 권한이 없으면 텍스트 모드(ADK 폴백)로 자동 전환됩니다.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_03_overview.jpeg" alt="Overview" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 3</span><h4>서비스 소개</h4>',
+            '<p>"Point your camera at an artifact, and a thousand-year story begins." 평균 3초 인식, 10K+ 유적지, 24/7 AI Voice Docent.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row modal__z-row--reverse">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_06_session_init.png" alt="Session Init" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 4</span><h4>세션 초기화</h4>',
+            '<p>Gemini Live 세션 연결. GPS 기반으로 현재 위치의 박물관을 자동 감지하고, AI 큐레이터를 깨웁니다.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_07_curator_greeting.png" alt="Curator Greeting" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 5</span><h4>AI 큐레이터 인사</h4>',
+            '<p>현재 전시 정보를 Google Search Grounding으로 실시간 검색하여 인사와 함께 전달합니다. 음성·텍스트 양방향 대화 가능.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row modal__z-row--reverse">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_05_recognition.png" alt="Artifact Recognition" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 6</span><h4>유물 인식</h4>',
+            '<p>"이거 뭐야?" — 에이전틱 카메라가 음성 명령을 감지하여 촬영 후 recognize_artifact()를 호출. 유물의 이름, 시대, 역사적 배경을 설명합니다.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_live_conversation.png" alt="Live Conversation" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 7</span><h4>실시간 멀티모달 대화</h4>',
+            '<p>LIVE 모드에서 카메라 프레임과 음성이 동시에 처리됩니다. 유물을 보면서 자유롭게 질문하고, barge-in으로 AI 응답을 끊고 새 질문도 가능.</p></div>',
+            '</div>',
+
+            '<div class="modal__z-row modal__z-row--reverse">',
+            '<div class="modal__z-image"><img src="images/projects/timelens_restoration.png" alt="Restoration" onclick="window.open(this.src, \'_blank\')"></div>',
+            '<div class="modal__z-text"><span class="modal__z-step">STEP 8</span><h4>유물 복원 이미지</h4>',
+            '<p>"원래 모습 보여줘" — generate_restoration()이 Gemini 2.5 Flash Image로 포토리얼리스틱 복원 이미지를 생성. Now/원래 시대 토글로 비교 가능.</p></div>',
+            '</div>',
+
+            '</div>'
+          ].join('')
+        },
+        {
+          title: '개발 과정에서 해결한 문제들',
+          subsections: [
+            {
+              subtitle: '한국어 STT 전사 품질',
+              content: 'Gemini outputTranscription이 한국어를 잘못 처리("괜찮 ." → "괜찮.", "큐레 이터" → "큐레이터"). 후처리 함수로 구두점 앞 공백 제거, 잘못 분리된 한글 음절 병합, 시스템 프롬프트에서 문장당 단어 15개 이하 제한.'
+            },
+            {
+              subtitle: '박물관 Wi-Fi 연결',
+              content: 'Firebase createSession()이 느린 연결에서 무한정 멈추는 문제. Promise.race에 5초 타임아웃 → 로컬 세션으로 폴백. 사용자는 전혀 인지 못함.'
+            },
+            {
+              subtitle: 'ADK와 Zod 버전 충돌',
+              content: 'ADK 내부 zod/v3과 프로젝트 Zod v4 충돌. @google/genai의 Schema 인터페이스 직접 사용으로 해결.'
+            }
+          ]
+        },
+        {
+          title: 'Tech Stack — Google 생태계 활용',
+          subsections: [
+            {
+              subtitle: 'AI / ML',
+              list: [
+                '<strong>Gemini 2.5 Flash</strong> — 메인 모델, Function Calling 기반 오케스트레이션',
+                '<strong>Gemini 2.5 Flash Native Audio</strong> — 실시간 음성 처리',
+                '<strong>Gemini 2.5 Flash Image</strong> — 유물 복원 이미지 생성',
+                '<strong>Gemini 3 Pro Image</strong> — 방문 다이어리 생성',
+                '<strong>Gemini Live API</strong> — 실시간 음성+카메라 멀티모달 WebSocket 세션',
+                '<strong>Google ADK</strong> — 멀티 에이전트 텍스트 폴백 파이프라인',
+                '<strong>Google Search Grounding</strong> — 실시간 유물 정보 검색'
+              ]
+            },
+            {
+              subtitle: 'Frontend & Mobile',
+              list: [
+                '<strong>Next.js 15</strong>, React 19 — 웹 클라이언트',
+                '<strong>React Native (Expo SDK)</strong> — 모바일 클라이언트',
+                'useLiveSession Hook — WebSocket 세션 관리',
+                'CameraView & Chat UI Components'
+              ]
+            },
+            {
+              subtitle: 'Infrastructure',
+              list: [
+                '<strong>Google Cloud Run</strong> — 서버 배포',
+                '<strong>Firebase Auth</strong> — 익명 인증 (5초 타임아웃 + 로컬 폴백)',
+                '<strong>Firestore</strong> — 세션 데이터 저장',
+                '<strong>Google Places API</strong> — 주변 박물관 탐색'
+              ]
+            }
+          ]
+        }
+      ],
+      tags: ['Gemini Live API', 'Google ADK', 'Function Calling', 'Cloud Run', 'Firebase', 'Next.js', 'React Native', 'Hackathon']
     },
     mcp: {
       title: 'VALORITHM - MCP 기반 게임 개발 AI 시스템',
