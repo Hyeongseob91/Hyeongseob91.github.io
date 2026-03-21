@@ -148,7 +148,8 @@
                 <strong>SoundMind-AI-Console</strong> (Admin Dashboard)
                 <ul>
                   <li>분석·평가·모니터링 플랫폼 3종을 단일 콘솔로 통합 설계하여, 비개발자도 RAG 영업 사이클 전체를 운용할 수 있는 통합 Admin 대시보드 설계 및 E2E 개발</li>
-                  <li>고객 문서 업로드 → Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석 → 최적 RAG 전략 자동 추천 → 원클릭 Docker 배포까지 단일 워크플로우 구현</li>
+                  <li>고객 문서 업로드 → Gemini 2.0 Flash + GPT-4o 3-Stage 병렬 분석 (26개 특성 프로파일링) → 4차원 Decision Tree 기반 최적 파이프라인 동적 조립 (Chunking×5 · Retrieval×5 · Indexing×4 · PostProcess×4, 이론적 조합 <strong>6,400+</strong>) → 원클릭 Docker 배포까지 단일 워크플로우 구현</li>
+                  <li>GPT-4o 교차 검증으로 전략 신뢰도 자동 보정 (confidence adjustment −0.3~+0.2), 문서 유형·Retrieval 전략에 따라 VectorDB 자동 결정 (metadata_filtered → Qdrant / 나머지 → Weaviate)</li>
                   <li>신규 엔진 Prototype 배포 리드타임 <strong>2주 → 5분</strong> (99% 이상 단축), 현장 실증 가능</li>
                   <li>Grafana + Loki 연동 전체 에코시스템 실시간 모니터링 내재화</li>
                 </ul>
@@ -167,20 +168,20 @@
             <span class="about__highlight">[AI R&D]</span>
             <ol style="margin-left: 20px;">
               <li>
-                <strong>RAG 파이프라인 설계 및 성능 최적화</strong>
+                <strong>RAG 파이프라인 설계 및 성능 최적화</strong> (공공기관 전용 범용 RAG R&D)
                 <ul>
-                  <li>Query Rewrite, Hybrid Search, Reranking, Generation 전 단계 직접 구현 및 최적화</li>
-                  <li>RAGAS 기반 LLM-as-a-Judge 정량 평가 프레임워크 구축 (81개 Q&A Ground Truth · 11개 문서 · 3,678페이지) — 품질 종합 점수 <strong>13%p 개선</strong></li>
-                  <li>Component 단위 Ablation Study 설계·수행 — Reranking 제거 시 <strong>-12.8%p</strong> (핵심 기여 요인), Query Decomposition 제거 시 <strong>+6.8%p</strong> (성능 저하 요인) 도출</li>
-                  <li>→ AI Console 자동 추천 시스템 설계의 직접적 근거로 활용</li>
-                  <li>문서 구조 복잡도에 따른 VectorDB 이원화 설계 — Weaviate(Hybrid Search) / Qdrant(Filter 기반) 선택적 적용</li>
+                  <li>Query Rewrite → Hybrid Search → Reranking → Generation 전 단계 직접 구현 및 노드 단위 성능 최적화</li>
+                  <li>RAGAS 기반 LLM-as-a-Judge 정량 평가 프레임워크 구축 (81개 Q&A Ground Truth · 11개 한국어 공공문서 · 3,678페이지) — ROUGE-L 0.050 / BLEU 0.002로 한국어 환경에서 전통 메트릭 무의미함을 실증, <strong>LLM Judge 채택 근거 확보</strong></li>
+                  <li>노드 단위 Ablation Study 수행 — Reranking 제거 시 <strong>−12.8%p 급락</strong> (핵심 기여 요인 → 전 파이프라인 Reranker 상시 활성화 근거), Query Decomposition 제거 시 <strong>+6.8%p &amp; 레이턴시 32% 감소</strong> 129s→88s (성능 저하 요인 → 조건부 활성화 전환 근거)</li>
+                  <li>Dense Search가 한국어 환경에서 Hybrid 대비 <strong>MRR +2.6%p 우위</strong> 확인, Semantic Chunking 처리속도 <strong>600배 열위</strong> (8,437ms vs 14ms) 실증 → 문서 특성별 전략 분기 및 VectorDB 이원화 설계 (Weaviate / Qdrant) 실험적 근거 확보</li>
+                  <li>상기 R&D 실험 결과 전체를 AI Console <strong>4차원 Decision Tree 자동 추천 시스템</strong>의 임계값 및 전략 분기 로직에 직접 반영</li>
                 </ul>
               </li>
               <li>
                 <strong>WIGVO:</strong> 레거시 PSTN 환경 실시간 양방향 음성 번역 시스템 (<strong>ACL 2026 Under Review, 제 1저자</strong>)
                 <ul>
                   <li>Dual-Session Echo Gating 아키텍처 + 3-Stage 오디오 필터 파이프라인 (Echo Gate → Energy Gate → Silero VAD) 자체 설계 및 개발</li>
-                  <li><small><em>Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small></li>
+                  <li><small><em>Title: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small></li>
                 </ul>
               </li>
               <li>
@@ -537,7 +538,7 @@
         <!-- Project: SoundMind AI Ecosystem -->
         <article class="project-card fade-in" data-project="soundmind-ecosystem" data-category="product">
           <div class="project-card__image-wrapper">
-            <img src="images/projects/soundmind_rag_agent_loginpage.png" alt="SoundMind AI Ecosystem" class="project-card__image">
+            <img src="images/projects/soundmind-ai-ecosystem-logo.png" alt="SoundMind AI Ecosystem" class="project-card__image" style="object-fit: contain; background: #f0f2f1; padding: 20px;">
           </div>
           <div class="project-card__content">
             <h3 class="project-card__title">

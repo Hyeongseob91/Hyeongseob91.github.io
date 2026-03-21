@@ -232,7 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectData = {
     'soundmind-ecosystem': {
       title: 'SoundMind AI Ecosystem',
-      image: 'images/companies/soundmind.png',
+      image: 'images/projects/soundmind-ai-ecosystem-logo.png',
+      imageContain: true,
       meta: {
         organization: 'Soundmind-Labs',
         role: 'AI Engineer & AI Researcher / AX Manager',
@@ -251,8 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '무엇을 하는 시스템인가',
               list: [
-                '고객 문서를 업로드하면 <strong>Gemini 2.5-flash + GPT-4o 3-Stage 병렬 분석</strong>으로 문서 특성을 자동 파악',
-                'AI가 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 <strong>최적 RAG Pipeline</strong>을 추천·생성·배포',
+                '고객 문서를 업로드하면 <strong>Gemini 2.0 Flash + GPT-4o 3-Stage 병렬 분석</strong>으로 문서 특성을 자동 파악',
+                'AI가 4차원 전략 공간(Chunking 5종 · Retrieval 5종 · Indexing 4종 · Post-Processing 4종)에서 <strong>최적 RAG Pipeline</strong>을 추천·생성·배포',
                 '고객사 담당 영업팀은 <strong>PoC 데모를 즉시 구성</strong>하고, 고객사는 PlayGround에서 직접 체험',
                 '분석 → 배포 → 평가 → 모니터링까지 <strong>전 과정을 하나의 워크플로우</strong>로 자동화',
                 '고객사 문서 도입시 <strong>신규 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축)</strong>'
@@ -263,117 +264,379 @@ document.addEventListener('DOMContentLoaded', function() {
               list: [
                 '9개 프로젝트 · 161개 API · 103+ 단위 테스트',
                 '최대 99개 RAG Pipeline 동시 운용 (포트 9201~9299)',
-                '9종 문서 포맷 지원 (PDF, DOCX, DOC, XLSX, XLS, TXT, JSON, HWP, HWPX)',
+                '7개 파서 클래스 · 10개 확장자 지원 (PDF, DOCX, XLSX, XLS, TXT, MD, RST, JSON, HWP, HWPX)',
                 'LLM: OpenAI · Gemini 등 클라우드 API + vLLM 기반 로컬 모델 서빙'
               ]
+            },
+            {
+              subtitle: '주요 성과',
+              content: '<table style="width:100%; border-collapse:collapse; font-size:0.9em;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">영역</th>' +
+                '<th style="padding:8px 10px; text-align:left;">성과</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>배포 리드타임</strong></td><td style="padding:6px 10px;">신규 RAG 엔진 Prototype 배포 <strong>2주 → 5분</strong> (99% 이상 단축)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>RAG R&D</strong></td><td style="padding:6px 10px;">81개 Q&A · 11개 공공문서 · 3,678페이지 대상 Node-level Ablation Study 수행 → Reranking −12.8%p(핵심 기여) · Query Decomposition +6.8%p(성능 저하 요인) 정량화</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>문서 분석</strong></td><td style="padding:6px 10px;">Dual-LLM(Gemini + GPT-4o) 교차 검증 기반 26개 특성 프로파일링 → 4차원 Decision Tree 자동 추천</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>A/B 테스트</strong></td><td style="padding:6px 10px;">VLM 파싱(WigtnOCR) vs 기본 파싱: GPT-4o Judge 가중 평균 <strong>0.888 → 1.000</strong> (+0.113), 환각·정보 누락 해소</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>PoC 납품</strong></td><td style="padding:6px 10px;">DB 사업 회사 대상 8개 문서 · 34개 테스트 케이스 · Golden Path 3회 리허설 포함 검수 프로세스 완료</td></tr>' +
+                '<tr><td style="padding:6px 10px;"><strong>인프라</strong></td><td style="padding:6px 10px;">15+ Docker 서비스 · Grafana + Loki + Promtail 실시간 모니터링 · 50명 동시 사용 대비 동시성 처리</td></tr>' +
+                '</tbody></table>'
             }
           ]
         },
         {
-          title: 'AI Platform — 고객 대면 (B2B SaaS)',
-          content: 'Console에서 생성된 맞춤형 RAG Pipeline을 고객이 현장에서 즉시 PoC 체험할 수 있는 서비스 플랫폼입니다. 3개의 독립 Agent 서비스를 제공하며, React 19 Web Console + FastAPI API Gateway(JWT 멀티테넌트 인증, SSE 스트리밍)로 구현되었습니다.',
+          title: 'System Architecture',
+          content: '본 프로젝트는 <strong>단독 개발 프로젝트</strong>로서, 기획부터 디자인, 시스템 개발 및 배포까지 솔로프리너로 진행했습니다. 현재 Beta 버전으로 End User 테스트를 진행 중입니다.<br><br>' +
+            'SoundMind AI Ecosystem은 크게 <strong>3개 축</strong>으로 구성됩니다. 고객 대면 서비스(<strong>AI Platform</strong>), 내부 운영 도구(<strong>AI Console</strong> — Analysis · Eval · Monitoring), 그리고 이들이 공유하는 <strong>모델 서빙 인프라</strong>입니다.<br><br>' +
+            '<strong>모델 서빙 인프라:</strong><br>' +
+            '• <strong>LLM</strong> — Qwen3 시리즈, vLLM 서빙 (OpenAI 호환 API)<br>' +
+            '• <strong>Embedder / Reranker</strong> — BGE-M3 + BGE-Reranker-v2-M3, Infinity 서빙. vLLM에서 BGE-M3 로드 시 아키텍처 호환 문제(XLMRobertaModel로 인식되어 sparse/colbert weight 누락)가 발생하여, 임베딩 모델 서빙에 특화된 Infinity로 전환<br><br>' +
+            '<strong>이 글의 구성:</strong><br>' +
+            '① <strong>RAG R&D</strong> — Advanced RAG 구축 → 정량 평가 → Ablation Study → "문서마다 다른 전략이 필요하다"는 인사이트 도출<br>' +
+            '② <strong>AI Console</strong> — R&D 인사이트를 바탕으로 구축한 내부 운영 플랫폼 (Analysis · Eval · Monitoring)<br>' +
+            '③ <strong>AI Platform</strong> — 고객이 즉시 PoC를 체험할 수 있는 Playground (RAG Agent · Chat Agent · AICC Agent)',
+          image: {
+            src: 'images/projects/soundmind-ai-ecosystem-architecture.png',
+            alt: 'SoundMind AI Ecosystem Architecture',
+            caption: 'AI Platform(고객 대면) ↔ AI Console(Analysis · Eval · Monitoring) + Cloud Server · Local Database · Local Model Serving'
+          }
+        },
+        {
+          title: 'RAG R&D — 공공기관 전용 범용 RAG 고도화 여정',
+          content: 'Advanced RAG를 구축하고 정량 평가와 Ablation Study를 거치며 <strong>"문서마다 다른 전략이 필요하다"</strong>는 핵심 인사이트를 도출한 과정입니다. 이 R&D 결과가 Analysis Platform의 4차원 Decision Tree 자동 추천 시스템에 직접 반영되었습니다.',
           subsections: [
             {
-              subtitle: '① RAG Agent — 문서 기반 Q&A',
-              content: '고객이 업로드한 문서를 기반으로 질문에 답변하는 문서 특화 Q&A 에이전트입니다. Analysis Console에서 고객 문서 특성에 맞게 자동 생성·배포된 RAG Pipeline을 AI Platform이 자동으로 감지하여 연결합니다. 고객마다 서로 다른 맞춤형 파이프라인이 연결되므로, 동일한 플랫폼 위에서 고객별로 최적화된 검색·응답 경험을 제공합니다.',
-              list: [
-                '<strong>Dynamic RAG Pipeline 연결</strong> — 최대 99개 파이프라인 동시 운용, Analysis에서 배포된 Pipeline을 자동 인식하여 연결',
-                '<strong>Retrieval Insight</strong> — 답변과 함께 근거 문서 출처와 검색 과정을 시각화하여 응답의 신뢰성 확보',
-                '<strong>Diversity-Aware Retrieval</strong> — Round-Robin 1st Pass + Score-Fill 2nd Pass로 다양한 관점의 정보를 균형 있게 검색',
-                'Semantic Chunking (threshold 0.90, 100~2000 tokens) · BGE-M3 임베딩 · BGE-Reranker-v2-M3'
-              ]
+              subtitle: '<span style="color:#2563eb;">1단계</span> — Advanced RAG 설계 및 구축',
+              content: '회사에 RAG 파이프라인이 전무한 상태에서, B2B2G(기업 → 공공기관) 사업 모델로 NLP 시장에 진출하며 Naive RAG가 아닌 <strong>Advanced RAG를 처음부터 설계</strong>하기로 결정했습니다.<br><br>' +
+                '<strong>모델 선정 — LLM · Embedder · Reranker:</strong><br>' +
+                '클라우드 서버로 플랫폼을 제공하되 GPU는 On-premise 환경이었기에 Local Model 서빙이 필수였습니다. 추론 능력을 갖춘 대형 모델이 필요했고, 글로벌 벤치마크에서 높은 성능을 기록한 <strong>Qwen3 시리즈를 LLM으로 선정, vLLM으로 서빙</strong>했습니다.<br><br>' +
+                'Embedder와 Reranker도 Qwen 시리즈로 통일하려 했으나 vLLM에서 아키텍처 호환 문제가 발생하여 배포에 실패했고, 범용 오픈소스 모델 중 한국어 평가 지표가 가장 높았던 <strong>BGE-M3(Embedder) + BGE-Reranker-v2-M3(Reranker)</strong>를 채택, 임베딩 모델 서빙에 특화된 <strong>Infinity</strong>로 서빙했습니다.<br><br>' +
+                '이후 어떤 기술을 도입할 것인가를 리서칭한 뒤, 세 가지 핵심 컴포넌트를 선정했습니다.<br><br>' +
+                '<strong>Query Expansion (Rewrite + Decomposition):</strong><br>' +
+                'B2B2G 사업 특성상 End User의 도메인을 특정할 수 없지만, 고객이 정부기관이라는 것은 알 수 있었습니다. 공공문서는 정확도가 생명이므로, 동일한 질문을 다양하게 재작성(Rewrite)하여 관련 컨텍스트를 빠짐없이 확보하고, 복합 질의는 서브쿼리로 분해(Decomposition)하여 다중 관점의 정보를 수집하는 전략을 채택했습니다.<br><br>' +
+                '<strong>Hybrid Search (Dense + Sparse + RRF):</strong><br>' +
+                '정부문서에는 한자어, 공공기관 전용 용어 등 키워드 매칭이 중요한 어휘가 많아 Sparse Search(BM25)가 유효할 것으로 판단했습니다. Dense와 Sparse 검색을 조합하는 RRF 알고리즘을 활용하되, 당시 알고리즘 구현 경험이 부족했기에 <strong>Hybrid Search를 네이티브로 지원하는 Weaviate</strong>를 VectorDB로 도입했습니다. 이후 Flat 구조 문서에서는 메타데이터 필터링 기반 검색이 더 효과적임을 확인하여 <strong>Qdrant(Filter 기반)</strong>를 추가, 문서 복잡도에 따라 VectorDB를 이원화 설계했습니다.<br><br>' +
+                '<strong>Reranking (Top-k=5):</strong><br>' +
+                'BGE-Reranker-v2-M3는 범용 모델 중 한국어 평가 지표가 가장 높았고, 오픈소스 라이센스로 On-premise 배포에 제약이 없어 선택했습니다.<br><br>' +
+                '<strong>Data Parsing 확장:</strong><br>' +
+                '초기에는 Docling을 사용했으나 문서 파싱 레이턴시가 지나치게 높아 실용성이 떨어졌고, pdfplumber + PaddleOCR로 교체하여 처리 속도를 확보했습니다. 이후 정부기관 특수 목적상 HWP·HWPX 문서가 다수 존재했고 DOCX, XLSX 등 다양한 포맷도 필요하여, 확장자별 개별 OSS 파서들을 통합한 <strong>UnifiedFileParser(7개 파서 클래스 · 10개 확장자)</strong>를 구축했습니다.<br><br>' +
+                '• <strong>PDFParser</strong> (.pdf) — 3단계 Fallback 체인: pymupdf4llm(1차, 레이아웃 인식 Markdown 추출) → pdfplumber(2차 fallback) → PaddleOCR(3차, 한국어 스캔 문서 OCR). 페이지당 텍스트 50자 미만이면 스캔 PDF로 판단하여 자동 OCR 전환<br>' +
+                '• <strong>DOCXParser</strong> (.docx) — python-docx 기반 단락 + 표 추출, 문서 속성 포함<br>' +
+                '• <strong>XLSXParser</strong> (.xlsx, .xls) — openpyxl (read_only=True, data_only=True), 전체 시트 순회 및 시트별 구조화<br>' +
+                '• <strong>TXTParser</strong> (.txt, .md, .rst) — Built-in, 인코딩 자동 감지 (UTF-8 → CP949 → EUC-KR → Latin-1 순서 시도)<br>' +
+                '• <strong>JSONParser</strong> (.json) — Built-in json 모듈, JSON 계층 구조를 사람 읽기용 텍스트로 변환<br>' +
+                '• <strong>HWPParser</strong> (.hwp) — olefile 기반 OLE compound document 파싱, BodyText 섹션에서 HWPTAG_PARA_TEXT(tag=67) 레코드 추출 + zlib 해제<br>' +
+                '• <strong>HWPXParser</strong> (.hwpx) — zipfile + BeautifulSoup 기반 OOXML 파싱, Contents/section*.xml에서 텍스트 추출'
             },
             {
-              subtitle: '② Chat Agent — 자율형 AI 에이전트 (MVP 구현 완료)',
-              content: '문서에 국한되지 않고, LLM이 스스로 상황을 판단하여 필요한 도구를 선택·호출하는 자율형 에이전트입니다. LangGraph ReAct 아키텍처 기반으로 웹 검색, 계산, 코드 실행 등 복합 태스크를 단계적으로 수행합니다. 현재 MVP가 구현되어 내부 테스트 중입니다.'
+              subtitle: '<span style="color:#2563eb;">2단계</span> — 정량 평가에서 드러난 문제',
+              content: 'Advanced RAG를 구축한 뒤, 성능을 정량적으로 측정하기 위해 <strong>RAGAS 기반 평가 프레임워크를 직접 구축</strong>했습니다.<br><br>' +
+                '<strong>Silver Dataset 구축:</strong> Microsoft의 Silver Dataset 이론을 기반으로, LLM을 활용하여 원본 문서에서 질문-답변 쌍을 자동 생성하는 방식으로 평가용 데이터셋을 구축했습니다. 평가 규모: <strong>81개 Q&A Ground Truth · 11개 한국어 공공문서 · 3,678페이지</strong>.<br><br>' +
+                '<strong>RAGAS 평가의 한계:</strong><br>' +
+                'RAGAS 프레임워크로 평가를 수행했으나, RAGAS의 핵심 메트릭인 ROUGE-L(0.050) / BLEU(0.002) 등은 Ground Truth와 RAG 응답 간의 <strong>토큰 단위 일치도(CER, WER 등)</strong>를 기반으로 점수를 산출합니다.<br><br>' +
+                '그러나 생성형 AI는 동일한 맥락이라도 매번 다른 어휘와 문장 구조로 답변을 생성하기 때문에, 의미적으로 정확한 응답도 토큰이 다르면 낮은 점수가 나올 수밖에 없었습니다. 한국어의 교착어 특성(조사·어미 변형)이 이 문제를 더욱 심화시켰습니다.<br><br>' +
+                '이를 계기로 토큰 매칭이 아닌 <strong>의미 단위로 응답 품질을 판단하는 LLM-as-a-Judge 기반 5차원 가중 평가로 전환</strong>했습니다.<br><br>' +
+                '<strong>노드 단위 핵심 실험 결과:</strong><br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">실험</th>' +
+                '<th style="padding:8px 10px; text-align:left;">비교</th>' +
+                '<th style="padding:8px 10px; text-align:center;">결과</th>' +
+                '<th style="padding:8px 10px; text-align:left;">비고</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">청킹</td><td>Recursive vs Semantic</td><td style="text-align:center;"><strong>600배 빠름</strong></td><td style="padding:6px 10px; color:#16a34a;"><strong>→ Recursive 채택</strong> (14ms vs 8,437ms, 커버리지 유사하나 속도 압도적)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">검색</td><td>Dense vs Hybrid</td><td style="text-align:center; color:#16a34a;"><strong>MRR +2.3%p</strong></td><td style="padding:6px 10px; color:#ea580c;"><strong>→ 문서별 분기 필요</strong> (Dense가 한국어에서 우위이나 키워드 매칭이 중요한 문서도 존재)</td></tr>' +
+                '<tr><td style="padding:6px 10px;">리랭킹</td><td>적용 vs 미적용</td><td style="text-align:center; color:#16a34a;"><strong>MRR +3.9%p</strong></td><td style="padding:6px 10px; color:#16a34a;"><strong>→ 상시 활성화</strong> (지연시간 2.8배 증가에도 정밀도 향상이 더 중요)</td></tr>' +
+                '</tbody></table><br>' +
+                '<strong>다수 평가를 통해 드러난 구조적 한계:</strong><br>' +
+                '실제 질의의 대부분은 Multi-Hop이 아닌 Flat 구조였지만, 수십 개의 컨텍스트를 한꺼번에 수집해야만 답변을 생성할 수 있는 패턴이 지배적이었습니다.<br><br>' +
+                '예를 들어 "20개 분과에 대한 사업 기준을 설명하라"는 질의는 20개 이상의 컨텍스트가 필요한데, 인프라와 컨텍스트 윈도우의 한계로 한 번에 모두 담을 수 없었습니다.<br><br>' +
+                '<strong>E2E 종합 평가 결과 — Advanced RAG가 오히려 낮았다:</strong><br>' +
+                '81개 Q&A 전수 평가, 5차원 가중 평균 기준:<br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">Metric</th>' +
+                '<th style="padding:8px 10px; text-align:center;">가중치</th>' +
+                '<th style="padding:8px 10px; text-align:center;">Naive RAG</th>' +
+                '<th style="padding:8px 10px; text-align:center;">Advanced RAG</th>' +
+                '<th style="padding:8px 10px; text-align:center;">차이</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Faithfulness</td><td style="text-align:center;">30%</td><td style="text-align:center;">0.813</td><td style="text-align:center;">0.738</td><td style="text-align:center; color:#dc2626;">−7.5%p</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Relevance</td><td style="text-align:center;">25%</td><td style="text-align:center;">0.825</td><td style="text-align:center;">0.763</td><td style="text-align:center; color:#dc2626;">−6.2%p</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#fef2f2;"><td style="padding:6px 10px;"><strong>Completeness</strong></td><td style="text-align:center;">20%</td><td style="text-align:center;">0.813</td><td style="text-align:center; color:#dc2626;"><strong>0.688</strong></td><td style="text-align:center; color:#dc2626;"><strong>−12.5%p</strong></td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Coherence</td><td style="text-align:center;">15%</td><td style="text-align:center;">0.925</td><td style="text-align:center;">0.938</td><td style="text-align:center; color:#16a34a;">+1.3%p</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Fluency</td><td style="text-align:center;">10%</td><td style="text-align:center;">0.963</td><td style="text-align:center;">0.950</td><td style="text-align:center; color:#dc2626;">−1.3%p</td></tr>' +
+                '<tr style="background:#f8fafc; border-top:2px solid #e2e8f0;"><td style="padding:8px 10px;"><strong>가중 평균</strong></td><td style="text-align:center;">100%</td><td style="text-align:center;"><strong>0.848</strong></td><td style="text-align:center;"><strong>0.785</strong></td><td style="text-align:center; color:#dc2626;"><strong>−6.3%p</strong></td></tr>' +
+                '</tbody></table>' +
+                'Completeness가 <strong>−12.5%p</strong> 급락하여, 정보를 빠짐없이 담아야 하는 공공문서 Q&A에서 치명적인 약점을 드러냈습니다.<br>' +
+                '"모든 컴포넌트를 추가하면 좋아질 것"이라는 가정이 틀렸음을 인정해야 했습니다.<br><br>' +
+                '이 경험이 <strong>"문서 특성에 맞는 맞춤형 RAG 구조가 필요하다"</strong>는 핵심 인사이트로 이어졌고, 문서별로 최적화된 파이프라인을 자동 생성하는 플랫폼을 만드는 것을 목표로 설정하게 되었습니다.'
             },
             {
-              subtitle: '③ AICC Agent — AI 컨택센터 (개발 예정)',
-              content: 'RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트입니다. 개발 예정.'
+              subtitle: '<span style="color:#2563eb;">3단계</span> — "왜 안 되는가" 규명: Ablation Study',
+              content: 'E2E 메트릭으로는 <strong>"어디가 문제인지"</strong> 알 수 없었습니다. Advanced RAG가 Naive보다 오히려 낮은 점수를 기록했지만, 4개 추가 컴포넌트 중 어느 것이 범인인지는 E2E만으로 특정할 수 없었습니다. 그래서 노드 단위 Ablation Study를 직접 설계·수행했습니다.<br><br>' +
+                '<strong>핵심 발견:</strong><br>' +
+                '• <strong>Reranking 제거 시 −12.8%p</strong> — 가장 임팩트 큰 핵심 컴포넌트<br>' +
+                '• <strong>Query Decomposition 제거 시 +6.8%p, 레이턴시 32% 감소</strong>(129s→88s) — 오히려 성능을 깎고 있었음<br>' +
+                '• Query Rewrite 제거 시 −0.8%p — 기여도 미미<br>' +
+                '• Hybrid → Dense 전환 시 −5.0%p — 중간 수준 기여<br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">제거한 컴포넌트</th>' +
+                '<th style="padding:8px 10px; text-align:center;">성능 변화</th>' +
+                '<th style="padding:8px 10px; text-align:center;">레이턴시</th>' +
+                '<th style="padding:8px 10px; text-align:left;">판정</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#f0fdf4;"><td style="padding:6px 10px;"><strong>Reranking</strong></td><td style="text-align:center; color:#dc2626;"><strong>−12.8%p</strong></td><td style="text-align:center;">—</td><td style="padding:6px 10px; color:#16a34a;"><strong>→ 상시 활성화</strong> (제거 시 성능 급락, 핵심 기여 요인)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#fef2f2;"><td style="padding:6px 10px;"><strong>Query Decomposition</strong></td><td style="text-align:center; color:#16a34a;"><strong>+6.8%p</strong></td><td style="text-align:center; color:#16a34a;">32%↓ (129s→88s)</td><td style="padding:6px 10px; color:#dc2626;"><strong>→ 조건부 활성화</strong> (제거하니 오히려 성능 향상)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Query Rewrite</td><td style="text-align:center;">−0.8%p</td><td style="text-align:center;">—</td><td style="padding:6px 10px;">→ 유지 (기여도 미미하나 제거 시 소폭 하락)</td></tr>' +
+                '<tr><td style="padding:6px 10px;">Hybrid → Dense</td><td style="text-align:center; color:#dc2626;">−5.0%p</td><td style="text-align:center;">—</td><td style="padding:6px 10px; color:#ea580c;"><strong>→ 문서별 분기</strong> (Dense 우위 문서와 Hybrid 필요 문서 공존)</td></tr>' +
+                '</tbody></table><br>' +
+                '<strong>Query Decomposition이 해로웠던 이유:</strong><br>서브쿼리로 분해하는 과정에서 원래 질의의 핵심 의도가 희석되고, 각 서브쿼리가 가져오는 컨텍스트에 노이즈가 유입되어 오히려 답변 품질이 하락했습니다. Ground Truth의 80%가 Easy/Medium 난이도여서, 복잡한 추론 없이도 단일 질의로 충분히 답변 가능한 케이스가 대부분이었던 점도 영향을 미쳤습니다.<br><br>' +
+                '<strong>Hybrid Search가 Dense 대비 떨어진 이유:</strong><br>한국어 공공문서에서 BM25의 키워드 매칭 정확도가 낮았습니다. 한국어는 조사·어미 변형이 많아 동일 키워드도 형태가 달라지고, 공공문서 특유의 한자어·축약어가 토크나이저와 잘 맞지 않아 Sparse 검색이 노이즈를 유입시켰습니다(Sparse 비중이 높을수록 MRR 하락: α=0.7→0.838, α=0.3→0.811). 다만 법률·규정 문서처럼 정확한 용어 매칭이 중요한 도메인에서는 Hybrid가 여전히 유효했기에, <strong>문서 특성에 따른 분기 설계</strong>로 이어졌습니다.<br><br>' +
+                '<strong>핵심 인사이트:</strong><br>E2E 평가만으로는 "Advanced가 성능이 더 낮다"는 알 수 있지만, "Query Decomposition이 범인이다"는 알 수 없었습니다. Reranking의 +12.8%p 기여가 Query Decomposition의 −6.8%p 손해에 상쇄되고 있었고, 이를 분리해낸 것이 <strong>Node-level Ablation</strong>이었습니다.'
             },
             {
-              subtitle: '인증 · 권한',
-              list: [
-                '무인증 → JWT → 게스트 → <strong>3-tier RBAC</strong>(Admin/Manager/Customer) → Guest BYOK',
-                'JWT 멀티테넌트 인증으로 고객사별 독립 환경 분리',
-                'Hook 시스템: 3단계 우선순위(CRITICAL/NORMAL/LOW) + fire-and-forget 패턴'
-              ]
+              subtitle: '<span style="color:#2563eb;">4단계</span> — 인사이트 → Ecosystem 설계',
+              content: '<strong>"문서마다 다른 전략이 필요하다"</strong>가 R&D의 핵심 결론이었습니다.<br><br>' +
+                '• Reranking은 항상 켜야 한다 → 전 파이프라인 Reranker 상시 활성화<br>' +
+                '• Query Decomposition은 multi-hop 질의가 예상될 때만 → 조건부 활성화 (multi_hop_likelihood > 0.4)<br>' +
+                '• 한국어 문서에서 BM25 성능 저하 → semantic_importance에 따라 Dense/Hybrid 분기<br>' +
+                '• 문서 구조에 따라 최적 청킹이 다르다 → 구조 복잡도 기반 청킹 전략 분기<br><br>' +
+                '<strong>추가 인사이트 — Data 구조화가 답변 품질을 결정한다:</strong><br>' +
+                'Ablation Study를 진행하면서 또 하나의 핵심 인사이트를 얻었습니다. 문서의 <strong>Data 구조화 품질이 Semantic Chunking에 영향을 미치고, 그것이 검색 결과에 영향을 미쳐, 결국 최종 답변 생성 품질까지 연쇄적으로 결정</strong>한다는 것이었습니다. 특히 공공문서의 복잡한 표·차트·레이아웃이 텍스트 기반 파서로는 구조가 소실되어 청킹·검색·생성 전 단계에서 품질 저하를 유발했습니다.<br><br>' +
+                '이 인사이트가 VLM(Vision-Language Model) 기반 문서 파싱 연구로 이어졌고, 별도 프로젝트 <a href="#" onclick="document.querySelector(\'[data-project=wigtn-ocr]\').click(); return false;"><strong>WigtnOCR</strong></a>(Qwen3-VL-2B LoRA fine-tuning, 15배 큰 30B Teacher 성능 초과)을 시작하게 되었습니다.<br><br>' +
+                '<strong>사업 배경 — 왜 "플랫폼"이어야 했는가:</strong><br>' +
+                '우리 회사는 음성 AI 전문 회사였고, NLP 사업 진출은 처음이었습니다. 보여줄 수 있는 PoC가 없는 상태에서 네트워크 기반으로 고객사 시연 기회를 만들어야 했는데, 매번 "2주의 PoC 기간을 주세요, 데이터를 주세요"라고 요청하는 것은 영업팀에게 현실적으로 어려운 일이었습니다.<br><br>' +
+                '기회가 생겼을 때 <strong>영업팀이 즉시 클라우드 서버에 접속하여 고객 문서를 업로드하고 바로 시연할 수 있는 환경</strong>이 필요했습니다.<br><br>' +
+                '이 필요와 R&D 인사이트가 결합되어, 문서 분석 → 맞춤형 파이프라인 자동 생성 → 원클릭 배포를 <strong>비개발자도 운용 가능한 플랫폼 콘솔</strong>로 구축하기로 결정했습니다.<br><br>' +
+                '여기에 배포된 파이프라인의 품질을 바로 확인할 수 있는 <strong>평가 기능</strong>, 운영 상태를 실시간으로 파악하는 <strong>모니터링·로그 분석</strong>, 사용자·권한을 관리하는 <strong>Admin</strong> 기능까지 하나의 콘솔에 통합 설계하여, 지금의 <strong>SoundMind AI Ecosystem</strong> 아키텍처가 완성되었습니다.'
             }
           ]
         },
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // AI Console (내부 운영 도구)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        {
+          title: 'AI Console — 내부 운영 플랫폼',
+          content: 'RAG R&D 인사이트와 사업 요구가 결합되어 탄생한 <strong>비개발자 운용 가능한 통합 Admin 콘솔</strong>입니다. Next.js 기반 단일 웹 콘솔(:3100)에서 문서 분석·배포(<strong>Analysis</strong>), 품질 평가(<strong>Eval</strong>), 실시간 모니터링(<strong>Monitoring</strong>), 인프라·사용자 관리(<strong>Admin</strong>)까지 RAG 영업 사이클 전체를 운용합니다.',
+          image: {
+            src: 'images/projects/soundmind-ai-console-architecture.png',
+            alt: 'AI Console Architecture Diagram',
+            caption: 'AI Console 아키텍처 — Next.js(:3100) + Analysis API(:9200) + Eval API(:9300) + Grafana(:3200)'
+          }
+        },
+
+        // AI Console — Analysis
         {
           title: 'AI Console — Analysis (문서 분석 → RAG 자동 배포)',
-          content: '고객 문서를 업로드하면 AI가 문서 특성을 다각도로 분석하고, 최적의 RAG Pipeline을 추천한 뒤 원클릭으로 Docker 컨테이너를 배포합니다. <strong>신규 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong>',
+          content: '고객 문서를 업로드하면 AI가 문서 특성을 다각도로 분석하고, 최적의 RAG Pipeline을 추천한 뒤 원클릭으로 Docker 컨테이너를 배포합니다. <strong>신규 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong><br><br>2-Tier 아키텍처: Analysis API(포트 9200, Control Plane) + 배포된 파이프라인(포트 9201~9299, Data Plane)',
           subsections: [
             {
-              subtitle: '문서 분석 기준',
+              subtitle: '설계 배경 — 왜 Dual-LLM 병렬 분석인가',
+              content: '단일 LLM으로 26개 특성을 분석하면, 해당 모델의 학습 편향이 결과에 그대로 반영됩니다.<br>' +
+                '문서 구조 복잡도나 도메인 특화도 같은 판단은 모델마다 기준이 다르기 때문에, 하나의 모델만 신뢰하면 특정 문서 유형에서 과잉/과소 설계가 발생할 수 있습니다.<br><br>' +
+                '• <strong>Gemini 2.0 Flash</strong> — PDF File API로 네이티브 분석, 1차 프로파일링 + 전략 추천 담당. Flash 모델로 비용 효율적인 대량 분석에 적합<br>' +
+                '• <strong>GPT-4o</strong> — Gemini의 분석 결과를 독립적으로 교차 검증. Structured Outputs(json_schema strict mode)로 프로파일 정확성과 전략 적합성을 검증하여 confidence 보정<br><br>' +
+                '서로 다른 학습 데이터와 추론 특성을 가진 <strong>두 모델이 독립적으로 판단하고, 불일치 시 신뢰도를 조정</strong>하는 구조로 단일 모델 편향을 방지했습니다.'
+            },
+            {
+              subtitle: '문서 분석 기준 — 26개 특성 프로파일링',
+              content: '문서 분석 기준은 <a href="https://github.com/urstory/urstory-rag" target="_blank" rel="noopener noreferrer"><strong>urstory-rag</strong></a>(한국어 최적화 프로덕션 RAG 오픈소스)의 한국어 RAG 전략 설계를 참고하여, 공공기관 문서 특성에 맞게 4개 프로파일 · 26개 특성으로 확장 설계했습니다.',
               list: [
-                '<strong>문서 구조 복잡도</strong> — 표·차트·중첩 리스트·다단 레이아웃 등 시각적 구조 요소의 밀도와 복잡도를 스코어링',
-                '<strong>텍스트 밀도 및 도메인 특성</strong> — 텍스트 비율, 전문 용어 빈도, 문단 구조 패턴을 분석하여 도메인(법률·기술·일반) 분류',
-                '<strong>질의 난이도 예측</strong> — 문서 구조로부터 예상되는 질의 유형(단순 사실 조회 vs 다문서 종합 추론)을 예측',
-                '<strong>파싱 적합도</strong> — 텍스트 기반 파서로 충분한지, VLM 기반 시각 파싱이 필요한지 판단'
+                '<strong>구조 프로파일</strong> — 계층 깊이(1~4+), 섹션 독립성(0.0~1.0), 교차 참조 밀도, 지배적 구조 유형(서술형/표 중심/계층/혼합/QA), 반복 패턴',
+                '<strong>콘텐츠 프로파일</strong> — 정보 밀도(sparse/moderate/dense), 밀도 분포, 엔티티 관계 구조, 도메인 특화도(0.0~1.0)',
+                '<strong>검색 프로파일</strong> — 예상 질의 유형(factual/comparative/aggregation/causal/procedural), 키워드·시맨틱 중요도, 컨텍스트 윈도우 필요량, 다중 홉 가능성',
+                '<strong>시각 프로파일</strong> — 표 복잡도(none~nested), 차트 존재 여부, 이미지 정보 밀도, 레이아웃 복잡도'
               ]
             },
             {
-              subtitle: '3-Stage AI 분석 파이프라인',
-              list: [
-                '<strong>Stage 1</strong> — Gemini 2.5-flash(PDF 네이티브, 시각 구조 인식) + pdfplumber/Rule-based(텍스트 추출, 구조 스코어링) 병렬 실행',
-                '<strong>Stage 2</strong> — GPT-4o가 Stage 1 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정',
-                '<strong>Stage 3</strong> — Strategy Engine이 결과를 병합 → 4차원 전략 공간(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천'
-              ]
+              subtitle: 'Stage 1 — Gemini 2.0 Flash + 텍스트 추출 (병렬)',
+              content: '<strong>Gemini</strong>가 PDF File API로 문서를 네이티브 분석하여 26개 특성 프로파일과 RAG 전략을 직접 추천합니다(Structured Output, temp=0.1). 동시에 <strong>pdfplumber</strong>가 텍스트를 추출하여 GPT 검증용 원문을 준비합니다. asyncio.gather로 병렬 실행하여 분석 시간을 절반으로 단축. 300페이지/50MB 초과 시 대표 페이지 샘플링(앞 60%·중간 20%·끝 20%) 자동 적용.'
             },
             {
-              subtitle: '배포',
+              subtitle: 'Stage 2 — GPT-4o 교차 검증',
+              content: 'GPT-4o가 Gemini의 <strong>프로파일 정확성</strong>(구조 깊이, 도메인 특화도 등)과 <strong>전략 적합성</strong>(과잉/과소 설계 여부)을 json_schema strict mode로 검증합니다. confidence adjustment −0.3 ~ +0.2로 신뢰도를 보정하며, 결과는 "confirmed" / "modified" / "rejected" 3단계로 분류. GPT 미설정 시 Gemini 단독 결과에 ×0.8 페널티를 적용하여 안정성 확보.'
+            },
+            {
+              subtitle: 'Stage 3 — Strategy Engine + 동적 파이프라인 조립',
+              content: 'ReportGenerator가 Gemini 원본 + GPT 수정사항을 병합한 뒤, <strong>4차원 전략 공간</strong>(Chunking 5종 · Retrieval 5종 · Indexing 4종 · Post-Processing 4종, 이론적 조합 6,400+)에서 최적 조합을 결정합니다.<br><br>' +
+                '<strong>Ablation Study에서 도출한 임계값이 직접 반영된 분기 로직:</strong><br>' +
+                '• Reranking → 모든 후처리 전략에서 <strong>상시 활성화</strong> (제거 시 −12.8%p)<br>' +
+                '• Query Decomposition → <strong>multi_hop_likelihood > 0.4일 때만</strong> 활성화 (무조건 적용 시 +6.8%p 성능 저하)<br>' +
+                '• Retrieval → <strong>semantic_importance > 0.7이면 Dense, keyword_importance > 0.6이면 Hybrid</strong> (한국어 BM25 성능 저하 반영, 가중치 동적 계산)<br>' +
+                '• VectorDB → metadata_filtered 전략 시 Qdrant, 나머지 Weaviate 자동 결정<br><br>' +
+                'DynamicRAGPipeline이 ComponentRegistry + LangGraph StateGraph를 런타임에 동적 조립. 6가지 그래프 토폴로지: Linear, Classify-Filter, Hierarchical, Multi-Index, Graph-Enhanced, Agentic.'
+            },
+            {
+              subtitle: '원클릭 배포',
               list: [
-                'DynamicRAGPipeline이 LangGraph StateGraph를 런타임에 동적 조립 (6가지 그래프 토폴로지)',
                 'Jinja2 템플릿 기반 Docker Compose 자동 생성 → 원클릭 배포',
-                'Pipeline Factory: 독립 컨테이너로 격리된 RAG Pipeline 자동 생성 (포트 9201~9299)'
+                'asyncio.Lock 동시성 보호 + 포트 자동 할당 (9201~9299)',
+                '독립 컨테이너로 격리된 RAG Pipeline 자동 생성 및 서비스 등록',
+                'Pipeline Factory: 전략 조합에 따라 파이프라인 이름 자동 생성 (예: regulatory-struct_aware-filtered-rag)'
               ]
             }
           ]
         },
+        {
+          title: 'AI Console — Analysis',
+          gallery: [
+            {
+              src: 'images/projects/soundmind-analysis-document-upload.png',
+              alt: 'Analysis - Document Upload & Reports',
+              caption: '1. Reports — 문서 업로드 및 분석 결과 목록 (파이프라인 추천 · Confidence 표시)'
+            },
+            {
+              src: 'images/projects/soundmind-analysis-strategy-recommendation.png',
+              alt: 'Analysis - Strategy Recommendation & Profiling',
+              caption: '2. 전략 추천 — Recommended Pipeline Architecture + 4개 프로파일 · 26개 특성 시각화'
+            },
+            {
+              src: 'images/projects/soundmind-analysis-pipeline-deploy.png',
+              alt: 'Analysis - Pipeline Builder & Deploy',
+              caption: '3. Pipeline Builder — AI 추천 기반 설정 조정 + VLM Parsing(WigtnOCR) 선택 + 원클릭 배포'
+            }
+          ]
+        },
+
+        // AI Console — Eval
         {
           title: 'AI Console — Eval (RAG 품질 평가)',
           content: '배포된 RAG Pipeline의 응답 품질을 정량적으로 평가하고, 전략 변경 전후의 효과를 통계적으로 검증합니다.',
           subsections: [
             {
+              subtitle: '설계 배경 — 왜 LLM-as-a-Judge인가',
+              content: 'RAG R&D 2단계에서 구축한 RAGAS 평가 프레임워크의 핵심 로직(5차원 가중 평가 + Silver Dataset 기반 GT 생성)을 <strong>AI Console Eval 플랫폼으로 이식</strong>했습니다.<br>' +
+                'R&D에서 검증된 평가 체계를 그대로 제품화하여, 배포된 파이프라인의 품질을 비개발자도 즉시 평가할 수 있도록 했습니다.<br><br>' +
+                '또한 <strong>Judge 모델과 응답 생성 모델의 분리</strong>가 핵심 설계 원칙입니다.<br>' +
+                '동일 모델이 생성과 평가를 모두 수행하면 자기 편향(self-bias)이 발생하여 환각이 포함된 긴 답변에 높은 점수를 부여하는 문제를 실제 실험에서 확인했습니다.<br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">구성</th>' +
+                '<th style="padding:8px 10px; text-align:center;">응답 생성 (RAG LLM)</th>' +
+                '<th style="padding:8px 10px; text-align:center;">평가 (Judge)</th>' +
+                '<th style="padding:8px 10px; text-align:left;">결과</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#fef2f2;"><td style="padding:6px 10px;">Before (자기평가)</td><td style="text-align:center;">Qwen3-30B (vLLM)</td><td style="text-align:center;">Qwen3-30B (vLLM)</td><td style="padding:6px 10px; color:#dc2626;"><strong>naive-rag 올만점</strong> — 환각 미감지</td></tr>' +
+                '<tr style="background:#f0fdf4;"><td style="padding:6px 10px;">After (분리평가)</td><td style="text-align:center;">Qwen3-30B (vLLM)</td><td style="text-align:center;">GPT-4o (OpenAI API)</td><td style="padding:6px 10px; color:#16a34a;"><strong>fusion-rag 우세</strong> — 환각 정확히 감지</td></tr>' +
+                '</tbody></table>'
+            },
+            {
               subtitle: 'LLM-as-a-Judge 5차원 가중 평가',
-              list: [
-                '<strong>Faithfulness (30%)</strong> — 응답이 검색된 문맥에 충실한가',
-                '<strong>Relevance (25%)</strong> — 응답이 질문에 적절히 대응하는가',
-                '<strong>Completeness (20%)</strong> — 질문에 필요한 정보를 빠짐없이 포함하는가',
-                '<strong>Coherence (15%)</strong> — 응답이 논리적으로 일관되는가',
-                '<strong>Fluency (10%)</strong> — 자연스럽고 읽기 쉬운 문장인가'
-              ]
+              content: 'G-Eval 스타일의 상세 루브릭과 Chain-of-Thought 추론을 적용하여, 각 차원별 1-5점 Likert 척도로 평가 후 0-1 정규화합니다.<br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">차원</th>' +
+                '<th style="padding:8px 10px; text-align:center;">가중치</th>' +
+                '<th style="padding:8px 10px; text-align:left;">평가 내용</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>Faithfulness</strong></td><td style="text-align:center;">30%</td><td style="padding:6px 10px;">응답이 검색된 문맥에 충실한가 (환각 여부)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>Relevance</strong></td><td style="text-align:center;">25%</td><td style="padding:6px 10px;">응답이 질문에 적절히 대응하는가</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>Completeness</strong></td><td style="text-align:center;">20%</td><td style="padding:6px 10px;">질문에 필요한 정보를 빠짐없이 포함하는가</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>Coherence</strong></td><td style="text-align:center;">15%</td><td style="padding:6px 10px;">응답이 논리적으로 일관되는가</td></tr>' +
+                '<tr><td style="padding:6px 10px;"><strong>Fluency</strong></td><td style="text-align:center;">10%</td><td style="padding:6px 10px;">자연스럽고 읽기 쉬운 문장인가</td></tr>' +
+                '</tbody></table>'
+            },
+            {
+              subtitle: '실제 A/B 테스트 결과 — VLM 파싱 vs 기본 파싱',
+              content: '동일 문서(2025년 공공AX 프로젝트 공모안내서, 69페이지)를 두 파이프라인에 각각 업로드하여 동일 질문으로 GPT-4o Judge 평가를 수행했습니다.<br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.85em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">파이프라인</th>' +
+                '<th style="padding:8px 10px; text-align:left;">파서</th>' +
+                '<th style="padding:8px 10px; text-align:left;">검색 전략</th>' +
+                '<th style="padding:8px 10px; text-align:left;">Reranker</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Pipeline A: <strong>naive-rag</strong></td><td>pymupdf4llm (기본)</td><td>Dense only, top_k=5</td><td>없음</td></tr>' +
+                '<tr><td style="padding:6px 10px;">Pipeline B: <strong>fusion-rag</strong></td><td>WigtnOCR VLM (4병렬)</td><td>Hybrid + Filtered, top_k=10</td><td>Qwen3 Reranker 8B</td></tr>' +
+                '</tbody></table>' +
+                '<strong>GPT-4o Judge 평가 결과:</strong><br><br>' +
+                '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">평가 차원</th>' +
+                '<th style="padding:8px 10px; text-align:center;">naive-rag (A)</th>' +
+                '<th style="padding:8px 10px; text-align:center;">fusion-rag (B)</th>' +
+                '<th style="padding:8px 10px; text-align:center;">차이</th>' +
+                '<th style="padding:8px 10px; text-align:center;">승자</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Relevance (25%)</td><td style="text-align:center;">1.00</td><td style="text-align:center;">1.00</td><td style="text-align:center;">0</td><td style="text-align:center;">tie</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#fef2f2;"><td style="padding:6px 10px;"><strong>Faithfulness (30%)</strong></td><td style="text-align:center; color:#dc2626;">0.75</td><td style="text-align:center; color:#16a34a;"><strong>1.00</strong></td><td style="text-align:center; color:#16a34a;">+0.25</td><td style="text-align:center; color:#16a34a;"><strong>B</strong></td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Coherence (15%)</td><td style="text-align:center;">1.00</td><td style="text-align:center;">1.00</td><td style="text-align:center;">0</td><td style="text-align:center;">tie</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Fluency (10%)</td><td style="text-align:center;">1.00</td><td style="text-align:center;">1.00</td><td style="text-align:center;">0</td><td style="text-align:center;">tie</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0; background:#fef2f2;"><td style="padding:6px 10px;"><strong>Completeness (20%)</strong></td><td style="text-align:center; color:#dc2626;">0.75</td><td style="text-align:center; color:#16a34a;"><strong>1.00</strong></td><td style="text-align:center; color:#16a34a;">+0.25</td><td style="text-align:center; color:#16a34a;"><strong>B</strong></td></tr>' +
+                '<tr style="background:#f8fafc; border-top:2px solid #e2e8f0;"><td style="padding:8px 10px;"><strong>Weighted Overall</strong></td><td style="text-align:center;"><strong>0.888</strong></td><td style="text-align:center; color:#16a34a;"><strong>1.000</strong></td><td style="text-align:center; color:#16a34a;"><strong>+0.113</strong></td><td style="text-align:center; color:#16a34a;"><strong>B</strong></td></tr>' +
+                '</tbody></table>' +
+                '<strong>GPT-4o Judge의 감점 근거:</strong><br>' +
+                '• <strong>Faithfulness −0.25</strong> — Context에 없는 "민간부담금 70%", "현물은 인건비로만" 등 외부 지식을 혼입하여 답변 생성 (<strong>환각</strong>)<br>' +
+                '• <strong>Completeness −0.25</strong> — ⑫검역관리·⑭특허정보·⑮법제정보 분과의 "연구소 참여 가능" 차이점을 놓침. 모든 분과가 동일하다고 잘못 기술<br><br>' +
+                '→ VLM 파싱(WigtnOCR)으로 구조화된 Markdown이 더 정확한 Context를 제공하여, LLM이 <strong>환각 없이 완전한 답변</strong>을 생성함을 정량적으로 확인'
             },
             {
               subtitle: 'A/B 테스트 통계 검증',
-              list: [
-                'Mann-Whitney U test + Bootstrap CI(1000회 리샘플링)로 전략 변경 효과를 통계적으로 검증',
-                'Cohen\'s d(효과 크기) + Holm-Bonferroni 보정으로 다중 비교 시 오류 방지',
-                'Redis 캐싱: Baseline 결과 캐싱으로 A/B 테스트 비용/시간 절반'
-              ]
+              content: '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">검증 방법</th>' +
+                '<th style="padding:8px 10px; text-align:left;">용도</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Mann-Whitney U test</td><td style="padding:6px 10px;">비모수 통계 검정 (정규성 가정 불필요)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Bootstrap CI (1000회 리샘플링)</td><td style="padding:6px 10px;">95% 신뢰구간 추정</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Cohen\'s d</td><td style="padding:6px 10px;">효과 크기 해석 (small/medium/large)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Holm-Bonferroni 보정</td><td style="padding:6px 10px;">다중 비교 시 Type I 오류 방지</td></tr>' +
+                '<tr><td style="padding:6px 10px;">Redis 캐싱</td><td style="padding:6px 10px;">Baseline 결과 캐싱으로 A/B 테스트 비용/시간 절반</td></tr>' +
+                '</tbody></table>' +
+                ''
             },
             {
-              subtitle: '추가 메트릭',
-              list: [
-                'Context Precision / Recall — 검색된 문맥의 정밀도와 재현율',
-                'Answer Correctness — Ground Truth 대비 정답률',
-                'Chunking Quality — 청킹 전략의 품질 평가'
-              ]
+              subtitle: '추가 메트릭 (확장 가능)',
+              content: '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:4px;">' +
+                '<thead><tr style="background:#f1f5f9; border-bottom:2px solid #e2e8f0;">' +
+                '<th style="padding:8px 10px; text-align:left;">메트릭</th>' +
+                '<th style="padding:8px 10px; text-align:left;">설명</th>' +
+                '<th style="padding:8px 10px; text-align:left;">현재 상태</th>' +
+                '</tr></thead><tbody>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;"><strong>LLM-as-a-Judge (5차원)</strong></td><td style="padding:6px 10px;">G-Eval 스타일 가중 평가</td><td style="padding:6px 10px; color:#16a34a;">활성 (GPT-4o)</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Context Precision / Recall</td><td style="padding:6px 10px;">검색된 문맥의 정밀도와 재현율</td><td style="padding:6px 10px;">GT 필요 시 활성화</td></tr>' +
+                '<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 10px;">Answer Correctness</td><td style="padding:6px 10px;">Ground Truth 대비 정답률</td><td style="padding:6px 10px;">GT 필요 시 활성화</td></tr>' +
+                '<tr><td style="padding:6px 10px;">Chunking Quality (BC/CS)</td><td style="padding:6px 10px;">청킹 전략의 품질 평가 (MoC)</td><td style="padding:6px 10px;">WigtnOCR 연구에서 별도 평가 완료</td></tr>' +
+                '</tbody></table>'
             }
           ]
         },
+        // AI Console — Eval Screenshots
+        {
+          title: 'AI Console — Eval',
+          gallery: [
+            {
+              src: 'images/projects/soundmind-eval-abtest-self-judge.png',
+              alt: 'Eval - Self Judge (Before)',
+              caption: '1. Before — Qwen3-30B 자기평가: RAGAS E2E 메트릭 + Judge 올만점 (환각 미감지)'
+            },
+            {
+              src: 'images/projects/soundmind-eval-abtest-gpt4o-judge.png',
+              alt: 'Eval - GPT-4o Judge (After)',
+              caption: '2. After — GPT-4o 분리평가: Faithfulness·Completeness에서 fusion-rag 우세 (환각 정확 감지)'
+            }
+          ]
+        },
+
+        // AI Console — Monitoring
         {
           title: 'AI Console — Monitoring (실시간 모니터링)',
           content: '전체 에코시스템의 로그를 중앙에서 수집·시각화하여 장애를 조기에 감지하고, 서비스 상태를 실시간으로 파악합니다.',
           subsections: [
             {
+              subtitle: '설계 배경 — 왜 Grafana + Loki인가',
+              content: 'GPU 서버(RTX PRO 6000 ×2)에서 LLM 서빙과 RAG Pipeline이 동시에 운용되는 환경에서, ELK 스택의 리소스 소비는 부담이었습니다.<br><br>' +
+                'Grafana + Loki + Promtail 조합은 <strong>Docker 소켓 기반 비침투적(non-intrusive) 자동 수집</strong>으로 앱 코드 수정 없이 전체 에코시스템을 모니터링하며, ELK 대비 현저히 낮은 리소스를 사용합니다.'
+            },
+            {
               subtitle: '인프라 구성',
               list: [
                 'Grafana 11.5.2 + Loki 3.4.2 + Promtail 3.4.2 기반 중앙 로그 수집',
-                'Docker 소켓 기반 비침투적(non-intrusive) 자동 수집 — 앱 코드 수정 불필요',
-                'ELK 대비 리소스 소비 현저히 낮음 — GPU 서버에서 모니터링 리소스 최소화'
+                'Docker 소켓 기반 자동 수집 — 새 컨테이너 추가 시 설정 변경 불필요',
+                'Labels(인덱스용, 카디널리티 낮음: level, platform, service)와 Structured Metadata(카디널리티 높음: logger, module, function)를 분리하여 Loki 인덱싱 효율 최적화'
               ]
             },
             {
@@ -383,107 +646,63 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Model Serving 로그 대시보드 별도 운용',
                 '서비스 상태, GPU 할당, Pipeline 관리, 사용자/권한 설정까지 운영 전반 커버'
               ]
-            },
-            {
-              subtitle: '레이블 전략',
-              content: 'Labels(인덱스용, 카디널리티 낮음: level, platform, service)와 Structured Metadata(카디널리티 높음: logger, module, function)를 분리하여 Loki 인덱싱 효율을 최적화.'
             }
           ]
         },
+
+
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // AI Platform (고객 대면)
+        // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         {
-          title: 'Architecture',
+          title: 'AI Platform — 고객 대면 Playground (B2B SaaS)',
+          content: 'AI Console에서 생성·배포된 맞춤형 RAG Pipeline을, 고객이 현장에서 즉시 PoC 체험할 수 있는 <strong>Playground 서비스 플랫폼</strong>입니다. 영업팀이 클라우드 서버에 접속하여 고객 문서를 업로드하고 바로 시연할 수 있도록 설계되었으며, 3개의 독립 Agent 세션을 제공합니다. React 19 Web Console + FastAPI API Gateway(JWT 멀티테넌트 인증, SSE 스트리밍)로 구현되었습니다.',
           image: {
-            src: 'images/projects/soundmind_ecosystem_architecture.png',
-            alt: 'SoundMind Ecosystem Architecture Diagram',
-            caption: '2개 플랫폼 축(AI Platform ↔ AI Console) + 공유 모델 서빙 인프라 + Docker 네트워크'
-          }
-        },
-        {
-          title: 'RAG Pipeline 고도화 과정',
-          content: '2026년 1월~3월, 3개 리포지토리에 걸친 단계적 진화.',
+            src: 'images/projects/soundmind_ai_platform_architecture.png',
+            alt: 'AI Platform Architecture Diagram',
+            caption: 'AI Platform 아키텍처 — React 19 + FastAPI Gateway + Dynamic RAG Pipeline 연결'
+          },
           subsections: [
             {
-              subtitle: '1단계 — Advanced RAG 구축 (1월)',
-              content: 'Query Rewrite (1→5 서브쿼리), Hybrid Search (Dense + Sparse + RRF), Reranking (Top-k=5), Generation 전 단계를 직접 구현. 한국어 문서 지원을 위해 Docling → pdfplumber + PaddleOCR로 파서 교체. Weaviate(Complex 질의 도메인, Hybrid Search 네이티브)와 Qdrant(Flat 구조 문서, Filter 기반)를 문서 복잡도에 따라 이원화 설계.'
-            },
-            {
-              subtitle: '2단계 — 정량 평가 (RAGAS 기반)',
-              content: 'RAGAS 기반 LLM-as-a-Judge 평가 프레임워크를 직접 구축. 평가 규모: <strong>81개 Q&A Ground Truth · 11개 문서 · 3,678페이지</strong>.<br><br>핵심 실험 결과:<br>• Recursive 청킹이 Semantic 대비 <strong>600배 빠르면서 커버리지 유사</strong><br>• BGE-M3 임베딩: Hit@10=0.778, MRR=0.674<br>• Dense가 Hybrid 대비 MRR +2.3%p<br>• 리랭킹 MRR +3.9%p (지연시간 2.8배 증가)<br>• ROUGE-L(0.0501)/BLEU(0.0018) 사실상 무의미 → LLM Judge 중심 평가 결정의 근거<br><br>E2E 종합 점수: Naive RAG 68점 → Advanced RAG 71점. 기대 이하의 개선폭(+3점)을 확인.'
-            },
-            {
-              subtitle: '3단계 — Component 단위 Ablation Study',
-              content: '"왜 +3점밖에 안 나왔는가"를 규명하기 위해 E2E가 아닌 <strong>Component 단위 평가를 직접 설계·수행</strong>.<br><br>결과: <strong>Reranking 제거 시 -12.8%p</strong> (가장 임팩트 큰 핵심 컴포넌트), <strong>Query Decomposition 제거 시 +6.8%p</strong> (오히려 성능 향상 — 서브쿼리 품질 이슈 + 정보 희석 + GT의 81%가 Easy/Medium 질의로 구성된 데이터셋 특성).<br><br>핵심 인사이트: E2E 평가만으로는 Query Decomposition이 해롭다는 것을 발견 불가 → <strong>Node-level 평가의 필요성 입증</strong>. 이 발견이 Analysis Platform 자동 추천 시스템 설계의 직접적 근거가 됨.'
-            },
-            {
-              subtitle: '4단계 — 인사이트 → Ecosystem 설계 (3월)',
-              content: '"문서 특성에 따라 컴포넌트를 선택적으로 조립해야 한다"는 결론이 Analysis Platform 설계의 직접적 근거가 됨. 단일 모놀리틱 RAG(1월) → 모듈화 + Dual Pipeline(3월 초) → AI 기반 동적 파이프라인 라우팅(3월 5~8일)으로 진화. 실험 결과가 아키텍처 결정을 이끈 과정.'
-            }
-          ]
-        },
-        {
-          title: 'Analysis Platform — RAG 자동 추천 엔진 ("파이프라인 팩토리")',
-          content: '문서 업로드 → 3-Stage AI 분석 → 파이프라인 추천 → Docker 자동 배포. <strong>신규 RAG 엔진 Prototype 배포 리드타임 2주 → 5분 (99% 이상 단축).</strong><br><br>2-Tier 아키텍처: Analysis API(포트 9200, Control Plane) + 배포된 파이프라인(포트 9201~9299, Data Plane)',
-          subsections: [
-            {
-              subtitle: 'Stage 1 — Dual-LLM 병렬 문서 분석',
-              content: '<strong>Gemini 2.5-flash</strong>(PDF 네이티브 분석 — 테이블·차트·레이아웃 시각 구조 인식)와 <strong>pdfplumber + Rule-based</strong>(텍스트 추출 후 구조/복잡도 스코어링)가 병렬 실행. Gemini 실패 시 다단계 폴백 전략으로 안정성 확보.'
-            },
-            {
-              subtitle: 'Stage 2 — GPT-4o 교차 검증',
-              content: '<strong>GPT-4o</strong>가 Gemini 분석 결과를 Structured Outputs로 교차 검증하여 신뢰도 보정. Dual-LLM 교차 검증으로 단일 모델 편향 방지.'
-            },
-            {
-              subtitle: 'Stage 3 — 3-Layer 전략 아키텍처 & 동적 조립',
-              content: '<strong>Document Intelligence → Strategy Intelligence → Pipeline Assembly</strong> 3계층 구조.<br><br>Strategy Engine이 Gemini + GPT + Rule-based 결과를 병합 → <strong>4차원 전략 공간</strong>(Chunking 6종 · Retrieval 7종 · Indexing 4종 · Post-Processing 4종)에서 최적 조합 추천.<br><br>DynamicRAGPipeline이 ComponentRegistry → LangGraph StateGraph를 <strong>런타임에 동적으로 조립</strong>(6가지 그래프 토폴로지). 정적 코드 완전 제거하고 uv workspace + 클린 아키텍처(ABC → 구현 → 오케스트레이션 → 앱) 적용.'
-            },
-            {
-              subtitle: '파이프라인 배포',
+              subtitle: '① RAG Agent — 문서 기반 Q&A',
+              content: '고객이 업로드한 문서를 기반으로 질문에 답변하는 문서 특화 Q&A 에이전트입니다. AI Console Analysis에서 고객 문서 특성에 맞게 자동 생성·배포된 RAG Pipeline을 AI Platform이 자동으로 감지하여 연결합니다. 고객마다 서로 다른 맞춤형 파이프라인이 연결되므로, 동일한 플랫폼 위에서 고객별로 최적화된 검색·응답 경험을 제공합니다.',
               list: [
-                'Jinja2 템플릿 기반 Docker Compose 자동 생성',
-                'asyncio.Lock 동시성 보호 + 포트 자동 할당(9201-9299)',
-                '독립 컨테이너로 격리된 RAG Pipeline 자동 생성 및 서비스 등록'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Key Metrics',
-          subsections: [
-            {
-              subtitle: '정량적 성과',
-              list: [
-                '<strong>배포 리드타임</strong> — 2주 → 5분 (99% 이상 단축)',
-                '<strong>RAG 품질</strong> — RAGAS 종합 점수 13%p 개선',
-                '<strong>Ablation Study</strong> — Reranking -12.8%p(핵심), Query Decomposition +6.8%p(성능 저하 요인) 도출',
-                '<strong>코드베이스</strong> — 9개 프로젝트 · 161 API · 103+ 단위 테스트'
+                '<strong>Dynamic Pipeline Routing</strong> — 고객사(Company)별 PipelineMapping 테이블에서 파이프라인 URL을 조회하여 동적으로 라우팅. 최대 99개 파이프라인 동시 운용(9201~9299), httpx.AsyncClient lazy 초기화 + 커넥션 풀링',
+                '<strong>Graceful Degradation</strong> — 파이프라인 장애 시 Direct LLM 응답으로 자동 전환(fallback: true 메타데이터 포함), 사용자 요청이 끊기지 않는 설계',
+                '<strong>Retrieval Insight 3-Panel</strong> — (1) Query Transformation: 원본 질의 → 5개 최적화 쿼리, (2) Hybrid Search Score: Dense/Sparse 점수 바 차트, (3) Reranking Impact: 순위 변동 시각화(#1 Gold · #2 Silver · #3 Bronze 뱃지). SSE 이벤트로 실시간 스트리밍',
+                '<strong>SSE 실시간 스트리밍</strong> — agent_start → processing → llm_stream(토큰 단위) → final_response → done 이벤트 체인. StreamingThinkParser가 &lt;think&gt; 태그를 실시간 분리하여 추론 과정과 답변을 동시 렌더링'
               ]
             },
             {
-              subtitle: '비즈니스 성과',
+              subtitle: '② Chat Agent — 자율형 AI 에이전트 (MVP 구현 완료)',
+              content: '문서에 국한되지 않고, LLM이 스스로 상황을 판단하여 필요한 도구를 선택·호출하는 자율형 에이전트입니다. LangGraph ReAct 아키텍처 기반으로 복합 태스크를 단계적으로 수행합니다.',
               list: [
-                '<strong>PoC 납품</strong> — DB 사업 회사 대상 8개 문서 · 34개 테스트 케이스 · Golden Path 3회 리허설 포함 검수 프로세스 완료',
-                '<strong>Beta 운용</strong> — 15명 동시 사용 대비 동시성 처리 구현',
-                '<strong>인프라</strong> — 15+ Docker 서비스, Grafana + Loki + Promtail 실시간 모니터링'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'Roadmap',
-          content: '현재 시스템을 유지하면서 성능 최적화와 Data Parsing 고도화에 집중합니다.',
-          subsections: [
-            {
-              subtitle: 'VLM 기반 문서 파싱',
-              list: [
-                '텍스트 추출 중심 → VLM 기반으로 확장, 표·차트·레이아웃 등 시각적 구조까지 보존',
-                '→ 진행 중인 WigtnOCR 연구(EMNLP 2026)의 성과를 Ecosystem에 직접 적용 예정'
+                '<strong>LangGraph StateGraph</strong> — agent(LLM 호출) → tools(도구 실행) 2노드 그래프, tool_calls 존재 여부로 조건부 라우팅, MemorySaver로 세션 상태 유지, 무한 루프 방지 10회 이터레이션 제한',
+                '<strong>내장 도구 3종</strong> — Tavily Search(웹 검색, 최대 5결과), File Read(TXT/PDF, 보안 체크: .env/.ssh/.aws 차단), Report Agent(요약/분석/회의록/커스텀 4종 문서 생성 서브에이전트)',
+                '<strong>MCP 확장</strong> — Model Context Protocol 클라이언트로 외부 도구 동적 추가 가능',
+                '<strong>멀티 프로바이더</strong> — OpenAI / vLLM / Gemini 동일 인터페이스 지원, Guest BYOK(Bring Your Own Key)로 게스트 사용자 자체 API 키 사용'
               ]
             },
             {
-              subtitle: 'RAG Pipeline 최적화',
+              subtitle: '③ AICC Agent — AI 컨택센터 (개발 예정)',
+              content: 'RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트입니다. 개발 예정.'
+            },
+            {
+              subtitle: '인증 · 권한 — 5단계 진화',
+              content: '프로젝트 초기부터 인증 체계를 5단계에 걸쳐 점진적으로 발전시켰습니다. MVP에서는 무인증으로 빠르게 검증하고, PoC 납품 단계에서 멀티테넌트 RBAC까지 확장했습니다.',
               list: [
-                'Ablation Study 기반 Query Rewrite 재설계 (-8.8% 저하 구간 해소)',
-                '평가 → 분석 → 재배포 Feedback Loop으로 자동 최적화 사이클 구축'
+                '<strong>5단계 진화</strong> — ① 무인증(MVP 검증) → ② JWT(DB 연동 사용자 인증) → ③ Guest Tier(회원가입 없이 체험, refresh token 비활성화) → ④ 3-tier RBAC(Admin/Manager/User/Guest 역할별 서비스 접근 제어) → ⑤ Guest BYOK(게스트가 자신의 API 키로 클라우드 LLM 직접 호출)',
+                '<strong>멀티테넌트 격리</strong> — Company(slug) + Team + Session 3계층 격리. RAG 문서는 Qdrant 컬렉션 단위로 고객사별 분리, 세션별 문서 접근 범위 제한',
+                '<strong>Hook 시스템</strong> — 3단계 우선순위 이벤트 버스: CRITICAL(0, 동기 실행 — 검증/차단), NORMAL(50, 동기 — DB 저장/상태 업데이트), LOW(100, asyncio.create_task fire-and-forget — 로깅/분석). 서버 종료 시 pending LOW 태스크 10초 대기 후 정리'
+              ]
+            },
+            {
+              subtitle: 'API Gateway — 58개 엔드포인트',
+              content: 'FastAPI 기반 API Gateway가 8개 도메인 라우터로 전체 플랫폼의 진입점 역할을 합니다.',
+              list: [
+                '<strong>라우터 구성</strong> — auth(5) · chat(3) · documents(12) · docs(3) · settings(4) · session(4) · ai-agent(8) · admin(14) = 58개 엔드포인트',
+                '<strong>이벤트 시스템</strong> — AgentEvent(Pydantic 모델)로 SSE 전송과 BigQuery 로깅을 동시 처리. EventDispatcher가 asyncio.gather로 핸들러 병렬 실행',
+                '<strong>Timeout 전략</strong> — 기본 120s, 업로드 1800s, RAG 스트리밍 300s. 클라이언트 연결 해제 감지(is_disconnected)로 불필요한 처리 조기 종료'
               ]
             }
           ]
@@ -499,12 +718,12 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               src: 'images/projects/soundmind_rag_agent_portalpage.png',
               alt: 'AI Platform - Portal',
-              caption: '2. Portal — RAG Agent · AI Agent 서비스 선택'
+              caption: '2. Portal — RAG Agent · Chat Agent · AICC Agent 서비스 선택'
             },
             {
               src: 'images/projects/soundmind_rag_agent_dashboardpage.png',
               alt: 'AI Platform - RAG Agent',
-              caption: '3. RAG Agent — 문서 기반 Q&A 메인 화면'
+              caption: '3. RAG Agent — 문서 기반 Q&A Playground'
             },
             {
               src: 'images/projects/soundmind_rag_agent_reference.png',
@@ -514,77 +733,20 @@ document.addEventListener('DOMContentLoaded', function() {
           ]
         },
         {
-          title: 'Analysis Platform',
-          gallery: [
+          title: 'Next Step',
+          content: '현재 Beta 테스트를 진행 중이며, End User 피드백을 반영한 정식 배포를 준비하고 있습니다.',
+          subsections: [
             {
-              src: 'images/projects/soundmind_analysis_upload.png',
-              alt: 'Analysis - Document Upload',
-              caption: '1. 문서 업로드 — 7종 포맷 지원, AI 분석 시작'
+              subtitle: 'WigtnOCR 연동 — VLM 기반 문서 파싱 고도화',
+              content: '현재 텍스트 추출 중심의 파싱을 <strong>VLM(Vision-Language Model) 기반으로 확장</strong>하여, 표·차트·레이아웃 등 시각적 구조까지 보존합니다. 별도 연구 프로젝트로 진행 중인 <strong>WigtnOCR</strong>(Qwen3-VL-2B LoRA fine-tuning, 15배 큰 30B Teacher 성능 초과, OmniDocBench Table TEDS 1위)의 성과를 Ecosystem에 직접 적용하여, A/B 테스트에서 확인된 VLM 파싱의 품질 우위(0.888 → 1.000)를 전체 파이프라인에 확대할 예정입니다.'
             },
             {
-              src: 'images/projects/soundmind_analysis_result.png',
-              alt: 'Analysis - Strategy Recommendation',
-              caption: '2. 전략 추천 — 분석 결과 기반 최적 RAG 구성 제안'
-            },
-            {
-              src: 'images/projects/soundmind_analysis_deploy.png',
-              alt: 'Analysis - Pipeline Deploy',
-              caption: '3. 원클릭 배포 — Docker 컨테이너 자동 생성 및 서비스 등록'
-            }
-          ]
-        },
-        {
-          title: 'AI Console',
-          gallery: [
-            {
-              src: 'images/projects/soundmind_console_dashboard.png',
-              alt: 'Console - Dashboard',
-              caption: '1. Dashboard — 서비스 상태, GPU 할당, 모델 서빙 현황'
-            },
-            {
-              src: 'images/projects/soundmind_console_analysis.png',
-              alt: 'Console - Analysis',
-              caption: '2. Analysis — 문서 분석 → 전략 추천 → 배포 통합 워크플로우'
-            },
-            {
-              src: 'images/projects/soundmind_console_eval.png',
-              alt: 'Console - Evaluation',
-              caption: '3. Evaluation — A/B 테스트 실행 및 통계 결과 시각화'
-            },
-            {
-              src: 'images/projects/soundmind_console_infra.png',
-              alt: 'Console - Infrastructure',
-              caption: '4. Infrastructure — Pipeline 관리, 헬스체크, Grafana 임베딩'
-            },
-            {
-              src: 'images/projects/soundmind_console_admin.png',
-              alt: 'Console - Admin',
-              caption: '5. Admin — 사용자/회사 관리, 권한 설정, 사용량 대시보드'
-            }
-          ]
-        },
-        {
-          title: 'Eval & Monitoring',
-          gallery: [
-            {
-              src: 'images/projects/soundmind_eval_experiment.png',
-              alt: 'Eval - Experiment',
-              caption: '1. Eval — 5차원 LLM-as-Judge 평가 실행'
-            },
-            {
-              src: 'images/projects/soundmind_eval_abtest.png',
-              alt: 'Eval - A/B Test',
-              caption: '2. Eval — A/B 테스트 통계 검증 결과'
-            },
-            {
-              src: 'images/projects/soundmind_monitoring_overview.png',
-              alt: 'Monitoring - System Overview',
-              caption: '3. Monitoring — 전체 에코시스템 실시간 로그 대시보드'
-            },
-            {
-              src: 'images/projects/soundmind_monitoring_platform.png',
-              alt: 'Monitoring - Platform Detail',
-              caption: '4. Monitoring — 플랫폼별 상세 메트릭 및 에러 추적'
+              subtitle: '정식 배포',
+              list: [
+                'Beta 테스트 피드백 기반 UX 개선 및 안정성 확보',
+                '평가 → 분석 → 재배포 Feedback Loop으로 자동 최적화 사이클 구축',
+                'AICC Agent(AI 컨택센터) 개발 및 3개 Agent 서비스 완성'
+              ]
             }
           ]
         }
