@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 '• 문서 구조에 따라 최적 청킹이 다르다 → 구조 복잡도 기반 청킹 전략 분기<br><br>' +
                 '<strong>추가 인사이트 — Data 구조화가 답변 품질을 결정한다:</strong><br>' +
                 'Ablation Study를 진행하면서 또 하나의 핵심 인사이트를 얻었습니다. 문서의 <strong>Data 구조화 품질이 Semantic Chunking에 영향을 미치고, 그것이 검색 결과에 영향을 미쳐, 결국 최종 답변 생성 품질까지 연쇄적으로 결정</strong>한다는 것이었습니다. 특히 공공문서의 복잡한 표·차트·레이아웃이 텍스트 기반 파서로는 구조가 소실되어 청킹·검색·생성 전 단계에서 품질 저하를 유발했습니다.<br><br>' +
-                '이 인사이트가 VLM(Vision-Language Model) 기반 문서 파싱 연구로 이어졌고, 별도 프로젝트 <a href="#" onclick="document.querySelector(\'[data-project=wigtn-ocr]\').click(); return false;"><strong>WigtnOCR</strong></a>(Qwen3-VL-2B LoRA fine-tuning, 15배 큰 30B Teacher 성능 초과)을 시작하게 되었습니다.<br><br>' +
+                '이 인사이트가 VLM(Vision-Language Model) 기반 문서 파싱 연구로 이어졌고, 별도 프로젝트 <a href="#" onclick="document.querySelector(\'[data-project=wigtn-ocr]\').click(); return false;"><strong>WigtnOCR</strong></a>(Qwen3-VL-2B를 LoRA fine-tuning하여, 비교 실험 4개 모델 중 Table TEDS 1위 달성)을 시작하게 되었습니다.<br><br>' +
                 '<strong>사업 배경 — 왜 "플랫폼"이어야 했는가:</strong><br>' +
                 '우리 회사는 음성 AI 전문 회사였고, NLP 사업 진출은 처음이었습니다. 보여줄 수 있는 PoC가 없는 상태에서 네트워크 기반으로 고객사 시연 기회를 만들어야 했는데, 매번 "2주의 PoC 기간을 주세요, 데이터를 주세요"라고 요청하는 것은 영업팀에게 현실적으로 어려운 일이었습니다.<br><br>' +
                 '기회가 생겼을 때 <strong>영업팀이 즉시 클라우드 서버에 접속하여 고객 문서를 업로드하고 바로 시연할 수 있는 환경</strong>이 필요했습니다.<br><br>' +
@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
           subsections: [
             {
               subtitle: 'WigtnOCR 연동 — VLM 기반 문서 파싱 고도화',
-              content: '현재 텍스트 추출 중심의 파싱을 <strong>VLM(Vision-Language Model) 기반으로 확장</strong>하여, 표·차트·레이아웃 등 시각적 구조까지 보존합니다. 별도 연구 프로젝트로 진행 중인 <strong>WigtnOCR</strong>(Qwen3-VL-2B LoRA fine-tuning, 15배 큰 30B Teacher 성능 초과, OmniDocBench Table TEDS 1위)의 성과를 Ecosystem에 직접 적용하여, A/B 테스트에서 확인된 VLM 파싱의 품질 우위(0.888 → 1.000)를 전체 파이프라인에 확대할 예정입니다.'
+              content: '현재 텍스트 추출 중심의 파싱을 <strong>VLM(Vision-Language Model) 기반으로 확장</strong>하여, 표·차트·레이아웃 등 시각적 구조까지 보존합니다. 별도 연구 프로젝트로 진행 중인 <strong>WigtnOCR</strong>(Qwen3-VL-2B LoRA fine-tuning → 비교 실험 4개 모델 중 Table TEDS 1위, 15배 큰 30B 모델 성능 초과)의 성과를 Ecosystem에 직접 적용하여, A/B 테스트에서 확인된 VLM 파싱의 품질 우위(0.888 → 1.000)를 전체 파이프라인에 확대할 예정입니다.'
             },
             {
               subtitle: '정식 배포',
@@ -1175,7 +1175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'Stage 5: OmniDocBench 평가',
           content: 'CVPR 2025에서 발표된 OmniDocBench(1,355 PDF 페이지, 사람이 만든 GT)로 4개 모델을 비교 평가.',
-          image: { src: 'images/projects/wigtnocr-omnidocbench.png', alt: 'OmniDocBench evaluation overview', caption: 'Figure: OmniDocBench 평가 결과 — WigtnOCR v1이 Table TEDS 전체 1위' },
+          image: { src: 'images/projects/wigtnocr-omnidocbench.png', alt: 'OmniDocBench evaluation overview', caption: 'Figure: OmniDocBench 평가 결과 — 비교 실험 4개 모델(Qwen3-VL-30B, 2B, Marker, WigtnOCR) 중 WigtnOCR이 Table TEDS 1위' },
           subsections: [
             {
               subtitle: '성능 비교',
