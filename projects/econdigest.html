@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EconDigest - 경제 유튜브 요약 | Hyeongseob Kim Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../reports/report.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">Hyeongseob Kim</a>
+
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../images/projects/econdigest_frontend_start.png" alt="EconDigest - 경제 유튜브 요약" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">EconDigest - 경제 유튜브 요약</h1>
+                        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead(AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> 2025.01 (1개월)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> FastAPI (3 Modules) + Whisper + Gemma-2 QLoRA</span>
+        </div>
+<div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Whisper</span>
+            <span class="report-article__tag">Gemma-2</span>
+            <span class="report-article__tag">QLoRA</span>
+            <span class="report-article__tag">yt-dlp</span>
+            <span class="report-article__tag">FFmpeg</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Streamlit</span>
+            <span class="report-article__tag">STT</span>
+            <span class="report-article__tag">LLM</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <!-- Problem -->
+        <h2 id="problem">Problem</h2>
+
+        <h3 id="business-challenge">Business Challenge</h3>
+        <p><strong>시성비(시간 대비 효율) 트렌드</strong> - 영상이나 음성 콘텐츠에서 원하는 부분만 빠르게 취사선택하려는 소비자가 늘어남에 따라, 요약 서비스의 필요성이 대두되었습니다.</p>
+
+        <h3 id="social-challenge">Social Challenge</h3>
+        <p><strong>시니어 금융 리터러시</strong> - 5060 세대가 모바일 자산관리 및 금융 거래에 적극적으로 참여하고 있으나, 복잡한 정보를 습득하는 데 여전히 어려움을 겪고 있습니다.</p>
+
+        <h3 id="user-pain-points">User Pain Points</h3>
+        <ul>
+          <li>긴 영상 시청에 대한 부담</li>
+          <li>전문 금융 용어 이해의 어려움</li>
+          <li>중요한 내용을 놓치는 문제</li>
+        </ul>
+
+        <!-- Solution -->
+        <h2 id="solution">Solution</h2>
+
+        <h3 id="what-we-built">What We Built</h3>
+        <p><strong>AI 기반 경제 유튜브 채널 요약 서비스</strong><br><br>클릭 한 번으로 영상을 요약 보고서로 변환하는 웹 애플리케이션입니다. Whisper(STT)와 Gemma 2(LLM)를 활용한 "음성 추출 → 텍스트 변환 → 요약" 파이프라인을 구축했습니다.</p>
+
+        <h3 id="core-value">Core Value</h3>
+        <ul>
+          <li><strong>효율적인 정보 전달</strong>: 경제 및 금융 영상의 내용을 분석하여 높은 효율의 문서화된 정보를 생성</li>
+          <li><strong>금융 지식 격차 해소</strong>: 정보 접근성이 낮은 타겟 사용자들이 경제 정보를 더 쉽게 접하도록 지원</li>
+        </ul>
+        <div class="section--highlight">
+          <h3>주요 성과</h3>
+          <ul>
+            <li>E2E 파이프라인 — <strong>음성 추출 → STT → 요약까지 원클릭 자동화</strong></li>
+            <li>STT 엔진 — <strong>Whisper-large-v3 한국어 음성 인식 적용</strong></li>
+            <li>모델 경량화 — <strong>Gemma-2-2b-it QLoRA 4-bit 양자화 적용</strong></li>
+            <li>백엔드 모듈화 — <strong>FastAPI 3개 서비스 라우터 (Audio, STT, Summary)</strong></li>
+            <li>파인튜닝 검증 — <strong>LoRA/QLoRA 한계 분석 및 베이스라인 비교 체계 구축</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="target-users">Target Users</h3>
+        <ul>
+          <li>AI/금융 비전문가 (시니어층)</li>
+          <li>바쁜 직장인 및 학생</li>
+        </ul>
+
+        <!-- Architecture Overview -->
+        <h2 id="architecture-overview">Architecture Overview</h2>
+        <ul>
+          <li><strong>오디오 추출</strong>: yt-dlp + FFmpeg (192kbps MP3)</li>
+          <li><strong>음성-텍스트 변환</strong>: OpenAI Whisper-large-v3 (잡음에 강하고 한국어 인식 정확도 높음)</li>
+          <li><strong>텍스트 요약</strong>: Google Gemma-2-2b-it (QLoRA 파인튜닝, 4-bit 양자화)</li>
+          <li><strong>백엔드</strong>: FastAPI (3개 라우터: Audio, STT, Summary)</li>
+          <li><strong>프론트엔드</strong>: Streamlit</li>
+        </ul>
+
+        <!-- What I Built -->
+        <h2 id="what-i-built">What I Built</h2>
+
+        <h3 id="project-leadership">Project Leadership</h3>
+        <ul>
+          <li>Team Lead로서 전체 파이프라인 설계 및 통합</li>
+          <li>팀원 역할 분담 및 일정 관리</li>
+        </ul>
+
+        <h3 id="backend-development">Backend Development</h3>
+        <ul>
+          <li>FastAPI 기반 RESTful API 설계</li>
+          <li>3개 서비스 모듈화 (Audio, STT, Summary)</li>
+          <li>yt-dlp + FFmpeg 오디오 추출 파이프라인</li>
+          <li>HTTPException 기반 에러 처리 및 GPU 메모리 관리</li>
+        </ul>
+
+        <h3 id="frontend-development">Frontend Development</h3>
+        <ul>
+          <li>Streamlit 기반 단일 버튼 UI</li>
+          <li>진행 상황 표시 및 결과 Expander 패널</li>
+          <li>동영상 재생 윈도우 통합</li>
+        </ul>
+
+        <h3 id="ai-pipeline-integration">AI Pipeline Integration</h3>
+        <ul>
+          <li>Whisper → Gemma 2 파이프라인 연결</li>
+          <li>3-step 번역 프롬프트 설계 (한→영→요약→한)</li>
+          <li>후처리: 단어 중복 제거, 공백 정리</li>
+        </ul>
+
+        <!-- Service Demo -->
+        <h2 id="service-demo">Service Demo</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_frontend_start.png" alt="서비스 시작 화면" onclick="window.open(this.src, '_blank')">
+            <span>서비스 시작 화면</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_frontend_input.png" alt="YouTube URL 입력" onclick="window.open(this.src, '_blank')">
+            <span>YouTube URL 입력</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_frontend_button.png" alt="요약 버튼 클릭" onclick="window.open(this.src, '_blank')">
+            <span>요약 버튼 클릭</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_frontend_progress.png" alt="처리 진행 중" onclick="window.open(this.src, '_blank')">
+            <span>처리 진행 중</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_frontend_result.png" alt="요약 결과" onclick="window.open(this.src, '_blank')">
+            <span>요약 결과</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/econdigest_backend.png" alt="백엔드 API" onclick="window.open(this.src, '_blank')">
+            <span>백엔드 API</span>
+          </div>
+        </div>
+
+        <!-- Model Fine-Tuning -->
+        <h2 id="model-fine-tuning">Model Fine-Tuning</h2>
+
+        <h3 id="stt-whisper">STT (Whisper)</h3>
+        <p>LoRA 기법으로 파인튜닝을 시도했으나, 에포크가 진행될수록 오차율(CER, WER)이 지속적으로 상승하여 <strong>성능이 저하</strong>되는 것을 확인했습니다. 이에 따라 <strong>원본 Whisper-large 모델을 그대로 사용</strong>하는 것이 더 낫다는 결론을 내렸습니다.</p>
+        <figure>
+          <img src="../images/projects/econdigest_whisper_fine_tuning.png" alt="Whisper LoRA 파인튜닝 결과 - 에포크별 CER/WER 상승" onclick="window.open(this.src, '_blank')">
+        </figure>
+
+        <h3 id="llm-gemma-2">LLM (Gemma 2)</h3>
+        <p>메모리 효율을 위해 <strong>QLoRA(양자화+LoRA)</strong> 기법을 사용하여 튜닝을 진행했습니다. 4-bit BitsAndBytes 양자화를 적용하여 VRAM 사용량은 줄었으나, <strong>오히려 요약 품질이 저하</strong>되어 튜닝하지 않은 원본 모델보다 못한 결과가 나왔습니다. 경량화와 성능 사이의 트레이드오프를 체감한 경험이었습니다.</p>
+
+        <!-- 성과 및 회고 -->
+        <h2 id="results-and-retrospective">성과 및 회고</h2>
+
+        <h3 id="key-achievements">주요 성과</h3>
+        <ul>
+          <li>yt-dlp + FFmpeg 기반 오디오 자동 추출 파이프라인 구축</li>
+          <li>FastAPI 백엔드 + Streamlit 프론트엔드 통합</li>
+          <li>QLoRA 적용으로 VRAM 효율화 (4-bit 양자화)</li>
+        </ul>
+
+        <h3 id="trial-and-error">시행착오</h3>
+        <ul>
+          <li><strong>STT LoRA 파인튜닝 실패</strong>: 파인튜닝 기술에 대한 이해 부족과 보유 인프라의 한계를 사전에 가늠하지 못한 채 진행하여 실패</li>
+          <li><strong>LLM QLoRA 경량화 역효과</strong>: 4-bit 양자화로 경량화는 달성했으나, 오히려 성능이 저하되어 튜닝하지 않은 원본 모델보다 못한 결과 도출</li>
+          <li><strong>긴 텍스트 문맥 누락</strong>: 청킹(Chunking) 전략의 필요성 인식</li>
+          <li><strong>동일 문장 중복 출력</strong>: 후처리 로직 추가로 해결</li>
+        </ul>
+
+        <h3 id="technical-growth">기술적 성장</h3>
+        <p>처음 접하는 STT/LLM 파이프라인과 파인튜닝 기술이었기에, 접근 방법 자체가 잘못된 부분이 많았습니다. 그러나 이 경험을 통해 <strong>모델 튜닝 전 베이스라인 성능 측정의 중요성</strong>, <strong>인프라 제약 조건 사전 파악</strong>, 그리고 <strong>양자화와 성능 간의 트레이드오프</strong>를 체감할 수 있었습니다. 실패를 통해 앞으로 어떤 방향으로 공부하고 나아가야 할지 명확해졌습니다.</p>
+
+        <h3 id="future-improvements">향후 개선 방향</h3>
+        <ul>
+          <li>화자 분리(Speaker Diarization) 기능 개선</li>
+          <li>5060 타겟에 맞춘 UI 최적화 (글자 크기 등)</li>
+          <li>전문 경제 용어 추가 학습</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+  </footer>
+  <script src="project.js"></script>
+</body>
+</html>

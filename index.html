@@ -77,8 +77,8 @@
       <h1 class="hero__name">KIM HYEONGSEOB</h1>
       <h2 class="hero__title">AI Research & Development</h2>
       <p class="hero__description">
-        Researching, Engineering, and Shipping AI —<br>
-        From Model Architecture to Production Pipeline.
+        AI를 연구하고, 만들고, 서비스합니다.<br>
+        모델 설계부터 프로덕션 파이프라인까지.
       </p>
     </div>
   </section>
@@ -88,7 +88,6 @@
     <div class="container">
       <div class="section__header">
         <h2 class="section__title">About Me</h2>
-        <p class="section__subtitle">사람의 커뮤니케이션을 AI 시스템으로 옮기는 일을 합니다</p>
       </div>
       <div class="about__grid">
         <div class="about__image-wrapper fade-in">
@@ -139,46 +138,27 @@
           <div class="timeline__marker"></div>
           <span class="timeline__date">2025.07 - 현재</span>
           <h3 class="timeline__title">(주)사운드마인드</h3>
-          <p class="timeline__subtitle">AX / AI Research Engineer / Manager</p>
+          <p class="timeline__subtitle">AX 사업본부 / AI Research Engineer</p>
           <div class="timeline__description">
-            <span class="about__highlight">[AI Product Engineering]</span>
+            <span class="about__highlight">[AI Product Engineering & R&D]</span>
             <br><strong>SoundMind AI Ecosystem</strong>
-            <ol style="margin-left: 20px;">
-              <li>
-                <strong>SoundMind-AI-Console</strong> (Admin Dashboard)
-                <ul>
-                  <li>분석·평가·모니터링 플랫폼 3종을 단일 콘솔로 통합 설계하여, 비개발자도 RAG 영업 사이클 전체를 운용할 수 있는 통합 Admin 대시보드 설계 및 E2E 개발</li>
-                  <li>고객 문서 업로드 → Gemini 2.0 Flash + GPT-4o 3-Stage 병렬 분석 (26개 특성 프로파일링) → 4차원 Decision Tree 기반 최적 파이프라인 동적 조립 (Chunking×5 · Retrieval×5 · Indexing×4 · PostProcess×4, 이론적 조합 <strong>6,400+</strong>) → 원클릭 Docker 배포까지 단일 워크플로우 구현</li>
-                  <li>GPT-4o 교차 검증으로 전략 신뢰도 자동 보정 (confidence adjustment −0.3~+0.2), 문서 유형·Retrieval 전략에 따라 VectorDB 자동 결정 (metadata_filtered → Qdrant / 나머지 → Weaviate)</li>
-                  <li>신규 엔진 Prototype 배포 리드타임 <strong>2주 → 5분</strong> (99% 이상 단축), 현장 실증 가능</li>
-                  <li>Grafana + Loki 연동 전체 에코시스템 실시간 모니터링 내재화</li>
-                </ul>
-              </li>
-              <li>
-                <strong>SoundMind-AI-Platform</strong> (B2B SaaS)
-                <ul>
-                  <li>Console에서 생성된 맞춤형 RAG Pipeline을 고객이 현장에서 즉시 PoC 체험할 수 있는 서비스 레이어 설계 및 개발</li>
-                  <li>Chat Agent (자율 도구 사용) · RAG Agent (문서 기반 Q&A) 이원화 제공으로 고객 시나리오별 맞춤 데모 구성</li>
-                  <li>React 19 Web Console + FastAPI 기반 API Gateway (JWT 멀티테넌트 인증, SSE 스트리밍)</li>
-                  <li>최대 <strong>99개 RAG Pipeline</strong> 동시 운용으로 고객사별 독립 환경 분리</li>
-                </ul>
-              </li>
-            </ol>
+            <a href="projects/soundmind-ecosystem.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 상세보기
+            </a>
+            <ul>
+              <li>고객 문서 기반 맞춤형 RAG Pipeline 자동 생성·배포 플랫폼 (AI Console + AI Platform) 단독 설계 및 E2E 개발</li>
+              <li>2개 LLM이 문서를 교차 분석하여 최적 RAG 전략을 자동 추천하고, <strong>원클릭 Docker 배포 — 신규 엔진 배포 리드타임 2주 → 5분</strong></li>
+              <li>공공기관 전용 RAG R&D: <strong>RAGAS 기반의 LLM-as-a-Judge 평가 시스템 구축</strong>(81개 Q&A · 3,678페이지), 파이프라인 각 단계를 하나씩 제거하며 <strong>성능 기여도를 정량화</strong></li>
+              <li>MSA 9 Projects · 161 APIs · 15+ Docker · 최대 99개 Pipeline 동시 운용 · Grafana+Loki 모니터링</li>
+            </ul>
 
             <span class="about__highlight">[AI R&D]</span>
             <ol style="margin-left: 20px;">
               <li>
-                <strong>RAG 파이프라인 설계 및 성능 최적화</strong> (공공기관 전용 범용 RAG R&D)
-                <ul>
-                  <li>Query Rewrite → Hybrid Search → Reranking → Generation 전 단계 직접 구현 및 노드 단위 성능 최적화</li>
-                  <li>RAGAS 기반 LLM-as-a-Judge 정량 평가 프레임워크 구축 (81개 Q&A Ground Truth · 11개 한국어 공공문서 · 3,678페이지) — ROUGE-L 0.050 / BLEU 0.002로 한국어 환경에서 전통 메트릭 무의미함을 실증, <strong>LLM Judge 채택 근거 확보</strong></li>
-                  <li>노드 단위 Ablation Study 수행 — Reranking 제거 시 <strong>−12.8%p 급락</strong> (핵심 기여 요인 → 전 파이프라인 Reranker 상시 활성화 근거), Query Decomposition 제거 시 <strong>+6.8%p &amp; 레이턴시 32% 감소</strong> 129s→88s (성능 저하 요인 → 조건부 활성화 전환 근거)</li>
-                  <li>Dense Search가 한국어 환경에서 Hybrid 대비 <strong>MRR +2.6%p 우위</strong> 확인, Semantic Chunking 처리속도 <strong>600배 열위</strong> (8,437ms vs 14ms) 실증 → 문서 특성별 전략 분기 및 VectorDB 이원화 설계 (Weaviate / Qdrant) 실험적 근거 확보</li>
-                  <li>상기 R&D 실험 결과 전체를 AI Console <strong>4차원 Decision Tree 자동 추천 시스템</strong>의 임계값 및 전략 분기 로직에 직접 반영</li>
-                </ul>
-              </li>
-              <li>
                 <strong>WIGVO:</strong> 레거시 PSTN 환경 실시간 양방향 음성 번역 시스템 (<strong>ACL 2026 Under Review, 제 1저자</strong>)
+                <a href="projects/wigvo.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> 상세보기
+                </a>
                 <ul>
                   <li>Dual-Session Echo Gating 아키텍처 + 3-Stage 오디오 필터 파이프라인 (Echo Gate → Energy Gate → Silero VAD) 자체 설계 및 개발</li>
                   <li><small><em>Title: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</em></small></li>
@@ -186,6 +166,9 @@
               </li>
               <li>
                 <strong>WigtnOCR:</strong> VLM 기반 한국 공공문서 전용 파싱 프레임워크
+                <a href="projects/wigtn-ocr.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> 상세보기
+                </a>
                 <ul>
                   <li>Qwen3-VL-2B LoRA fine-tuning으로 <strong>15배 큰 30B Teacher 성능 초과</strong></li>
                   <li>OmniDocBench(CVPR 2025) 기준 4개 모델(Qwen3-VL-30B, 2B, Marker, WigtnOCR) 비교에서 <strong>Table TEDS 1위</strong> (0.649)</li>
@@ -196,9 +179,15 @@
 
             <span class="about__highlight">[Open Source]</span>
             <ol style="margin-left: 20px;">
-              <li><strong>WIGTN-Coding:</strong> Claude Code 기반 AI-Native 개발 워크플로우 플러그인 (7 Commands, 14 Agents, 7 Skills)</li>
-              <li><strong>LLM Loadtester:</strong> 비개발직군용 LLM 서빙 성능 벤치마킹 도구 (TTFT/TPOT/Goodput 시각화)</li>
-              <li><strong>TimeLens:</strong> 음성+카메라 멀티모달 AI 박물관 큐레이터 (Gemini Live Agent Challenge)</li>
+              <li><strong>WIGTN-Coding:</strong> Claude Code 기반 AI-Native 개발 워크플로우 플러그인 (7 Commands, 14 Agents, 7 Skills)
+                <a href="projects/wigtn-coding.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </li>
+              <li><strong>LLM Loadtester:</strong> 비개발직군용 LLM 서빙 성능 벤치마킹 도구 (TTFT/TPOT/Goodput 시각화)
+                <a href="projects/llm-loadtester.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </li>
+              <li><strong>TimeLens:</strong> 음성+카메라 멀티모달 AI 박물관 큐레이터 (Gemini Live Agent Challenge)
+                <a href="projects/timelens.html" target="_blank" rel="noopener noreferrer" class="timeline__project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </li>
             </ol>
           </div>
         </div>
@@ -267,7 +256,7 @@
           <div class="timeline__marker"></div>
           <span class="timeline__date">2026.01 - 현재</span>
           <h3 class="timeline__title">모두의연구소 NVIDIA RAPIDS Lab</h3>
-          <p class="timeline__subtitle">Research Member / GPU-Accelerated ML Researcher</p>
+          <p class="timeline__subtitle">GPU-Accelerated Laboratory / Research Member</p>
           <div class="timeline__description">
             <ul>
               <li>NVIDIA RAPIDS 기반 <strong>오픈소스 End-to-End Full GPU-based AutoML System</strong> 연구 개발</li>
@@ -548,8 +537,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              고객 문서 업로드 한 번이면 맞춤형 RAG Pipeline을 자동 생성·Docker 배포까지.
-              PoC 리드타임 2주→5분, 최대 99개 Pipeline 동시 운용하는 AI Sales 플랫폼.
+              고객 문서 기반 맞춤형 RAG Pipeline 자동 생성·배포 플랫폼. 배포 리드타임 2주→5분, 9 Projects · 161 APIs · 최대 99개 Pipeline 동시 운용.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">LangGraph</span>
@@ -579,7 +567,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              2B 모델로 15배 큰 30B Teacher와 동등 성능 달성. 한국 공공문서 2,667장 LoRA fine-tuning, OmniDocBench(CVPR 2025) 테이블 파싱 1위.
+              2B 모델로 15배 큰 30B Teacher 성능 초과. OmniDocBench Table TEDS 1위(0.649), 6개 파서 Retrieval Hit@1·MRR@10 최고 성능. 오픈소스 공개.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Qwen3-VL-2B</span>
@@ -614,8 +602,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              에코 루프 0/148건, VAD 레이턴시 15~72초→480ms.
-              PSTN 저음역(8kHz) 환경에서 소프트웨어만으로 양방향 실시간 음성 번역을 구현.
+              PSTN 전화망에서 소프트웨어만으로 실시간 양방향 음성 번역을 구현한 최초의 접근. 에코 루프 0/148건, 통화 비용 $0.18/min. 제 1저자.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">OpenAI Realtime</span>
@@ -651,8 +638,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              Claude Code Skills Plugins으로 2일 만에 완성한 LLM 벤치마킹 도구.
-              AI-Native 개발 방법론으로 연구자/기획자를 위한 오픈소스 프로젝트.
+              비개발직군용 LLM 서빙 성능 벤치마킹 도구. TTFT/TPOT/Goodput 시각화, 이중 교차 검증(Prometheus ±5% + Docker ±10%). Ex-Google 엔지니어 콜드 아웃리치 수신.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Claude Code</span>
@@ -682,9 +668,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              Claude Code용 AI-Native 개발 워크플로우 자동화 플러그인.
-              7 Commands, 14 Agents, 7 Skills, 4 Hooks — 기획부터 배포까지 Zero Friction.
-              결과물: WIGVU, WIGTN-SPEAR (OWASP LLM/Web Top 10 커버), TimeLens.
+              Claude Code용 AI-Native 개발 워크플로우 플러그인. 7 Commands · 14 Agents · 7 Skills · 4 Hooks. Quality Gate 자동 코드 리뷰, 3계층 메모리 시스템으로 파이프라인 속도 3배 향상.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Claude Code</span>
@@ -714,8 +698,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              Google Global 해커톤 출품작. Gemini Live API로 음성·카메라를 실시간 처리하고,
-              Function Calling 4개로 오케스트레이션을 대체한 멀티모달 AI 큐레이터.
+              Google Global 해커톤 출품. Gemini Live API + ADK 듀얼 파이프라인으로 음성·카메라를 실시간 처리하는 AI 박물관 큐레이터. Function Calling 4개로 오케스트레이션 대체.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Gemini Live API</span>
@@ -773,8 +756,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              4가지 AI 도구로 게임 개발 과정에 자동화 시스템 도입.
-              <br>자연어로 맞춤형 총기 반동 생성, 3D 맵 모델링, 인게임 AI Agent 구현.
+              MCP 표준으로 FPS 게임 개발 도구 3종을 AI Agent에 통합. 총기 반동 궤적 생성 98.7% 시간 단축, 3D 맵 화이트박싱 75% 단축. Smithery.ai 배포.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">MCP</span>
@@ -805,7 +787,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              YOLO-Pose 모델로 사용자의 자세를 추출하고, LangChain-based RAG 시스템으로 운동 자세를 진단 후 실시간 피드백을 제공하는 서비스.
+              YOLO11-Pose 관절 추출 + LangChain RAG로 실시간 운동 자세 피드백. RAGAS Context Precision/Recall 100%, Answer Relevancy 82%.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">RAG</span>
@@ -836,7 +818,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              입력 된 Keyword를 분석하여 종합 감성을 평가하고, 해당 감성에 맞는 가사 문장들을 생성하여 가사 작사 모델 개발.
+              KoGPT-2를 7,439곡 가사 데이터로 Full Fine-Tuning한 감성 작사 AI. KOTE 43개 감정 카테고리 기반 감성 분류 후 맞춤형 가사 생성.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Hugging Face</span>
@@ -866,7 +848,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              Pose Detection AI 기술을 활용한 언리얼 융합 자세 추론 게임. YOLO-Pose의 17개 관절 좌표값과 Cosine 유사도 분석 활용.
+              24시간 해커톤에서 E2E 완성. YOLO11-Pose 30fps 실시간 자세 인식 + Unreal Engine 5 연동. API 응답 50ms 미만.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">YOLO-Pose</span>
@@ -897,7 +879,7 @@
               </span>
             </h3>
             <p class="project-card__description">
-              Whisper(STT)와 Gemma 2(LLM)를 활용한 경제 유튜브 영상 자동 요약 서비스. QLoRA 파인튜닝으로 VRAM 효율화를 달성했습니다.
+              URL 입력만으로 경제 유튜브 영상을 자동 요약. Whisper-large-v3 STT + Gemma-2 QLoRA 4-bit 양자화로 단일 GPU에서 E2E 파이프라인 구현.
             </p>
             <div class="project-card__tags">
               <span class="project-card__tag">Whisper</span>
@@ -928,19 +910,6 @@
     </div>
   </section>
 
-  <!-- Project Modal -->
-  <div class="modal" id="projectModal">
-    <div class="modal__content">
-      <button class="modal__close" id="modalClose">&times;</button>
-      <img src="" alt="" class="modal__image" id="modalImage">
-      <div class="modal__body">
-        <h2 class="modal__title" id="modalTitle"></h2>
-        <div class="modal__meta" id="modalMeta"></div>
-        <div id="modalContent"></div>
-        <div class="modal__tags" id="modalTags"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- Contact Section -->
   <section class="section contact" id="contact">

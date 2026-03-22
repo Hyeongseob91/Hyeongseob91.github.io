@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeLens - 음성+카메라 멀티모달 AI 박물관 큐레이터 | Hyeongseob Kim Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../reports/report.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">Hyeongseob Kim</a>
+
+    </div>
+  </header>
+
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../images/projects/timelens_hero.png" alt="TimeLens - 음성+카메라 멀티모달 AI 박물관 큐레이터" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">TimeLens - 음성+카메라 멀티모달 AI 박물관 큐레이터</h1>
+                <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> 2026.03</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> 2 Apps · Gemini Live API + ADK + Next.js + React Native</span>
+        </div>
+<div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Gemini Live API</span>
+            <span class="report-article__tag">Google ADK</span>
+            <span class="report-article__tag">Function Calling</span>
+            <span class="report-article__tag">Cloud Run</span>
+            <span class="report-article__tag">Firebase</span>
+            <span class="report-article__tag">Next.js</span>
+            <span class="report-article__tag">React Native</span>
+            <span class="report-article__tag">Hackathon</span>
+          </span>
+        </div>
+      </header>
+
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <!-- Section: Overview -->
+        <h2 id="overview">Overview</h2>
+        <p><strong>Google Global 해커톤 — Gemini Live Agent Challenge 출품작</strong><br><br>박물관 단체 관람의 불편함에서 출발한 AI 큐레이터 서비스. "나만의 속도로 보기 어렵고, 궁금한 것을 바로 물어볼 수 없다"는 문제를 해결합니다. 카메라로 유물을 비추고(See), AI 큐레이터의 설명을 듣고(Hear), 음성으로 질문하는(Speak) 흐름이 끊김 없이 이어지는 것이 핵심입니다.</p>
+
+        <div class="section--highlight">
+          <h3>주요 성과</h3>
+          <ul>
+            <li>Google Global 해커톤 — <strong>Gemini Live Agent Challenge 출품</strong></li>
+            <li>Function Calling 4개로 오케스트레이션 대체 — <strong>라우팅 로직·인텐트 분류기·상태 머신 전부 제거</strong></li>
+            <li>듀얼 파이프라인 설계 — <strong>Gemini Live API(메인) + ADK 멀티 에이전트(텍스트 폴백)</strong></li>
+            <li>에이전틱 카메라 음성 명령 — <strong>15개 언어 정규식 패턴 지원</strong></li>
+            <li>다국어 서비스 — <strong>한·영·일·중·힌디어 5개 언어</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="demo-and-links">데모 & 링크</h3>
+        <ul>
+          <li><strong>데모 비디오</strong>: <a href="https://youtu.be/ITaMtVO5jFg?si=-lhV6uV97mytFLgb" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><strong>GitHub</strong>: <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer">wigtn/wigtn-timelens</a></li>
+          <li><strong>개발기</strong>: <a href="https://harrison-kim.tistory.com/entry/Gemini-Live-Agent-Challenge-WigtnCrew-Time-Lens-%EA%B0%9C%EB%B0%9C%EA%B8%B0" target="_blank" rel="noopener noreferrer">블로그 포스트</a></li>
+        </ul>
+
+        <!-- Section: 심사 기준 및 전략 -->
+        <h2 id="judging-criteria">심사 기준 및 전략</h2>
+
+        <h3 id="judging-items">심사 항목</h3>
+        <ul>
+          <li><strong>Innovation & Multimodal UX (40%)</strong> — 음성, 시각, 이미지의 자연스러운 통합</li>
+          <li><strong>Technical Implementation & Agent Architecture (30%)</strong> — Google Cloud 네이티브 구현</li>
+          <li><strong>Demo & Presentation (30%)</strong> — 실제 동작 화면 시연</li>
+        </ul>
+
+        <h3 id="bonus-points">보너스 포인트</h3>
+        <ul>
+          <li>개발 과정 공개 콘텐츠 발행: +0.6점</li>
+          <li>CI/CD 자동화 배포: +0.2점</li>
+          <li>Google Developer Group 멤버: +0.2점</li>
+        </ul>
+
+        <!-- Section: Architecture — 듀얼 파이프라인 -->
+        <h2 id="architecture-dual-pipeline">Architecture — 듀얼 파이프라인</h2>
+        <p>단일 경로(Live API)만이 아닌, 연결 불안정 환경(박물관 Wi-Fi) 대응을 위한 다중 경로 설계입니다.</p>
+
+        <figure>
+          <img src="../images/projects/timelens_architecture.jpeg" alt="TimeLens System Architecture" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 1: TimeLens 시스템 아키텍처. Gemini Live API(메인) + ADK 멀티 에이전트(텍스트 폴백) 듀얼 파이프라인.</figcaption>
+        </figure>
+
+        <h3 id="gemini-live-api-pipeline">Gemini Live API 파이프라인 (메인)</h3>
+        <ul>
+          <li>음성 입력(PCM16/16kHz) + 카메라(JPEG 1fps)를 동일 WebSocket 세션에서 실시간 처리</li>
+          <li><strong>Function Calling 4개</strong>로 오케스트레이션 대체 — 라우팅 로직, 인텐트 분류기, 상태 머신을 전부 제거했습니다</li>
+          <li>barge-in 기능으로 AI 응답 중에도 자연스럽게 끊고 질문할 수 있습니다</li>
+        </ul>
+
+        <h3 id="adk-multi-agent-pipeline">ADK 멀티 에이전트 파이프라인 (텍스트 폴백)</h3>
+        <ul>
+          <li>timelens_orchestrator → curator / restoration / discovery / diary 4개 Sub-Agent</li>
+          <li>Live API와 동일한 백엔드 API를 공유하여 코드 중복을 제거했습니다</li>
+          <li>어느 경로로 진입하든 동일한 함수를 호출합니다 — 다른 건 진입점뿐입니다</li>
+        </ul>
+
+        <!-- Section: Function Calling Workflow -->
+        <h2 id="function-calling-workflow">Function Calling Workflow — 4개 도구</h2>
+        <p>처음에는 인텐트 분류기, if/else 체인, 상태 머신을 계획했습니다. 최종적으로 시스템 프롬프트 + Function Declaration 4개만 남기고 나머지를 모델에 위임한 결과가 더 좋았습니다. <strong>"모델은 당신의 라우팅 로직보다 똑똑하다"</strong>가 핵심 인사이트입니다.</p>
+
+        <figure>
+          <img src="../images/projects/timelens_function_calling.png" alt="Function Calling Workflow" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 2: Function Calling 워크플로우. 4개 도구가 UX 전환의 분기점 역할을 하며, 폴백 시 ADK 멀티 에이전트로 위임.</figcaption>
+        </figure>
+
+        <h3 id="four-tools">4가지 도구</h3>
+        <ul>
+          <li><strong>recognize_artifact()</strong> — 카메라 프레임 분석 + Google Search Grounding으로 유물 인식·정보 검색</li>
+          <li><strong>generate_restoration()</strong> — Gemini 2.5 Flash Image로 포토리얼리스틱 복원 이미지 생성</li>
+          <li><strong>discover_nearby()</strong> — GPS 기반 Google Places API로 주변 박물관·유적지 탐색</li>
+          <li><strong>create_diary()</strong> — 관람 세션 종료 시 Gemini 3 Pro Image로 방문 다이어리 자동 생성</li>
+        </ul>
+
+        <!-- Section: 에이전틱 카메라 -->
+        <h2 id="agentic-camera">에이전틱 카메라</h2>
+        <p>사용자가 음성으로 촬영을 트리거하는 핵심 UX입니다. 15개 언어별 정규식 패턴(한국어: "이거 뭐야", "이거 봐" / 영어: "what is this", "look at this" / 일본어·중국어·힌디어 등)으로 음성 명령을 감지합니다.</p>
+
+        <h3 id="capture-process">촬영 프로세스</h3>
+        <ul>
+          <li>음성 명령 감지 → 500ms 안정화 대기 (손 떨림 방지)</li>
+          <li>고해상도 사진 촬영 → iOS 스타일 흰색 플래시 오버레이 (0.2초 페이드)</li>
+          <li>Live API로 사용자 발화와 함께 전송 → AI 음성 피드백</li>
+        </ul>
+
+        <!-- Section: Service Flow -->
+        <h2 id="service-flow">Service Flow</h2>
+
+        <div class="z-flow">
+
+          <div class="z-row">
+            <div class="z-image"><img src="../images/projects/timelens_01_landing.jpeg" alt="Landing" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 1</span><h4>랜딩 — 언어 선택</h4>
+            <p>한국어·영어·일본어·중국어·힌디어 5개 언어 지원. "Museums Come Alive" — 카메라와 마이크 권한을 요청하고 세션을 시작합니다.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../images/projects/timelens_02_permissions.jpeg" alt="Permissions" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 2</span><h4>권한 설정</h4>
+            <p>카메라와 마이크 접근 권한을 부여합니다. 권한이 없으면 텍스트 모드(ADK 폴백)로 자동 전환됩니다.</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../images/projects/timelens_03_overview.jpeg" alt="Overview" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 3</span><h4>서비스 소개</h4>
+            <p>"Point your camera at an artifact, and a thousand-year story begins." 평균 3초 인식, 10K+ 유적지, 24/7 AI Voice Docent.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../images/projects/timelens_06_session_init.png" alt="Session Init" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 4</span><h4>세션 초기화</h4>
+            <p>Gemini Live 세션 연결. GPS 기반으로 현재 위치의 박물관을 자동 감지하고, AI 큐레이터를 깨웁니다.</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../images/projects/timelens_07_curator_greeting.png" alt="Curator Greeting" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 5</span><h4>AI 큐레이터 인사</h4>
+            <p>현재 전시 정보를 Google Search Grounding으로 실시간 검색하여 인사와 함께 전달합니다. 음성·텍스트 양방향 대화가 가능합니다.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../images/projects/timelens_05_recognition.png" alt="Artifact Recognition" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 6</span><h4>유물 인식</h4>
+            <p>"이거 뭐야?" — 에이전틱 카메라가 음성 명령을 감지하여 촬영 후 recognize_artifact()를 호출합니다. 유물의 이름, 시대, 역사적 배경을 설명합니다.</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../images/projects/timelens_live_conversation.png" alt="Live Conversation" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 7</span><h4>실시간 멀티모달 대화</h4>
+            <p>LIVE 모드에서 카메라 프레임과 음성이 동시에 처리됩니다. 유물을 보면서 자유롭게 질문하고, barge-in으로 AI 응답을 끊고 새 질문도 가능합니다.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../images/projects/timelens_restoration.png" alt="Restoration" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 8</span><h4>유물 복원 이미지</h4>
+            <p>"원래 모습 보여줘" — generate_restoration()이 Gemini 2.5 Flash Image로 포토리얼리스틱 복원 이미지를 생성합니다. Now/원래 시대 토글로 비교할 수 있습니다.</p></div>
+          </div>
+
+        </div>
+
+        <!-- Section: 개발 과정에서 해결한 문제들 -->
+        <h2 id="problems-solved">개발 과정에서 해결한 문제들</h2>
+
+        <h3 id="korean-stt-quality">한국어 STT 전사 품질</h3>
+        <p>Gemini outputTranscription이 한국어를 잘못 처리하는 문제가 있었습니다("괜찮 ." → "괜찮.", "큐레 이터" → "큐레이터"). 후처리 함수로 구두점 앞 공백 제거, 잘못 분리된 한글 음절 병합, 시스템 프롬프트에서 문장당 단어 15개 이하로 제한하여 해결했습니다.</p>
+
+        <h3 id="museum-wifi">박물관 Wi-Fi 연결</h3>
+        <p>Firebase createSession()이 느린 연결에서 무한정 멈추는 문제가 있었습니다. Promise.race에 5초 타임아웃 → 로컬 세션으로 폴백하여 해결했으며, 사용자는 전혀 인지하지 못합니다.</p>
+
+        <h3 id="adk-zod-conflict">ADK와 Zod 버전 충돌</h3>
+        <p>ADK 내부 zod/v3과 프로젝트 Zod v4가 충돌하는 문제가 있었습니다. @google/genai의 Schema 인터페이스를 직접 사용하여 해결했습니다.</p>
+
+        <!-- Section: Tech Stack -->
+        <h2 id="tech-stack">Tech Stack — Google 생태계 활용</h2>
+
+        <h3 id="ai-ml">AI / ML</h3>
+        <ul>
+          <li><strong>Gemini 2.5 Flash</strong> — 메인 모델, Function Calling 기반 오케스트레이션</li>
+          <li><strong>Gemini 2.5 Flash Native Audio</strong> — 실시간 음성 처리</li>
+          <li><strong>Gemini 2.5 Flash Image</strong> — 유물 복원 이미지 생성</li>
+          <li><strong>Gemini 3 Pro Image</strong> — 방문 다이어리 생성</li>
+          <li><strong>Gemini Live API</strong> — 실시간 음성+카메라 멀티모달 WebSocket 세션</li>
+          <li><strong>Google ADK</strong> — 멀티 에이전트 텍스트 폴백 파이프라인</li>
+          <li><strong>Google Search Grounding</strong> — 실시간 유물 정보 검색</li>
+        </ul>
+
+        <h3 id="frontend-and-mobile">Frontend & Mobile</h3>
+        <ul>
+          <li><strong>Next.js 15</strong>, React 19 — 웹 클라이언트</li>
+          <li><strong>React Native (Expo SDK)</strong> — 모바일 클라이언트</li>
+          <li>useLiveSession Hook — WebSocket 세션 관리</li>
+          <li>CameraView & Chat UI Components</li>
+        </ul>
+
+        <h3 id="infrastructure">Infrastructure</h3>
+        <ul>
+          <li><strong>Google Cloud Run</strong> — 서버 배포</li>
+          <li><strong>Firebase Auth</strong> — 익명 인증 (5초 타임아웃 + 로컬 폴백)</li>
+          <li><strong>Firestore</strong> — 세션 데이터 저장</li>
+          <li><strong>Google Places API</strong> — 주변 박물관 탐색</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>

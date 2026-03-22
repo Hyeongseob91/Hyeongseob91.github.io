@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering LLM Loadtester — 비개발직군용 LLM 서빙 벤치마킹 도구 | Hyeongseob Kim Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../reports/report.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">Hyeongseob Kim</a>
+
+    </div>
+  </header>
+
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../images/projects/llm-loadtester-dashboard.png" alt="Engineering LLM Loadtester — 비개발직군용 LLM 서빙 벤치마킹 도구" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">Engineering LLM Loadtester — 비개발직군용 LLM 서빙 벤치마킹 도구</h1>
+                <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> 2026.01 ~ 2026.02</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> 3-Tier (FastAPI + CLI + Next.js + Docker)</span>
+        </div>
+<div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Python</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Next.js</span>
+            <span class="report-article__tag">Docker</span>
+            <span class="report-article__tag">WebSocket</span>
+            <span class="report-article__tag">Goodput</span>
+            <span class="report-article__tag">Validation Loop</span>
+            <span class="report-article__tag">Open Source</span>
+          </span>
+        </div>
+      </header>
+
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <!-- Section: Overview -->
+        <h2 id="overview">Overview</h2>
+        <p><strong>비개발직군도 브라우저에서 바로 LLM 서빙 성능을 테스트할 수 있는 Web 기반 벤치마킹 도구</strong><br><br>상사로부터 "LLM 서버의 동시 접속 가능 인원은 몇 명인가?"라는 질문을 받았습니다. 인프라 평가와 성능 테스트가 담당자에게 축적되지 않고, 필요할 때마다 임시로 담당자를 정해 처리하는 구조가 문제였습니다. "비개발자도 누구나 사용 가능한 사내 공용 LLM LoadTester"를 제안하고 직접 만들었습니다.<br><br>GitHub Stars 2 · WIGTN-Coding 플러그인으로 주말에 MVP를 완성한 후 고도화했습니다.</p>
+
+        <div class="section--highlight">
+          <h3>주요 성과</h3>
+          <ul>
+            <li>Ex-Google ML/AI 엔지니어(NextToken 빌더)로부터 — <strong>콜드 아웃리치 수신</strong></li>
+            <li>이중 교차 검증 시스템 — <strong>Prometheus ±5% + Docker ±10%</strong></li>
+            <li>Adapter Pattern으로 단일 인터페이스 대응 — <strong>vLLM · SGLang · Ollama · Triton</strong></li>
+            <li>GitHub Actions CI — <strong>118 테스트</strong></li>
+            <li>WIGTN-Coding 플러그인으로 — <strong>주말에 MVP 완성</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="links">링크</h3>
+        <ul>
+          <li><strong>GitHub</strong>: <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer">Hyeongseob91/engineering-llm-loadtester</a></li>
+          <li><strong>개발 후기</strong>: <a href="https://www.linkedin.com/posts/harrison-hyeongseob-kim_%EC%A4%91%EA%B3%A0-%EC%8B%A0%EC%9E%85-%EC%A3%BC%EB%8B%88%EC%96%B4%EC%9D%98-%EC%83%9D%EC%A1%B4%EA%B8%B0-1-ai-native-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0-activity-7417243655469477888-5mo8" target="_blank" rel="noopener noreferrer">LinkedIn — AI-Native 프로젝트 개발 후기</a></li>
+        </ul>
+
+        <h3 id="external-response">외부 반응</h3>
+        <p>Ex-Google ML/AI 엔지니어(NextToken 빌더)로부터 콜드 아웃리치 메일을 수신했습니다. GitHub 프로필에서 engineering-llm-loadtester 레포를 발견하고 "quite relevant"하다며 연락해 주셨습니다. 실제로 프로젝트 위에 interactive app을 만들어 피드백을 주고받는 경험을 했습니다.</p>
+
+        <!-- Section: 왜 만들었나 -->
+        <h2 id="why-built">왜 만들었나</h2>
+
+        <h3 id="practical-background">실무 배경</h3>
+        <p>인프라 성능 테스트가 특정 담당자에게만 가능한 구조였습니다. LLM 서빙 성능을 평가하려면 CLI 도구(llmperf, vllm benchmark 등)를 직접 다뤄야 했고, 영업팀·MLOps·PM은 접근 자체가 어려웠습니다.</p>
+
+        <h3 id="solution-direction">해결 방향</h3>
+        <p>UI에서 직접 조정 가능한 반복 테스트 환경을 구축했습니다. 입력(타겟 서버, 트래픽 규모, 프롬프트, SLO 기준값)은 유연하게, 출력(TTFT, TPOT, p99, Goodput)은 데이터 기반으로 명확하게 제공합니다. "누군가를 거치지 않고 직접 도전할 수 있는 Fast Build의 매력"입니다.</p>
+
+        <!-- Section: 핵심 기능 -->
+        <h2 id="core-features">핵심 기능</h2>
+
+        <h3 id="llm-specific-metrics">LLM 특화 메트릭</h3>
+        <ul>
+          <li><strong>TTFT</strong> (Time To First Token) — 첫 토큰까지의 응답 시간</li>
+          <li><strong>TPOT</strong> (Time Per Output Token) — 토큰당 생성 시간</li>
+          <li><strong>Goodput</strong> — SLO 임계값 기반 유효 처리량: "TTFT 500ms 이내 + TPOT 50ms 이내 요청 비율"</li>
+          <li><strong>E2E Latency / ITL / Throughput</strong> — tiktoken 기반 정확한 토큰 카운팅</li>
+        </ul>
+
+        <h3 id="realtime-monitoring">실시간 모니터링</h3>
+        <p>WebSocket 기반 진행 상황 + pynvml GPU 메트릭(VRAM, 온도, 사용률)을 실시간으로 수집합니다.</p>
+
+        <h3 id="ai-analysis-report">AI 분석 리포트</h3>
+        <p>Claude API 기반으로 벤치마크 결과를 자동 분석합니다. 병목 구간 식별 + 최적 GPU 인프라 자동 추천(<code>필요 GPU = ceil(목표 동시성 / 현재 최대 동시성) × (1 + headroom)</code>) 기능을 제공합니다.</p>
+
+        <h3 id="validation-loop">검증 시스템 (Validation Loop)</h3>
+        <ul>
+          <li><strong>Prometheus 메트릭 검증</strong> — 측정값 ±5% 허용 범위 내 교차 확인</li>
+          <li><strong>Docker 로그 검증</strong> — 컨테이너 레벨 ±10% 허용 범위 내 재검증</li>
+          <li>Adapter Pattern: vLLM · SGLang · Ollama · Triton 등 OpenAI 호환 서버 단일 인터페이스 대응</li>
+        </ul>
+
+        <!-- Section: Service Flow -->
+        <h2 id="service-flow">Service Flow</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../images/projects/llm-loadtester-dashboard.png" alt="LLM Loadtester Dashboard" onclick="window.open(this.src, '_blank')">
+            <span>1. 대시보드 — 벤치마크 현황 및 히스토리</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/llm-loadtester-new.png" alt="New Benchmark Configuration" onclick="window.open(this.src, '_blank')">
+            <span>2. 새 벤치마크 — 설정 및 실행</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/llm-loadtester-result.png" alt="Benchmark Result" onclick="window.open(this.src, '_blank')">
+            <span>3. 결과 — 메트릭 차트 및 Goodput 분석</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/llm-loadtester-analysis.png" alt="AI Analysis Report" onclick="window.open(this.src, '_blank')">
+            <span>4. AI 분석 리포트 자동 생성</span>
+          </div>
+        </div>
+
+        <!-- Section: Tech Stack -->
+        <h2 id="tech-stack">Tech Stack</h2>
+
+        <h3 id="backend">Backend</h3>
+        <ul>
+          <li><strong>API</strong>: Python 3.12, FastAPI, asyncio</li>
+          <li><strong>CLI</strong>: Typer (터미널 직접 사용 가능)</li>
+          <li><strong>GPU 모니터링</strong>: pynvml</li>
+          <li><strong>검증</strong>: Prometheus + Docker 이중 교차 검증</li>
+        </ul>
+
+        <h3 id="frontend">Frontend</h3>
+        <ul>
+          <li><strong>Web</strong>: Next.js, React, Recharts (메트릭 시각화)</li>
+          <li><strong>실시간</strong>: WebSocket 기반 진행 상황 스트리밍</li>
+        </ul>
+
+        <h3 id="infrastructure">Infrastructure</h3>
+        <ul>
+          <li><strong>Docker</strong>: docker-compose 원클릭 배포</li>
+          <li><strong>CI</strong>: GitHub Actions (118 테스트)</li>
+          <li><strong>AI</strong>: Claude API (분석 리포트 생성)</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+  </footer>
+
+  <script src="project.js"></script>
+</body>
+</html>
