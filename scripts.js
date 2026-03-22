@@ -777,6 +777,16 @@ document.addEventListener('DOMContentLoaded', function() {
                   src: 'images/projects/soundmind-chat-agent-chat-session.png',
                   alt: 'Chat Agent - Chat Session',
                   caption: '2. Chat Session — Tavily Search 도구 호출 및 응답'
+                },
+                {
+                  src: 'images/projects/soundmind-chat-agent-file-read.png',
+                  alt: 'Chat Agent - File Read',
+                  caption: '3. File Read — 파일 읽기 + Report Agent 자동 호출로 보고서 생성'
+                },
+                {
+                  src: 'images/projects/soundmind-chat-agent-reports.png',
+                  alt: 'Chat Agent - Report Result',
+                  caption: '4. Report 완료 — 문서 요약 보고서 생성 결과'
                 }
               ]
             },
