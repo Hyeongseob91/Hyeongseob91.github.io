@@ -332,7 +332,8 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               subtitle: '<span style="color:#2563eb;">2단계</span> — 정량 평가에서 드러난 문제',
               content: 'Advanced RAG를 구축한 뒤, 성능을 정량적으로 측정하기 위해 <strong>RAGAS 기반 평가 프레임워크를 직접 구축</strong>했습니다.<br><br>' +
-                '<strong>Silver Dataset 구축:</strong> Microsoft의 Silver Dataset 이론을 기반으로, LLM을 활용하여 원본 문서에서 질문-답변 쌍을 자동 생성하는 방식으로 평가용 데이터셋을 구축했습니다. 평가 규모: <strong>81개 Q&A Ground Truth · 11개 한국어 공공문서 · 3,678페이지</strong>.<br><br>' +
+                '<strong>LLM 기반 Silver Dataset 자동 생성:</strong><br>' +
+                '데이터 엔지니어링의 <strong>Medallion Architecture(Bronze → Silver → Gold)</strong> 패턴을 평가 데이터 생성에 차용했습니다. 3,678페이지의 Raw 공공문서(<strong>Bronze</strong>)에서 Qwen3-235B가 난이도·질의 유형·추론 홉 수가 태깅된 81개 Q&A Ground Truth(<strong>Silver</strong>)를 자동 생성했습니다. 이 Silver 데이터셋으로 Node-level Ablation Study를 수행하여 컴포넌트별 기여도를 정량화(<strong>Gold</strong>)하고, 그 결과가 AI Console 자동 추천 엔진의 Decision Tree 임계값에 직접 반영되었습니다.<br><br>' +
                 '<strong>RAGAS 평가의 한계:</strong><br>' +
                 'RAGAS 프레임워크로 평가를 수행했으나, RAGAS의 핵심 메트릭인 ROUGE-L(0.050) / BLEU(0.002) 등은 Ground Truth와 RAG 응답 간의 <strong>토큰 단위 일치도(CER, WER 등)</strong>를 기반으로 점수를 산출합니다.<br><br>' +
                 '그러나 생성형 AI는 동일한 맥락이라도 매번 다른 어휘와 문장 구조로 답변을 생성하기 때문에, 의미적으로 정확한 응답도 토큰이 다르면 낮은 점수가 나올 수밖에 없었습니다. 한국어의 교착어 특성(조사·어미 변형)이 이 문제를 더욱 심화시켰습니다.<br><br>' +
@@ -351,7 +352,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 '</tbody></table><br>' +
                 '<strong>다수 평가를 통해 드러난 구조적 한계:</strong><br>' +
                 '실제 질의의 대부분은 Multi-Hop이 아닌 Flat 구조였지만, 수십 개의 컨텍스트를 한꺼번에 수집해야만 답변을 생성할 수 있는 패턴이 지배적이었습니다.<br><br>' +
-                '예를 들어 "20개 분과에 대한 사업 기준을 설명하라"는 질의는 20개 이상의 컨텍스트가 필요한데, 인프라와 컨텍스트 윈도우의 한계로 한 번에 모두 담을 수 없었습니다.<br><br>' +
+                '예를 들어 "20개 분과에 대한 사업 기준을 설명하라"는 질의는 20개 이상의 컨텍스트가 필요한데, Reranker의 Top-k=5로는 턱없이 부족했습니다. 이런 유형의 문서를 분석해보면, 대부분 섹션의 결론이나 요구사항 같은 <strong>반복적인 구조</strong>를 가지고 있었습니다.<br><br>' +
+                '이 인사이트에서 <strong>Qdrant 도입의 근거</strong>가 나왔습니다. 반복 구조 문서는 시맨틱 검색보다 JSON 메타데이터 기반 Filter 검색이 더 효과적이었고, 문서를 업로드할 때 섹션별 메타데이터를 구조화하여 저장하면 필요한 20개 이상의 컨텍스트를 정확하게 필터링할 수 있었습니다. Weaviate(Hybrid Search)와 Qdrant(Filter 기반)를 문서 특성에 따라 분기하는 VectorDB 이원화 설계가 이 경험에서 비롯되었습니다.<br><br>' +
                 '<strong>E2E 종합 평가 결과 — Advanced RAG가 오히려 낮았다:</strong><br>' +
                 '81개 Q&A 전수 평가, 5차원 가중 평균 기준:<br><br>' +
                 '<table style="width:100%; border-collapse:collapse; font-size:0.9em; margin-bottom:12px;">' +
@@ -420,12 +422,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         {
           title: 'AI Console — 내부 운영 플랫폼',
-          content: 'RAG R&D 인사이트와 사업 요구가 결합되어 탄생한 <strong>비개발자 운용 가능한 통합 Admin 콘솔</strong>입니다. Next.js 기반 단일 웹 콘솔(:3100)에서 문서 분석·배포(<strong>Analysis</strong>), 품질 평가(<strong>Eval</strong>), 실시간 모니터링(<strong>Monitoring</strong>), 인프라·사용자 관리(<strong>Admin</strong>)까지 RAG 영업 사이클 전체를 운용합니다.',
-          image: {
-            src: 'images/projects/soundmind-ai-console-architecture.png',
-            alt: 'AI Console Architecture Diagram',
-            caption: 'AI Console 아키텍처 — Next.js(:3100) + Analysis API(:9200) + Eval API(:9300) + Grafana(:3200)'
-          }
+          content: 'RAG R&D 인사이트와 사업 요구가 결합되어 탄생한 <strong>비개발자 운용 가능한 통합 Admin 콘솔</strong>입니다. Next.js 기반 단일 웹 콘솔(:3100)에서 문서 분석·배포(<strong>Analysis</strong>), 품질 평가(<strong>Eval</strong>), 실시간 모니터링(<strong>Monitoring</strong>), 인프라·사용자 관리(<strong>Admin</strong>)까지 RAG 영업 사이클 전체를 운용합니다.'
+        },
+        {
+          title: 'AI Console',
+          gallery: [
+            {
+              src: 'images/projects/soundmind-ai-console-loginpage.png',
+              alt: 'AI Console - Login',
+              caption: '1. Login — AI Console 관리자 인증 화면'
+            },
+            {
+              src: 'images/projects/soundmind-ai-console-dashboard.png',
+              alt: 'AI Console - Dashboard',
+              caption: '2. Dashboard — 서비스 상태, GPU 할당, 모델 서빙 현황, Pipeline 관리'
+            }
+          ]
         },
 
         // AI Console — Analysis
@@ -497,6 +509,11 @@ document.addEventListener('DOMContentLoaded', function() {
               src: 'images/projects/soundmind-analysis-pipeline-deploy.png',
               alt: 'Analysis - Pipeline Builder & Deploy',
               caption: '3. Pipeline Builder — AI 추천 기반 설정 조정 + VLM Parsing(WigtnOCR) 선택 + 원클릭 배포'
+            },
+            {
+              src: 'images/projects/soundmind-analysis-pipeline-deployed.png',
+              alt: 'Analysis - Pipeline Deployed',
+              caption: '4. 배포 완료 — Docker 컨테이너 자동 생성 및 서비스 등록 완료'
             }
           ]
         },
@@ -649,7 +666,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           ]
         },
-
+        {
+          title: 'AI Console — Monitoring',
+          gallery: [
+            {
+              src: 'images/projects/soundmind-monitoring-system-overview.png',
+              alt: 'Monitoring - System Overview',
+              caption: '1. System Overview — 전체 에코시스템 실시간 로그 대시보드'
+            },
+            {
+              src: 'images/projects/soundmind-monitoring-platform-detail.png',
+              alt: 'Monitoring - Platform Detail',
+              caption: '2. Platform Detail — 플랫폼별 상세 메트릭 및 에러 추적'
+            }
+          ]
+        },
 
         // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         // AI Platform (고객 대면)
@@ -657,12 +688,38 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           title: 'AI Platform — 고객 대면 Playground (B2B SaaS)',
           content: 'AI Console에서 생성·배포된 맞춤형 RAG Pipeline을, 고객이 현장에서 즉시 PoC 체험할 수 있는 <strong>Playground 서비스 플랫폼</strong>입니다. 영업팀이 클라우드 서버에 접속하여 고객 문서를 업로드하고 바로 시연할 수 있도록 설계되었으며, 3개의 독립 Agent 세션을 제공합니다. React 19 Web Console + FastAPI API Gateway(JWT 멀티테넌트 인증, SSE 스트리밍)로 구현되었습니다.',
-          image: {
-            src: 'images/projects/soundmind_ai_platform_architecture.png',
-            alt: 'AI Platform Architecture Diagram',
-            caption: 'AI Platform 아키텍처 — React 19 + FastAPI Gateway + Dynamic RAG Pipeline 연결'
-          },
           subsections: [
+            {
+              subtitle: 'Web Console',
+              gallery: [
+                {
+                  src: 'images/projects/soundmind-ai-platform-loginpage.png',
+                  alt: 'AI Platform - Login',
+                  caption: '1. Login — JWT 기반 멀티테넌트 인증'
+                },
+                {
+                  src: 'images/projects/soundmind-ai-platform-portal-page.png',
+                  alt: 'AI Platform - Portal',
+                  caption: '2. Portal — RAG Agent · Chat Agent · AICC Agent 서비스 선택'
+                }
+              ]
+            },
+            {
+              subtitle: '인증 · 권한 — 5단계 진화',
+              content: 'MVP 무인증에서 출발하여 PoC 납품 단계까지 점진적으로 확장했습니다. Company(slug) + Team + Session 3계층 멀티테넌트 격리를 적용하여 고객사별 데이터를 분리합니다.' +
+                '<table style="width:100%; margin-top:12px; border-collapse:collapse; font-size:0.92em;">' +
+                '<thead><tr style="background:#f1f5f9;">' +
+                '<th style="padding:8px; border:1px solid #e2e8f0; text-align:center;">단계</th>' +
+                '<th style="padding:8px; border:1px solid #e2e8f0;">인증 방식</th>' +
+                '<th style="padding:8px; border:1px solid #e2e8f0;">핵심 변화</th>' +
+                '</tr></thead><tbody>' +
+                '<tr><td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">①</td><td style="padding:8px; border:1px solid #e2e8f0;">무인증</td><td style="padding:8px; border:1px solid #e2e8f0;">MVP 빠른 검증</td></tr>' +
+                '<tr><td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">②</td><td style="padding:8px; border:1px solid #e2e8f0;">JWT</td><td style="padding:8px; border:1px solid #e2e8f0;">DB 연동 사용자 인증</td></tr>' +
+                '<tr><td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">③</td><td style="padding:8px; border:1px solid #e2e8f0;">Guest Tier</td><td style="padding:8px; border:1px solid #e2e8f0;">회원가입 없이 체험 (refresh token 비활성화)</td></tr>' +
+                '<tr><td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">④</td><td style="padding:8px; border:1px solid #e2e8f0;">3-tier RBAC</td><td style="padding:8px; border:1px solid #e2e8f0;">Admin · Manager · User · Guest 역할별 접근 제어</td></tr>' +
+                '<tr><td style="padding:8px; border:1px solid #e2e8f0; text-align:center;">⑤</td><td style="padding:8px; border:1px solid #e2e8f0;">Guest BYOK</td><td style="padding:8px; border:1px solid #e2e8f0;">게스트가 자체 API 키로 클라우드 LLM 직접 호출</td></tr>' +
+                '</tbody></table>'
+            },
             {
               subtitle: '① RAG Agent — 문서 기반 Q&A',
               content: '고객이 업로드한 문서를 기반으로 질문에 답변하는 문서 특화 Q&A 에이전트입니다. AI Console Analysis에서 고객 문서 특성에 맞게 자동 생성·배포된 RAG Pipeline을 AI Platform이 자동으로 감지하여 연결합니다. 고객마다 서로 다른 맞춤형 파이프라인이 연결되므로, 동일한 플랫폼 위에서 고객별로 최적화된 검색·응답 경험을 제공합니다.',
@@ -671,6 +728,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 '<strong>Graceful Degradation</strong> — 파이프라인 장애 시 Direct LLM 응답으로 자동 전환(fallback: true 메타데이터 포함), 사용자 요청이 끊기지 않는 설계',
                 '<strong>Retrieval Insight 3-Panel</strong> — (1) Query Transformation: 원본 질의 → 5개 최적화 쿼리, (2) Hybrid Search Score: Dense/Sparse 점수 바 차트, (3) Reranking Impact: 순위 변동 시각화(#1 Gold · #2 Silver · #3 Bronze 뱃지). SSE 이벤트로 실시간 스트리밍',
                 '<strong>SSE 실시간 스트리밍</strong> — agent_start → processing → llm_stream(토큰 단위) → final_response → done 이벤트 체인. StreamingThinkParser가 &lt;think&gt; 태그를 실시간 분리하여 추론 과정과 답변을 동시 렌더링'
+              ]
+            },
+            {
+              subtitle: 'RAG Agent',
+              gallery: [
+                {
+                  src: 'images/projects/soundmind-rag-agent-main.png',
+                  alt: 'RAG Agent - Main',
+                  caption: '1. RAG Agent 메인 — 문서 기반 Q&A Playground'
+                },
+                {
+                  src: 'images/projects/soundmind-rag-agent-chat-session.png',
+                  alt: 'RAG Agent - Chat Session',
+                  caption: '2. Chat Session — 문서 기반 Q&A 대화 및 SSE 실시간 스트리밍'
+                },
+                {
+                  src: 'images/projects/soundmind-rag-agent-document-upload.png',
+                  alt: 'RAG Agent - Document Upload',
+                  caption: '3. 문서 업로드 — 고객 문서 업로드 및 파이프라인 연결'
+                },
+                {
+                  src: 'images/projects/soundmind-rag-agent-qa.png',
+                  alt: 'RAG Agent - Retrieval Insight',
+                  caption: '4. Retrieval Insight — Query Transformation + Hybrid Score + Reranking Impact 시각화'
+                }
               ]
             },
             {
@@ -684,51 +766,23 @@ document.addEventListener('DOMContentLoaded', function() {
               ]
             },
             {
+              subtitle: 'Chat Agent',
+              gallery: [
+                {
+                  src: 'images/projects/soundmind-chat-agent-build.png',
+                  alt: 'Chat Agent - Build',
+                  caption: '1. Chat Agent Toolkit — 모델·도구·MCP·Sub-agent 선택 후 Build'
+                },
+                {
+                  src: 'images/projects/soundmind-chat-agent-chat-session.png',
+                  alt: 'Chat Agent - Chat Session',
+                  caption: '2. Chat Session — Tavily Search 도구 호출 및 응답'
+                }
+              ]
+            },
+            {
               subtitle: '③ AICC Agent — AI 컨택센터 (개발 예정)',
               content: 'RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트입니다. 개발 예정.'
-            },
-            {
-              subtitle: '인증 · 권한 — 5단계 진화',
-              content: '프로젝트 초기부터 인증 체계를 5단계에 걸쳐 점진적으로 발전시켰습니다. MVP에서는 무인증으로 빠르게 검증하고, PoC 납품 단계에서 멀티테넌트 RBAC까지 확장했습니다.',
-              list: [
-                '<strong>5단계 진화</strong> — ① 무인증(MVP 검증) → ② JWT(DB 연동 사용자 인증) → ③ Guest Tier(회원가입 없이 체험, refresh token 비활성화) → ④ 3-tier RBAC(Admin/Manager/User/Guest 역할별 서비스 접근 제어) → ⑤ Guest BYOK(게스트가 자신의 API 키로 클라우드 LLM 직접 호출)',
-                '<strong>멀티테넌트 격리</strong> — Company(slug) + Team + Session 3계층 격리. RAG 문서는 Qdrant 컬렉션 단위로 고객사별 분리, 세션별 문서 접근 범위 제한',
-                '<strong>Hook 시스템</strong> — 3단계 우선순위 이벤트 버스: CRITICAL(0, 동기 실행 — 검증/차단), NORMAL(50, 동기 — DB 저장/상태 업데이트), LOW(100, asyncio.create_task fire-and-forget — 로깅/분석). 서버 종료 시 pending LOW 태스크 10초 대기 후 정리'
-              ]
-            },
-            {
-              subtitle: 'API Gateway — 58개 엔드포인트',
-              content: 'FastAPI 기반 API Gateway가 8개 도메인 라우터로 전체 플랫폼의 진입점 역할을 합니다.',
-              list: [
-                '<strong>라우터 구성</strong> — auth(5) · chat(3) · documents(12) · docs(3) · settings(4) · session(4) · ai-agent(8) · admin(14) = 58개 엔드포인트',
-                '<strong>이벤트 시스템</strong> — AgentEvent(Pydantic 모델)로 SSE 전송과 BigQuery 로깅을 동시 처리. EventDispatcher가 asyncio.gather로 핸들러 병렬 실행',
-                '<strong>Timeout 전략</strong> — 기본 120s, 업로드 1800s, RAG 스트리밍 300s. 클라이언트 연결 해제 감지(is_disconnected)로 불필요한 처리 조기 종료'
-              ]
-            }
-          ]
-        },
-        {
-          title: 'AI Platform',
-          gallery: [
-            {
-              src: 'images/projects/soundmind_rag_agent_loginpage.png',
-              alt: 'AI Platform - Login',
-              caption: '1. Login — JWT 기반 멀티테넌트 인증'
-            },
-            {
-              src: 'images/projects/soundmind_rag_agent_portalpage.png',
-              alt: 'AI Platform - Portal',
-              caption: '2. Portal — RAG Agent · Chat Agent · AICC Agent 서비스 선택'
-            },
-            {
-              src: 'images/projects/soundmind_rag_agent_dashboardpage.png',
-              alt: 'AI Platform - RAG Agent',
-              caption: '3. RAG Agent — 문서 기반 Q&A Playground'
-            },
-            {
-              src: 'images/projects/soundmind_rag_agent_reference.png',
-              alt: 'AI Platform - Retrieval Insight',
-              caption: '4. Retrieval Insight — 근거 문서 출처 및 검색 과정 시각화'
             }
           ]
         },
