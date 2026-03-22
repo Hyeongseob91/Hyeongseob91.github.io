@@ -1365,8 +1365,8 @@ img {
   line-height: 1.6;
   margin-bottom: 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

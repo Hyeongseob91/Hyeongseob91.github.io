@@ -221,13 +221,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // =====================================================
   const projectCards = document.querySelectorAll('.project-card');
 
-  // Open project detail page in new tab
+  // Open project detail page in same tab
   projectCards.forEach(card => {
     card.addEventListener('click', function(e) {
       if (e.target.closest('.project-card__link-btn') || e.target.closest('.project-card__link')) return;
       const projectId = this.dataset.project;
       if (projectId) {
-        window.open('projects/' + projectId + '.html', '_blank');
+        window.location.href = 'projects/' + projectId + '.html';
       }
     });
   });
