@@ -1234,6 +1234,32 @@ img {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* Flagship project cards */
+.project-card--flagship {
+  border-left: 3px solid var(--color-primary);
+  position: relative;
+}
+
+.project-card--flagship::after {
+  content: 'Flagship';
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.project-card--flagship:hover {
+  border-left-color: var(--color-primary-light);
+}
+
 /* Hidden project cards */
 .project-card.hidden {
   display: none;
