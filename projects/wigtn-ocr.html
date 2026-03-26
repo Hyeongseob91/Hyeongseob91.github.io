@@ -107,7 +107,7 @@
         <p>PDF 페이지 이미지를 Qwen3-VL-30B-Instruct(Teacher)에 입력하여 구조화된 마크다운을 생성. KoGovDoc 10개 문서 3,637페이지 + arXiv 39개 논문 864페이지 = 총 4,501페이지 처리. 초기에 30B-Thinking 모델을 사용했으나 출력 불안정(think 태그 오염, 토큰 잘림)이 발생하여 Instruct 모델로 전환했습니다. <strong>Finding: document transcription에서는 reasoning 모델보다 instruction-tuned 모델이 안정적</strong>입니다.</p>
 
         <h3 id="gt-quality-verification">GT 품질 검증</h3>
-        <p>Qwen3.5-122B를 Judge로 사용하여 5점 척도 평가. "원본과 다른 부분"이 아니라 "출력물 자체가 학습 데이터로 쓸 만한 품질인가"를 판단하기 위해 이미지 없이 텍스트만으로 평가했습니다. 반복 루프, 텍스트 절단, 사고 과정 유출은 텍스트만 봐도 판별 가능합니다. KoGovDoc 합격률 75.1%, arXiv 73.8%. 3점 미만 페이지는 학습에서 제외했습니다.</p>
+        <p>Qwen3.5-122B를 Judge로 사용하여 5점 척도 평가. "원본과 다른 부분"이 아니라 "출력물 자체가 학습 데이터로 쓸 만한 품질인가"를 판단하기 위해 <strong>의도적으로 이미지 없이 텍스트만으로 평가</strong>했습니다. VLM(30B)이 생성한 GT를 다시 VLM으로 평가하면, 동일한 시각적 해석 편향(visual interpretation bias)을 공유하는 circular evaluation 문제가 발생하기 때문입니다. 텍스트 전용 LLM을 Judge로 분리하면, 원본 이미지에 대한 해석 없이 마크다운 출력물의 구조·표·완전성·환각·일관성 5개 차원을 독립적으로 평가할 수 있어 생성-평가 간 편향 순환을 차단합니다. 반복 루프, 텍스트 절단, 사고 과정 유출 역시 텍스트만으로 판별 가능합니다. KoGovDoc 합격률 75.1%, arXiv 73.8%. 3점 미만 페이지는 학습에서 제외했습니다.</p>
 
         <h3 id="data-refinement">데이터 정제</h3>
         <ul>
