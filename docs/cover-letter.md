@@ -20,7 +20,7 @@ Wanted Learning K-Digital Training 과정을 거치며 AI/ML의 기초부터 다
 
 #### 현재의 나에게 미친 지속적인 영향력
 
-현재 저는 (주)사운드마인드에서 AI Research Engineer로서 High-Performance RAG Engine 아키텍처를 설계하고, Enterprise RAG Agent PlayGround를 Project Lead로 이끌고 있습니다. 건설 현장에서 익힌 "복잡한 이해관계 조율"과 "프로젝트 전체 흐름 관리" 역량이 AI 시스템 설계에 그대로 적용되고 있습니다.
+(주)사운드마인드(2025.07 ~ 2026.03)에서 AI Research Engineer로서 High-Performance RAG Engine 아키텍처를 설계하고, Enterprise RAG Agent PlayGround를 Project Lead로 이끌었습니다. 이후 (주)브레인크루 Research Engineering 팀에 Engineering Part Lead로 합류해, 프로덕션 AI 시스템을 End-to-End로 만들고 있습니다. 건설 현장에서 익힌 "복잡한 이해관계 조율"과 "프로젝트 전체 흐름 관리" 역량이 AI 시스템 설계에 그대로 적용되고 있습니다.
 
 ---
 
@@ -48,7 +48,7 @@ Wanted Learning K-Digital Training 과정을 거치며 AI/ML의 기초부터 다
 
 #### 활동의 시작 동기와 목표 설정
 
-사운드마인드에서 AI Research Lead로서 마주한 첫 번째 과제는 "AI 기술을 어떻게 고객에게 증명할 것인가"였습니다. AI 기술은 추상적이어서 고객사에게 설명하기 어렵고, 제안서만으로는 기술력을 증명하기 힘들었습니다. 또한 기본적인 RAG 시스템은 검색 정확도가 낮고, LLM이 생성한 답변의 근거를 검증할 방법이 없었습니다.
+사운드마인드에서 AI Research Engineer로서 마주한 첫 번째 과제는 "AI 기술을 어떻게 고객에게 증명할 것인가"였습니다. AI 기술은 추상적이어서 고객사에게 설명하기 어렵고, 제안서만으로는 기술력을 증명하기 힘들었습니다. 또한 기본적인 RAG 시스템은 검색 정확도가 낮고, LLM이 생성한 답변의 근거를 검증할 방법이 없었습니다.
 
 #### 목표 달성을 위해 거쳐온 핵심적인 수행 과정
 
@@ -62,7 +62,7 @@ Wanted Learning K-Digital Training 과정을 거치며 AI/ML의 기초부터 다
 
 #### 결과가 가져온 변화와 개인적 보람
 
-현재 이 시스템은 B2B 영업 도구, 요구사항 수집 도구, 사내 Ideation 도구로 활용되고 있습니다. "AI 기술의 비즈니스 가치를 증명하는 도구"로서, 회사의 기술경쟁력 제고에 기여하고 있습니다. 2026년 상반기 AI Platform R&D 전략 및 로드맵 수립을 리드하며, 기술과 비즈니스를 연결하는 역할을 수행하고 있습니다.
+이 시스템은 사운드마인드 내부에서 B2B 영업 도구, 요구사항 수집 도구, 사내 Ideation 도구로 활용되었습니다. "AI 기술의 비즈니스 가치를 증명하는 도구"로서 회사의 기술경쟁력 제고에 기여했고, 2026년 상반기 AI Platform R&D 전략 및 로드맵 수립을 리드하며 기술과 비즈니스를 연결하는 역할을 수행했습니다.
 
 ---
 
