@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoundMind AI Ecosystem | Hyeongseob Kim Portfolio</title>
+  <title>SoundMind AI Ecosystem | Hyeong-seob(Harrison) Kim Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
   <header class="report-header">
     <div class="report-header__inner">
-      <a href="../index.html" class="report-header__brand">Hyeongseob Kim</a>
+      <a href="../index.html" class="report-header__brand">Hyeong-seob(Harrison) Kim</a>
 
     </div>
   </header>
@@ -107,7 +107,7 @@
         <!-- System Architecture -->
         <!-- ============================== -->
         <h2 id="system-architecture">System Architecture</h2>
-        <p>본 프로젝트는 <strong>단독 개발 프로젝트</strong>로서, 기획부터 디자인, 시스템 개발 및 배포까지 솔로프리너로 진행했습니다. 현재 Beta 버전으로 End User 테스트를 진행 중입니다.<br><br>SoundMind AI Ecosystem은 크게 <strong>3개 축</strong>으로 구성됩니다. 고객 대면 서비스(<strong>AI Platform</strong>), 내부 운영 도구(<strong>AI Console</strong> — Analysis · Eval · Monitoring), 그리고 이들이 공유하는 <strong>모델 서빙 인프라</strong>입니다.<br><br><strong>모델 서빙 인프라:</strong><br>• <strong>LLM</strong> — Qwen3 시리즈, vLLM 서빙 (OpenAI 호환 API)<br>• <strong>Embedder / Reranker</strong> — BGE-M3 + BGE-Reranker-v2-M3, Infinity 서빙. vLLM에서 BGE-M3 로드 시 아키텍처 호환 문제(XLMRobertaModel로 인식되어 sparse/colbert weight 누락)가 발생하여, 임베딩 모델 서빙에 특화된 Infinity로 전환<br><br><strong>이 글의 구성:</strong><br>① <strong>RAG R&D</strong> — Advanced RAG 구축 → 정량 평가 → Ablation Study → "문서마다 다른 전략이 필요하다"는 인사이트 도출<br>② <strong>AI Console</strong> — R&D 인사이트를 바탕으로 구축한 내부 운영 플랫폼 (Analysis · Eval · Monitoring)<br>③ <strong>AI Platform</strong> — 고객이 즉시 PoC를 체험할 수 있는 Playground (RAG Agent · Chat Agent · AICC Agent)</p>
+        <p><em>※ 2026.03 사운드마인드 퇴사 시점 기준 정리. 이후 본인의 추가 기여는 없음.</em><br><br>본 프로젝트는 <strong>단독 개발 프로젝트</strong>로서, 기획부터 디자인, 시스템 개발 및 배포까지 솔로프리너로 진행했습니다. 퇴사 시점 기준 Beta 버전으로 End User 테스트를 진행 중이었습니다.<br><br>SoundMind AI Ecosystem은 크게 <strong>3개 축</strong>으로 구성됩니다. 고객 대면 서비스(<strong>AI Platform</strong>), 내부 운영 도구(<strong>AI Console</strong> — Analysis · Eval · Monitoring), 그리고 이들이 공유하는 <strong>모델 서빙 인프라</strong>입니다.<br><br><strong>모델 서빙 인프라:</strong><br>• <strong>LLM</strong> — Qwen3 시리즈, vLLM 서빙 (OpenAI 호환 API)<br>• <strong>Embedder / Reranker</strong> — BGE-M3 + BGE-Reranker-v2-M3, Infinity 서빙. vLLM에서 BGE-M3 로드 시 아키텍처 호환 문제(XLMRobertaModel로 인식되어 sparse/colbert weight 누락)가 발생하여, 임베딩 모델 서빙에 특화된 Infinity로 전환<br><br><strong>이 글의 구성:</strong><br>① <strong>RAG R&D</strong> — Advanced RAG 구축 → 정량 평가 → Ablation Study → "문서마다 다른 전략이 필요하다"는 인사이트 도출<br>② <strong>AI Console</strong> — R&D 인사이트를 바탕으로 구축한 내부 운영 플랫폼 (Analysis · Eval · Monitoring)<br>③ <strong>AI Platform</strong> — 고객이 즉시 PoC를 체험할 수 있는 Playground (RAG Agent · Chat Agent · AICC Agent)</p>
         <figure>
           <img src="../images/projects/soundmind-ai-ecosystem-architecture.png" alt="SoundMind AI Ecosystem Architecture" onclick="window.open(this.src, '_blank')">
           <figcaption>AI Platform(고객 대면) ↔ AI Console(Analysis · Eval · Monitoring) + Cloud Server · Local Database · Local Model Serving</figcaption>
@@ -518,19 +518,19 @@
           </div>
         </div>
 
-        <h3 id="aicc-agent">③ AICC Agent — AI 컨택센터 (개발 예정)</h3>
-        <p>RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트입니다. 개발 예정.</p>
+        <h3 id="aicc-agent">③ AICC Agent — AI 컨택센터 (퇴사 시점 미착수)</h3>
+        <p>RAG Agent의 문서 기반 응답 능력과 Chat Agent의 자율 도구 사용 능력을 결합하여, 고객 상담 시나리오에 특화된 AI 컨택센터 에이전트로 기획되어 있었으나, 본인 퇴사(2026.03) 전까지 본격 개발에는 착수하지 못했습니다.</p>
 
         <!-- ============================== -->
         <!-- Next Step -->
         <!-- ============================== -->
-        <h2 id="next-step">Next Step</h2>
-        <p>현재 Beta 테스트를 진행 중이며, End User 피드백을 반영한 정식 배포를 준비하고 있습니다.</p>
+        <h2 id="next-step">Next Step (퇴사 시점 로드맵)</h2>
+        <p>본인 퇴사(2026.03) 시점 기준의 향후 계획입니다. 이후 진행 상황은 사운드마인드 내부에서 별도 진행되었습니다.</p>
 
         <h3 id="wigtn-ocr-integration">WigtnOCR 연동 — VLM 기반 문서 파싱 고도화</h3>
-        <p>현재 텍스트 추출 중심의 파싱을 <strong>VLM(Vision-Language Model) 기반으로 확장</strong>하여, 표·차트·레이아웃 등 시각적 구조까지 보존합니다. 별도 연구 프로젝트로 진행 중인 <strong>WigtnOCR</strong>(Qwen3-VL-2B LoRA fine-tuning → 비교 실험 4개 모델 중 Table TEDS 1위, 15배 큰 30B 모델 성능 초과)의 성과를 Ecosystem에 직접 적용하여, A/B 테스트에서 확인된 VLM 파싱의 품질 우위(0.888 → 1.000)를 전체 파이프라인에 확대할 예정입니다.</p>
+        <p>텍스트 추출 중심의 파싱을 <strong>VLM(Vision-Language Model) 기반으로 확장</strong>하여, 표·차트·레이아웃 등 시각적 구조까지 보존하는 방향으로 확장하는 것이 목표였습니다. 별도 연구 프로젝트로 진행한 <strong>WigtnOCR</strong>(Qwen3-VL-2B LoRA fine-tuning → 비교 실험 4개 모델 중 Table TEDS 1위, 15배 큰 30B 모델 성능 초과)의 성과를 Ecosystem에 직접 적용하여, A/B 테스트에서 확인된 VLM 파싱의 품질 우위(0.888 → 1.000)를 전체 파이프라인에 확대하려는 계획이 있었습니다.</p>
 
-        <h3 id="production-release">정식 배포</h3>
+        <h3 id="production-release">정식 배포 (계획)</h3>
         <ul>
           <li>Beta 테스트 피드백 기반 UX 개선 및 안정성 확보</li>
           <li>평가 → 분석 → 재배포 Feedback Loop으로 자동 최적화 사이클 구축</li>
@@ -547,7 +547,7 @@
   </nav>
 
   <footer class="report-footer">
-    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob(Harrison) Kim</p>
   </footer>
 
   <script src="project.js"></script>
