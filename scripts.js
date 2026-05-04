@@ -10,6 +10,26 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // =====================================================
+  // LOCALE
+  // =====================================================
+  const LOCALE = (document.documentElement.lang || 'ko').toLowerCase().startsWith('en') ? 'en' : 'ko';
+  const LABELS = {
+    ko: {
+      collapse: '접기',
+      more: '더보기',
+      moreProjects: '더 많은 프로젝트 보기',
+      collapseProjects: '프로젝트 접기'
+    },
+    en: {
+      collapse: 'Collapse',
+      more: 'Show more',
+      moreProjects: 'Show more projects',
+      collapseProjects: 'Collapse projects'
+    }
+  };
+  const T = LABELS[LOCALE];
+
+  // =====================================================
   // NAVBAR SCROLL EFFECT
   // =====================================================
   const navbar = document.getElementById('navbar');
@@ -136,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (totalCount > INITIAL_SHOW) {
       btn.parentElement.classList.remove('projects__more-wrapper--hidden');
       btn.classList.toggle('projects__more-btn--expanded', expanded);
-      btn.querySelector('.projects__more-btn-text').textContent = expanded ? '접기' : '더보기';
+      btn.querySelector('.projects__more-btn-text').textContent = expanded ? T.collapse : T.more;
     } else {
       btn.parentElement.classList.add('projects__more-wrapper--hidden');
     }
@@ -227,7 +247,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.target.closest('.project-card__link-btn') || e.target.closest('.project-card__link')) return;
       const projectId = this.dataset.project;
       if (projectId) {
-        window.location.href = 'projects/' + projectId + '.html';
+        const prefix = LOCALE === 'en' ? '../projects/' : 'projects/';
+        window.location.href = prefix + projectId + '.html';
       }
     });
   });
@@ -261,14 +282,14 @@ document.addEventListener('DOMContentLoaded', function() {
           card.classList.remove('show');
         });
         this.classList.remove('expanded');
-        btnText.textContent = '더 많은 프로젝트 보기';
+        btnText.textContent = T.moreProjects;
       } else {
         // Show cards
         hiddenCards.forEach(card => {
           card.classList.add('show');
         });
         this.classList.add('expanded');
-        btnText.textContent = '프로젝트 접기';
+        btnText.textContent = T.collapseProjects;
       }
     });
   }
