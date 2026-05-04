@@ -110,6 +110,29 @@ img {
   color: var(--color-text);
 }
 
+.report-header__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--color-border);
+  color: var(--color-border);
+  font-size: 0.8rem;
+}
+
+.report-header__lang-link {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+}
+
+.report-header__lang-link:hover { color: var(--color-text); }
+.report-header__lang-link--active { color: var(--color-primary); }
+
 /* =====================================================
    MAIN
    ===================================================== */
