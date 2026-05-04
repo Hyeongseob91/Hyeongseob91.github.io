@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOMI — AI Remote Rehabilitation Service | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/komi.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/komi.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/komi.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/komi.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/komi_realtime_feedback.png" alt="KOMI — AI Remote Rehabilitation Service" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">KOMI — AI Remote Rehabilitation Service</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead (AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Mar 2025 (1 month)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> FastAPI + WebSocket + RAG Pipeline</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">YOLO11</span>
+            <span class="report-article__tag">Pose Detection</span>
+            <span class="report-article__tag">LangChain</span>
+            <span class="report-article__tag">RAG</span>
+            <span class="report-article__tag">ChromaDB</span>
+            <span class="report-article__tag">WebSocket</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Streamlit</span>
+            <span class="report-article__tag">OpenCV</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="problem">Problem</h2>
+        <h3 id="social-impact">Social impact</h3>
+        <p>Aging populations and rising chronic illness are driving a surge in rehabilitation demand. But people with reduced mobility — and those in regions with limited medical access (rural areas, islands, lighthouses, military bases) — find it hard to visit clinics. Without a physical therapist's real-time feedback, exercising with correct form is difficult.</p>
+        <h3 id="economic-impact">Economic impact</h3>
+        <p>As Korea's national health insurance faces fiscal strain, there is growing need for a <strong>preventive health-management model</strong> rather than treatment-after-the-fact — low-cost, high-efficiency rehabilitation that lowers medical bills and helps the system stay solvent.</p>
+        <h3 id="technical-challenge">Technical challenge</h3>
+        <p><strong>- Real-time streaming:</strong> WebSocket plus multithreading to synchronize video and minimize latency.<br><strong>- RAG validation:</strong> Block hallucination in LLM-generated rehab feedback and ensure medical credibility through an objective verification framework.</p>
+
+        <h2 id="solution">Solution</h2>
+        <h3 id="what-we-built">What we built</h3>
+        <ul>
+          <li>YOLO11-based pose-estimation engine (real-time form detection)</li>
+          <li>Pose-evaluation dataset and algorithm (reference-pose comparison)</li>
+          <li>LangChain-based RAG system (medical literature retrieval + feedback generation)</li>
+          <li>WebSocket-based real-time communication (multi-camera sync)</li>
+          <li>RAGAS evaluation framework (RAG quality validation)</li>
+        </ul>
+        <h3 id="core-value">Core value</h3>
+        <ul>
+          <li><strong>Core concept:</strong> Multiple webcams analyze the user's movement in real time, and an AI provides personalized exercise feedback. YOLO11 pose detection plus LLM-driven feedback delivers tailored rehabilitation guidance anytime, anywhere.</li>
+          <li><strong>Dual-view analysis:</strong> Front and side cameras together for 3D-aware analysis, capturing depth and joint angles a single view would miss.</li>
+          <li><strong>Evidence-based feedback:</strong> Medical papers and rehab literature stored in a vector DB; the RAG pipeline produces clinically-grounded, personalized corrective feedback.</li>
+        </ul>
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>RAGAS Context Precision — <strong>1.0 (100%)</strong></li>
+            <li>RAGAS Context Recall — <strong>1.0 (100%)</strong></li>
+            <li>RAGAS Answer Relevancy — <strong>0.82 (82%)</strong></li>
+            <li>Dual-view real-time analysis — <strong>front + side multi-cam WebSocket sync</strong></li>
+            <li>YOLO11 + LangChain RAG — <strong>integrated pose-detection and literature-grounded feedback pipeline</strong></li>
+          </ul>
+        </div>
+
+        <h2 id="system-architecture">System Architecture</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_architecture.png" alt="KOMI Overall Architecture" onclick="window.open(this.src, '_blank')">
+            <span>1. Overall workflow — from user input to feedback generation</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_pose_estimation_architecture.png" alt="Pose Estimator Architecture" onclick="window.open(this.src, '_blank')">
+            <span>2. Pose estimator — YOLO11-based real-time pose detection</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_rag_pipeline_architecture.png" alt="RAG Pipeline Architecture" onclick="window.open(this.src, '_blank')">
+            <span>3. LangChain RAG pipeline — OpenAI embeddings + ChromaDB</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_web_server_architecture.png" alt="Multi-Modal WebSocket" onclick="window.open(this.src, '_blank')">
+            <span>4. Multi-modal WebSocket — 2-camera real-time streaming &amp; sync</span>
+          </div>
+        </div>
+
+        <h2 id="service-flow">Service Flow</h2>
+        <h3 id="precision-analysis-mode">Precision-analysis mode</h3>
+        <p>Pick exercise → study guide video → record → extract frames → YOLO11 pose detection → reference-pose comparison → per-joint accuracy → LLM feedback → result visualization</p>
+        <h3 id="realtime-analysis-mode">Real-time analysis mode</h3>
+        <p>Pick exercise → connect webcam → Base64 encode → WebSocket stream → pose detection → score → instant feedback</p>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_web_pages.png" alt="Main Screen" onclick="window.open(this.src, '_blank')">
+            <span>1. Main — exercise selection</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_guide.png" alt="Exercise Guide" onclick="window.open(this.src, '_blank')">
+            <span>2. Guide — learn the correct form</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_segmentation.png" alt="Pose Analysis" onclick="window.open(this.src, '_blank')">
+            <span>3. Precision analysis — segmentation-based recording &amp; pose analysis</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_analyzer_result1.png" alt="Analysis Result 1" onclick="window.open(this.src, '_blank')">
+            <span>4. Result — per-joint accuracy</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_analyzer_result2.png" alt="Analysis Result 2" onclick="window.open(this.src, '_blank')">
+            <span>5. Result — LLM-driven improvement suggestions</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/komi_realtime_feedback.png" alt="Realtime Analysis" onclick="window.open(this.src, '_blank')">
+            <span>6. Real-time analysis — instant form feedback</span>
+          </div>
+        </div>
+
+        <h2 id="what-i-built">What I Built</h2>
+        <h3 id="pose-estimation-engine">1. Pose-estimation engine</h3>
+        <p>A real-time pose-detection engine built around the <code>YoloPoseModel</code> class.</p>
+        <ul>
+          <li>YOLO11n-based real-time pose detection</li>
+          <li>17 COCO Keypoints: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles</li>
+          <li>OpenCV-based frame processing and keypoint visualization</li>
+          <li>Filter joints by confidence (<code>conf_threshold=0.5</code>)</li>
+          <li><code>SKELETON</code>-array-driven joint-link visualization (arms, legs, torso)</li>
+          <li>Base64 ↔ NumPy array conversion</li>
+        </ul>
+        <h3 id="pose-evaluation-dataset-algorithm">2. Pose-evaluation dataset &amp; algorithm</h3>
+        <p>Dataset of correct poses + evaluation algorithm in the <code>PoseAnalyzer</code> class.</p>
+        <ul>
+          <li>Collected and cleaned reference-pose data</li>
+          <li>Mapped misaligned poses to root causes and remediation</li>
+          <li>3-tier data structure: pose → cause → fix</li>
+          <li>Joint-angle calculation via dot product (<code>_calculate_angle</code>)</li>
+          <li>L2 distance + cosine similarity for similarity scoring</li>
+          <li>Joint flagged as misaligned if &gt; 15° from reference</li>
+        </ul>
+        <h3 id="langchain-rag-system">3. LangChain RAG system</h3>
+        <p>Medical-literature retrieval + feedback generation built on LangChain + ChromaDB.</p>
+        <ul>
+          <li><code>OpenAIEmbeddings()</code> to vectorize medical PDFs</li>
+          <li><code>ChromaDB</code> vector store + retrieval pipeline</li>
+          <li><code>retriever.as_retriever(search_type="similarity", k=5)</code> similarity retrieval</li>
+          <li>Chain: <code>RunnableMap</code> → <code>PromptTemplate</code> → <code>ChatOpenAI(gpt-4o-mini)</code></li>
+          <li>Per-joint error stats turned into natural-language prompts (<code>generate_summary_prompt</code>)</li>
+          <li>Prompt engineering from a clinician's point of view</li>
+        </ul>
+        <h3 id="ragas-evaluation-framework">4. RAGAS evaluation framework</h3>
+        <p>Adopted RAGAS to objectively evaluate RAG quality.<br>- "Is retrieval accurate?"<br>- "Does the answer match the question?"<br>- "Is the answer faithful to the evidence?"<br>Quantitative answers to these questions gave us data-driven QA, not gut feel.</p>
+
+        <h2 id="achievements-retrospective">Outcomes &amp; Retrospective</h2>
+        <h3 id="key-achievements">Key outcomes</h3>
+        <ul>
+          <li>YOLO11 + LangChain integrated rehabilitation service</li>
+          <li>Dual modes: precision analysis / real-time analysis</li>
+          <li>WebSocket-based multi-camera sync</li>
+          <li>RAG performance validated with RAGAS metrics</li>
+        </ul>
+        <h3 id="ragas-evaluation-results">RAGAS results</h3>
+        <figure>
+          <img src="../../images/projects/komi_ragas.png" alt="RAGAS Evaluation Results" onclick="window.open(this.src, '_blank')">
+          <figcaption>Objective performance metrics for the RAG pipeline via RAGAS</figcaption>
+        </figure>
+        <ul>
+          <li>Context Precision: 1.0 (100%) — retrieved context highly relevant to the question</li>
+          <li>Context Recall: 1.0 (100%) — required information retrieved without omission</li>
+          <li>Answer Relevancy: 0.82 (82%) — generated answer appropriately matches the question</li>
+          <li>Faithfulness: 0.61 (61%) — identified as a clear improvement target; flags advanced prompt engineering as next step</li>
+        </ul>
+        <h3 id="trial-and-error">Lessons learned</h3>
+        <p>The hardest part was collecting medical data. Privacy concerns are significant, and data on AI-Hub also requires fees, so we couldn't keep the original plan as-is.<br>We pivoted from rehab-exercise correction to a posture-correction project. After the pivot, another problem appeared: we had planned to identify causes for an inability to lift an arm and predict them. After consulting with an orthopedic specialist on stored data, we concluded that single-2D-camera analysis can't establish medical criteria — the field has too many edge cases.<br><br>That made us redefine the problem to focus on whether the movement is performed correctly, rather than forcing automated medical interpretation. The current shape of the project followed.<br><br>The B2B model linked to private insurers — considered in early planning — wasn't completed within the one-month window after the scope shift. Possible extensions remain: rehab-adherence-driven premium discounts, B2B partnerships with fitness centers and rehab clinics, B2C home-training app expansion, gamification.</p>
+        <h3 id="technical-growth">Technical growth</h3>
+        <p>The biggest takeaway was thinking carefully about <strong>the line between what AI can technically do and what it can responsibly deliver</strong>.<br>We hear "is there anything AI can't do these days?" all the time. That perception needs correcting; this project made the difference between humans and AI very visible.<br><br>It was also my first project using LangChain, which gave me hands-on experience building an LLM-based RAG system. Adopting RAGAS for objective measurement was valuable. Going forward, that experience will be central to continuously improving RAG reliability and quality.</p>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

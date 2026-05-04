@@ -376,15 +376,18 @@ img {
 
 .navbar__social-link--github:hover   { color: #181717; }
 .navbar__social-link--linkedin:hover { color: #0A66C2; }
-.navbar__social-link--tistory:hover  { color: #FF5A4A; }
 
-.navbar__social-icon--tistory {
-  display: inline-block;
+/* Tistory uses an SVG image (brand mark must keep its shape).
+   Normal state: desaturated to gray. Hover: full brand orange. */
+.navbar__social-icon {
   width: 1.1rem;
   height: 1.1rem;
-  background-color: currentColor;
-  -webkit-mask: url("images/navigation/tistory.svg") center/contain no-repeat;
-          mask: url("images/navigation/tistory.svg") center/contain no-repeat;
+  filter: grayscale(100%) opacity(0.55);
+  transition: filter var(--transition-fast);
+}
+
+.navbar__social-link--tistory:hover .navbar__social-icon {
+  filter: none;
 }
 
 .navbar__toggle {

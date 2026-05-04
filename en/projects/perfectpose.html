@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PerfectPoses — AI Pose-Matching Game | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/perfectpose.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/perfectpose.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/perfectpose.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/perfectpose.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/perfectposes_game_main.gif" alt="PerfectPoses — AI Pose-Matching Game" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">PerfectPoses — AI Pose-Matching Game</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead (AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Mar 2025 (24 hours)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> YOLO11-Pose + FastAPI + SAM + Unreal Engine 5</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">YOLO11-Pose</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">SAM</span>
+            <span class="report-article__tag">Unreal Engine 5</span>
+            <span class="report-article__tag">OpenCV</span>
+            <span class="report-article__tag">PyTorch</span>
+            <span class="report-article__tag">REST API</span>
+            <span class="report-article__tag">Real-time</span>
+            <span class="report-article__tag">Game Dev</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="problem">Problem</h2>
+
+        <h3 id="project-background">Project background</h3>
+        <p><strong>"Plan to deploy in 24 hours."</strong> A Fast Builder Challenge mission.<br>We had to ship an end-to-end service in 24 hours, surveyed many references, and chose to build a rhythm game inspired by Steam's "Perfect Poses" — players match the on-screen pose, AI scores accuracy in real time.</p>
+
+        <h3 id="technical-challenge">Technical challenge</h3>
+        <p>The hardest part was the <strong>real-time data bridge between the AI team (Python) and the Unreal team (C++)</strong>.<br>Capture webcam frames at 30 fps, detect with YOLO-Pose, and ship 17 keypoints over an optimized WebSocket to Unreal Engine without lag — all to deliver a polished gameplay experience inside a tight window.</p>
+
+        <h3 id="fast-builder-mindset">Fast Builder mindset</h3>
+        <p>We prioritized a <strong>working prototype</strong> over perfect code.<br>The core was clear interface definitions for fast collaboration decisions under time pressure.</p>
+
+        <h2 id="solution">Solution</h2>
+
+        <h3 id="what-we-built">What we built</h3>
+        <ul>
+          <li>YOLO11-Pose-based real-time engine that detects 17 joint coordinates</li>
+          <li>FastAPI async WebSocket server (AI ↔ Unreal bridge)</li>
+          <li>Player segmentation with Meta AI's SAM</li>
+          <li>Unreal Engine 5 game client (pose matching + scoring)</li>
+          <li>Pose-feedback generation with Bllossom (Korean LLM)</li>
+        </ul>
+
+        <h3 id="core-value">Core value</h3>
+        <p>Inside 24 hours we completed the entire end-to-end pipeline — <strong>plan → design → develop → test → deploy</strong>.<br>To enable the AI and Unreal teams to work in parallel, we <strong>defined the API interface first</strong> and integrated independently developed pieces afterward — a small simulation of cross-team collaboration in real production.</p>
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>Build window — <strong>E2E game service shipped in 24 hours (plan → deploy)</strong></li>
+            <li>API response time — <strong>average &lt; 50 ms</strong></li>
+            <li>Real-time processing — <strong>30 fps webcam-based YOLO-Pose detection</strong></li>
+            <li>Stack integration — <strong>YOLO-Pose + SAM + FastAPI + Unreal Engine 5</strong></li>
+            <li>Team coordination — <strong>3 AI + 3 Unreal in parallel</strong></li>
+          </ul>
+        </div>
+
+        <h2 id="project-workflow">Project Workflow</h2>
+        <figure>
+          <img src="../../images/projects/perfectposes_workflow.png" alt="PerfectPoses Project Workflow" onclick="window.open(this.src, '_blank')">
+          <figcaption>24-hour Fast Builder flow: <strong>plan → interface definition → parallel build → integration → deploy</strong></figcaption>
+        </figure>
+
+        <h3 id="data-flow">Data flow</h3>
+        <p>Webcam (30 fps) → OpenCV preprocessing → YOLO11-Pose inference → 17 keypoints → JSON serialization → FastAPI REST API → Unreal Engine rendering → pose match &amp; score</p>
+
+        <h3 id="communication-protocol">Communication protocol</h3>
+        <p>The AI server and Unreal client communicate over <strong>JSON over HTTP</strong>. Unreal periodically polls <code>/api/pose</code> for the latest pose data. Real-time game requires minimal response delay, so async processing and a singleton model-instance pattern were applied.</p>
+
+        <h2 id="what-i-built">What I Built</h2>
+
+        <h3 id="project-leading">1. Project Leading (PL)</h3>
+        <p>Leveraging prior PM experience, I led the project end-to-end.</p>
+        <ul>
+          <li><strong>Kickoff &amp; scope:</strong> reference analysis → AI core feature alignment → MVP scope</li>
+          <li><strong>Team &amp; roles:</strong> 3 AI / 3 Unreal — clear responsibilities, parallelizable tasks</li>
+          <li><strong>Interface decision:</strong> finalized AI ↔ Unreal API spec within 3 hours so both teams could work independently</li>
+          <li><strong>Schedule:</strong> split 24 hours into 4 phases (plan / dev / integration / wrap-up); presentation strategy per phase</li>
+          <li><strong>Risk:</strong> integration test scheduled mid-stream so issues surfaced early</li>
+        </ul>
+
+        <h3 id="yolo-pose-engine">2. YOLO-Pose Engine</h3>
+        <p>Real-time pose-detection engine in the <code>PoseEstimator</code> class.</p>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/perfectposes_pose_estimation1.jpg" alt="YOLO-Pose Real-Time Test 1" onclick="window.open(this.src, '_blank')">
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/perfectposes_pose_estimation2.gif" alt="YOLO-Pose Real-Time Test 2" onclick="window.open(this.src, '_blank')">
+          </div>
+        </div>
+        <ul>
+          <li>YOLO11n-pose (lightweight enough for real-time)</li>
+          <li>17 COCO Keypoints: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles</li>
+          <li>Filter by confidence (<code>conf_threshold=0.5</code>)</li>
+          <li>Singleton pattern to avoid model-load overhead</li>
+          <li>OpenCV-driven frame processing and keypoint visualization</li>
+        </ul>
+
+        <h2 id="service-demo">Service Demo</h2>
+        <p>📎 <a href="https://www.canva.com/design/DAG9v3E2r_Y/xg9HqKSgq7AJfvZ5TQv-zw/view?utm_content=DAG9v3E2r_Y&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h917814d62f" target="_blank" rel="noopener noreferrer"><strong>Demo video (Canva)</strong></a></p>
+
+        <h2 id="results-and-retrospective">Outcomes &amp; Retrospective</h2>
+
+        <h3 id="key-achievements">Key outcomes</h3>
+        <ul>
+          <li><strong>MVP-grade E2E game service in 24 hours</strong> (plan → deploy)</li>
+          <li>Efficient collaboration: 3 AI + 3 Unreal</li>
+          <li>YOLO-Pose + SAM + FastAPI + UE5 stack integration</li>
+          <li>Average API response time <strong>&lt; 50 ms</strong></li>
+          <li>Real-time 30 fps webcam-based pose detection</li>
+        </ul>
+
+        <h3 id="trial-and-error">Lessons learned</h3>
+        <p>The original plan had Unreal driving a <strong>character that mimics the player</strong> from YOLO-Pose keypoints. Integration testing exposed the issue: AI-server keypoint deltas were correctly received, but the Unreal character UI couldn't translate them into natural motion. Realistic character motion needs a deep understanding of joint rotations and bone structures — not feasible in 24 hours.<br>That was my first real moment of panic. With zero game-development experience, I didn't know what alternative to propose.<br><br>Quick teamwork pulled us through: we simplified the UI to <strong>point-to-point laser links</strong> instead of full character animation. The result felt low-fi for an Unreal Engine project, but the core game logic and pose recognition shipped on time. The takeaway: at MVP stage, focus on the core function before chasing polish.</p>
+
+        <h3 id="technical-growth">Technical growth</h3>
+        <p>I learned firsthand that a <strong>working prototype</strong> can matter more than perfect code.<br>What you choose to build — and what you choose to drop — determines whether a project completes inside a tight window.<br><br>Specifically, <strong>defining the interface first</strong> turned out to be critical for collaboration: with the API spec locked in early, the AI and Unreal teams could work independently without waiting on each other.<br><br>The other learning was the <strong>integration test</strong>. Each part worked alone; problems only surfaced once we wired them together. If we'd put testing at the very end, the project would not have shipped. Since then, TDD and unit/integration testing make sense to me as a foundation for higher-quality code.</p>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

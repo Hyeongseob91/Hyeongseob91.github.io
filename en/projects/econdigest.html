@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EconDigest — Finance YouTube Summarizer | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/econdigest.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/econdigest.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/econdigest.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/econdigest.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/econdigest_frontend_start.png" alt="EconDigest — Finance YouTube Summarizer" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">EconDigest — Finance YouTube Summarizer</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead (AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Jan 2025 (1 month)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> FastAPI (3 modules) + Whisper + Gemma-2 QLoRA</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Whisper</span>
+            <span class="report-article__tag">Gemma-2</span>
+            <span class="report-article__tag">QLoRA</span>
+            <span class="report-article__tag">yt-dlp</span>
+            <span class="report-article__tag">FFmpeg</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Streamlit</span>
+            <span class="report-article__tag">STT</span>
+            <span class="report-article__tag">LLM</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="problem">Problem</h2>
+
+        <h3 id="business-challenge">Business challenge</h3>
+        <p><strong>The "time-efficiency" trend</strong> — consumers increasingly want to skim only the parts of video and audio content that matter to them, driving demand for summarization services.</p>
+
+        <h3 id="social-challenge">Social challenge</h3>
+        <p><strong>Senior financial literacy</strong> — Koreans in their 50s and 60s are now active in mobile banking and asset management, but they still struggle with complex information.</p>
+
+        <h3 id="user-pain-points">User pain points</h3>
+        <ul>
+          <li>The friction of watching long videos</li>
+          <li>Difficulty understanding specialized financial terminology</li>
+          <li>Missing important content</li>
+        </ul>
+
+        <h2 id="solution">Solution</h2>
+
+        <h3 id="what-we-built">What we built</h3>
+        <p><strong>An AI-driven summarizer for finance YouTube channels.</strong><br><br>One click turns a video into a written summary report. Built around a Whisper (STT) + Gemma 2 (LLM) "extract → transcribe → summarize" pipeline.</p>
+
+        <h3 id="core-value">Core value</h3>
+        <ul>
+          <li><strong>Efficient information delivery</strong>: turn finance videos into high-density written briefs</li>
+          <li><strong>Closing the financial-knowledge gap</strong>: support users with limited information access</li>
+        </ul>
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>End-to-end pipeline — <strong>one-click audio extraction → STT → summary</strong></li>
+            <li>STT engine — <strong>Whisper-large-v3 for Korean speech</strong></li>
+            <li>Model compression — <strong>Gemma-2-2b-it with QLoRA 4-bit quantization</strong></li>
+            <li>Modular backend — <strong>3 FastAPI service routers (Audio, STT, Summary)</strong></li>
+            <li>Fine-tuning evaluation — <strong>analysis of LoRA/QLoRA limits + baseline comparison framework</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="target-users">Target users</h3>
+        <ul>
+          <li>Non-experts in AI/finance (especially seniors)</li>
+          <li>Busy professionals and students</li>
+        </ul>
+
+        <h2 id="architecture-overview">Architecture Overview</h2>
+        <ul>
+          <li><strong>Audio extraction</strong>: yt-dlp + FFmpeg (192 kbps MP3)</li>
+          <li><strong>Speech-to-text</strong>: OpenAI Whisper-large-v3 (noise-robust, strong Korean accuracy)</li>
+          <li><strong>Text summarization</strong>: Google Gemma-2-2b-it (QLoRA fine-tuning, 4-bit quantization)</li>
+          <li><strong>Backend</strong>: FastAPI (3 routers: Audio, STT, Summary)</li>
+          <li><strong>Frontend</strong>: Streamlit</li>
+        </ul>
+
+        <h2 id="what-i-built">What I Built</h2>
+
+        <h3 id="project-leadership">Project leadership</h3>
+        <ul>
+          <li>Owned end-to-end pipeline design and integration as Team Lead</li>
+          <li>Distributed roles and managed the schedule</li>
+        </ul>
+
+        <h3 id="backend-development">Backend development</h3>
+        <ul>
+          <li>FastAPI-based RESTful API design</li>
+          <li>Three modular services (Audio, STT, Summary)</li>
+          <li>yt-dlp + FFmpeg audio-extraction pipeline</li>
+          <li>HTTPException-based error handling and GPU memory management</li>
+        </ul>
+
+        <h3 id="frontend-development">Frontend development</h3>
+        <ul>
+          <li>Single-button Streamlit UI</li>
+          <li>Progress display and result expander panel</li>
+          <li>Embedded video playback</li>
+        </ul>
+
+        <h3 id="ai-pipeline-integration">AI pipeline integration</h3>
+        <ul>
+          <li>Connected Whisper → Gemma 2 pipeline</li>
+          <li>Designed a 3-step translation prompt (KO → EN → summary → KO)</li>
+          <li>Post-processing: dedup, whitespace cleanup</li>
+        </ul>
+
+        <h2 id="service-demo">Service Demo</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_frontend_start.png" alt="Service start" onclick="window.open(this.src, '_blank')">
+            <span>Service start screen</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_frontend_input.png" alt="YouTube URL input" onclick="window.open(this.src, '_blank')">
+            <span>YouTube URL input</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_frontend_button.png" alt="Summarize button" onclick="window.open(this.src, '_blank')">
+            <span>Click "Summarize"</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_frontend_progress.png" alt="Processing" onclick="window.open(this.src, '_blank')">
+            <span>Processing</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_frontend_result.png" alt="Summary result" onclick="window.open(this.src, '_blank')">
+            <span>Summary result</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/econdigest_backend.png" alt="Backend API" onclick="window.open(this.src, '_blank')">
+            <span>Backend API</span>
+          </div>
+        </div>
+
+        <h2 id="model-fine-tuning">Model Fine-Tuning</h2>
+
+        <h3 id="stt-whisper">STT (Whisper)</h3>
+        <p>We attempted LoRA-based fine-tuning, but error rates (CER, WER) climbed each epoch — performance <strong>degraded</strong>. We concluded the original Whisper-large model was better used as-is.</p>
+        <figure>
+          <img src="../../images/projects/econdigest_whisper_fine_tuning.png" alt="Whisper LoRA Fine-Tuning Results — CER/WER rises with epoch" onclick="window.open(this.src, '_blank')">
+        </figure>
+
+        <h3 id="llm-gemma-2">LLM (Gemma 2)</h3>
+        <p>Tuned with <strong>QLoRA (quantization + LoRA)</strong> for memory efficiency. The 4-bit BitsAndBytes quantization reduced VRAM usage but <strong>summary quality dropped below the un-tuned baseline</strong>. A clear trade-off: lighter ≠ better.</p>
+
+        <h2 id="results-and-retrospective">Outcomes &amp; Retrospective</h2>
+
+        <h3 id="key-achievements">Key outcomes</h3>
+        <ul>
+          <li>Built an automatic audio-extraction pipeline on yt-dlp + FFmpeg</li>
+          <li>Integrated FastAPI backend with Streamlit frontend</li>
+          <li>Reduced VRAM via QLoRA (4-bit quantization)</li>
+        </ul>
+
+        <h3 id="trial-and-error">Lessons learned</h3>
+        <ul>
+          <li><strong>STT LoRA fine-tuning failed</strong>: insufficient understanding of fine-tuning and underestimating infrastructure constraints</li>
+          <li><strong>LLM QLoRA backfired</strong>: lighter, but lower quality than the un-tuned baseline</li>
+          <li><strong>Long-text context loss</strong>: surfaced the need for chunking</li>
+          <li><strong>Repeated sentences</strong>: solved with post-processing</li>
+        </ul>
+
+        <h3 id="technical-growth">Technical growth</h3>
+        <p>This was my first STT/LLM pipeline and fine-tuning effort, and several of my approaches were simply wrong. But the experience taught me <strong>the importance of measuring baseline performance before tuning</strong>, <strong>up-front awareness of infra constraints</strong>, and <strong>the trade-off between quantization and quality</strong>. The failures clarified what to study next.</p>
+
+        <h3 id="future-improvements">Future improvements</h3>
+        <ul>
+          <li>Improved speaker diarization</li>
+          <li>UI optimized for older users (font sizing, etc.)</li>
+          <li>Additional training on specialized financial terminology</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

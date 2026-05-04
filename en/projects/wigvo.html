@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WIGVO — Real-Time Bidirectional PSTN Speech Translation | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/wigvo.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/wigvo.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/wigvo.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/wigvo.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/wigvo_logo.png" alt="WIGVO — Real-Time Bidirectional PSTN Speech Translation" class="project-hero__image project-hero__image--contain">
+        </div>
+        <h1 class="report-article__title">WIGVO — Real-Time Bidirectional PSTN Speech-Translation Relay</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Sep 2025 – Mar 2026</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> 3 Services · FastAPI + Twilio + Cloud Run</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">OpenAI Realtime</span>
+            <span class="report-article__tag">Twilio</span>
+            <span class="report-article__tag">Silero VAD</span>
+            <span class="report-article__tag">Cloud Run</span>
+            <span class="report-article__tag">Next.js</span>
+            <span class="report-article__tag">React Native</span>
+            <span class="report-article__tag">Dual-Session Echo Gating</span>
+            <span class="report-article__tag">ACL 2026</span>
+            <span class="report-article__tag">COMET</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <div class="project-disclaimer">
+          <i class="fa-solid fa-shield-halved"></i>
+          <p>An independent WIGTN Crew research project. Validated against 148 real-world phone calls.<br><em>"Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating"</em></p>
+        </div>
+
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="overview">Overview</h2>
+        <p><strong>A PSTN-based AI relay platform for real-time bidirectional phone interpretation</strong><br><br>The project started with a story from a startup founder. A foreign employee working in Daegu was being transferred to Seoul and needed to find housing — but couldn't make a single phone call because the language barrier was too high. Translation apps existed, but they fell apart over a phone line. Many people live with that exact wall, so we set out to break it.<br><br>Real-time bidirectional speech translation, long thought to require wideband audio (16 – 24 kHz), is implemented here over the legacy PSTN narrowband (G.711 μ-law, 8 kHz). Echo cancellation and VAD were re-architected as independent components and shipped to production.</p>
+
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li><strong>First approach</strong> to deliver real-time bidirectional speech translation over PSTN purely in software (no hardware AEC, no carrier infrastructure)</li>
+            <li>Per-call cost — <strong>$0.18/min</strong> (33% reduction via architectural optimization)</li>
+            <li>Echo loops — <strong>0 / 148 calls</strong> (down from 80% in the prototype to 0% in production)</li>
+            <li>VAD latency — <strong>15 – 72 s → 480 ms</strong></li>
+            <li>Whisper-hallucination ingress rate — <strong>under 0.3%</strong>; on average 0.7 hallucinations blocked per call</li>
+            <li><strong>In-house Dual-Session Echo Gating</strong> — software-only echo detection and gating</li>
+            <li><strong>3-stage audio filter pipeline</strong> — Echo Gate → Energy Gate → Silero VAD, designed and implemented from scratch</li>
+            <li>ACL 2026 System Demonstrations — <strong>Accepted, first author</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="demo-and-links">Demo &amp; Links</h3>
+        <ul>
+          <li><strong>Demo video</strong>: <a href="https://youtu.be/_ixVEnHJxjk?si=9tsInmz6ExIMbh3x" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><strong>Production</strong>: <a href="https://wigvo-web-gzjzn35jyq-du.a.run.app/" target="_blank" rel="noopener noreferrer">wigvo-web (Cloud Run)</a></li>
+          <li><strong>GitHub</strong>: <a href="https://github.com/wigtn/wigvo-v2" target="_blank" rel="noopener noreferrer">wigtn/wigvo-v2</a></li>
+        </ul>
+
+        <h3 id="target-users">Who it's for</h3>
+        <ul>
+          <li><strong>Foreigners in Korea</strong> — 2.2M residents who can't make a phone call in Korean (2024)</li>
+          <li><strong>Koreans abroad</strong> — 2.8M overseas Koreans who can't make a phone call in the local language</li>
+          <li><strong>People with hearing or speech disabilities</strong> — 390K registered, voice calls infeasible</li>
+          <li><strong>Phone-averse Gen Z / Millennials</strong> — roughly 40% who avoid phone calls</li>
+        </ul>
+
+        <h2 id="technical-challenges">Technical Challenge — Why PSTN Is Hard</h2>
+
+        <h3 id="audio-quality-gap">Audio quality gap</h3>
+        <p>PCM16 (16 – 24 kHz) environments assume wideband audio and client-side AEC. PSTN is narrowband G.711 μ-law 8 kHz with 80 – 600 ms variable delay and persistent codec compression noise.</p>
+
+        <h3 id="echo-loop">Echo loop</h3>
+        <p>The TTS audio reflects back over the PSTN 80 – 600 ms later, re-enters the STT → translation → TTS pipeline, and creates an infinite loop. <strong>It happened in 8 of the first 10 test calls.</strong> Without the client AEC that wideband apps assume, the loop must be killed in software.</p>
+
+        <h3 id="vad-failure">VAD failure</h3>
+        <p>OpenAI Server VAD assumes clean wideband audio. PSTN background noise (RMS 50 – 200) is interpreted as ongoing speech, and <strong><code>speech_stopped</code> fires 15 – 72 s late, or never fires at all</strong>.</p>
+
+        <h3 id="existing-systems-comparison">Comparison with existing systems</h3>
+        <table class="modal__benchmark-table">
+          <caption>Bidirectional PSTN speech-translation systems</caption>
+          <thead><tr>
+            <th scope="col">System</th><th scope="col">PSTN</th><th scope="col">Bidirectional</th>
+            <th scope="col">S2S</th><th scope="col">Echo handling</th><th scope="col">Accessibility</th>
+          </tr></thead><tbody>
+            <tr><td>SeamlessM4T</td><td></td><td>O</td><td>O</td><td>N/A</td><td></td></tr>
+            <tr><td>Moshi / Hibiki</td><td></td><td></td><td>O</td><td>N/A</td><td></td></tr>
+            <tr><td>Google Duplex</td><td>O</td><td></td><td></td><td>N/D</td><td></td></tr>
+            <tr><td>Samsung Galaxy AI</td><td>O</td><td>O</td><td>O</td><td>HW AEC</td><td></td></tr>
+            <tr><td>SKT A.dot</td><td>O</td><td>O</td><td>O</td><td>Carrier infra</td><td></td></tr>
+            <tr class="tr--highlight"><td>WIGVO</td><td>O</td><td>O</td><td>O</td><td>Software</td><td>O</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="architecture">Architecture — Dual-Session Echo Gating</h2>
+        <p>The browser client opens a WebSocket to the relay server, which manages <strong>two independent Realtime LLM sessions</strong> plus the Twilio phone gateway. AudioRouter delegates events via the Strategy pattern to one of three pipelines (V2V, T2V, FullAgent).</p>
+        <figure>
+          <img src="../../images/projects/wigvo_architecture.png" alt="WIGVO System Architecture" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 1: WIGVO architecture. Session A (red) translates the user's voice to G.711 for Twilio; Session B (blue) processes inbound PSTN audio through the 3-stage filter pipeline.</figcaption>
+        </figure>
+
+        <h3 id="three-layer-structure">3-layer structure</h3>
+        <ul>
+          <li><strong>Layer 1 — Transport</strong>: Twilio Media Streams (PSTN ↔ G.711 μ-law 8 kHz) + Browser WebSocket (PCM 16 kHz)</li>
+          <li><strong>Layer 2 — Pipeline</strong>: AudioRouter delegates events to V2V / T2V / Agent modes via the Strategy pattern</li>
+          <li><strong>Layer 3 — Sessions</strong>: Session A (browser → phone) and Session B (phone → browser) hold independent system prompts and a 6-turn sliding context</li>
+        </ul>
+
+        <h3 id="stt-translation-separation">Separating STT from translation</h3>
+        <p>Letting the Realtime API also do translation produced hallucinations — content not present in the original. STT stays on the in-Realtime Whisper-1, but translation is split out to <strong>GPT-4o-mini Chat API (temperature=0)</strong>. Setting <code>context_prune_keep=0</code> fully blocks Realtime's own translation.</p>
+
+        <h2 id="echo-gate">Stage 1 — Echo Gate (7 iterations)</h2>
+        <p>Software-only blocking of the TTS-over-PSTN echo loop.</p>
+        <figure>
+          <img src="../../images/projects/wigvo_pipeline.png" alt="PSTN Audio Processing Pipeline" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 2: 3-stage audio filter pipeline. Echo Gate → Energy Gate → Silero VAD.</figcaption>
+        </figure>
+
+        <h3 id="drop-vs-replace">The breakthrough — Drop vs Replace</h3>
+        <p>"Dropping" audio reads to Server VAD as a stream interruption, which freezes it. "Replacing" with μ-law silence (0xFF) keeps the stream continuous and VAD reads it as silence as expected. This <strong>Drop-vs-Replace</strong> idea is the core principle applied identically in the Echo Gate and the VAD path.</p>
+
+        <h3 id="final-echo-gate-structure">Final Echo Gate — 3 zones</h3>
+        <ul>
+          <li><strong>Echo window</strong> — replace inbound PSTN audio with μ-law silence during TTS playback + 0.5 s jitter margin after TTS ends</li>
+          <li><strong>Dynamic settling</strong> — TTS length × 0.3 (clamped 0.5 – 1.5 s) suppresses AGC recovery noise; RMS ≥ 500 still passes as real speech</li>
+          <li><strong>Normal zone</strong> — RMS ≥ 150 energy threshold</li>
+        </ul>
+
+        <h3 id="seven-stage-evolution">7-step iteration</h3>
+        <ul>
+          <li>Audio Fingerprint (Pearson correlation) — G.711 μ-law non-linear quantization breaks the correlation; didn't work at all</li>
+          <li>Fixed Echo Gate (2.5 s) — removes echo but stalls conversation flow</li>
+          <li>Dynamic Cooldown — gating proportional to TTS length; AGC noise spikes immediately after gate release</li>
+          <li><strong>Silence Injection + RMS + Dynamic Settling + Silero</strong> — final design</li>
+        </ul>
+
+        <h3 id="echo-gate-results">Result</h3>
+        <p>Echo-loop incidence: <strong>8/10 calls in early prototype → 0/148 in production</strong>.</p>
+
+        <h2 id="pstn-vad">Stage 2 — Independent PSTN VAD architecture</h2>
+
+        <h3 id="vad-problem">Problem</h3>
+        <p>OpenAI Server VAD is a black box; per-frame control inside the echo window isn't possible. RMS thresholds at 150 → 80 → 30 → 20 were tried, but no single threshold is stable on PSTN. <strong>Switched to local Silero VAD</strong> for an architecture tuned to PSTN.</p>
+
+        <h3 id="two-stage-filter">2-stage independent filter</h3>
+        <ul>
+          <li><strong>Stage 1 — RMS Energy Gate</strong>: ≥ 500 inside the echo window, ≥ 200 during settling, ≥ 150 normally</li>
+          <li><strong>Stage 2 — Silero VAD</strong>: neural classification on frames that pass the energy gate; 8 kHz → 16 kHz zero-order-hold upsampling</li>
+          <li>Asymmetric hysteresis: onset 160 ms (5 frames) / offset 800 ms (25 frames)</li>
+          <li>Min utterance 250 ms, min peak RMS 300 — weak signals rejected as noise</li>
+        </ul>
+
+        <h3 id="vad-results">Result</h3>
+        <p><code>speech_stopped</code> latency: <strong>15 – 72 s → 480 ms</strong>.</p>
+
+        <h2 id="whisper-hallucination-filter">Stage 3 — 3-stage Whisper-hallucination filter</h2>
+        <p>When PSTN noise hits Whisper-1, it produces "plausible" text learned from its training data (YouTube, broadcasts) — phrases like "MBC News, this is Lee Deok-young" or "Thanks for watching" leaked into the translation pipeline and went out the recipient's phone <strong>in production</strong>.</p>
+
+        <h3 id="three-stage-pipeline">3-stage pipeline</h3>
+        <ul>
+          <li><strong>Pre-STT (Stage 0)</strong> — Echo Gate + Silence Injection prevents corrupted audio from reaching Whisper at all</li>
+          <li><strong>Post-STT (Stage 1)</strong> — Block-list of 51 broadcast-style patterns (29 Korean + 22 English) + a 4-layer text filter combining min-length, silence timeout, repetition, and confidence</li>
+          <li><strong>Post-Translation (Stage 2)</strong> — 3-level Guardrail: L1 (pass, 0 ms) · L2 (TTS immediately + background correction, 0 ms) · L3 (block + GPT-4o-mini correction, ~800 ms)</li>
+        </ul>
+
+        <h3 id="hallucination-results">Result</h3>
+        <p>Hallucination ingress under <strong>0.3%</strong>; on average 0.7 blocked per call (over 148 calls). 95%+ of cases are L1, adding no extra latency.</p>
+
+        <h2 id="strategy-pattern">Strategy Pattern — 3 communication pipelines</h2>
+        <p>Refactored the original AudioRouter "God Object" into a <strong>thin delegator + 3 independent pipelines</strong> via the Strategy pattern (73% code reduction).</p>
+
+        <h3 id="pipeline-structure">Pipelines</h3>
+        <ul>
+          <li><strong>VoiceToVoice (V2V)</strong> — bidirectional voice translation. Echo Gate + Silence Injection + 3-tier interrupt priority</li>
+          <li><strong>TextToVoice (T2V)</strong> — for users with hearing/speech disabilities. Text in → translated AI voice out</li>
+          <li><strong>FullAgent</strong> — AI proxy call for phone-averse users. Inherits TextToVoice + Function Calling</li>
+          <li><strong>EchoGateManager</strong> — shared echo-prevention logic across all pipelines</li>
+          <li><strong>ChatTranslator</strong> — translation for T2V/Agent Session B (GPT-4o-mini)</li>
+        </ul>
+
+        <h2 id="key-metrics">Key Metrics — 148 production calls</h2>
+
+        <h3 id="latency">Latency</h3>
+        <ul>
+          <li>Session A P50: <strong>555 ms</strong> / P95: 1,169 ms</li>
+          <li>Session B P50: <strong>2,868 ms</strong> (correlated with utterance length, Pearson r=0.400)</li>
+          <li>First-message P50: 1,215 ms (cold start)</li>
+        </ul>
+
+        <h3 id="echo-and-safety">Echo &amp; safety</h3>
+        <ul>
+          <li>Echo loops: <strong>0 / 148</strong> (prototype 80% → 0%)</li>
+          <li>Echo-gate activations per call: 7.0 average</li>
+          <li>VAD false positives per call: 1.8 average</li>
+          <li>Hallucinations blocked per call: 0.7 average</li>
+          <li>Guardrail L2 148 (normal corrections) / L3 0</li>
+        </ul>
+
+        <h3 id="cost">Cost</h3>
+        <ul>
+          <li>V2V: $0.30/min · T2V: $0.29/min</li>
+          <li>After architectural optimization: <strong>$0.18/min (-33%)</strong></li>
+          <li>Mode mix: T2V 116 (68.6%) · V2V 52 (30.8%) · Agent 1 (0.6%)</li>
+        </ul>
+
+        <h2 id="latency-distribution">Latency Distribution</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/wigvo_latency_histogram.png" alt="Latency Distribution Histogram" onclick="window.open(this.src, '_blank')">
+            <span>Figure 3: E2E latency distribution. Session A (N=814 turns) and Session B (N=744 turns), measured on live PSTN calls.</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/wigvo_utterance_scatter.png" alt="Utterance Length vs Latency" onclick="window.open(this.src, '_blank')">
+            <span>Figure 4: Utterance length vs Session B E2E latency. Pearson r=0.400 (p&lt;0.001).</span>
+          </div>
+        </div>
+
+        <h2 id="demo">Demo</h2>
+        <figure>
+          <img src="../../images/projects/wigvo_screenshot_call.png" alt="WIGVO Call Interface" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 5: WIGVO web UI — bilingual live captions, chat history, and call controls during a V2V call.</figcaption>
+        </figure>
+        <p>Session flow: (1) pick a scenario → (2) talk to the AI agent to convey purpose and phone number → (3) place the PSTN call with bidirectional translation → (4) live captions render. Modes can be switched mid-call (V2V ↔ T2V ↔ FullAgent).</p>
+
+        <h2 id="ablation-study">Ablation Study</h2>
+
+        <h3 id="echo-gate-design-comparison">Echo Gate design comparison</h3>
+        <table class="modal__benchmark-table">
+          <caption>Performance by Echo Gate strategy</caption>
+          <thead><tr>
+            <th scope="col">Strategy</th><th scope="col">Echo loop</th>
+            <th scope="col">Conversation delay</th><th scope="col">Adopted</th>
+          </tr></thead><tbody>
+            <tr><td>Audio Fingerprint (Pearson)</td><td>Cannot solve</td><td>—</td><td></td></tr>
+            <tr><td>Fixed Echo Gate (2.5 s)</td><td>Solved</td><td>Stalls flow</td><td></td></tr>
+            <tr><td>Dynamic Cooldown</td><td>Solved</td><td>Improved</td><td></td></tr>
+            <tr class="tr--highlight"><td>Silence Injection + RMS + Dynamic Settling + Silero</td><td>Solved</td><td>Minimized</td><td>O</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="ablation-finding">Finding</h3>
+        <p>Signal-correlation echo detection does not work on PSTN. Only directly controlling the echo window and replacing it with silent frames is reliable. The Realtime API's generative behavior is well-suited to STT but unsuitable for translation — splitting out a <code>temperature=0</code> Chat API improves both accuracy and stability.</p>
+
+        <h2 id="tech-stack">Tech Stack</h2>
+
+        <h3 id="ai-and-audio">AI &amp; Audio</h3>
+        <ul>
+          <li><strong>STT</strong>: OpenAI Realtime API (Whisper-1)</li>
+          <li><strong>Translation</strong>: GPT-4o-mini Chat API (temperature=0)</li>
+          <li><strong>VAD</strong>: Silero VAD (ONNX) + RMS Energy Gate</li>
+          <li><strong>Telephony</strong>: Twilio Media Streams (PSTN G.711 μ-law 8 kHz)</li>
+        </ul>
+
+        <h3 id="backend-and-frontend">Backend &amp; Frontend</h3>
+        <ul>
+          <li><strong>Backend</strong>: Python 3.12, FastAPI, uvicorn, asyncio</li>
+          <li><strong>Frontend</strong>: Next.js 16, React 19, Zustand, shadcn/ui</li>
+          <li><strong>Mobile</strong>: React Native (Expo SDK 54)</li>
+          <li><strong>DB</strong>: Supabase (PostgreSQL + Auth + RLS)</li>
+        </ul>
+
+        <h3 id="infrastructure">Infrastructure</h3>
+        <ul>
+          <li><strong>Infra</strong>: Google Cloud Run, Cloud Build, Secret Manager</li>
+          <li><strong>Build</strong>: Docker, Kaniko</li>
+          <li><strong>Evaluation</strong>: COMET, BLEU, chrF</li>
+          <li><strong>Tests</strong>: pytest (434)</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

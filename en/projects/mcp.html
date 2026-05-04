@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALORITHM — MCP-based AI System for Game Development | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/mcp.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/mcp.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/mcp.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/mcp.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/valorithm_mcp_server.png" alt="VALORITHM — MCP-based AI System for Game Development" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">VALORITHM — MCP-based AI System for Game Development</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead (AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Apr – Jun 2025</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> MCP Server + LangGraph Agent</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">MCP</span>
+            <span class="report-article__tag">LangGraph</span>
+            <span class="report-article__tag">RAG</span>
+            <span class="report-article__tag">FastMCP</span>
+            <span class="report-article__tag">NumPy</span>
+            <span class="report-article__tag">ChromaDB</span>
+            <span class="report-article__tag">Whisper</span>
+            <span class="report-article__tag">Unreal Engine</span>
+            <span class="report-article__tag">FastAPI</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="problem">Problem</h2>
+        <p>The biggest bottleneck in our FPS-game development was repetitive busywork.<br>Setting the recoil pattern of a single weapon took ~40 minutes; if a designer asked to "make it kick higher," the engineer had to retune values and retest in a loop.<br>3D-map whiteboxing — sightline checks, prop placement, custom tweaks — took ~8 hours per map iteration.<br><br>So we set out to automate this repetitive work with AI. Free up engineering bandwidth, generate opportunity cost for the company, and let engineers focus on the work that matters.</p>
+
+        <h2 id="solution">Solution</h2>
+        <h3 id="what-we-built">What we built</h3>
+        <ul>
+          <li>Three AI tools that support planning + development for shipping a new game</li>
+          <li>Natural-language interfaces via MCP (Model Context Protocol) tool integration</li>
+          <li>An in-game AI agent "Javis" built on LangGraph + STT</li>
+        </ul>
+        <h3 id="core-value">Core value</h3>
+        <p><strong>Integrate MCP tools and AI agents across the project to make planning-through-play workflows intelligent — a new game-development paradigm where ideas can be implemented immediately, without the friction of repetitive work.</strong></p>
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>Weapon-recoil generation — <strong>40 min → 30 s (~98.7% faster)</strong></li>
+            <li>3D-map whiteboxing — <strong>8 h → 2 h (~75% faster)</strong></li>
+            <li>MCP server release — <strong>published on the Smithery.ai marketplace</strong></li>
+            <li>3 AI tools integrated — <strong>Discord Agent + Recoil Generator + 2D→3D Map Generator</strong></li>
+            <li>MCP-standard adoption — <strong>compatible with IDEs and external LLM environments</strong></li>
+          </ul>
+        </div>
+        <figure>
+          <img src="../../images/projects/valorithm_sequence_dev_flow.png" alt="VALORITHM Development Flow" onclick="window.open(this.src, '_blank')">
+        </figure>
+
+        <h2 id="ai-tools-overview">AI Tools Overview</h2>
+        <h3 id="discord-mcp-agent">1. Discord MCP Agent</h3>
+        <figure>
+          <img src="../../images/projects/valorithm_discord.png" alt="Discord MCP Agent Architecture" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <ul>
+          <li>Auto-summarize meeting notes and send schedule reminders</li>
+          <li>Claude API + Discord MCP Server integration</li>
+          <li>Dual storage: Oracle RDB + ChromaDB</li>
+        </ul>
+        <h3 id="weapon-recoil-generator">2. Weapon Recoil Generator</h3>
+        <figure>
+          <img src="../../images/projects/valorithm_recoil.png" alt="Weapon Recoil Generator Architecture" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <ul>
+          <li>Natural-language commands generate per-weapon recoil trajectories</li>
+          <li>NumPy-based 3-stage burst pattern (early/middle/late shots)</li>
+          <li>Matplotlib visualization → applied directly in Unreal Engine</li>
+        </ul>
+        <h3 id="2d-to-3d-map-generator">3. 2D-to-3D Map Generator</h3>
+        <figure>
+          <img src="../../images/projects/valorithm_3d.png" alt="2D to 3D Map Generator Architecture" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <ul>
+          <li>Auto-generate a 3D mesh (.obj) from a single 2D image</li>
+          <li>OpenCV Canny edges + Shapely / Open3D</li>
+        </ul>
+        <h3 id="javis-ai-agent-poc">4. Javis AI Agent — PoC</h3>
+        <figure>
+          <img src="../../images/projects/valorithm_javis.png" alt="Javis AI Agent Architecture" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <ul>
+          <li>In-game AI agent "Javis" built on LangGraph + STT</li>
+          <li>PoC only within our timeline; not applied in the actual game</li>
+        </ul>
+
+        <h2 id="what-i-built-technical-deep-dive">What I Built &amp; Technical Deep Dive</h2>
+        <h3 id="mcp-ai-system-design">MCP-based AI system design</h3>
+        <ul>
+          <li>Built the MCP (Model Context Protocol) server connecting Claude and Unreal Engine</li>
+          <li>Server-side tool registration and schema automation via the FastMCP library</li>
+          <li>Direct engine integration through the open-source "Unreal MCP Plugin"</li>
+        </ul>
+        <h3 id="weapon-recoil-generator-dev">Weapon Recoil Generator</h3>
+        <ul>
+          <li>NumPy-based 3-stage (early/middle/late) recoil-weight algorithm</li>
+          <li>Continuous recoil-trajectory coordinates via <code>np.cumsum()</code></li>
+          <li>- Early: minimal X-axis sway; vertical Y-axis recoil concentration</li>
+          <li>- Middle: stabilization zone, uniform distribution</li>
+          <li>- Late: stronger X-axis sway, harder to control</li>
+          <li>Workflow that pushes assets directly into the engine via the Unreal MCP Plugin</li>
+        </ul>
+        <h3 id="langgraph-agent-poc">LangGraph Agent (PoC)</h3>
+        <ul>
+          <li>TypedDict-based agent state and multi-turn conversation logic</li>
+        </ul>
+
+        <h2 id="metrics-impact">Metrics &amp; Impact</h2>
+        <h3 id="quantitative-improvement">Quantitative gains</h3>
+        <ul>
+          <li>Recoil generation: 40 min → 30 s (~98.7% faster)</li>
+          <li>3D whiteboxing: 8 h → 2 h (~75% faster)</li>
+        </ul>
+        <h3 id="engineering-decisions">Engineering decisions</h3>
+        <ul>
+          <li>Adopt the MCP standard: tool compatibility with IDEs and external LLM environments</li>
+          <li>Adopt LangGraph: visibility and control over conversation flows with complex branching</li>
+          <li>Generate opportunity cost: automating busywork frees up core engineering bandwidth</li>
+        </ul>
+
+        <h2 id="achievements-retrospective">Outcomes &amp; Retrospective</h2>
+        <h3 id="key-achievements">Key outcomes</h3>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/valorithm_smithery_ai.png" alt="Smithery.ai MCP Server" onclick="window.open(this.src, '_blank')">
+            <span>1. MCP Server published on smithery.ai</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/valorithm_3d_map_build.png" alt="3D Map Building" onclick="window.open(this.src, '_blank')">
+            <span>2. 3D map building</span>
+          </div>
+        </div>
+        <ul>
+          <li>Auto-summary of Discord chat history is shared every morning at 10:00, no manual minutes needed</li>
+          <li>Recoil generation: 40 min → 30 s (~98.7% faster)</li>
+          <li>3D whiteboxing: 8 h → 2 h (~75% faster)</li>
+          <li>MCP-standard tool compatibility integrated with IDE / external LLM environments</li>
+          <li>📎 <a href="https://www.canva.com/design/DAG9oBMaAzI/IVszVKdZleiL5Qbl-KIcZg/view?utm_content=DAG9oBMaAzI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb9d5937c48" target="_blank" rel="noopener noreferrer"><strong>Demo video (Canva)</strong></a></li>
+        </ul>
+        <h3 id="trial-and-error">Lessons learned</h3>
+        <p>I didn't yet know how to integrate with Unreal Engine when I first designed the MCP tooling. We discovered the open-source <strong>"Unreal MCP Plugin"</strong> and designed around invoking remote tools from inside the engine.<br>Trouble started there: the plugin was a personal project by a US college student and not really a finished product. After several attempts we still could not get reliable Remote communication between Unreal and the MCP server.<br>We pivoted to local communication and revised the plan.<br><br>The lesson: when leaning on open source, do thorough up-front validation. To respond flexibly to unexpected situations, you need solid foundational engineering — that is what lets you propose alternatives.</p>
+        <h3 id="technical-growth">Technical growth</h3>
+        <p>Most teams just call MCP tools others have built. Designing and operating an MCP server from scratch deepened my understanding of the protocol and its internals.<br>The biggest personal gain was understanding what a "server" actually is. Smithery.ai's marketplace, where I deployed, provides its own server to attract developers — I didn't appreciate the value during build, only after release.<br><br>That gave me a maintenance-and-operations lens on servers and a clearer sense of what scalable design looks like through the server abstraction. Going forward, I want to bring Infrastructure-as-Code thinking into system design from day one.</p>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>
