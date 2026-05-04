@@ -677,6 +677,10 @@ img {
   align-items: start;
 }
 
+:lang(en) .about__grid {
+  align-items: center;
+}
+
 @media (max-width: 900px) {
   .about__grid {
     grid-template-columns: 1fr;
