@@ -24,7 +24,7 @@
       <header>
         <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
         <div class="project-hero">
-          <img src="../images/projects/wigtn_logo.png" alt="WIGTN FLAKE — 목적 기반 동네 인텔리전스 플랫폼" class="project-hero__image project-hero__image--contain">
+          <img src="../images/projects/wigtn-flake-stage.jpeg" alt="Snowflake AI & Data Hackathon Korea 2026 — final round stage" class="project-hero__image">
         </div>
         <h1 class="report-article__title">WIGTN FLAKE — 목적 기반 동네 인텔리전스 플랫폼</h1>
         <div class="project-meta">
@@ -82,6 +82,19 @@
           <li><strong>보도</strong>: <a href="https://www.newswire.co.kr/newsRead.php?no=1033575" target="_blank" rel="noopener noreferrer">뉴스와이어</a></li>
         </ul>
 
+        <!-- Section: Hackathon Highlights -->
+        <h2 id="hackathon-highlights">Hackathon — Top 3 발표 현장</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../images/projects/wigtn-flake-award.jpeg" alt="Tech Track Top 3 발표 — WIGTN Flake" onclick="window.open(this.src, '_blank')">
+            <span>1. Tech Track Top 3 발표 — "WIGTN Flake : Snowflake Cortex 기반 실시간 데이터 검증을 통한 '목적 중심 에이전트 토론' 플랫폼"</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../images/projects/wigtn-flake-datasets-slide.jpeg" alt="4개 데이터셋 발표 슬라이드" onclick="window.open(this.src, '_blank')">
+            <span>2. 발표 슬라이드 — 4개 데이터셋(RichGo+SPH · NextTrade · 아정당)을 형태에 따라 역할 분리, Snowflake ML.FORECAST 사전학습 모델 활용</span>
+          </div>
+        </div>
+
         <!-- Section: 문제 인식 -->
         <h2 id="problem">문제 인식 — 왜 기존 대시보드는 결정을 못 내리는가</h2>
 
@@ -103,6 +116,11 @@
           <li><strong>Cortex Execution</strong> — 4개 Semantic Model을 Cortex Analyst text-to-SQL로 질의, ANOMALY_DETECTION + FORECAST 병렬 실행, 결과는 웨어하우스에서 수렴</li>
           <li><strong>Decision Report</strong> — Top 3 랭킹 + 이상 시그널 배지 + 6개월 예측 + 목적별 액션 체크리스트</li>
         </ol>
+
+        <figure>
+          <img src="../images/projects/wigtn-flake-architecture.jpeg" alt="WIGTN FLAKE 3-Layer Hybrid AI Architecture" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure: 3-Layer Hybrid AI Architecture — Brain Layer(GPT-4o + orchestrator.ts) → Data Layer(Snowflake Cortex 11종 + 4개 데이터셋) → Render Layer(Cortex LLM claude-4-sonnet 마크다운 스트리밍)</figcaption>
+        </figure>
 
         <h3 id="cortex-gpt-hybrid">Snowflake Cortex × GPT-4o 하이브리드 전략</h3>
         <table style="width:100%; border-collapse:collapse; font-size:0.9em;">

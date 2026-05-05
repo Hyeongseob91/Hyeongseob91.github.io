@@ -33,7 +33,7 @@
       <header>
         <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
         <div class="project-hero">
-          <img src="../../images/projects/wigtn_logo.png" alt="WIGTN FLAKE — Goal-Driven Neighborhood Intelligence" class="project-hero__image project-hero__image--contain">
+          <img src="../../images/projects/wigtn-flake-stage.jpeg" alt="Snowflake AI & Data Hackathon Korea 2026 — final round stage" class="project-hero__image">
         </div>
         <h1 class="report-article__title">WIGTN FLAKE — A Goal-Driven Neighborhood Intelligence Platform</h1>
         <div class="project-meta">
@@ -90,6 +90,18 @@
           <li><strong>News</strong>: <a href="https://www.newswire.co.kr/newsRead.php?no=1033575" target="_blank" rel="noopener noreferrer">Newswire</a></li>
         </ul>
 
+        <h2 id="hackathon-highlights">Hackathon — Top 3 Announcement on Stage</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/wigtn-flake-award.jpeg" alt="Tech Track Top 3 announcement — WIGTN Flake" onclick="window.open(this.src, '_blank')">
+            <span>1. Tech Track Top 3 announcement — "WIGTN Flake: a goal-driven agent-debate platform on Snowflake Cortex with real-time data verification"</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/wigtn-flake-datasets-slide.jpeg" alt="Four-dataset presentation slide" onclick="window.open(this.src, '_blank')">
+            <span>2. Presentation slide — four datasets (RichGo + SPH · NextTrade · AJD) split by data shape, leveraging Snowflake ML.FORECAST pre-trained models</span>
+          </div>
+        </div>
+
         <h2 id="problem">Problem — Why Existing Dashboards Don't Decide</h2>
 
         <h3 id="goal-agnostic">Goal-agnostic tools</h3>
@@ -109,6 +121,11 @@
           <li><strong>Cortex Execution</strong> — four Semantic Models query via Cortex Analyst text-to-SQL; ANOMALY_DETECTION + FORECAST run in parallel; results converge in the warehouse</li>
           <li><strong>Decision Report</strong> — Top-3 ranking + anomaly badges + 6-month projections + a goal-specific action checklist</li>
         </ol>
+
+        <figure>
+          <img src="../../images/projects/wigtn-flake-architecture.jpeg" alt="WIGTN FLAKE 3-Layer Hybrid AI Architecture" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure: 3-Layer Hybrid AI Architecture — Brain Layer (GPT-4o + orchestrator.ts) → Data Layer (11 Snowflake Cortex capabilities + 4 datasets) → Render Layer (Cortex LLM claude-4-sonnet streaming markdown)</figcaption>
+        </figure>
 
         <h3 id="cortex-gpt-hybrid">Snowflake Cortex × GPT-4o hybrid strategy</h3>
         <table style="width:100%; border-collapse:collapse; font-size:0.9em;">
