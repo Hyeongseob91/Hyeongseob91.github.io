@@ -69,7 +69,7 @@
         </nav>
 
         <h2 id="overview">Overview</h2>
-        <p><strong>"Pick a goal, get a data-backed Top 3 of Seoul districts — five Cortex-powered AI experts debate the answer."</strong><br><br>Generic public-data dashboards answer descriptive questions ("how many people walk through Yeoksam-dong?") but not decision questions ("where should I open my cafe?"). WIGTN FLAKE starts from the user's <strong>goal</strong>, cross-analyzes four datasets (real estate, foot traffic, card sales, telecom contracts), and uses a Snowflake Cortex × GPT-4o hybrid orchestration so a panel of five AI experts debates in real time and returns Top-3 recommendations + auto-detected anomaly signals + a 6-month forecast.</p>
+        <p><strong>"The user only picks a goal — five AI experts cross-validate each other while debating, and return a data-backed Top 3 of districts. A HOTL (Human-Out-of-The-Loop) decision platform."</strong><br><br>Generic public-data dashboards answer descriptive questions ("how many people walk through Yeoksam-dong?") but not decision questions ("where should I open my cafe?"). WIGTN FLAKE starts from the user's <strong>goal</strong>, cross-analyzes four datasets (real estate, foot traffic, card sales, telecom contracts), and uses a Snowflake Cortex × GPT-4o hybrid orchestration so a panel of five AI experts cross-validates each other in real-time debate and returns Top-3 recommendations + auto-detected anomaly signals + a 6-month forecast.</p>
 
         <div class="section--highlight">
           <h3>Highlights</h3>
@@ -117,8 +117,8 @@
         <ol>
           <li><strong>Purpose Selection</strong> — six preset cards (cafe · rental appliances · billboard · investment · anomaly detection · free-form) or free-form input</li>
           <li><strong>District Context</strong> — AI suggests candidate districts; goal + districts form the brief</li>
-          <li><strong>Expert Orchestration</strong> — a GPT-4o summoner activates five purpose-tuned personas; debate streams over SSE</li>
-          <li><strong>Cortex Execution</strong> — four Semantic Models query via Cortex Analyst text-to-SQL; ANOMALY_DETECTION + FORECAST run in parallel; results converge in the warehouse</li>
+          <li><strong>Expert Orchestration</strong> — a GPT-4o summoner activates five purpose-tuned personas. Each expert <strong>cross-validates the others' reasoning</strong>, neutralizing single-LLM hallucination and bias through multi-perspective consensus. Live debate streams over SSE.</li>
+          <li><strong>Cortex Execution</strong> — the user's natural-language question is <strong>auto-translated to SQL by Cortex Analyst on top of the Semantic Models</strong> → live queries across four datasets (SPH · RichGo · NextTrade · AJD) + parallel ANOMALY_DETECTION and FORECAST → results converge in the warehouse.</li>
           <li><strong>Decision Report</strong> — Top-3 ranking + anomaly badges + 6-month projections + a goal-specific action checklist</li>
         </ol>
 
@@ -206,6 +206,8 @@
 
         <h2 id="principles">Engineering Principles</h2>
         <ul>
+          <li><strong>HOTL (Human-Out-of-The-Loop)</strong> — the human only picks the goal; the decision-making process itself is owned by an autonomous loop of five AI experts debating and cross-validating each other. Trustworthy recommendations should fall out of the loop without per-step human intervention — single-model hallucination is offset by multi-perspective consensus.</li>
+          <li><strong>Cross-validation as core value</strong> — "debate" is the form; the substance is verification. Five personas each bring a different slice of data, contest and reinforce each other's conclusions, and use the consensus mechanism to block the hallucinations and biases a single LLM might leak through.</li>
           <li><strong>Purpose-first design</strong> — every component, from UX to code, carries the goal context</li>
           <li><strong>Hybrid AI</strong> — Cortex for data / SQL / reports; GPT-4o for debate personas — best model per layer</li>
           <li><strong>Snowflake as lead role</strong> — 11 Cortex features woven through the demo, not checklisted</li>
@@ -238,6 +240,14 @@
           <li>Cortex Agent · Analyst · LLM (claude-4-sonnet)</li>
           <li>FORECAST · ANOMALY_DETECTION · AI_SENTIMENT · AI_CLASSIFY · data_to_chart</li>
           <li>Dynamic Tables × 2 · Python UDFs × 2 · Semantic Model YAML × 4</li>
+        </ul>
+
+        <h2 id="team">Team WIGTN</h2>
+        <ul>
+          <li><strong>Hyeong-seob (Harrison) Kim</strong> — Crew Lead &amp; AI Research Engineer (orchestration · Cortex integration)</li>
+          <li><strong>Jinmo Kim</strong></li>
+          <li><strong>Hyeonsang Kim</strong></li>
+          <li><strong>Hyunwoo Cho</strong></li>
         </ul>
 
       </div>

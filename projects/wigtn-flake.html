@@ -61,7 +61,7 @@
 
         <!-- Section: Overview -->
         <h2 id="overview">Overview</h2>
-        <p><strong>"하고 싶은 일을 고르면, 다섯 명의 AI 전문가가 토론해서 데이터로 증명된 Top 3 동네를 추천한다."</strong><br><br>일반 공공데이터 대시보드는 <strong>서술형 질문</strong>("역삼동 유동인구는?")에는 답하지만 <strong>의사결정 질문</strong>("어디에 카페를 열어야 하나?")에는 답하지 못합니다. WIGTN FLAKE는 사용자의 <strong>목적</strong>을 출발점으로 삼아 부동산·유동인구·카드매출·통신계약 4개 데이터셋을 교차 분석하고, Snowflake Cortex × GPT-4o 하이브리드 오케스트레이션으로 5명의 AI 전문가 패널이 실시간 토론 끝에 Top 3 추천 + 이상 시그널 자동 감지 + 6개월 트렌드 예측을 제공합니다.</p>
+        <p><strong>"사용자는 목적만 고른다 — 5명의 AI 전문가가 서로의 답변을 교차 검증하며 토론해 데이터로 증명된 Top 3 동네를 추천하는 HOTL(Human-Out-of-The-Loop) 의사결정 플랫폼."</strong><br><br>일반 공공데이터 대시보드는 <strong>서술형 질문</strong>("역삼동 유동인구는?")에는 답하지만 <strong>의사결정 질문</strong>("어디에 카페를 열어야 하나?")에는 답하지 못합니다. WIGTN FLAKE는 사용자의 <strong>목적</strong>을 출발점으로 삼아 부동산·유동인구·카드매출·통신계약 4개 데이터셋을 교차 분석하고, Snowflake Cortex × GPT-4o 하이브리드 오케스트레이션으로 5명의 AI 전문가 패널이 서로의 추론을 교차 검증하며 토론한 끝에 Top 3 추천 + 이상 시그널 자동 감지 + 6개월 트렌드 예측을 제공합니다.</p>
 
         <div class="section--highlight">
           <h3>주요 성과</h3>
@@ -112,8 +112,8 @@
         <ol>
           <li><strong>Purpose Selection</strong> — 6개 프리셋 카드(카페 · 렌탈가전 · 광고판 · 투자 · 이상 감지 · 자유) 또는 자유 입력</li>
           <li><strong>District Context</strong> — AI가 후보 동네를 제안, 목적+동네가 한 쌍의 brief로 묶임</li>
-          <li><strong>Expert Orchestration</strong> — GPT-4o Summoner가 5명의 목적 특화 페르소나를 실시간 소환, SSE로 토론 스트리밍</li>
-          <li><strong>Cortex Execution</strong> — 4개 Semantic Model을 Cortex Analyst text-to-SQL로 질의, ANOMALY_DETECTION + FORECAST 병렬 실행, 결과는 웨어하우스에서 수렴</li>
+          <li><strong>Expert Orchestration</strong> — GPT-4o Summoner가 5명의 목적 특화 페르소나를 실시간 소환. 각 전문가가 서로의 추론을 <strong>교차 검증(cross-validation)</strong>하며 단일 LLM의 환각·편향을 다관점 합의로 차단. SSE로 토론 라이브 스트리밍</li>
+          <li><strong>Cortex Execution</strong> — 사용자의 자연어 질문이 <strong>Cortex Analyst를 통해 Semantic Model 기반 SQL로 자동 변환</strong> → 4개 데이터셋(SPH·RichGo·NextTrade·아정당) 라이브 쿼리 + ANOMALY_DETECTION·FORECAST 병렬 실행 → 웨어하우스에서 결과 수렴</li>
           <li><strong>Decision Report</strong> — Top 3 랭킹 + 이상 시그널 배지 + 6개월 예측 + 목적별 액션 체크리스트</li>
         </ol>
 
@@ -206,6 +206,8 @@
         <!-- Section: Engineering Principles -->
         <h2 id="principles">Engineering Principles</h2>
         <ul>
+          <li><strong>HOTL (Human-Out-of-The-Loop)</strong> — 사람은 목적만 입력하고 의사결정 과정 자체는 5명 AI 전문가의 자율 토론·교차 검증 루프가 담당. 매 단계 인간 개입 없이도 신뢰 가능한 추천이 산출되도록 설계 — 단일 모델의 환각을 다관점 합의로 상쇄하는 것이 핵심</li>
+          <li><strong>Cross-validation as core value</strong> — "토론"은 형식이고 본질은 검증. 5명의 페르소나가 각자 다른 데이터 단면을 들고 와 서로의 결론을 반박·보강하며, 단일 LLM이 흘릴 수 있는 환각·편향을 합의 메커니즘으로 차단</li>
           <li><strong>Purpose-first design</strong> — UX부터 코드까지 모든 컴포넌트가 목적 컨텍스트를 들고 다님</li>
           <li><strong>Hybrid AI</strong> — 데이터/SQL/리포트는 Cortex, 토론 페르소나는 GPT-4o. 계층별 최적 모델 선택</li>
           <li><strong>Snowflake as lead role</strong> — 11종 Cortex 기능을 데모 전반에 자연스럽게 짜 넣음 (체크리스트가 아닌 흐름)</li>
@@ -239,6 +241,15 @@
           <li>Cortex Agent · Analyst · LLM (claude-4-sonnet)</li>
           <li>FORECAST · ANOMALY_DETECTION · AI_SENTIMENT · AI_CLASSIFY · data_to_chart</li>
           <li>Dynamic Tables × 2 · Python UDFs × 2 · Semantic Model YAML × 4</li>
+        </ul>
+
+        <!-- Section: Team -->
+        <h2 id="team">Team WIGTN</h2>
+        <ul>
+          <li><strong>Hyeong-seob (Harrison) Kim</strong> — Crew Lead &amp; AI Research Engineer (오케스트레이션 · Cortex 통합)</li>
+          <li><strong>JINMO KIM</strong></li>
+          <li><strong>HyeonSang Kim</strong></li>
+          <li><strong>조현우 (Hyunwoo Cho)</strong></li>
         </ul>
 
       </div>
