@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV | Hyeong-seob Kim</title>
+  <meta name="description" content="Curriculum Vitae of Hyeong-seob Kim (Harrison Kim).">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="academic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="./" class="site-header__brand">Hyeong-seob Kim</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a href="./#about" class="site-header__link">About</a>
+        <a href="./#news" class="site-header__link">News</a>
+        <a href="./#publications" class="site-header__link">Publications</a>
+        <a href="./#talks" class="site-header__link">Talks</a>
+        <a href="cv.html" class="site-header__link">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="cv-actions">
+      <button type="button" class="cv-actions__btn" onclick="window.print()">Download PDF</button>
+    </div>
+
+    <header class="cv-header">
+      <h1 class="cv-header__name">Hyeong-seob Kim</h1>
+      <p class="cv-header__alias">(Harrison Kim)</p>
+      <p class="cv-header__contact">
+        <a href="mailto:harrison@wigtn.com">harrison@wigtn.com</a> &middot;
+        <a href="https://github.com/hyeongseob91">github.com/hyeongseob91</a> &middot;
+        <a href="https://hyeongseob91.github.io">hyeongseob91.github.io</a> &middot;
+        Seoul, Republic of Korea
+      </p>
+    </header>
+
+    <!-- Research Interests -->
+    <section class="section">
+      <h2 class="section__title">Research Interests</h2>
+      <p>Real-time speech translation, telephony AI, real-world ML system deployment, GPU acceleration.</p>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h2 class="section__title">Education</h2>
+      <div class="cv-entry">
+        <span class="todo">TODO: education (degree, institution, years)</span>
+      </div>
+    </section>
+
+    <!-- Experience (reverse chronological) -->
+    <section class="section">
+      <h2 class="section__title">Experience</h2>
+
+      <div class="cv-entry">
+        <div class="cv-entry__row">
+          <span class="cv-entry__role">Founder &amp; Lead Researcher</span>
+          <span class="cv-entry__date"><span class="todo">TODO: start date</span> - Present</span>
+        </div>
+        <p class="cv-entry__org">WIGTN, independent AI research group, Seoul</p>
+        <p class="cv-entry__desc">
+          Lead research and development of WIGVO, a real-time bidirectional speech
+          translation system over legacy PSTN calls, accepted to ACL 2026 System Demonstrations.
+        </p>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__row">
+          <span class="cv-entry__role">AI Engineering Lead</span>
+          <span class="cv-entry__date"><span class="todo">TODO: start date</span> - Present</span>
+        </div>
+        <p class="cv-entry__org">BrainCrew</p>
+        <p class="cv-entry__desc"><span class="todo">TODO: role description</span></p>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry__row">
+          <span class="cv-entry__role">Researcher</span>
+          <span class="cv-entry__date"><span class="todo">TODO: start date</span> - Present</span>
+        </div>
+        <p class="cv-entry__org">RAPIDS Labs (MODULABS)</p>
+        <p class="cv-entry__desc"><span class="todo">TODO: role description</span></p>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="section">
+      <h2 class="section__title">Publications</h2>
+      <article class="pub">
+        <p class="pub__authors"><strong>Hyeong-seob Kim</strong>, Sang-Woo Son, Hyun-woo Cho, Hyeonsang Kim, Jinmo Kim</p>
+        <p class="pub__title">WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</p>
+        <p class="pub__venue">In Proceedings of ACL 2026 System Demonstrations. To appear.</p>
+        <div class="pub__links">
+          <a href="https://wigvo.wigtn.com" target="_blank" rel="noopener noreferrer" class="pub__link">Demo</a>
+          <a href="https://github.com/wigtn/wigvo" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+          <a href="https://youtu.be/4Uf6zMPOInY" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Invited Talks -->
+    <section class="section">
+      <h2 class="section__title">Invited Talks</h2>
+      <article class="talk">
+        <p class="talk__title">WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls</p>
+        <p class="talk__venue">IWSLT 2026 @ ACL 2026, San Diego, CA, USA. July 3-4, 2026. (upcoming)</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>&copy; 2026 Hyeong-seob Kim</span>
+      <a href="./">Home</a>
+    </div>
+  </footer>
+</body>
+</html>
