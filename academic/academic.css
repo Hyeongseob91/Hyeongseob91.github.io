@@ -297,6 +297,36 @@ strong, b {
   color: #ffffff;
 }
 
+/* Selected projects (compact list on the homepage) */
+.proj {
+  margin-bottom: 1.6rem;
+}
+
+.proj__meta {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+.proj__title {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-heading);
+  margin: 0.1rem 0;
+}
+
+.proj__desc {
+  font-size: 0.93rem;
+  margin-bottom: 0.45rem;
+}
+
+.proj__note {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
 /* Talks */
 .talk {
   margin-bottom: 1.2rem;
