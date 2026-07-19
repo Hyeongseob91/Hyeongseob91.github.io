@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeLens — Voice + Camera Multimodal AI Museum Curator | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/timelens.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/timelens.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/timelens.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/timelens.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/timelens_hero.png" alt="TimeLens — Voice + Camera Multimodal AI Museum Curator" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">TimeLens — Voice + Camera Multimodal AI Museum Curator</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Mar 2026 (under review)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> 2 Apps · Gemini Live API + ADK + Next.js + React Native</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Gemini Live API</span>
+            <span class="report-article__tag">Google ADK</span>
+            <span class="report-article__tag">Function Calling</span>
+            <span class="report-article__tag">Cloud Run</span>
+            <span class="report-article__tag">Firebase</span>
+            <span class="report-article__tag">Next.js</span>
+            <span class="report-article__tag">React Native</span>
+            <span class="report-article__tag">Hackathon</span>
+          </span>
+        </div>
+      </header>
+
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="overview">Overview</h2>
+        <p><strong>An entry for Google's global Gemini Live Agent Challenge.</strong><br><br>An AI curator that solves a familiar pain in group museum tours: you can't move at your own pace, and you can't ask a question on the spot. The product flow is uninterrupted — point a camera at an artifact (See), hear the curator's explanation (Hear), and ask questions by voice (Speak).</p>
+
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>Google global hackathon — <strong>submitted to Gemini Live Agent Challenge</strong></li>
+            <li>4 Function Calls replace the entire orchestration — <strong>routing logic, intent classifier, and state machine all removed</strong></li>
+            <li>Dual-pipeline design — <strong>Gemini Live API (main) + ADK multi-agent (text fallback)</strong></li>
+            <li>Agentic camera triggered by voice — <strong>regex patterns across 15 languages</strong></li>
+            <li>5-language service — <strong>Korean / English / Japanese / Chinese / Hindi</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="demo-and-links">Demo &amp; Links</h3>
+        <ul>
+          <li><strong>Demo video</strong>: <a href="https://youtu.be/ITaMtVO5jFg?si=-lhV6uV97mytFLgb" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          <li><strong>GitHub</strong>: <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer">wigtn/wigtn-timelens</a></li>
+          <li><strong>Build log</strong>: <a href="https://harrison-kim.tistory.com/entry/Gemini-Live-Agent-Challenge-WigtnCrew-Time-Lens-%EA%B0%9C%EB%B0%9C%EA%B8%B0" target="_blank" rel="noopener noreferrer">Blog post</a></li>
+        </ul>
+
+        <h2 id="judging-criteria">Judging Criteria &amp; Strategy</h2>
+
+        <h3 id="judging-items">Categories</h3>
+        <ul>
+          <li><strong>Innovation &amp; Multimodal UX (40%)</strong> — natural integration of voice, vision, and image</li>
+          <li><strong>Technical Implementation &amp; Agent Architecture (30%)</strong> — Google Cloud-native implementation</li>
+          <li><strong>Demo &amp; Presentation (30%)</strong> — live working demo</li>
+        </ul>
+
+        <h3 id="bonus-points">Bonus points</h3>
+        <ul>
+          <li>Public build content: +0.6</li>
+          <li>CI/CD automated deploy: +0.2</li>
+          <li>Google Developer Group member: +0.2</li>
+        </ul>
+
+        <h2 id="architecture-dual-pipeline">Architecture — Dual pipeline</h2>
+        <p>Not a single path (Live API only) — a multi-path design built for flaky museum Wi-Fi.</p>
+
+        <figure>
+          <img src="../../images/projects/timelens_architecture.jpeg" alt="TimeLens System Architecture" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 1: TimeLens system architecture. Gemini Live API (main) + ADK multi-agent (text fallback) dual pipeline.</figcaption>
+        </figure>
+
+        <h3 id="gemini-live-api-pipeline">Gemini Live API pipeline (main)</h3>
+        <ul>
+          <li>Voice input (PCM16/16 kHz) and camera (JPEG @ 1 fps) processed in real time over the same WebSocket session</li>
+          <li><strong>4 Function Calls</strong> replace orchestration — routing logic, intent classifier, and state machine are all gone</li>
+          <li>Barge-in lets the user cut off the AI response and ask the next question naturally</li>
+        </ul>
+
+        <h3 id="adk-multi-agent-pipeline">ADK multi-agent pipeline (text fallback)</h3>
+        <ul>
+          <li>timelens_orchestrator → 4 sub-agents (curator / restoration / discovery / diary)</li>
+          <li>Shares the same backend APIs as the Live path — no code duplication</li>
+          <li>Whichever entry point runs, the same functions are called — only the entry differs</li>
+        </ul>
+
+        <h2 id="function-calling-workflow">Function Calling Workflow — 4 tools</h2>
+        <p>The original plan included an intent classifier, an if/else chain, and a state machine. In the end we left only the system prompt and 4 Function Declarations and let the model handle the rest — and it worked better. The takeaway: <strong>"the model is smarter than your routing logic."</strong></p>
+
+        <figure>
+          <img src="../../images/projects/timelens_function_calling.png" alt="Function Calling Workflow" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure 2: Function Calling workflow. Four tools act as UX branch points; the ADK multi-agent path is used as fallback.</figcaption>
+        </figure>
+
+        <h3 id="four-tools">The 4 tools</h3>
+        <ul>
+          <li><strong>recognize_artifact()</strong> — analyze the camera frame + Google Search Grounding for artifact recognition and lookup</li>
+          <li><strong>generate_restoration()</strong> — generate a photorealistic restored image with Gemini 2.5 Flash Image</li>
+          <li><strong>discover_nearby()</strong> — GPS-driven Google Places API lookup of nearby museums and heritage sites</li>
+          <li><strong>create_diary()</strong> — at the end of the session, auto-generate a visit diary with Gemini 3 Pro Image</li>
+        </ul>
+
+        <h2 id="agentic-camera">Agentic Camera</h2>
+        <p>Voice triggers the shutter — the central UX. Per-language regex (Korean: "이거 뭐야", "이거 봐" / English: "what is this", "look at this" / Japanese, Chinese, Hindi, etc.) detects voice commands across 15 languages.</p>
+
+        <h3 id="capture-process">Capture flow</h3>
+        <ul>
+          <li>Voice command detected → 500 ms stabilization wait (suppresses hand shake)</li>
+          <li>High-resolution capture → iOS-style white flash overlay (0.2 s fade)</li>
+          <li>Frame plus the user's utterance sent to the Live API → AI voice response</li>
+        </ul>
+
+        <h2 id="service-flow">Service Flow</h2>
+
+        <div class="z-flow">
+
+          <div class="z-row">
+            <div class="z-image"><img src="../../images/projects/timelens_01_landing.jpeg" alt="Landing" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 1</span><h4>Landing — Pick a language</h4>
+            <p>Five languages: Korean / English / Japanese / Chinese / Hindi. "Museums Come Alive" — request camera and microphone permissions, start the session.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../../images/projects/timelens_02_permissions.jpeg" alt="Permissions" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 2</span><h4>Permissions</h4>
+            <p>Grant camera and microphone access. If denied, automatically falls back to text mode (ADK).</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../../images/projects/timelens_03_overview.jpeg" alt="Overview" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 3</span><h4>Service overview</h4>
+            <p>"Point your camera at an artifact, and a thousand-year story begins." Average 3-second recognition, 10K+ heritage sites, 24/7 AI voice docent.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../../images/projects/timelens_06_session_init.png" alt="Session Init" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 4</span><h4>Session init</h4>
+            <p>Connect the Gemini Live session. Detect the current museum from GPS and wake up the AI curator.</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../../images/projects/timelens_07_curator_greeting.png" alt="Curator Greeting" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 5</span><h4>Curator greeting</h4>
+            <p>The current exhibition info is fetched live via Google Search Grounding and rolled into the greeting. Two-way voice and text are both available.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../../images/projects/timelens_05_recognition.png" alt="Artifact Recognition" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 6</span><h4>Artifact recognition</h4>
+            <p>"What is this?" — the agentic camera detects the voice command, captures, and calls recognize_artifact(). The curator explains the artifact's name, era, and historical context.</p></div>
+          </div>
+
+          <div class="z-row">
+            <div class="z-image"><img src="../../images/projects/timelens_live_conversation.png" alt="Live Conversation" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 7</span><h4>Real-time multimodal conversation</h4>
+            <p>In LIVE mode, camera frames and voice are processed concurrently. Look at an artifact, ask freely, and barge in to start a new question.</p></div>
+          </div>
+
+          <div class="z-row z-row--reverse">
+            <div class="z-image"><img src="../../images/projects/timelens_restoration.png" alt="Restoration" onclick="window.open(this.src, '_blank')"></div>
+            <div class="z-text"><span class="z-step">STEP 8</span><h4>Restored image</h4>
+            <p>"Show me what it originally looked like" — generate_restoration() produces a photorealistic restored image with Gemini 2.5 Flash Image. Toggle Now / Original to compare.</p></div>
+          </div>
+
+        </div>
+
+        <h2 id="problems-solved">Problems we solved along the way</h2>
+
+        <h3 id="korean-stt-quality">Korean STT transcription quality</h3>
+        <p>Gemini outputTranscription mishandles Korean ("괜찮 ." → "괜찮.", "큐레 이터" → "큐레이터"). Fixed with post-processing — strip spaces before punctuation, merge wrongly-split syllables — plus a system-prompt rule capping sentences to ≤ 15 words.</p>
+
+        <h3 id="museum-wifi">Museum Wi-Fi</h3>
+        <p>Firebase createSession() hangs indefinitely on slow connections. Fixed with a Promise.race 5-second timeout → fall back to a local session. The user never notices.</p>
+
+        <h3 id="adk-zod-conflict">ADK vs Zod version conflict</h3>
+        <p>ADK's internal zod/v3 conflicted with our Zod v4. Resolved by using @google/genai's Schema interface directly.</p>
+
+        <h2 id="tech-stack">Tech Stack — Google ecosystem</h2>
+
+        <h3 id="ai-ml">AI / ML</h3>
+        <ul>
+          <li><strong>Gemini 2.5 Flash</strong> — main model, Function-Calling-based orchestration</li>
+          <li><strong>Gemini 2.5 Flash Native Audio</strong> — real-time voice processing</li>
+          <li><strong>Gemini 2.5 Flash Image</strong> — restored-artifact image generation</li>
+          <li><strong>Gemini 3 Pro Image</strong> — visit diary generation</li>
+          <li><strong>Gemini Live API</strong> — real-time voice + camera multimodal WebSocket session</li>
+          <li><strong>Google ADK</strong> — multi-agent text fallback pipeline</li>
+          <li><strong>Google Search Grounding</strong> — live artifact lookup</li>
+        </ul>
+
+        <h3 id="frontend-and-mobile">Frontend &amp; Mobile</h3>
+        <ul>
+          <li><strong>Next.js 15</strong>, React 19 — web client</li>
+          <li><strong>React Native (Expo SDK)</strong> — mobile client</li>
+          <li>useLiveSession hook — WebSocket session management</li>
+          <li>CameraView and Chat UI components</li>
+        </ul>
+
+        <h3 id="infrastructure">Infrastructure</h3>
+        <ul>
+          <li><strong>Google Cloud Run</strong> — server deploy</li>
+          <li><strong>Firebase Auth</strong> — anonymous auth (5-second timeout + local fallback)</li>
+          <li><strong>Firestore</strong> — session storage</li>
+          <li><strong>Google Places API</strong> — nearby-museum discovery</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

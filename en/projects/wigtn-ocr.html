@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WigtnOCR — VLM Parser for Korean Public-Sector Documents | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/wigtn-ocr.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/wigtn-ocr.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/wigtn-ocr.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/wigtn-ocr.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/wigtnocr-huggingface.png" alt="WigtnOCR — VLM Parser for Korean Public-Sector Documents" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">WigtnOCR — VLM Parser for Korean Public-Sector Documents</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Jan – Mar 2026</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> OSS (Model + Dataset · HuggingFace + GitHub)</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Qwen3-VL-2B</span>
+            <span class="report-article__tag">LoRA</span>
+            <span class="report-article__tag">Pseudo-Label Distillation</span>
+            <span class="report-article__tag">OmniDocBench</span>
+            <span class="report-article__tag">KoGovDoc-Bench</span>
+            <span class="report-article__tag">vLLM</span>
+            <span class="report-article__tag">Open Source</span>
+            <span class="report-article__tag">EMNLP 2026</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="overview">Overview</h2>
+        <p><strong>A VLM-based parser specialized for Korean public-sector documents.</strong><br><br>This research started from a problem I hit at SoundMind Inc. while building B2B2G (indirect government delivery) RAG services. We could not predict what document structures the end user would feed in — but we did know the domain was Korean government documents. The goal was an SLM-based document parser that reads and structures these documents accurately, while fitting the practical infrastructure budget (limited GPU, limited cost).<br><br>"Bigger is better" is no longer enough. The central question of current AI engineering is <strong>how efficiently you can transfer LLM intelligence into an SLM</strong>. We applied the knowledge-distillation paradigm Orca (Microsoft, 2023) introduced — training an SLM on an LLM's reasoning to make a small model match a large one — to Korean public-document parsing.<br><br>We LoRA-fine-tuned Qwen3-VL-2B-Instruct on 2,667 Korean public documents and <strong>matched or exceeded the parsing performance of a Teacher model 15× larger (30B)</strong>. In a 6-parser comparison, WigtnOCR also took <strong>#1 retrieval performance</strong>, validating the end-to-end causal chain "structured parsing → better chunk quality → better retrieval." Model weights, training data, and evaluation code are all open source.<br><br><strong>Releases:</strong> <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer">HuggingFace Model</a> · <a href="https://huggingface.co/datasets/Wigtn/KoGovDoc-Bench" target="_blank" rel="noopener noreferrer">HuggingFace Dataset</a> · <a href="https://github.com/Hyeongseob91/research-vlm-based-document-parsing" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://wigtn.com" target="_blank" rel="noopener noreferrer">WIGTN Crew</a></p>
+
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>2B model surpasses the 15× larger 30B Teacher — <strong>matches or exceeds in 4/5 categories</strong></li>
+            <li>OmniDocBench Table TEDS — <strong>#1 (0.649)</strong></li>
+            <li>6-parser retrieval comparison — <strong>top Hit@1 and MRR@10</strong></li>
+            <li>LoRA fine-tuning runtime — <strong>31 minutes (DeepSpeed ZeRO-2)</strong></li>
+            <li>Open-source release — <strong>HuggingFace Model + Dataset + GitHub</strong></li>
+          </ul>
+        </div>
+
+        <h3 id="research-question">Research Question</h3>
+        <p>"Can we compress the parsing capability of a 30B Teacher into a 2B Student while specializing for Korean public documents — and does structured parsing actually translate into better chunking and retrieval downstream in a real RAG pipeline?"</p>
+        <figure>
+          <img src="../../images/projects/wigtnocr-highlights.png" alt="WigtnOCR core benchmark results" onclick="window.open(this.src, '_blank')">
+        </figure>
+
+        <h2 id="technical-challenges">Technical Challenge — Why existing parsers fail</h2>
+
+        <h3 id="pure-ocr-limitation">The limit of pure OCR</h3>
+        <p>Traditional OCR like PaddleOCR recognizes text but does not understand document structure. In our evaluations it extracted 3 – 30× less text than WigtnOCR and missed most of the tables, forms, and complex layouts in Korean public documents.</p>
+
+        <h3 id="rule-based-limitation">The limit of rule-based parsers</h3>
+        <p>Rule-based parsers like PyMuPDF4LLM are fast but recover almost no structure (~0%), failing to preserve hierarchical sections of laws or mixed table + diagram + text layouts.</p>
+
+        <h3 id="latest-vlm-limitation">The limit of recent VLM parsers</h3>
+        <p>Recent VLM-based parsers like dots.ocr (RedNote) and olmOCR (AI2) are trained on English/Chinese-centric corpora and aren't optimized for Korean government documents — complex tables, forms, stamps, mixed scans, multi-column layouts.</p>
+
+        <h3 id="large-model-limitation">The practical limit of 30B models</h3>
+        <p>30B-class VLMs deliver high-quality parsing but require dual GPUs and slow inference, making production deployment hard. A 2B model can serve quickly on a single GPU and is a realistic candidate for edge deployment.</p>
+
+        <h2 id="contribution-stack">Contribution Stack (3 layers)</h2>
+
+        <h3 id="layer-1-benchmark">Layer 1 — Benchmark</h3>
+        <p><strong>KoGovDoc-Bench</strong>: Korean government-document evaluation set (val 294 pages, pseudo-GT based)</p>
+
+        <h3 id="layer-2-model">Layer 2 — Fine-tuned Model</h3>
+        <p><strong>Wigtn/Qwen3-VL-2B-WigtnOCR</strong>: LoRA domain-adaptive fine-tuning weights (released on HuggingFace)</p>
+
+        <h3 id="layer-3-framework">Layer 3 — Framework (Next Step)</h3>
+        <p><strong>wigtnocr</strong>: a pip-installable OSS library (parsing → structured Markdown → chunking, integrated pipeline) — planned</p>
+
+        <h2 id="pseudo-gt-pipeline">Stages 1 – 3: Pseudo-GT generation → verification → refinement</h2>
+
+        <h3 id="pseudo-gt-generation">Pseudo-GT generation</h3>
+        <p>PDF page images go into Qwen3-VL-30B-Instruct (Teacher) and come out as structured Markdown — 10 KoGovDoc documents (3,637 pages) + 39 arXiv papers (864 pages), 4,501 pages total. Initial use of the 30B-Thinking model produced unstable outputs (think-tag contamination, token cutoff), so we switched to the Instruct model. <strong>Finding: for document transcription, instruction-tuned models are more reliable than reasoning models.</strong></p>
+
+        <h3 id="gt-quality-verification">GT quality verification</h3>
+        <p>We used Qwen3.5-122B as a Judge with a 5-point scale. Crucially, the judge was given <strong>text only, no images</strong> — not because we wanted "what differs from the source," but because we wanted to know whether the output itself is good enough to be training data. If you re-judge a VLM-generated GT with another VLM, you share the same visual-interpretation bias, creating a circular evaluation. A text-only LLM judge can independently score five dimensions of the Markdown output (structure, tables, completeness, hallucination, consistency) and breaks the generation-evaluation feedback loop. Repetition loops, text truncation, and reasoning leakage are all detectable from text alone. KoGovDoc pass rate 75.1%, arXiv 73.8%. Pages scoring under 3 were excluded from training.</p>
+
+        <h3 id="data-refinement">Data refinement</h3>
+        <ul>
+          <li>kogov_008 was 53% of the corpus (heavy bias) → controlled with <strong>max_doc_ratio=0.25</strong></li>
+          <li>Found English reasoning leakage from the 30B-Thinking model contaminating GT → 20 pages dropped, 257 cleaned</li>
+          <li>Final dataset: <strong>train 2,667 / val 294</strong></li>
+        </ul>
+
+        <h2 id="lora-finetuning">Stage 4: LoRA Fine-tuning</h2>
+        <p>Base: Qwen3-VL-2B-Instruct. LoRA rank=8, alpha=32, target=all-linear — adapters on every linear layer of the language model. <strong>Vision Encoder and Aligner are frozen</strong> — pilot tests showed VLM visual perception was strong enough (Structure F1 79%) and the bottleneck was text-generation accuracy.</p>
+
+        <h3 id="training-setup">Training setup</h3>
+        <ul>
+          <li>Hardware: 2× NVIDIA RTX PRO 6000 Blackwell (96 GB each)</li>
+          <li>DeepSpeed ZeRO-2; <strong>training time 31 min</strong>; final loss 0.075</li>
+        </ul>
+
+        <h3 id="ablation-study">Ablation Study</h3>
+        <table class="modal__benchmark-table">
+          <caption>LoRA Configuration Comparison (OmniDocBench)</caption>
+          <thead><tr>
+            <th scope="col">Config</th><th scope="col">LoRA r</th><th scope="col">Epochs</th><th scope="col">Text NED↓</th><th scope="col">TEDS↑</th>
+            <th scope="col">TEDS-S↑</th><th scope="col">CDM F1↑</th><th scope="col">RO NED↓</th><th scope="col">Skip%↓</th><th scope="col">Verdict</th>
+          </tr></thead><tbody>
+            <tr class="tr--highlight"><td>v1 (final)</td><td>8</td><td>3</td><td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.211</td><td>5.8%</td><td>Best overall</td></tr>
+            <tr><td>v2-best</td><td>32</td><td>3</td><td>0.309</td><td>0.600</td><td>0.697</td><td>—</td><td>0.215</td><td>0.7%</td><td>Tables regress</td></tr>
+            <tr><td>v2-last</td><td>32</td><td>5</td><td>0.306</td><td>0.610</td><td>0.695</td><td>0.892</td><td>0.214</td><td>0.0%</td><td>Overfit</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="lora-finding">Finding</h3>
+        <p>LoRA rank 8 beat rank 32 — raising rank slightly improves equations but regresses tables (-4.9 pp) and text (+2.1 pp NED, i.e., worse). Epoch 5 overfits (rising val loss). v2 hits Skip Rate 0% but sacrifices core parsing quality, so v1 is the final model.</p>
+
+        <h2 id="omnidocbench-evaluation">Stage 5: OmniDocBench Evaluation</h2>
+        <p>We compared four models on OmniDocBench (presented at CVPR 2025; 1,355 PDF pages, human GT).</p>
+        <figure>
+          <img src="../../images/projects/wigtnocr-omnidocbench.png" alt="OmniDocBench evaluation overview" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure: OmniDocBench results — among the four compared models (Qwen3-VL-30B, 2B, Marker, WigtnOCR), WigtnOCR ranks #1 on Table TEDS</figcaption>
+        </figure>
+
+        <h3 id="performance-comparison">Performance comparison</h3>
+        <table class="modal__benchmark-table">
+          <caption>OmniDocBench (CVPR 2025) — 4-model comparison</caption>
+          <thead><tr>
+            <th scope="col">Model</th><th scope="col">Text NED↓</th><th scope="col">Table TEDS↑</th>
+            <th scope="col">TEDS-S↑</th><th scope="col">CDM F1↑</th><th scope="col">CDM Exp↑</th><th scope="col">RO NED↓</th><th scope="col">Skip%↓</th>
+          </tr></thead><tbody>
+            <tr><td>Qwen3-VL-30B (Teacher)</td>
+              <td>0.289</td><td>0.523</td><td>0.657</td><td>0.939</td><td>0.692</td><td>0.227</td><td>5.5%</td></tr>
+            <tr><td>Qwen3-VL-2B (Base)</td>
+              <td>0.364</td><td>0.561</td><td>0.667</td><td>0.865</td><td>0.504</td><td>0.300</td><td>18.8%</td></tr>
+            <tr><td>Marker (Rule-based)</td>
+              <td>0.218</td><td>0.586</td><td>0.658</td><td>0.863</td><td>0.582</td><td>0.165</td><td>0.4%</td></tr>
+            <tr class="tr--highlight"><td>WigtnOCR v1 (Ours)</td>
+              <td>0.288</td><td>0.649</td><td>0.732</td><td>0.884</td><td>0.600</td><td>0.211</td><td>5.8%</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="key-results-omnidocbench">Key results</h3>
+        <ul>
+          <li><strong>Text NED</strong>: matches the 30B Teacher (0.288 vs 0.289)</li>
+          <li><strong>Table TEDS</strong>: overall #1 — 0.649 (+12.6 pp vs 30B's 0.523)</li>
+          <li><strong>Reading Order</strong>: surpasses the 30B Teacher (0.211 vs 0.227)</li>
+          <li>vs Base 2B — Text NED +21%, Table TEDS +16%, Reading Order +30%</li>
+          <li>The Student matches or beats the 30B Teacher in <strong>4/5 categories</strong> — pseudo-label distillation works</li>
+        </ul>
+
+        <h2 id="kogovdoc-val-evaluation">Stage 6: KoGovDoc Val Evaluation</h2>
+        <p>NED on the 294-page held-out val split (page-level full text).</p>
+
+        <h3 id="kogovdoc-results">Results</h3>
+        <table class="modal__benchmark-table">
+          <caption>KoGovDoc Val — 3-model comparison</caption>
+          <thead><tr>
+            <th scope="col">Model</th><th scope="col">NED↓</th>
+            <th scope="col">Eval Success</th><th scope="col">Errors</th>
+          </tr></thead><tbody>
+            <tr class="tr--highlight"><td>WigtnOCR v1</td><td>0.285</td><td>289/294</td><td>5</td></tr>
+            <tr><td>Qwen3-VL-30B (Teacher)</td><td>0.334</td><td>294/294</td><td>0</td></tr>
+            <tr><td>Qwen3-VL-2B (Base)</td><td>0.390</td><td>294/294</td><td>0</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="kogovdoc-key-results">Key result</h3>
+        <p>WigtnOCR also surpasses the 30B Teacher on Korean public documents (NED 0.285 vs 0.334).</p>
+
+        <h2 id="bc-cs-chunking-evaluation">Stage 7: BC/CS chunk-quality evaluation</h2>
+        <p>Does structured parsing actually produce better chunks? We compared six parsers using the BC/CS metric from MoC (ACL 2025). Semantic chunking with BGE-M3 was the comparison anchor — the chunking method is identical across parsers, so only the input structure varies, enabling a fair comparison.</p>
+        <figure>
+          <img src="../../images/projects/wigtnocr-bc-vs-retrieval.png" alt="BC vs Hit@1 scatter plot" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure: BC/CS chunk quality vs retrieval Hit@1 — the BC/CS leader (MinerU) ranks 5th in retrieval, a paradox</figcaption>
+        </figure>
+
+        <h3 id="semantic-chunking-results">KoGovDoc semantic-chunking results (6-parser comparison)</h3>
+        <table class="modal__benchmark-table">
+          <caption>BC/CS chunk quality — semantic chunking</caption>
+          <thead><tr>
+            <th scope="col">Model</th><th scope="col">BC↑</th><th scope="col">CS↓</th>
+          </tr></thead><tbody>
+            <tr><td>MinerU</td><td>0.735</td><td>2.711</td></tr>
+            <tr class="tr--highlight"><td>WigtnOCR-2B</td><td>0.706</td><td>2.859</td></tr>
+            <tr><td>Qwen3-VL-30B</td><td>0.714</td><td>3.164</td></tr>
+            <tr><td>Marker</td><td>0.683</td><td>3.206</td></tr>
+            <tr><td>Qwen3-VL-2B</td><td>0.678</td><td>3.446</td></tr>
+            <tr><td>PaddleOCR</td><td>0.654</td><td>3.420</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="engineering-challenges">Engineering challenges</h3>
+        <ul>
+          <li>Page-level chunking yielded mostly 1 chunk per page → BC/CS uncomputable → switched to <strong>document-level aggregation</strong></li>
+          <li>CS is O(n²) → large docs (241 chunks, ~29k pairs) hung → fixed with <strong>MAX_CHUNKS_FOR_CS=50 uniform sampling</strong></li>
+          <li>WigtnOCR extracts <strong>3 – 30× more text than PaddleOCR</strong> — pure OCR misses the tables, forms, and complex layouts of Korean public documents</li>
+        </ul>
+
+        <h2 id="retrieval-evaluation">Stage 8: Retrieval evaluation — end-to-end validation</h2>
+        <p>Strong BC/CS does not guarantee strong retrieval. Stage 8 closes the causal chain by measuring final retrieval performance: semantic chunking → BGE-M3 embeddings → FAISS, evaluated on 564 queries.</p>
+        <figure>
+          <img src="../../images/projects/wigtnocr-retrieval.png" alt="Retrieval performance comparison" onclick="window.open(this.src, '_blank')">
+          <figcaption>Figure: 6-parser retrieval comparison — WigtnOCR is #1 across Hit@1, Hit@5, MRR@10</figcaption>
+        </figure>
+
+        <h3 id="retrieval-results">Retrieval results (6-parser comparison)</h3>
+        <table class="modal__benchmark-table">
+          <caption>KoGovDoc retrieval — 564 queries</caption>
+          <thead><tr>
+            <th scope="col">Model</th><th scope="col">Hit@1↑</th><th scope="col">Hit@5↑</th>
+            <th scope="col">MRR@10↑</th><th scope="col">nDCG@10↑</th>
+          </tr></thead><tbody>
+            <tr class="tr--highlight"><td>WigtnOCR-2B</td><td>0.739</td><td>0.855</td><td>0.788</td><td>0.437</td></tr>
+            <tr><td>Qwen3-VL-30B</td><td>0.716</td><td>0.839</td><td>0.771</td><td>0.411</td></tr>
+            <tr><td>Marker</td><td>0.711</td><td>0.853</td><td>0.771</td><td>0.412</td></tr>
+            <tr><td>Qwen3-VL-2B</td><td>0.709</td><td>0.814</td><td>0.756</td><td>0.444</td></tr>
+            <tr><td>MinerU</td><td>0.608</td><td>0.789</td><td>0.682</td><td>0.384</td></tr>
+            <tr><td>PaddleOCR</td><td>0.512</td><td>0.693</td><td>0.592</td><td>0.293</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="key-findings-retrieval">Key findings</h3>
+        <ul>
+          <li><strong>WigtnOCR is #1 on Hit@1 (0.739), Hit@5 (0.855), MRR@10 (0.788)</strong></li>
+          <li>+22.7 pp Hit@1 over PaddleOCR; +2.3 pp over the 30B Teacher</li>
+          <li><strong>MinerU leads BC/CS but ranks 5th in retrieval</strong> — chunk-boundary quality does not predict retrieval; text richness and structural fidelity matter more for end-to-end RAG</li>
+        </ul>
+
+        <h2 id="practical-findings">Practical Findings</h2>
+        <ul>
+          <li><strong>Thinking vs Instruct</strong> — for document transcription, reasoning models are unstable (think-tag pollution, token truncation); Instruct is reliable</li>
+          <li><strong>LoRA rank sweet spot</strong> — at 2,667-sample scale, r=8 is optimal; r=32 regresses tables (-4.9 pp)</li>
+          <li><strong>BC/CS ≠ Retrieval</strong> — BC/CS does not predict retrieval. MinerU is BC/CS #1 but retrieval #5. Text richness and structural fidelity matter more end-to-end</li>
+          <li><strong>CS O(n²) fix</strong> — MAX_CHUNKS_FOR_CS=50 uniform sampling preserves representativeness while bounding compute</li>
+          <li><strong>Page → document level</strong> — page-level chunking is too short for BC/CS; document-level aggregation fixes it</li>
+          <li><strong>VLM extraction volume</strong> — WigtnOCR extracts 3 – 30× more text than PaddleOCR, because pure OCR misses Korean public documents' tables, forms, and complex layouts</li>
+        </ul>
+
+        <h2 id="tech-stack">Tech Stack</h2>
+
+        <h3 id="model-and-training">Model &amp; Training</h3>
+        <ul>
+          <li><strong>Student</strong>: Qwen3-VL-2B-Instruct (fine-tuning target)</li>
+          <li><strong>Teacher</strong>: Qwen3-VL-30B-Instruct (pseudo-GT generation)</li>
+          <li><strong>Judge</strong>: Qwen3.5-122B (GT quality verification)</li>
+          <li><strong>Framework</strong>: ms-swift, LoRA, DeepSpeed ZeRO-2</li>
+          <li><strong>Serving</strong>: vLLM (Docker, TP=2)</li>
+        </ul>
+
+        <h3 id="evaluation-and-retrieval">Evaluation &amp; Retrieval</h3>
+        <ul>
+          <li><strong>Benchmark</strong>: OmniDocBench (CVPR 2025) + KoGovDoc-Bench</li>
+          <li><strong>Chunking</strong>: header-based / semantic / fixed-size (3 strategies, document-level)</li>
+          <li><strong>Chunk evaluation</strong>: MoC BC/CS (ACL 2025)</li>
+          <li><strong>PPL Model</strong>: Qwen2.5-1.5B-Instruct (BC/CS perplexity)</li>
+          <li><strong>Embedding</strong>: BGE-M3 (Infinity server) — semantic chunking + retrieval embeddings</li>
+          <li><strong>Vector DB</strong>: FAISS</li>
+        </ul>
+
+        <h3 id="infrastructure-and-deployment">Infrastructure &amp; Deployment</h3>
+        <ul>
+          <li><strong>GPU</strong>: 2× NVIDIA RTX PRO 6000 Blackwell (96 GB each)</li>
+          <li><strong>Releases</strong>: HuggingFace (Wigtn org), GitHub (wigtn)</li>
+          <li><strong>Paper</strong>: planned EMNLP 2026 Industry Track submission</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

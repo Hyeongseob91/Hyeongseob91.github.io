@@ -378,6 +378,10 @@ img {
 .navbar__social-link--linkedin:hover { color: #0A66C2; }
 .navbar__social-link--tistory:hover  { color: #FF5A4A; }
 
+/* Tistory icon — evenodd punch-out SVG rendered via mask so the inner
+   dot stays a true hole. Outer shape inherits the link's color
+   (gray normally, brand orange on hover); page background shows
+   through the hole. */
 .navbar__social-icon--tistory {
   display: inline-block;
   width: 1.1rem;
@@ -385,6 +389,7 @@ img {
   background-color: currentColor;
   -webkit-mask: url("images/navigation/tistory.svg") center/contain no-repeat;
           mask: url("images/navigation/tistory.svg") center/contain no-repeat;
+  transition: background-color var(--transition-fast);
 }
 
 .navbar__toggle {
@@ -672,6 +677,10 @@ img {
   grid-template-columns: 1fr 2fr;
   gap: 4rem;
   align-items: start;
+}
+
+:lang(en) .about__grid {
+  align-items: center;
 }
 
 @media (max-width: 900px) {

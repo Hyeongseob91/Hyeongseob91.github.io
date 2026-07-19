@@ -247,8 +247,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.target.closest('.project-card__link-btn') || e.target.closest('.project-card__link')) return;
       const projectId = this.dataset.project;
       if (projectId) {
-        const prefix = LOCALE === 'en' ? '../projects/' : 'projects/';
-        window.location.href = prefix + projectId + '.html';
+        const base = LOCALE === 'en' ? '/en/projects/' : '/projects/';
+        window.location.href = base + projectId + '.html';
       }
     });
   });

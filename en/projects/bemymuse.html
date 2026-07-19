@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE MY MUSE — KoGPT-2-based Emotion-Driven Lyric AI | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/bemymuse.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/bemymuse.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/bemymuse.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/bemymuse.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/bemymuse_lyrics.png" alt="BE MY MUSE — KoGPT-2-based Emotion-Driven Lyric AI" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">BE MY MUSE — KoGPT-2-based Emotion-Driven Lyric AI</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> Wanted Learning</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Project Lead / Tech Lead (AI)</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Jan 2025 (1 month)</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> FastAPI + Fine-Tuning Pipeline</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">KoGPT2</span>
+            <span class="report-article__tag">Fine-Tuning</span>
+            <span class="report-article__tag">NLP</span>
+            <span class="report-article__tag">Transformers</span>
+            <span class="report-article__tag">PyTorch</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Streamlit</span>
+            <span class="report-article__tag">BLEU</span>
+            <span class="report-article__tag">ROUGE</span>
+            <span class="report-article__tag">Selenium</span>
+          </span>
+        </div>
+      </header>
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="problem">Problem</h2>
+        <h3 id="competition-background">Competition background</h3>
+        <p>MUSE Label's "BE MY MUSE" competition asked entrants to listen to a piece of composed music and submit lyrics that fit it. The piece was an emotionally rich ballad. Our team's idea was simple: <em>don't write the lyrics ourselves — let an AI do it</em>.</p>
+        <h3 id="technical-challenge">Technical challenge</h3>
+        <p>KoGPT-2 is strong on Korean, but it was trained on news, novels, and reports — formal, written-language text. That makes it ill-suited to ballad lyrics. Fine-tuning was required to teach the model to produce emotionally evocative lines.</p>
+
+        <h2 id="solution">Solution</h2>
+        <h3 id="core-concept">Core concept</h3>
+        <p>Fine-tune KoGPT-2 on emotion-rich lyrics so that, given just three keywords, it generates a ballad-flavored lyric.</p>
+        <h3 id="key-features">Key features</h3>
+        <ul>
+          <li>A Korean lyric dataset of 7,439 songs from the Melon chart</li>
+          <li>An emotion-driven lyric model produced by fine-tuning KoGPT-2</li>
+          <li>BLEU, ROUGE, and Perplexity-based generation-quality evaluation</li>
+          <li>Sentiment validation across 43 emotion categories (KOTE)</li>
+        </ul>
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>Training data — <strong>7,439 songs collected → 4,840-song cleaned dataset</strong></li>
+            <li>Fine-tuning — <strong>solo full fine-tuning of KoGPT-2 (125M)</strong></li>
+            <li>Sentiment validation — <strong>quality check across 43 KOTE emotion categories</strong></li>
+            <li>Multi-metric evaluation — <strong>BLEU + ROUGE + Perplexity quantitative pipeline</strong></li>
+            <li>Competition — <strong>submitted to MUSE Label's "BE MY MUSE"</strong></li>
+          </ul>
+        </div>
+
+        <h2 id="what-i-built">What I Built</h2>
+        <h3 id="data-collection">1. Data collection</h3>
+        <p>Of the 7,439 songs collected, I owned the hip-hop subset.<br>Lyrics were scraped from the Melon chart with Selenium-based dynamic crawling.</p>
+        <h3 id="model-fine-tuning">2. Model fine-tuning</h3>
+        <ul>
+          <li>Set up a 2× RTX 4090 training environment</li>
+          <li>Solo-ran the entire KoGPT-2 (skt/kogpt2-base-v2) fine-tuning pipeline</li>
+          <li>Tuned generation parameters (temperature, top_k, top_p)</li>
+          <li>Hyperparameter sweep over learning rate, batch size, epochs</li>
+          <li>Determined the optimal epoch count from results to avoid overfitting</li>
+        </ul>
+        <h3 id="model-evaluation">3. Evaluation</h3>
+        <ul>
+          <li>3 keywords in → generated lyric out, evaluated</li>
+          <li>BLEU: n-gram accuracy of generated text</li>
+          <li>ROUGE: overlap with reference text</li>
+          <li>Perplexity: model confidence and naturalness</li>
+        </ul>
+
+        <h2 id="data-pipeline">Data Pipeline</h2>
+        <ul>
+          <li>Collection: Selenium dynamic crawling of the Melon chart (7,439 songs)</li>
+          <li>Cleaning: dedup, normalization, tokenization → 4,840-song training set</li>
+          <li>Tokenizer: KoGPT-2 tokenizer with added special tokens</li>
+          <li>Training format: [BOS] keywords: {keyword} lyrics: {lyrics} [EOS]</li>
+        </ul>
+
+        <h2 id="model-architecture">Model Architecture</h2>
+        <figure>
+          <img src="../../images/projects/bemymuse_validation_graph.png" alt="Training Validation Graph" onclick="window.open(this.src, '_blank')">
+          <figcaption>KoGPT-2 fine-tuning curve — loss per epoch</figcaption>
+        </figure>
+        <h3 id="fine-tuning-settings">Fine-tuning settings</h3>
+        <ul>
+          <li>Base Model: SKT KoGPT-2-base-v2 (125M parameters)</li>
+          <li>GPU: RTX-4090 (24 GB VRAM)</li>
+          <li>Hyperparameters: lr=5e-5, batch_size=8, epochs=10</li>
+          <li>Optimizer: AdamW with weight decay</li>
+        </ul>
+        <h3 id="generation-parameter-optimization">Generation-parameter tuning</h3>
+        <ul>
+          <li>temperature: 0.8 (creativity / coherence balance)</li>
+          <li>top_k: 50, top_p: 0.95 (diversity)</li>
+          <li>repetition_penalty: 1.2 (anti-repetition)</li>
+        </ul>
+
+        <h2 id="service-demo">Service Demo</h2>
+        <h3 id="service-start-screen">1. Start screen</h3>
+        <figure>
+          <img src="../../images/projects/bemymuse_service_start.png" alt="Service Start Screen" style="width: 50%; height: auto;" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <h3 id="ai-generated-lyrics">2. Generated lyrics</h3>
+        <figure>
+          <img src="../../images/projects/bemymuse_lyrics.png" alt="Generated Lyrics" style="width: 50%; height: auto;" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <h3 id="emotion-analysis-visualization">3. Sentiment visualization</h3>
+        <figure>
+          <img src="../../images/projects/bemymuse_service_kote.png" alt="Emotion Analysis" style="width: 50%; height: auto;" onclick="window.open(this.src, '_blank')">
+        </figure>
+        <h3 id="performance-evaluation-results">4. Evaluation results</h3>
+        <figure>
+          <img src="../../images/projects/bemymuse_service_metrics.png" alt="Performance Evaluation" style="width: 50%; height: auto;" onclick="window.open(this.src, '_blank')">
+        </figure>
+
+        <h2 id="metrics-evaluation">Metrics &amp; Evaluation</h2>
+        <h3 id="quantitative-metrics">Quantitative metrics</h3>
+        <p><strong>Standard NLP baselines</strong><br>• BLEU: 0–1 range, ≥ 0.3 considered good (translation tasks)<br>• ROUGE: 0–1 range, higher is more similar to the reference (summarization tasks)<br>• Perplexity: GPT-2 benchmark roughly 16–20, lower is more natural<br><br><strong>Interpretation for BeMyMuse</strong><br>The competition is about creativity. Very high BLEU/ROUGE would mean the generated lyrics resemble existing ones too closely — a plagiarism risk.<br>So we treat <strong>moderately low BLEU/ROUGE + low Perplexity</strong> as the marker of <strong>"creative yet natural"</strong> lyrics.</p>
+        <h3 id="emotion-classification-validation">Sentiment validation</h3>
+        <p>We classified generated lyrics into 43 emotion categories with KOTE (Korean Online That Evaluation).<br><br>If emotions appropriate to ballads (sadness, longing, love, loneliness, etc.) are dominant, the fine-tuned model is producing the intended emotional content.</p>
+
+        <h2 id="achievements-retrospective">Outcomes &amp; Retrospective</h2>
+        <h3 id="key-achievements">Key outcomes</h3>
+        <ul>
+          <li>Built a 4,840-song cleaned lyric dataset</li>
+          <li>Fine-tuned KoGPT-2 to generate natural Korean lyrics</li>
+          <li>Shipped a polished service: FastAPI + Streamlit UI</li>
+          <li>Demonstrated the value of AI as a creative-writing aid via sentiment analysis and contextual visualization</li>
+        </ul>
+        <h3 id="trial-and-error">Lessons learned</h3>
+        <p>Initially we tried random combinations from KoNLPy + the National Institute of the Korean Language corpus. Korean's complex grammar — particles and conjugation — made simple recombination produce unnatural sentences.<br>That phase was painful. Insufficient deep-learning know-how, rough engineering practice, and an underestimation of Korean's particularities — partly because Korean is my mother tongue and many of its quirks were invisible to me.<br><br>As I kept studying generative AI I became convinced that LLMs can, in fact, learn Korean's complex grammar. That shifted me to KoGPT-2 fine-tuning. Perplexity is still on the high side — there is room — but watching the model gradually learn Korean grammar and emotional expression was deeply rewarding and raised my ambition.</p>
+        <h3 id="technical-growth">Technical growth</h3>
+        <p>Through this project I learned the difference between Pre-training and Post-training (Fine-tuning) and the concept of SFT (Supervised Fine-Tuning). The biggest takeaway was understanding that an LLM is not "intelligence" but a <strong>probability-driven token generator</strong>.<br>That reframing made me much more honest about what's possible and what isn't. I also learned that Korean is still tokenized inefficiently relative to English-centric models, so Korean models need more data and training. That has become a long-term motivation for me to keep building Korean NLP.</p>
+
+      </div>
+    </article>
+  </main>
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+  <script src="../../projects/project.js"></script>
+</body>
+</html>

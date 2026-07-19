@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV | Hyeong-seob Kim</title>
+  <meta name="description" content="Curriculum Vitae of Hyeong-seob Kim (Harrison Kim).">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+
+  <link rel="stylesheet" href="academic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="./" class="site-header__brand">Hyeong-seob Kim</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a href="./#about" class="site-header__link">about</a>
+        <a href="./#publications" class="site-header__link">publications</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="cv-actions">
+      <button type="button" class="cv-actions__btn" onclick="window.print()">Download PDF</button>
+    </div>
+
+    <header class="cv-header">
+      <h1 class="cv-header__name">Hyeong-seob Kim</h1>
+      <p class="cv-header__alias">(Harrison Kim)</p>
+      <p class="cv-header__contact">
+        <a href="mailto:harrison@wigtn.com">harrison@wigtn.com</a> &middot;
+        <a href="https://github.com/hyeongseob91">github.com/hyeongseob91</a> &middot;
+        Seoul, Republic of Korea
+      </p>
+    </header>
+
+    <!-- Research Interests -->
+    <section class="section">
+      <h2 class="section__title">Research Interests</h2>
+      <p>AI transformation (AX) of legacy systems, real-time speech translation, document understanding, production ML deployment, GPU acceleration.</p>
+    </section>
+
+    <!-- Experience (reverse chronological) -->
+    <section class="section">
+      <h2 class="section__title">Work Experience</h2>
+      <table class="entries">
+        <tbody>
+          <tr>
+            <td class="entries__date">Apr 2026 - Present</td>
+            <td>
+              <div class="entries__org">Braincrew</div>
+              <div class="entries__role">AI Research Engineer, Research Engineering Team</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Design and build B2B production AI systems end to end — advanced RAG pipelines, admin console, and SaaS platform.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jan 2026 - Present</td>
+            <td>
+              <div class="entries__org">WIGTN</div>
+              <div class="entries__role">Founder, AI Research Group</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Lead research on WIGVO, a real-time speech translation system over legacy PSTN calls — first author, accepted to ACL 2026 System Demonstrations.</li>
+                  <li>Released WigtnOCR (VLM parsing model for Korean public documents) and developer tools (WIGTN-Coding, LLM Loadtester) as open source.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jan 2026 - Present</td>
+            <td>
+              <div class="entries__org">RAPIDS LAB (MODULABS)</div>
+              <div class="entries__role">AI Researcher, GPU-Accelerated Laboratory</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Research on an open-source end-to-end GPU-based AutoML system built on NVIDIA RAPIDS (NVTabular, Ray, GPU XGBoost/LightGBM/CatBoost), benchmarked on OpenML datasets against AutoGluon and LightAutoML.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jul 2025 - Mar 2026</td>
+            <td>
+              <div class="entries__org">SoundMind</div>
+              <div class="entries__role">AI Research Engineer, AX Division</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Solely designed and built the SoundMind AI Ecosystem, a platform that generates and deploys customer-specific RAG pipelines (AI Console + AI Platform), cutting new engine deployment lead time from 2 weeks to 5 minutes with one-click Docker deployment.</li>
+                  <li>Built a RAGAS-based LLM-as-a-Judge evaluation system for public sector RAG (81 Q&amp;A pairs, 3,678 pages) and quantified the performance contribution of each pipeline stage through ablation.</li>
+                  <li>Operated an MSA of 9 projects, 161 APIs, and 15+ Docker containers running up to 99 concurrent pipelines, monitored with Grafana and Loki.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jan 2022 - Sep 2024</td>
+            <td>
+              <div class="entries__org">Hyundai Engineering &amp; Construction</div>
+              <div class="entries__role">Architectural Site Engineer, Housing Division</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Led the on-site field verification of H-Silent, a floor noise insulation technology, which earned the first Grade 1 certification from the Korean Ministry of Land, Infrastructure and Transport.</li>
+                  <li>Reviewed architectural and structural design changes to remove interference and risk before construction, and managed on-site quality control, workability review, and scheduling.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jul 2016 - Jan 2022</td>
+            <td>
+              <div class="entries__org">Donggeuk Construction</div>
+              <div class="entries__role">Construction Project Manager, Head Office</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Managed contracts, cost, and P&amp;L for RC structure projects, supported new project bidding and estimation, and coordinated administration between head office and sites.</li>
+                  <li>Key projects: Doosan Group Bundang headquarters, CESCO Members City, Yonsei University Y-IBS, MBC Sangam parking building.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Aug 2014 - Jul 2016</td>
+            <td>
+              <div class="entries__org">Doosan Engineering &amp; Construction</div>
+              <div class="entries__role">Architectural Site Engineer, Architecture Division</div>
+              <div class="entries__desc">
+                <ul>
+                  <li>Managed architectural construction schedules and resources, performed quality control against design documents, and contributed to an excellence award at the 2015 LH Construction VE competition.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Selected Projects -->
+    <section class="section">
+      <h2 class="section__title">Selected Projects</h2>
+
+      <article class="proj">
+        <p class="proj__meta">ACL 2026 · Research</p>
+        <p class="proj__title">WIGVO — Real-Time Speech Translation over Legacy PSTN Calls</p>
+        <p class="proj__desc">
+          Real-time bidirectional speech translation running on the public telephone network
+          (G.711 &mu;-law, 8 kHz). The Dual-Session Echo Gating architecture and a 3-stage audio
+          filter pipeline remove the echo loop in software — 0 echo loops across 148 field tests.
+        </p>
+        <div class="pub__links">
+          <a href="https://aclanthology.org/2026.acl-demo.33/" target="_blank" rel="noopener noreferrer" class="pub__link">Paper</a>
+          <a href="https://youtu.be/jK1CDOQExLw" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Research · Open Source</p>
+        <p class="proj__title">WigtnOCR — VLM Parsing Model for Korean Public Documents</p>
+        <p class="proj__desc">
+          LoRA fine-tuned Qwen3-VL-2B that surpasses a 15x larger 30B teacher model —
+          1st in Table TEDS (0.649) on OmniDocBench (CVPR 2025) and best Hit@1 / MRR@10
+          among 6 parsers on KoGovDoc retrieval.
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/Hyeongseob91/research-vlm-based-document-parsing" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+          <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer" class="pub__link">HuggingFace</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Product · B2B</p>
+        <p class="proj__title">SoundMind AI Ecosystem — Automated RAG Pipeline Platform</p>
+        <p class="proj__desc">
+          Platform that analyzes customer documents, auto-generates tailored RAG pipelines,
+          and deploys them with one-click Docker — cutting engine deployment lead time from
+          2 weeks to 5 minutes. MSA of 9 projects, 161 APIs, up to 99 concurrent pipelines.
+        </p>
+        <p class="proj__note">Company project — SoundMind</p>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Hackathon · 2nd Place</p>
+        <p class="proj__title">WIGTN FLAKE — Purpose-Driven Neighborhood Intelligence Platform</p>
+        <p class="proj__desc">
+          An AI expert panel cross-analyzes real estate, foot traffic, card spending, and telecom
+          data to recommend locations by purpose. Snowflake Cortex &times; GPT-4o hybrid
+          orchestration; 2nd place, Tech Track, Snowflake AI &amp; Data Hackathon 2026 Korea.
+        </p>
+        <div class="pub__links">
+          <a href="https://youtu.be/1YzSp3SdzTk" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+          <a href="https://www.newswire.co.kr/newsRead.php?no=1033575" target="_blank" rel="noopener noreferrer" class="pub__link">News</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Open Source</p>
+        <p class="proj__title">WIGTN-Coding — AI-Native Development Workflow Plugin</p>
+        <p class="proj__desc">
+          Development workflow automation plugin for Claude Code (7 commands, 14 agents, 7 skills).
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Open Source</p>
+        <p class="proj__title">Engineering LLM Loadtester — LLM Serving Benchmark Tool</p>
+        <p class="proj__desc">
+          LLM serving benchmark tool usable by non-developers — TTFT, TPOT, and Goodput visualization.
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Hackathon</p>
+        <p class="proj__title">TimeLens — Multimodal AI Museum Curator</p>
+        <p class="proj__desc">
+          Voice + camera AI curator processing audio and vision in real time on a
+          Gemini Live API + ADK dual pipeline (Google Gemini Live Agent Challenge).
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+          <a href="https://youtu.be/ITaMtVO5jFg" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h2 class="section__title">Education</h2>
+      <table class="entries">
+        <tbody>
+          <tr>
+            <td class="entries__date">Jun 2023 - Feb 2024</td>
+            <td>
+              <div class="entries__org">National Institute for Lifelong Education</div>
+              <div class="entries__role">Bachelor's degree in Architectural Engineering</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Mar 2009 - Aug 2015</td>
+            <td>
+              <div class="entries__org">Kyungbok University</div>
+              <div class="entries__role">Associate degree in Architectural Design</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Publications -->
+    <section class="section">
+      <h2 class="section__title">Publications</h2>
+      <article class="pub">
+        <p class="pub__authors"><strong>Hyeong-seob Kim</strong>, Sang-Woo Son, Hyun-woo Cho, Hyeonsang Kim, Jinmo Kim</p>
+        <p class="pub__title">WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</p>
+        <p class="pub__venue">In Proceedings of ACL 2026 System Demonstrations.</p>
+        <div class="pub__links">
+          <a href="https://aclanthology.org/2026.acl-demo.33/" target="_blank" rel="noopener noreferrer" class="pub__link">Paper</a>
+          <a href="https://youtu.be/jK1CDOQExLw" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Invited Talks -->
+    <section class="section">
+      <h2 class="section__title">Invited Talks</h2>
+      <article class="talk">
+        <p class="talk__title">WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls</p>
+        <p class="talk__venue">IWSLT 2026 (co-located with ACL 2026), San Diego, CA, USA. July 3-4, 2026.</p>
+      </article>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section class="section">
+      <h2 class="section__title">Honors &amp; Awards</h2>
+      <table class="entries">
+        <tbody>
+          <tr>
+            <td class="entries__date">Apr 2026</td>
+            <td>
+              <div class="entries__org">2nd Place, Tech Track, Snowflake AI &amp; Data Hackathon 2026 Korea</div>
+              <div class="entries__role">Team WIGTN, WIGTN FLAKE</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Dec 2022</td>
+            <td>
+              <div class="entries__org">Outstanding Employee Award, Technological Competitiveness</div>
+              <div class="entries__role">Hyundai Engineering &amp; Construction</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Apr 2015</td>
+            <td>
+              <div class="entries__org">Honorable Mention, 11th Excellent Graduation Thesis Exhibition</div>
+              <div class="entries__role">Architectural Institute of Korea</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section">
+      <h2 class="section__title">Certifications</h2>
+      <table class="entries">
+        <tbody>
+          <tr>
+            <td class="entries__date">Mar 2026</td>
+            <td>
+              <div class="entries__org">Fundamentals of Accelerated Data Science</div>
+              <div class="entries__role">NVIDIA Deep Learning Institute</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Dec 2025</td>
+            <td>
+              <div class="entries__org">Engineer Big Data Analysis (빅데이터분석기사)</div>
+              <div class="entries__role">Korea Data Agency</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Social links (screen only, hidden in print) -->
+    <div class="cv-social social-icons">
+      <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=harrison@wigtn.com" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="Email" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+      <a href="https://scholar.google.com/citations?user=FQ8NZ8YAAAAJ" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="Google Scholar" title="Google Scholar">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+      <a href="https://github.com/Hyeongseob91" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="GitHub" title="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://wigtn.com" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="WIGTN homepage" title="WIGTN">
+        <i class="fa-solid fa-house"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="LinkedIn" title="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>&copy; 2026 Hyeong-seob Kim</span>
+      <a href="./">Home</a>
+    </div>
+  </footer>
+</body>
+</html>

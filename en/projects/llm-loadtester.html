@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering LLM Loadtester — LLM-Serving Benchmark for Non-Engineers | Hyeong-seob (Harrison) Kim Portfolio</title>
+  <link rel="alternate" hreflang="ko" href="https://hyeongseob91.github.io/projects/llm-loadtester.html">
+  <link rel="alternate" hreflang="en" href="https://hyeongseob91.github.io/en/projects/llm-loadtester.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../../reports/report.css">
+  <link rel="stylesheet" href="../../projects/project.css">
+</head>
+<body>
+  <header class="report-header">
+    <div class="report-header__inner">
+      <a href="../index.html" class="report-header__brand">HYEONGSEOB KIM</a>
+      <nav class="report-header__nav">
+        <span class="report-header__lang">
+          <a href="/projects/llm-loadtester.html" class="report-header__lang-link" hreflang="ko">KO</a>
+          <span aria-hidden="true">|</span>
+          <a href="/en/projects/llm-loadtester.html" class="report-header__lang-link report-header__lang-link--active" hreflang="en">EN</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="report-main">
+    <article>
+      <header>
+        <a href="../index.html#projects" class="report-article__back">&larr; Projects</a>
+        <div class="project-hero">
+          <img src="../../images/projects/llm-loadtester-dashboard.png" alt="Engineering LLM Loadtester — LLM-Serving Benchmark for Non-Engineers" class="project-hero__image">
+        </div>
+        <h1 class="report-article__title">Engineering LLM Loadtester — LLM-Serving Benchmark for Non-Engineers</h1>
+        <div class="project-meta">
+          <span class="project-meta__item"><i class="fa-solid fa-building"></i> WIGTN Crew</span>
+          <span class="project-meta__item"><i class="fa-solid fa-user-tie"></i> Crew Lead &amp; AI Research Engineer</span>
+          <span class="project-meta__item"><i class="fa-regular fa-calendar"></i> Jan – Feb 2026</span>
+          <span class="project-meta__item"><i class="fa-solid fa-layer-group"></i> 3-Tier (FastAPI + CLI + Next.js + Docker)</span>
+        </div>
+        <div class="report-article__meta">
+          <span class="report-article__tags">
+            <span class="report-article__tag">Python</span>
+            <span class="report-article__tag">FastAPI</span>
+            <span class="report-article__tag">Next.js</span>
+            <span class="report-article__tag">Docker</span>
+            <span class="report-article__tag">WebSocket</span>
+            <span class="report-article__tag">Goodput</span>
+            <span class="report-article__tag">Validation Loop</span>
+            <span class="report-article__tag">Open Source</span>
+          </span>
+        </div>
+      </header>
+
+      <div class="report-content">
+        <nav class="project-toc">
+          <h2 class="project-toc__title">Contents</h2>
+          <ol class="project-toc__list" id="project-toc-list"></ol>
+        </nav>
+
+        <h2 id="overview">Overview</h2>
+        <p><strong>A web-based LLM-serving benchmarking tool that lets non-engineers test serving performance directly in their browser.</strong><br><br>It started with a question from my boss: "How many concurrent users can our LLM server actually handle?" Performance evaluation kept being assigned to whoever happened to be available, and the knowledge never accumulated. So I proposed and built an internal "LLM LoadTester anyone can use" — including non-developers.<br><br>GitHub Stars 2 · MVP shipped in a weekend with the WIGTN-Coding plugin, then iterated.</p>
+
+        <div class="section--highlight">
+          <h3>Highlights</h3>
+          <ul>
+            <li>Cold outreach received from an <strong>ex-Google ML/AI engineer (NextToken builder)</strong></li>
+            <li>Dual cross-validation system — <strong>Prometheus ±5% + Docker ±10%</strong></li>
+            <li>Single-interface coverage via Adapter Pattern — <strong>vLLM · SGLang · Ollama · Triton</strong></li>
+            <li>GitHub Actions CI — <strong>118 tests</strong></li>
+            <li>MVP shipped in a weekend with the WIGTN-Coding plugin</li>
+          </ul>
+        </div>
+
+        <h3 id="links">Links</h3>
+        <ul>
+          <li><strong>GitHub</strong>: <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer">Hyeongseob91/engineering-llm-loadtester</a></li>
+          <li><strong>Build log</strong>: <a href="https://www.linkedin.com/posts/harrison-hyeongseob-kim_%EC%A4%91%EA%B3%A0-%EC%8B%A0%EC%9E%85-%EC%A3%BC%EB%8B%88%EC%96%B4%EC%9D%98-%EC%83%9D%EC%A1%B4%EA%B8%B0-1-ai-native-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EB%B0%9C-%ED%9B%84%EA%B8%B0-activity-7417243655469477888-5mo8" target="_blank" rel="noopener noreferrer">LinkedIn — AI-Native project build retro</a></li>
+        </ul>
+
+        <h3 id="external-response">External Response</h3>
+        <p>An ex-Google ML/AI engineer (NextToken builder) sent a cold outreach email after finding the engineering-llm-loadtester repo on my GitHub profile, calling it "quite relevant." We later built an interactive app on top and exchanged feedback.</p>
+
+        <h2 id="why-built">Why I Built It</h2>
+
+        <h3 id="practical-background">Background</h3>
+        <p>Infrastructure performance testing was effectively limited to specific engineers. Evaluating LLM serving meant working with CLI tools (llmperf, vLLM benchmark, etc.), which left sales, MLOps, and PM teams unable to do it themselves.</p>
+
+        <h3 id="solution-direction">Approach</h3>
+        <p>Build an iterative test environment fully tunable from the UI. Inputs (target server, traffic load, prompts, SLO thresholds) flexible; outputs (TTFT, TPOT, p99, Goodput) data-driven and crisp. The charm of "fast build" — challenging it yourself without going through anyone.</p>
+
+        <h2 id="core-features">Core Features</h2>
+
+        <h3 id="llm-specific-metrics">LLM-specific metrics</h3>
+        <ul>
+          <li><strong>TTFT</strong> (Time To First Token) — latency until the first token</li>
+          <li><strong>TPOT</strong> (Time Per Output Token) — time per generated token</li>
+          <li><strong>Goodput</strong> — SLO-based effective throughput: "share of requests with TTFT ≤ 500 ms and TPOT ≤ 50 ms"</li>
+          <li><strong>E2E Latency / ITL / Throughput</strong> — accurate token counts via tiktoken</li>
+        </ul>
+
+        <h3 id="realtime-monitoring">Real-time monitoring</h3>
+        <p>WebSocket-driven progress + pynvml GPU metrics (VRAM, temperature, utilization) collected live.</p>
+
+        <h3 id="ai-analysis-report">AI analysis report</h3>
+        <p>Auto-analyzes benchmark results via the Claude API. Identifies bottlenecks and recommends an optimal GPU footprint (<code>required GPUs = ceil(target concurrency / current peak concurrency) × (1 + headroom)</code>).</p>
+
+        <h3 id="validation-loop">Validation loop</h3>
+        <ul>
+          <li><strong>Prometheus metric validation</strong> — cross-check measured values within ±5%</li>
+          <li><strong>Docker log validation</strong> — re-validate at the container level within ±10%</li>
+          <li>Adapter Pattern: single interface for OpenAI-compatible servers — vLLM · SGLang · Ollama · Triton</li>
+        </ul>
+
+        <h2 id="service-flow">Service Flow</h2>
+        <div class="project-gallery">
+          <div class="project-gallery__item">
+            <img src="../../images/projects/llm-loadtester-dashboard.png" alt="LLM Loadtester Dashboard" onclick="window.open(this.src, '_blank')">
+            <span>1. Dashboard — current benchmarks and history</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/llm-loadtester-new.png" alt="New Benchmark Configuration" onclick="window.open(this.src, '_blank')">
+            <span>2. New benchmark — configure and run</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/llm-loadtester-result.png" alt="Benchmark Result" onclick="window.open(this.src, '_blank')">
+            <span>3. Result — metric charts and Goodput analysis</span>
+          </div>
+          <div class="project-gallery__item">
+            <img src="../../images/projects/llm-loadtester-analysis.png" alt="AI Analysis Report" onclick="window.open(this.src, '_blank')">
+            <span>4. AI analysis report (auto-generated)</span>
+          </div>
+        </div>
+
+        <h2 id="tech-stack">Tech Stack</h2>
+
+        <h3 id="backend">Backend</h3>
+        <ul>
+          <li><strong>API</strong>: Python 3.12, FastAPI, asyncio</li>
+          <li><strong>CLI</strong>: Typer (usable directly from a terminal)</li>
+          <li><strong>GPU monitoring</strong>: pynvml</li>
+          <li><strong>Validation</strong>: Prometheus + Docker dual cross-check</li>
+        </ul>
+
+        <h3 id="frontend">Frontend</h3>
+        <ul>
+          <li><strong>Web</strong>: Next.js, React, Recharts (metric visualization)</li>
+          <li><strong>Real-time</strong>: WebSocket-streamed progress</li>
+        </ul>
+
+        <h3 id="infrastructure">Infrastructure</h3>
+        <ul>
+          <li><strong>Docker</strong>: docker-compose one-click deploy</li>
+          <li><strong>CI</strong>: GitHub Actions (118 tests)</li>
+          <li><strong>AI</strong>: Claude API (analysis report generation)</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <nav class="report-toc" id="toc" aria-label="Table of Contents">
+    <div class="report-toc__title">On this page</div>
+    <ul class="report-toc__list" id="toc-list"></ul>
+  </nav>
+
+  <footer class="report-footer">
+    <p class="report-footer__copy">&copy; 2026 Hyeong-seob (Harrison) Kim</p>
+  </footer>
+
+  <script src="../../projects/project.js"></script>
+</body>
+</html>
