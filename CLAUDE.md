@@ -1,256 +1,48 @@
-# Portfolio Project - Claude Code Instructions
+# Personal Academic Homepage - Claude Code Instructions
 
 ## Project Overview
-김형섭의 개인 포트폴리오 웹사이트 (GitHub Pages 배포)
-포트폴리오 + Tech Report 구조 (Blog/LinkedIn은 외부 운영)
+김형섭(Hyeong-seob Kim, Harrison)의 개인 홈페이지 (GitHub Pages 배포).
+al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
+"연구를 기반으로 사회 시스템을 AX 전환하는 AI Research Engineer & Founder".
 
 ## Tech Stack
-- Vanilla HTML/CSS/JavaScript
-- BEM 네이밍 컨벤션
-- CSS Custom Properties (변수)
+- Vanilla HTML/CSS (JavaScript 없음)
+- 공용 스타일시트 `academic.css` (al-folio 스타일, Roboto + Roboto Slab + Pretendard)
+- BEM 네이밍 (`about__bio`, `entries__role`, `pub__link`, `proj__title` 등)
 
 ## File Structure
 ```
-├── index.html              # 메인 포트폴리오 페이지
-├── styles.css              # 포트폴리오 스타일시트 (BEM 네이밍)
-├── scripts.js              # 인터랙션 로직 (projectData 객체 포함)
-├── images/                 # 이미지 폴더
-│   ├── aboutme/            # About Me 섹션 이미지
-│   ├── companies/          # Experience/Certificates 로고
-│   └── projects/           # 프로젝트 이미지
-├── reports/                # Tech Report 페이지
-│   ├── report.css          # 리포트 공용 스타일 (BEM 네이밍)
-│   ├── index.html          # 리포트 목록 페이지
-│   ├── images/             # 리포트 이미지
-│   └── [slug].html         # 개별 리포트 페이지
-├── .nojekyll               # Jekyll 처리 방지
-└── .claude/                # Claude Code 설정
+├── index.html          # 메인 academic 홈 (영문): about, news, publications, talks, experience, education
+├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Awards + Certifications
+│                       #   "Download PDF" 버튼 = window.print() (print CSS는 academic.css에 정의)
+├── academic.css        # 공용 스타일 (index + cv, print 스타일 포함)
+├── images/profile.jpg  # 프로필 사진
+├── .nojekyll
+│
+│  # ── 아래는 레거시 자산 (링크 해제됨, 파일만 유지) ──
+├── styles.css, scripts.js   # 구 카드형 포트폴리오 스타일/스크립트
+├── en/                      # 구 영문 미러 포트폴리오
+├── projects/*.html          # 구 프로젝트 상세 페이지 13개 — 필요 시 URL 직접 공유용
+├── images/(aboutme|companies|projects)/  # 구 포트폴리오 이미지
+├── wigtn/, docs/            # 기타 (WIGTN 소개 페이지, cover letter 초안)
 ```
 
-## Design System (Quick Reference)
+## Content Rules
+- **직책 표기**: Founder at WIGTN (AI Research Group) / AI Research Engineer at Braincrew /
+  AI Researcher at RAPIDS LAB (MODULABS). 위치는 나라만 표기 (South Korea), 도시 생략.
+- **IWSLT 표기**: "IWSLT 2026 (co-located with ACL 2026)" — 발표는 IWSLT 소속, ACL은 개최 맥락.
+- **Publications**: accepted 논문만 등재 (in-prep 금지). Paper 링크는 ACL Anthology.
+  WigtnOCR EMNLP 논문은 accepted 시점에 추가 예정.
+- **메인은 간결하게**: 프로젝트 상세·경력 불릿은 cv.html에만. 메인 experience는 직책 한 줄.
+- **이메일 아이콘**: Gmail 작성창 링크 (`mail.google.com/mail/?view=cm&fs=1&to=harrison@wigtn.com`).
+- 제거된 것들 (재도입 금지): K-Digital Training 항목, toy projects, Tech Report(reports/),
+  한국어 메인 페이지, "To appear"/"upcoming" 등 시한성 표기는 시점 지나면 즉시 제거.
 
-### Color Palette
-| 변수 | 값 | 용도 |
-|------|-----|------|
-| `--color-primary` | `#2563eb` | 강조, 버튼, 링크 |
-| `--color-primary-light` | `#3b82f6` | 호버, 보조 강조 |
-| `--color-surface` | `#f8fafc` | 섹션 배경, 카드 |
-| `--color-text` | `#0f172a` | 본문 텍스트 |
-| `--color-text-secondary` | `#475569` | 보조 텍스트 |
-
-### Typography
-- **폰트**: Pretendard, Inter, system-ui
-- **코드 폰트**: JetBrains Mono
-- **헤딩**: H1(2.5-4rem), H2(2-3rem), H3(1.25-1.75rem)
-
-### 섹션 배경 패턴
-- 흰색 (#ffffff): Hero, About, Education, Awards, Skills, Contact
-- 회색 (#f8fafc): Experience, Certificates, Licenses, Projects, Footer
-
-## Code Style
-
-### HTML
-- 시맨틱 태그 사용 (section, article, nav)
-- BEM 클래스: `block__element--modifier`
-- 접근성 속성 필수 (aria-label, alt)
-
-### CSS
-- CSS 커스텀 속성(변수) 활용
-- BEM 네이밍 유지
-
-### JavaScript
-- ES6+ 문법
-- 이벤트 위임 패턴
-
-## 새 Tech Report 추가
-
-### Step 1: 리포트 HTML 파일 생성
-`reports/[slug].html`을 아래 템플릿으로 생성합니다.
-
-```html
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>리포트 제목 | Harrison's Note</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
-
-  <!-- KaTeX (수식) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-
-  <!-- Prism.js (코드 하이라이팅) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
-
-  <!-- Report Styles -->
-  <link rel="stylesheet" href="report.css">
-</head>
-<body>
-  <header class="report-header">
-    <div class="report-header__inner">
-      <a href="./" class="report-header__brand">Hyeongseob's Note</a>
-      <nav class="report-header__nav">
-        <a href="./" class="report-header__link">Tech Report</a>
-        <a href="https://harrison-kim.tistory.com/" target="_blank" rel="noopener noreferrer"
-          class="report-header__link">Blog</a>
-        <a href="../" class="report-header__link report-header__link--cta">Portfolio</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="report-main">
-    <article>
-      <header>
-        <a href="./" class="report-article__back">&larr; Reports</a>
-        <h1 class="report-article__title">리포트 제목</h1>
-        <div class="report-article__meta">
-          <time datetime="YYYY-MM-DD">YYYY.MM.DD</time>
-          <span class="report-article__tags">
-            <span class="report-article__tag">Tag1</span>
-            <span class="report-article__tag">Tag2</span>
-          </span>
-        </div>
-      </header>
-
-      <div class="report-content">
-        <!-- 본문 작성 -->
-      </div>
-    </article>
-  </main>
-
-  <footer class="report-footer">
-    <p class="report-footer__copy">&copy; 2025 Hyeongseob Kim</p>
-  </footer>
-
-  <!-- KaTeX -->
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-
-  <!-- Prism.js -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  <script>
-    renderMathInElement(document.body, {
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false }
-      ]
-    });
-  </script>
-</body>
-</html>
-```
-
-### Step 2: 본문 작성 (`report-content` 내부)
-```html
-<!-- 제목 -->
-<h2>섹션 제목</h2>
-<h3>하위 제목</h3>
-
-<!-- 본문 -->
-<p>텍스트 내용. <code>인라인 코드</code>와 <a href="#">링크</a>.</p>
-
-<!-- 코드 블록 -->
-<pre><code class="language-python">def hello():
-    print("Hello")</code></pre>
-
-<!-- 수식 (인라인) -->
-<p>손실 함수는 $L = -\sum y \log \hat{y}$로 정의됩니다.</p>
-
-<!-- 수식 (블록) -->
-$$
-\nabla_\theta J(\theta) = \mathbb{E}\left[\nabla_\theta \log \pi_\theta(a|s) \cdot R \right]
-$$
-
-<!-- 이미지 -->
-<figure>
-  <img src="images/report-slug-figure1.png" alt="설명">
-  <figcaption>Figure 1: 캡션</figcaption>
-</figure>
-
-<!-- 인용 -->
-<blockquote><p>인용 텍스트</p></blockquote>
-
-<!-- 테이블 -->
-<table>
-  <thead><tr><th>모델</th><th>정확도</th></tr></thead>
-  <tbody><tr><td>Baseline</td><td>85.2%</td></tr></tbody>
-</table>
-```
-
-### Step 3: 리포트 목록에 링크 추가
-`reports/index.html`의 `.report-listing__posts`에 링크 추가:
-```html
-<a href="./slug.html" class="report-listing__post">
-  <div class="report-listing__post-body">
-    <span class="report-listing__post-title">리포트 제목</span>
-    <div class="report-listing__post-tags">
-      <span class="report-listing__post-tag">Tag1</span>
-    </div>
-  </div>
-  <span class="report-listing__post-date">YYYY.MM.DD</span>
-</a>
-```
-
-### 이미지 저장 위치
-`reports/images/` 폴더에 저장. 파일명 컨벤션: `[slug]-[name].png`
-
-## 새 프로젝트 추가
-
-1. `index.html`의 `#projects` 섹션에 카드 추가
-2. `scripts.js`의 `projectData` 객체에 데이터 추가
-3. 이미지는 `images/projects/` 폴더에 저장
-
-### projectData 템플릿
-```javascript
-'project-id': {
-  title: 'Project Title',
-  image: 'images/projects/image.png',
-  imageContain: false,  // true면 이미지 전체 표시
-  meta: {
-    team: 'Team Info',
-    role: 'Role',
-    period: 'Period',
-    context: 'Context',
-    deployment: 'Deployment'
-  },
-  disclaimer: {  // 회사 프로젝트인 경우
-    show: true,
-    text: 'Disclaimer text'
-  },
-  sections: [
-    { title: 'Section', content: 'Text' },
-    { title: 'Section', list: ['item1', 'item2'] },
-    {
-      title: 'Section',
-      image: { src: 'path', alt: 'alt', caption: 'caption' },
-      subsections: [
-        {
-          subtitle: 'Sub',
-          content: 'Text',
-          image: { src: 'path', alt: 'alt' },
-          list: ['item1']
-        }
-      ]
-    },
-    {
-      title: 'Gallery Section',
-      gallery: [
-        { src: 'path', alt: 'alt', caption: 'caption' }
-      ]
-    }
-  ],
-  tags: ['Tag1', 'Tag2']
-}
-```
+## 새 콘텐츠 추가 패턴
+- **뉴스**: `index.html`의 `.news__list`에 `<li class="news__item">` (날짜 역순).
+- **논문**: index + cv 양쪽 publications에 `.pub` 항목 (Paper 링크 = Anthology).
+- **프로젝트**: `cv.html`의 Selected Projects에 `.proj` 항목 — meta 라벨 + 제목 +
+  1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 만들지 않는다.
 
 ## 배포
-```bash
-git add . && git commit -m "message" && git push origin main
-```
+main 브랜치 push = GitHub Pages 배포. 커밋은 Conventional Commits (영어).

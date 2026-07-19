@@ -58,7 +58,7 @@
           <tr>
             <td class="entries__date">Apr 2026 - Present</td>
             <td>
-              <div class="entries__org">BrainCrew</div>
+              <div class="entries__org">Braincrew</div>
               <div class="entries__role">AI Research Engineer, Research Engineering Team</div>
               <div class="entries__desc">
                 <ul>
@@ -74,10 +74,8 @@
               <div class="entries__role">Founder, AI Research Group</div>
               <div class="entries__desc">
                 <ul>
-                  <li><strong>WIGVO:</strong> real-time bidirectional speech translation system over legacy PSTN calls. First author, accepted to ACL 2026 System Demonstrations. Designed the Dual-Session Echo Gating architecture and a 3-stage audio filter pipeline (Echo Gate, Energy Gate, Silero VAD).</li>
-                  <li><strong>WigtnOCR:</strong> VLM-based parsing model for Korean public documents. LoRA fine-tuned Qwen3-VL-2B surpasses a 15x larger 30B teacher model and ranks 1st in Table TEDS (0.649) among 4 models on OmniDocBench.</li>
-                  <li>2nd place, Tech Track, Snowflake AI &amp; Data Hackathon 2026 Korea (Team WIGTN) with WIGTN FLAKE, a neighborhood intelligence platform built on Snowflake Cortex and GPT-4o hybrid orchestration.</li>
-                  <li>Open source: WIGTN-Coding (AI-native development workflow plugin for Claude Code), LLM Loadtester (LLM serving benchmark tool), TimeLens (multimodal AI museum curator).</li>
+                  <li>Lead research on WIGVO, a real-time speech translation system over legacy PSTN calls — first author, accepted to ACL 2026 System Demonstrations.</li>
+                  <li>Released WigtnOCR (VLM parsing model for Korean public documents) and developer tools (WIGTN-Coding, LLM Loadtester) as open source.</li>
                 </ul>
               </div>
             </td>
@@ -148,6 +146,99 @@
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <!-- Selected Projects -->
+    <section class="section">
+      <h2 class="section__title">Selected Projects</h2>
+
+      <article class="proj">
+        <p class="proj__meta">ACL 2026 · Research</p>
+        <p class="proj__title">WIGVO — Real-Time Speech Translation over Legacy PSTN Calls</p>
+        <p class="proj__desc">
+          Real-time bidirectional speech translation running on the public telephone network
+          (G.711 &mu;-law, 8 kHz). The Dual-Session Echo Gating architecture and a 3-stage audio
+          filter pipeline remove the echo loop in software — 0 echo loops across 148 field tests.
+        </p>
+        <div class="pub__links">
+          <a href="https://aclanthology.org/2026.acl-demo.33/" target="_blank" rel="noopener noreferrer" class="pub__link">Paper</a>
+          <a href="https://youtu.be/jK1CDOQExLw" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Research · Open Source</p>
+        <p class="proj__title">WigtnOCR — VLM Parsing Model for Korean Public Documents</p>
+        <p class="proj__desc">
+          LoRA fine-tuned Qwen3-VL-2B that surpasses a 15x larger 30B teacher model —
+          1st in Table TEDS (0.649) on OmniDocBench (CVPR 2025) and best Hit@1 / MRR@10
+          among 6 parsers on KoGovDoc retrieval.
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/Hyeongseob91/research-vlm-based-document-parsing" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+          <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer" class="pub__link">HuggingFace</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Product · B2B</p>
+        <p class="proj__title">SoundMind AI Ecosystem — Automated RAG Pipeline Platform</p>
+        <p class="proj__desc">
+          Platform that analyzes customer documents, auto-generates tailored RAG pipelines,
+          and deploys them with one-click Docker — cutting engine deployment lead time from
+          2 weeks to 5 minutes. MSA of 9 projects, 161 APIs, up to 99 concurrent pipelines.
+        </p>
+        <p class="proj__note">Company project — SoundMind</p>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Hackathon · 2nd Place</p>
+        <p class="proj__title">WIGTN FLAKE — Purpose-Driven Neighborhood Intelligence Platform</p>
+        <p class="proj__desc">
+          An AI expert panel cross-analyzes real estate, foot traffic, card spending, and telecom
+          data to recommend locations by purpose. Snowflake Cortex &times; GPT-4o hybrid
+          orchestration; 2nd place, Tech Track, Snowflake AI &amp; Data Hackathon 2026 Korea.
+        </p>
+        <div class="pub__links">
+          <a href="https://youtu.be/1YzSp3SdzTk" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+          <a href="https://www.newswire.co.kr/newsRead.php?no=1033575" target="_blank" rel="noopener noreferrer" class="pub__link">News</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Open Source</p>
+        <p class="proj__title">WIGTN-Coding — AI-Native Development Workflow Plugin</p>
+        <p class="proj__desc">
+          Development workflow automation plugin for Claude Code (7 commands, 14 agents, 7 skills).
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Open Source</p>
+        <p class="proj__title">Engineering LLM Loadtester — LLM Serving Benchmark Tool</p>
+        <p class="proj__desc">
+          LLM serving benchmark tool usable by non-developers — TTFT, TPOT, and Goodput visualization.
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="proj__meta">Hackathon</p>
+        <p class="proj__title">TimeLens — Multimodal AI Museum Curator</p>
+        <p class="proj__desc">
+          Voice + camera AI curator processing audio and vision in real time on a
+          Gemini Live API + ADK dual pipeline (Google Gemini Live Agent Challenge).
+        </p>
+        <div class="pub__links">
+          <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+          <a href="https://youtu.be/ITaMtVO5jFg" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
+        </div>
+      </article>
     </section>
 
     <!-- Education -->

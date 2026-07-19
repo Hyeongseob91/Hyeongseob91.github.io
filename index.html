@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="김형섭 (Hyeong-seob Kim, Harrison) — AI Research Engineer & Founder. 실시간 음성 번역, telephony AI, 프로덕션 AI 시스템.">
-  <meta name="author" content="Hyeong-seob (Harrison) Kim">
+  <title>Hyeong-seob Kim</title>
+  <meta name="description" content="Hyeong-seob Kim (Harrison Kim). AI researcher working on AI transformation (AX) of real-world systems — real-time speech translation, document understanding, and production AI platforms.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Hyeong-seob Kim | AI Research Engineer &amp; Founder">
-  <meta property="og:description" content="Real-time speech translation, telephony AI, and production AI systems. Founder of WIGTN.">
+  <meta property="og:title" content="Hyeong-seob Kim">
+  <meta property="og:description" content="AI researcher working on AI transformation (AX) of real-world systems. Founder of WIGTN.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hyeongseob91.github.io/">
-  <meta property="og:locale" content="ko_KR">
-
-  <title>김형섭 (Hyeong-seob Kim) | AI Research Engineer &amp; Founder</title>
+  <meta property="og:locale" content="en_US">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,19 +23,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
 
-  <link rel="stylesheet" href="academic/academic.css">
+  <link rel="stylesheet" href="academic.css">
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="./" class="site-header__brand">김형섭 · Hyeong-seob Kim</a>
+      <a href="./" class="site-header__brand">Hyeong-seob Kim</a>
       <nav class="site-header__nav" aria-label="Main navigation">
         <a href="#about" class="site-header__link">about</a>
-        <a href="#projects" class="site-header__link">projects</a>
         <a href="#publications" class="site-header__link">publications</a>
-        <a href="#experience" class="site-header__link">experience</a>
-        <a href="academic/cv.html" class="site-header__link">cv</a>
-        <a href="reports/" class="site-header__link">tech report</a>
+        <a href="cv.html" class="site-header__link">cv</a>
       </nav>
     </div>
   </header>
@@ -45,23 +40,20 @@
   <main class="site-main">
     <!-- About -->
     <section id="about" class="about">
-      <h1 class="about__name">김형섭</h1>
-      <p class="about__alias">Hyeong-seob (Harrison) Kim</p>
+      <h1 class="about__name">Hyeong-seob Kim</h1>
+      <p class="about__alias">(Harrison Kim)</p>
 
       <div class="about__profile">
-        <img src="academic/images/profile.jpg" alt="김형섭 (Hyeong-seob Kim)">
+        <img src="images/profile.jpg" alt="Hyeong-seob Kim">
       </div>
 
       <p class="about__bio">
-        AI Research Engineer이자 <strong>WIGTN</strong>의 파운더입니다.
-        연구를 기반으로, 사회가 이미 의존하고 있는 시스템을 AI로 전환(AX)하는 일을 합니다.
-        레거시 전화망 위의 실시간 음성 번역(ACL 2026), 한국 공공문서 이해(WigtnOCR),
-        기업 현장의 B2B 프로덕션 AI 플랫폼이 그 결과물입니다.
-      </p>
-      <p class="about__bio">
-        건축공학을 전공하고 10년간 건설 프로젝트를 관리했습니다.
-        복잡한 이해관계와 일정·리스크를 다루던 경험은 지금 AI 시스템의
-        아키텍처 설계와 비즈니스 의사결정을 잇는 기반이 되고 있습니다.
+        I turn research into AI transformation (AX) of real-world systems.
+        I am the founder of WIGTN, an independent AI research group in Seoul,
+        and I bring AI into infrastructure that society already runs on —
+        real-time speech translation over the legacy telephone network (ACL 2026),
+        document understanding for Korean public-sector records, and
+        production AI platforms for B2B enterprises.
       </p>
 
       <ul class="about__affiliations">
@@ -71,8 +63,9 @@
       </ul>
 
       <p class="about__interests">
-        <strong>관심 분야:</strong> 레거시 시스템의 AI 전환(AX), 실시간 음성 번역,
-        문서 이해, RAG·Agent 시스템, 프로덕션 ML 배포, GPU 가속
+        <strong>Research interests:</strong> AI transformation (AX) of legacy systems,
+        real-time speech translation, document understanding, production ML deployment,
+        GPU acceleration
       </p>
 
       <div class="social-icons">
@@ -91,102 +84,34 @@
         <a href="https://www.linkedin.com/in/harrison-hyeongseob-kim" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="LinkedIn" title="LinkedIn">
           <i class="fa-brands fa-linkedin"></i>
         </a>
-        <a href="https://harrison-kim.tistory.com/" target="_blank" rel="noopener noreferrer" class="social-icons__link" aria-label="Blog" title="Blog">
-          <i class="fa-solid fa-rss"></i>
-        </a>
       </div>
     </section>
 
-    <!-- Selected Projects -->
-    <section id="projects" class="section">
-      <h2 class="section__title">selected projects</h2>
-
-      <article class="proj">
-        <p class="proj__meta">ACL 2026 · Research</p>
-        <p class="proj__title">WIGVO — 레거시 전화망(PSTN) 실시간 양방향 음성 번역</p>
-        <p class="proj__desc">
-          G.711 μ-law 8kHz 전화망 위에서 동작하는 실시간 양방향 음성 번역 시스템.
-          Dual-Session Echo Gating 아키텍처와 3단계 오디오 필터 파이프라인으로
-          에코 루프를 소프트웨어만으로 제거 — 실증 테스트 148건에서 에코 루프 0건.
-        </p>
-        <div class="pub__links">
-          <a href="https://youtu.be/jK1CDOQExLw" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Research · Open Source</p>
-        <p class="proj__title">WigtnOCR — 한국 공공문서 특화 VLM 파싱 모델</p>
-        <p class="proj__desc">
-          Qwen3-VL-2B LoRA fine-tuning으로 15배 큰 30B teacher 성능을 초과.
-          OmniDocBench(CVPR 2025) 기준 Table TEDS 1위(0.649),
-          KoGovDoc 6개 파서 Retrieval 비교에서 Hit@1·MRR@10 최고 성능.
-        </p>
-        <div class="pub__links">
-          <a href="https://github.com/Hyeongseob91/research-vlm-based-document-parsing" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
-          <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer" class="pub__link">HuggingFace</a>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Product · B2B</p>
-        <p class="proj__title">SoundMind AI Ecosystem — RAG 파이프라인 자동 생성·배포 플랫폼</p>
-        <p class="proj__desc">
-          고객 문서를 분석해 맞춤형 RAG 파이프라인을 자동 생성하고 원클릭 Docker 배포하는
-          AI Sales Enablement 플랫폼을 단독 설계·개발. 신규 엔진 배포 리드타임 2주 → 5분,
-          MSA 9 프로젝트 · 161 APIs · 최대 99개 파이프라인 동시 운용.
-        </p>
-        <p class="proj__note">Company project — (주)사운드마인드</p>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Hackathon · 2nd Place</p>
-        <p class="proj__title">WIGTN FLAKE — 목적 기반 동네 인텔리전스 플랫폼</p>
-        <p class="proj__desc">
-          부동산 시세·유동인구·카드매출·통신계약 데이터를 AI 전문가 패널이 교차 분석해
-          목적별 입지를 추천. Snowflake Cortex × GPT-4o 하이브리드 오케스트레이션
-          (Snowflake AI &amp; Data Hackathon 2026 Korea, Tech Track 2위).
-        </p>
-        <div class="pub__links">
-          <a href="https://youtu.be/1YzSp3SdzTk" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
-          <a href="https://www.newswire.co.kr/newsRead.php?no=1033575" target="_blank" rel="noopener noreferrer" class="pub__link">News</a>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Open Source</p>
-        <p class="proj__title">WIGTN-Coding — AI-Native 개발 워크플로우 플러그인</p>
-        <p class="proj__desc">
-          Claude Code 기반 개발 워크플로우 자동화 플러그인 (7 Commands · 14 Agents · 7 Skills).
-        </p>
-        <div class="pub__links">
-          <a href="https://github.com/wigtn/wigtn-plugins-with-claude-code" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Open Source</p>
-        <p class="proj__title">Engineering LLM Loadtester — LLM 서빙 벤치마킹 도구</p>
-        <p class="proj__desc">
-          비개발직군도 사용할 수 있는 LLM 서빙 성능 벤치마킹 도구 — TTFT·TPOT·Goodput 시각화.
-        </p>
-        <div class="pub__links">
-          <a href="https://github.com/Hyeongseob91/engineering-llm-loadtester" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="proj__meta">Hackathon</p>
-        <p class="proj__title">TimeLens — 음성+카메라 멀티모달 AI 박물관 큐레이터</p>
-        <p class="proj__desc">
-          Gemini Live API + ADK 듀얼 파이프라인으로 음성·카메라를 실시간 처리하는
-          AI 큐레이터 (Google Gemini Live Agent Challenge 출품).
-        </p>
-        <div class="pub__links">
-          <a href="https://github.com/wigtn/wigtn-timelens" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
-          <a href="https://youtu.be/ITaMtVO5jFg" target="_blank" rel="noopener noreferrer" class="pub__link">Video</a>
-        </div>
-      </article>
+    <!-- News -->
+    <section id="news" class="section">
+      <h2 class="section__title">news</h2>
+      <ul class="news__list">
+        <li class="news__item">
+          <span class="news__date">Jul 2026</span>
+          <span class="news__text">Invited talk at IWSLT 2026 (co-located with ACL 2026), San Diego</span>
+        </li>
+        <li class="news__item">
+          <span class="news__date">Jun 2026</span>
+          <span class="news__text"><strong>WIGVO</strong> accepted to ACL 2026 System Demonstrations (first author)</span>
+        </li>
+        <li class="news__item">
+          <span class="news__date">Apr 2026</span>
+          <span class="news__text">2nd place, Tech Track, Snowflake AI &amp; Data Hackathon 2026 Korea (Team WIGTN)</span>
+        </li>
+        <li class="news__item">
+          <span class="news__date">Apr 2026</span>
+          <span class="news__text">Joined Braincrew as an AI Research Engineer, Research Engineering Team</span>
+        </li>
+        <li class="news__item">
+          <span class="news__date">Jan 2026</span>
+          <span class="news__text">Founded <strong>WIGTN</strong>, an independent AI research group in Seoul</span>
+        </li>
+      </ul>
     </section>
 
     <!-- Publications -->
@@ -218,68 +143,52 @@
       <table class="entries">
         <tbody>
           <tr>
-            <td class="entries__date">2026.04 - 현재</td>
+            <td class="entries__date">Apr 2026 - Present</td>
             <td>
-              <div class="entries__org">(주)브레인크루 BrainCrew</div>
+              <div class="entries__org">Braincrew</div>
               <div class="entries__role">AI Research Engineer, Research Engineering Team</div>
-              <div class="entries__desc">
-                <ul>
-                  <li>프로덕션 AI 시스템 End-to-End 설계·구축</li>
-                  <li>Advanced RAG Pipeline, Admin Console 등 B2B SaaS 플랫폼 개발</li>
-                </ul>
-              </div>
             </td>
           </tr>
           <tr>
-            <td class="entries__date">2026.01 - 현재</td>
+            <td class="entries__date">Jan 2026 - Present</td>
             <td>
               <div class="entries__org">WIGTN</div>
-              <div class="entries__role">Founder — AI Research Group</div>
-              <div class="entries__desc">
-                <ul>
-                  <li>실시간 음성 번역 시스템 WIGVO 연구 리드 — ACL 2026 System Demonstrations 채택 (1저자)</li>
-                  <li>한국 공공문서 파싱 모델 WigtnOCR, 개발 도구 WIGTN-Coding·LLM Loadtester 오픈소스 공개</li>
-                </ul>
-              </div>
+              <div class="entries__role">Founder</div>
             </td>
           </tr>
           <tr>
-            <td class="entries__date">2026.01 - 현재</td>
+            <td class="entries__date">Jan 2026 - Present</td>
             <td>
-              <div class="entries__org">RAPIDS LAB (모두의연구소)</div>
+              <div class="entries__org">RAPIDS LAB (MODULABS)</div>
               <div class="entries__role">AI Researcher, GPU-Accelerated Laboratory</div>
-              <div class="entries__desc">
-                <ul>
-                  <li>NVIDIA RAPIDS 기반 End-to-End Full GPU AutoML 시스템 오픈소스 연구 — 기존 AutoML 대비 벤치마킹</li>
-                </ul>
-              </div>
             </td>
           </tr>
           <tr>
-            <td class="entries__date">2025.07 - 2026.03</td>
+            <td class="entries__date">Jul 2025 - Mar 2026</td>
             <td>
-              <div class="entries__org">(주)사운드마인드 SoundMind</div>
+              <div class="entries__org">SoundMind</div>
               <div class="entries__role">AI Research Engineer, AX Division</div>
-              <div class="entries__desc">
-                <ul>
-                  <li>RAG 파이프라인 자동 생성·배포 플랫폼 단독 설계·개발 — 배포 리드타임 2주 → 5분</li>
-                  <li>RAGAS 기반 LLM-as-a-Judge 평가 체계 구축 (81 Q&amp;A · 3,678페이지), 파이프라인 단계별 성능 기여도 정량화</li>
-                </ul>
-              </div>
             </td>
           </tr>
           <tr>
-            <td class="entries__date">2014.08 - 2024.09</td>
+            <td class="entries__date">Jan 2022 - Sep 2024</td>
             <td>
-              <div class="entries__org">현대건설 · 동극건업 · 두산건설</div>
-              <div class="entries__role">Architectural Site Engineer → Construction Project Manager</div>
-              <div class="entries__desc">
-                <ul>
-                  <li>10년간 주택·상업시설 건설 프로젝트의 시공·품질·공정 관리 (현대건설·두산건설, Site Engineer)</li>
-                  <li>프로젝트 계약·원가·재무(P&amp;L) 관리와 입찰·견적, 협력사·노조 교섭 (동극건업, PM)</li>
-                  <li>층간차음 신기술 'H-Silent' 현장 실증 리드 — 국토교통부 1등급 인증 국내 최초 획득</li>
-                </ul>
-              </div>
+              <div class="entries__org">Hyundai Engineering &amp; Construction</div>
+              <div class="entries__role">Architectural Site Engineer, Housing Division</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Jul 2016 - Jan 2022</td>
+            <td>
+              <div class="entries__org">Donggeuk Construction</div>
+              <div class="entries__role">Construction Project Manager, Head Office</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="entries__date">Aug 2014 - Jul 2016</td>
+            <td>
+              <div class="entries__org">Doosan Engineering &amp; Construction</div>
+              <div class="entries__role">Architectural Site Engineer, Architecture Division</div>
             </td>
           </tr>
         </tbody>
@@ -292,47 +201,17 @@
       <table class="entries">
         <tbody>
           <tr>
-            <td class="entries__date">2023.06 - 2024.02</td>
+            <td class="entries__date">Jun 2023 - Feb 2024</td>
             <td>
-              <div class="entries__org">국가평생교육진흥원</div>
-              <div class="entries__role">건축공학 학사</div>
+              <div class="entries__org">National Institute for Lifelong Education</div>
+              <div class="entries__role">Bachelor's degree in Architectural Engineering</div>
             </td>
           </tr>
           <tr>
-            <td class="entries__date">2009.03 - 2015.08</td>
+            <td class="entries__date">Mar 2009 - Aug 2015</td>
             <td>
-              <div class="entries__org">경복대학교</div>
-              <div class="entries__role">건축디자인 전공</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Awards -->
-    <section id="awards" class="section">
-      <h2 class="section__title">awards &amp; honors</h2>
-      <table class="entries">
-        <tbody>
-          <tr>
-            <td class="entries__date">2026.04</td>
-            <td>
-              <div class="entries__org">Snowflake AI &amp; Data Hackathon 2026 Korea — Tech Track 2nd Place</div>
-              <div class="entries__role">Team WIGTN, WIGTN FLAKE</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="entries__date">2022.12</td>
-            <td>
-              <div class="entries__org">현대건설 기술경쟁력제고 부문 우수사원</div>
-              <div class="entries__role">'H-Silent' 층간차음재 현장 실증 주도, 국토교통부 1등급 인증 획득 기여</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="entries__date">2015.04</td>
-            <td>
-              <div class="entries__org">대한건축학회 제11회 우수졸업논문전 장려상</div>
-              <div class="entries__role">건축현장에서 멘토링 도입을 통한 조직 몰입도 향상에 관한 연구</div>
+              <div class="entries__org">Kyungbok University</div>
+              <div class="entries__role">Associate degree in Architectural Design</div>
             </td>
           </tr>
         </tbody>
@@ -343,11 +222,7 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <span>&copy; 2026 Hyeong-seob Kim</span>
-      <span>
-        <a href="academic/cv.html">Curriculum Vitae</a>
-        &nbsp;·&nbsp;
-        <a href="reports/">Tech Report</a>
-      </span>
+      <a href="cv.html">Curriculum Vitae</a>
     </div>
   </footer>
 </body>
