@@ -32,9 +32,14 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   AI Researcher at RAPIDS LAB (MODULABS). 위치는 나라만 표기 (South Korea), 도시 생략.
 - **IWSLT 표기**: "IWSLT 2026 (co-located with ACL 2026)" — 발표는 IWSLT 소속, ACL은 개최 맥락.
 - **Publications**: accepted 논문만 등재 (in-prep 금지). Paper 링크는 ACL Anthology.
-  WigtnOCR EMNLP 논문은 accepted 시점에 추가 예정.
+  WigtnOCR EMNLP 논문은 accepted 시점에 추가 예정. 게재 완료면 "published in" (not "accepted to").
+- **수치는 논문 확정치와 일치**: WIGVO는 "zero echo loops across 147 completed real calls"
+  (155 시도 - 8 실패 = 147; "148"이나 "field tests" 표현 금지).
+- **em-dash(—) 사용 금지**: 콜론이나 마침표로 대체. 프로젝트 제목 구분자도 콜론.
 - **메인은 간결하게**: 프로젝트 상세·경력 불릿은 cv.html에만. 메인 experience는 직책 한 줄.
-- **이메일 아이콘**: Gmail 작성창 링크 (`mail.google.com/mail/?view=cm&fs=1&to=harrison@wigtn.com`).
+- **CV 섹션 순서**: Interests → Publications → Invited Talks → Experience → Projects →
+  Education → Honors → Certifications (연구 시그널 우선).
+- **이메일 아이콘**: 표준 `mailto:harrison@wigtn.com` (Gmail compose URL 금지).
 - 제거된 것들 (재도입 금지): K-Digital Training 항목, toy projects, Tech Report(reports/),
   한국어 메인 페이지, "To appear"/"upcoming" 등 시한성 표기는 시점 지나면 즉시 제거.
 
