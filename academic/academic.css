@@ -129,9 +129,9 @@ strong, b {
 
 .about__profile {
   float: right;
-  width: 32%;
-  max-width: 240px;
-  margin: 0 0 0.75rem 1.5rem;
+  width: 40%;
+  max-width: 310px;
+  margin: 0 0 0.75rem 1.75rem;
   text-align: center;
 }
 
