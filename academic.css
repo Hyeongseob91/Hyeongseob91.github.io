@@ -504,6 +504,219 @@ strong, b {
   }
 }
 
+/* Project detail pages (projects/*.html, reusing the academic look) */
+.detail-header {
+  margin-bottom: 1.75rem;
+}
+
+.detail-header__back {
+  display: inline-block;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-header__title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-heading);
+  margin-bottom: 0.6rem;
+}
+
+.detail-header__meta {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.detail-header__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.detail-header__tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-text-secondary);
+}
+
+.detail-note {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-border);
+  border-radius: 0 4px 4px 0;
+  padding: 0.8rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.detail-toc {
+  font-size: 0.92rem;
+  margin-bottom: 2.5rem;
+}
+
+.detail-toc ol {
+  margin: 0.3rem 0 0 1.25rem;
+}
+
+.detail-content h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-heading);
+  margin: 2.75rem 0 0.9rem;
+}
+
+.detail-content h3 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-heading);
+  margin: 2rem 0 0.6rem;
+}
+
+.detail-content h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-heading);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.detail-content p {
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem;
+}
+
+.detail-content ul,
+.detail-content ol {
+  font-size: 0.95rem;
+  margin: 0 0 1rem 1.25rem;
+}
+
+.detail-content li {
+  margin-bottom: 0.3rem;
+}
+
+.detail-content .good {
+  color: #188038;
+}
+
+.detail-content .bad {
+  color: #c5221f;
+}
+
+.detail-stage {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  margin-bottom: 0.1rem;
+}
+
+.detail-highlight {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.detail-highlight__title {
+  font-weight: 500;
+  color: var(--color-heading);
+  margin-bottom: 0.5rem;
+}
+
+.detail-content .detail-highlight ul {
+  margin: 0 0 0 1.1rem;
+}
+
+.detail-scroll {
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.detail-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-heading);
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-border);
+  padding: 0.45rem 0.6rem;
+}
+
+.detail-table td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.4rem 0.6rem;
+  vertical-align: top;
+}
+
+.detail-table .num {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.detail-table__total td {
+  border-top: 2px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.detail-figure {
+  margin: 1.25rem 0 1.75rem;
+}
+
+.detail-figure img,
+.detail-gallery img {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  display: block;
+}
+
+.detail-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.detail-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.detail-gallery figure {
+  margin: 0;
+}
+
+.detail-gallery figcaption {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .detail-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Print: used by cv.html to produce the CV PDF via the browser print dialog */
 @media print {
   @page {

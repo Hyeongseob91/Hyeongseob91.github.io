@@ -15,7 +15,8 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ├── index.html          # 메인 academic 홈 (영문): about, news, publications, talks, experience, education
 ├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Awards + Certifications
 │                       #   "Download PDF" 버튼 = window.print() (print CSS는 academic.css에 정의)
-├── academic.css        # 공용 스타일 (index + cv, print 스타일 포함)
+├── academic.css        # 공용 스타일 (index + cv + 프로젝트 상세, print 스타일 포함)
+├── projects/soundmind.html  # Soundmind 프로젝트 영문 상세 페이지 (academic.css의 detail-* 블록 사용)
 ├── images/profile.jpg  # 프로필 사진
 ├── .nojekyll
 │
@@ -51,7 +52,10 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 - **뉴스**: `index.html`의 `.news__list`에 `<li class="news__item">` (날짜 역순).
 - **논문**: index + cv 양쪽 publications에 `.pub` 항목 (Paper 링크 = Anthology).
 - **프로젝트**: `cv.html`의 Selected Projects에 `.proj` 항목 — meta 라벨 + 제목 +
-  1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 만들지 않는다.
+  1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 기본적으로 만들지 않는다.
+  예외: 리서치 서사가 필요한 대형 프로젝트는 `projects/soundmind.html` 패턴을 따른다 —
+  academic.css의 `detail-*` 블록 재사용, 영문, JavaScript 없음, em-dash 금지,
+  CV 항목에 `Details` 배지로 연결. 레거시 한국어 상세 페이지는 삭제하지 않고 보존.
 
 ## 배포
 main 브랜치 push = GitHub Pages 배포. 커밋은 Conventional Commits (영어).
