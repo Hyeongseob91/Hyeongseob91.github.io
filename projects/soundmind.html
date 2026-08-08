@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soundmind AI Ecosystem | Hyeong-seob Kim</title>
+  <meta name="description" content="Soundmind AI Ecosystem: an AI Sales Enablement Platform that turns customer documents into a deployed, demo-ready RAG PoC in 5 minutes.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../academic.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="../" class="site-header__brand">Hyeong-seob Kim</a>
+      <nav class="site-header__nav" aria-label="Main navigation">
+        <a href="../#about" class="site-header__link">about</a>
+        <a href="../#publications" class="site-header__link">publications</a>
+        <a href="../cv.html" class="site-header__link">cv</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <article>
+      <header class="detail-header">
+        <a href="../cv.html" class="detail-header__back">&larr; Back to CV</a>
+        <h1 class="detail-header__title">Soundmind AI Ecosystem: AI Sales Enablement Platform</h1>
+        <p class="detail-header__meta">
+          Soundmind Inc. &middot; Project Lead &amp; AI Research Engineer, AX Division &middot; Jul 2025 - Mar 2026
+        </p>
+        <div class="detail-header__tags">
+          <span class="detail-header__tag">LangGraph</span>
+          <span class="detail-header__tag">Advanced RAG</span>
+          <span class="detail-header__tag">MSA</span>
+          <span class="detail-header__tag">Dual Vector DB</span>
+          <span class="detail-header__tag">VLM</span>
+          <span class="detail-header__tag">FastAPI</span>
+          <span class="detail-header__tag">Docker</span>
+          <span class="detail-header__tag">LLM-as-a-Judge</span>
+        </div>
+      </header>
+
+      <div class="detail-note">
+        I designed and built this platform solo at Soundmind, from planning and design to
+        development and deployment. This page contains no proprietary source code and no sales
+        data. It documents the architecture and the technical decisions. My contribution ended
+        in March 2026. The platform was in beta at my departure, and this page reflects that
+        point in time.
+      </div>
+
+      <nav class="detail-toc" aria-label="Contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#architecture">System Architecture</a></li>
+          <li><a href="#rag-rnd">RAG R&amp;D: From Advanced RAG to Ablation</a></li>
+          <li><a href="#ai-console">AI Console: Internal Operations Platform</a></li>
+          <li><a href="#ai-platform">AI Platform: Customer-Facing Playground</a></li>
+          <li><a href="#roadmap">Roadmap at Departure</a></li>
+        </ol>
+      </nav>
+
+      <div class="detail-content">
+
+        <!-- ============================== -->
+        <!-- Overview -->
+        <!-- ============================== -->
+        <h2 id="overview">Overview</h2>
+        <p>
+          <strong>An AI Sales Enablement Platform that turns customer documents into a deployed,
+          demo-ready RAG PoC.</strong> It analyzes the documents, generates a tailored pipeline,
+          and deploys it, in 5 minutes instead of a 2-week engineering cycle.
+        </p>
+
+        <div class="detail-highlight">
+          <p class="detail-highlight__title">Key results</p>
+          <ul>
+            <li>Deployment lead time for a new RAG engine prototype: <strong>2 weeks to 5 minutes</strong>, a reduction of over 99%.</li>
+            <li>MSA scale: <strong>9 services &middot; 161 APIs &middot; 15+ Docker containers &middot; 103+ unit tests</strong>.</li>
+            <li>Up to <strong>99 RAG pipelines run concurrently</strong>, one isolated environment per customer.</li>
+            <li>RAG R&amp;D: <strong>node-level ablation study</strong> on 81 Q&amp;A pairs, 11 public documents, 3,678 pages.</li>
+            <li>Ablation quantified: Reranking contributes <strong>+12.8&nbsp;pp</strong> (largest single component); Query Decomposition costs <strong>&minus;6.8&nbsp;pp</strong> (a net regression).</li>
+            <li>Document analysis: a Dual-LLM (Gemini + GPT-4o) two-stage review pipeline profiles <strong>26 characteristics</strong> and drives a 4-dimension decision tree.</li>
+            <li>VLM parsing A/B test: GPT-4o Judge weighted score <strong>0.888 to 1.000</strong> (+0.113), removing hallucination and missing information.</li>
+            <li>PoC delivery: accepted by a database-business client after <strong>8 documents, 34 test cases, and 3 golden-path rehearsals</strong>.</li>
+            <li>Infrastructure: 15+ Docker containers, real-time monitoring with <strong>Grafana + Loki + Promtail</strong>, sized for 50 concurrent users.</li>
+          </ul>
+        </div>
+
+        <h3 id="what-it-does">What the system does</h3>
+        <ul>
+          <li>Upload a customer document. A 3-stage pipeline profiles it automatically: <strong>Gemini 2.0 Flash analyzes first, GPT-4o reviews second</strong>.</li>
+          <li>The AI recommends, generates, and deploys the <strong>optimal RAG pipeline</strong> from a 4-dimension strategy space: 5 chunking, 5 retrieval, 4 indexing, and 4 post-processing options.</li>
+          <li>The sales team <strong>composes a PoC demo on the spot</strong>. The customer tries it directly in the Playground.</li>
+          <li>One workflow automates the whole cycle: <strong>analysis, deployment, evaluation, and monitoring</strong>.</li>
+          <li>Net effect: new engine prototype deployment lead time drops from <strong>2 weeks to 5 minutes</strong>.</li>
+        </ul>
+
+        <h3 id="scale">Scale</h3>
+        <ul>
+          <li>9 services &middot; 161 APIs &middot; 103+ unit tests.</li>
+          <li>Up to 99 concurrent RAG pipelines (ports 9201 to 9299).</li>
+          <li>7 parser classes covering 10 file extensions (PDF, DOCX, XLSX, XLS, TXT, MD, RST, JSON, HWP, HWPX).</li>
+          <li>LLMs: cloud APIs (OpenAI, Gemini) plus local models served with vLLM.</li>
+        </ul>
+
+        <!-- ============================== -->
+        <!-- System Architecture -->
+        <!-- ============================== -->
+        <h2 id="architecture">System Architecture</h2>
+        <p>
+          This was a solo project. I ran it end to end inside the company, from planning and
+          design to development and deployment. At my departure the platform was in beta, with
+          end-user testing in progress.
+        </p>
+        <p>
+          The ecosystem has three pillars: the customer-facing service (<strong>AI Platform</strong>),
+          the internal operations console (<strong>AI Console</strong>: Analysis &middot; Eval &middot;
+          Monitoring), and the <strong>model serving infrastructure</strong> they share.
+        </p>
+        <p><strong>Model serving infrastructure:</strong></p>
+        <ul>
+          <li><strong>LLM</strong>: Qwen3 series, served with vLLM behind an OpenAI-compatible API.</li>
+          <li><strong>Embedder / Reranker</strong>: BGE-M3 and BGE-Reranker-v2-M3, served with Infinity. vLLM misidentified BGE-M3 as XLMRobertaModel and dropped its sparse and ColBERT weights, so I moved embedding serving to Infinity, a framework specialized for embedding models.</li>
+        </ul>
+        <p><strong>How this page is organized:</strong></p>
+        <ol>
+          <li><strong>RAG R&amp;D</strong>: building an Advanced RAG, evaluating it quantitatively, running an ablation study, and arriving at the core insight that every document needs a different strategy.</li>
+          <li><strong>AI Console</strong>: the internal operations platform built on those insights (Analysis &middot; Eval &middot; Monitoring).</li>
+          <li><strong>AI Platform</strong>: the Playground where customers experience a PoC immediately (RAG Agent &middot; Chat Agent &middot; AICC Agent).</li>
+        </ol>
+        <figure class="detail-figure">
+          <a href="../images/projects/soundmind-ai-ecosystem-architecture.png" target="_blank" rel="noopener noreferrer">
+            <img src="../images/projects/soundmind-ai-ecosystem-architecture.png" alt="Soundmind AI Ecosystem architecture diagram">
+          </a>
+          <figcaption>AI Platform (customer-facing) and AI Console (Analysis &middot; Eval &middot; Monitoring) over a shared cloud server, local database, and local model serving.</figcaption>
+        </figure>
+
+        <!-- ============================== -->
+        <!-- RAG R&D -->
+        <!-- ============================== -->
+        <h2 id="rag-rnd">RAG R&amp;D: From Advanced RAG to Ablation</h2>
+        <p>
+          I built an Advanced RAG for public-sector documents, evaluated it quantitatively, and
+          ran an ablation study. The work produced one core insight: <strong>every document needs
+          a different strategy</strong>. That result feeds directly into the 4-dimension decision
+          tree of the Analysis platform.
+        </p>
+
+        <h3 id="stage-1"><span class="detail-stage">Stage 1</span>Advanced RAG design and build</h3>
+        <p>
+          The company had no RAG pipeline. We were entering the NLP market with a B2B2G model
+          (company to government agency), so I decided to design an Advanced RAG from the start
+          rather than a naive one.
+        </p>
+        <p>
+          <strong>Model selection (LLM &middot; Embedder &middot; Reranker):</strong>
+          The platform runs on a cloud server, but the GPUs were on premise, so local model
+          serving was mandatory. I needed a large model with reasoning ability and chose the
+          <strong>Qwen3 series</strong>, which scored high on global benchmarks. I served it with
+          <strong>vLLM</strong>. I first tried to unify the embedder and reranker on Qwen models
+          as well, but vLLM deployment failed on architecture compatibility. I adopted
+          <strong>BGE-M3 (embedder) and BGE-Reranker-v2-M3 (reranker)</strong>, the open-source
+          models with the best Korean evaluation scores, and served them with
+          <strong>Infinity</strong>. After researching candidate techniques, I selected three
+          core components.
+        </p>
+        <p>
+          <strong>Query Expansion (Rewrite + Decomposition):</strong>
+          In a B2B2G business we cannot predict the end user's domain, but we know the customer
+          is a government agency. Public documents demand precision. So the pipeline rewrites the
+          same question in several forms to cover all relevant context, and decomposes compound
+          questions into sub-queries to collect information from multiple angles.
+        </p>
+        <p>
+          <strong>Hybrid Search (Dense + Sparse + RRF):</strong>
+          Government documents are full of Sino-Korean terms and agency-specific vocabulary
+          where keyword matching matters, so I expected sparse search (BM25) to help. I combined
+          dense and sparse retrieval with RRF. I had little experience implementing the algorithm
+          at the time, so I adopted <strong>Weaviate</strong>, which supports hybrid search
+          natively. Later I confirmed that metadata-filtered retrieval works better for flat
+          documents and added <strong>Qdrant</strong>. The vector database layer is split in two
+          by document complexity.
+        </p>
+        <p>
+          <strong>Reranking (top-k=5):</strong>
+          BGE-Reranker-v2-M3 had the best Korean scores among general-purpose models, and its
+          open-source license allowed unrestricted on-premise deployment.
+        </p>
+        <p>
+          <strong>Data parsing:</strong>
+          I started with Docling, but its parsing latency was too high for practical use. I
+          replaced it with pdfplumber plus PaddleOCR for speed. Government work then brought many
+          HWP and HWPX files, plus DOCX and XLSX. I built <strong>UnifiedFileParser</strong>,
+          which unifies per-extension open-source parsers: 7 parser classes, 10 extensions.
+        </p>
+        <ul>
+          <li><strong>PDFParser</strong> (.pdf): a 3-level fallback chain. pymupdf4llm first for layout-aware Markdown, pdfplumber second, PaddleOCR third for scanned Korean documents. A page with fewer than 50 characters of text is treated as scanned and routed to OCR.</li>
+          <li><strong>DOCXParser</strong> (.docx): python-docx, paragraphs plus tables, document properties included.</li>
+          <li><strong>XLSXParser</strong> (.xlsx, .xls): openpyxl (read_only, data_only), iterates all sheets and structures each one.</li>
+          <li><strong>TXTParser</strong> (.txt, .md, .rst): built-in, encoding detection in the order UTF-8, CP949, EUC-KR, Latin-1.</li>
+          <li><strong>JSONParser</strong> (.json): built-in json module, converts the JSON hierarchy to human-readable text.</li>
+          <li><strong>HWPParser</strong> (.hwp): olefile-based OLE compound document parsing. Extracts HWPTAG_PARA_TEXT (tag=67) records from BodyText sections with zlib decompression.</li>
+          <li><strong>HWPXParser</strong> (.hwpx): zipfile plus BeautifulSoup OOXML parsing. Extracts text from Contents/section*.xml.</li>
+        </ul>
+
+        <h4 id="infinity-benchmark">Embedding serving benchmark: vLLM vs Infinity</h4>
+        <p>
+          After the compatibility issue pushed me to Infinity, I measured both frameworks
+          properly: <strong>10 PDFs (5 arXiv, 5 Korean public documents), 20 runs each</strong>.
+          The goal was not to justify the switch after the fact. It was to map which framework
+          fits which workload, across domains and languages, as a basis for infrastructure
+          design.
+        </p>
+        <p><strong>Online serving: single-request latency and concurrent throughput (mean &plusmn; std):</strong></p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Text length</th><th class="num">vLLM latency</th><th class="num">Infinity latency</th><th class="num">vLLM req/s (c=16)</th><th class="num">Infinity req/s (c=16)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Short (~100 chars)</td><td class="num good"><strong>13.0 &plusmn; 0.4 ms</strong></td><td class="num">19.9 &plusmn; 0.3 ms</td><td class="num good"><strong>260 &plusmn; 29</strong></td><td class="num">155 &plusmn; 5</td></tr>
+              <tr><td>Medium (~500 chars)</td><td class="num good"><strong>15.0 &plusmn; 1.6 ms</strong></td><td class="num">20.8 &plusmn; 0.5 ms</td><td class="num good"><strong>213 &plusmn; 9</strong></td><td class="num">150 &plusmn; 7</td></tr>
+              <tr><td>Long (~1000 chars)</td><td class="num good"><strong>18.4 &plusmn; 3.6 ms</strong></td><td class="num">20.9 &plusmn; 0.7 ms</td><td class="num good"><strong>202 &plusmn; 10</strong></td><td class="num">149 &plusmn; 6</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          vLLM wins single-request latency by 12 to 34% and serves 1.4 to 1.7x more requests per
+          second. Infinity, however, shows a far smaller standard deviation (0.3 to 0.7 ms vs
+          0.4 to 3.6 ms). Its response time is consistent regardless of document type, which
+          keeps P99 close to the mean and makes SLAs easy to predict in a production RAG
+          pipeline.
+        </p>
+        <p><strong>Batch processing: throughput (batch=32, K tokens/s, mean &plusmn; std):</strong></p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Text length</th><th class="num">vLLM (K tokens/s)</th><th class="num">Infinity (K tokens/s)</th><th class="num">Ratio</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Short (~100 chars)</td><td class="num">28 &plusmn; 4</td><td class="num good"><strong>39 &plusmn; 2</strong></td><td class="num good">Infinity 1.4x</td></tr>
+              <tr><td>Medium (~500 chars)</td><td class="num">98 &plusmn; 25</td><td class="num good"><strong>167 &plusmn; 18</strong></td><td class="num good">Infinity 1.7x</td></tr>
+              <tr><td>Long (~1000 chars)</td><td class="num">154 &plusmn; 28</td><td class="num good"><strong>255 &plusmn; 48</strong></td><td class="num good">Infinity 1.7x</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Infinity delivers 1.4 to 1.7x higher token throughput. It forwards a fixed batch in a
+          single pass and maximizes GPU utilization. Long text peaked at 323K tokens/s.
+        </p>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-benchmark-online.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-benchmark-online.png" alt="Online serving performance, vLLM vs Infinity">
+            </a>
+            <figcaption>1. Online serving: vLLM leads with 12 to 34% lower latency and 1.4 to 1.7x higher req/s.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-benchmark-batch.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-benchmark-batch.png" alt="Batch processing performance, vLLM vs Infinity">
+            </a>
+            <figcaption>2. Batch processing: Infinity leads with 1.4 to 1.7x higher tokens/s, best for RAG document indexing.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-benchmark-combined.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-benchmark-combined.png" alt="Combined embedding framework benchmark summary">
+            </a>
+            <figcaption>3. Combined view: real-time serving favors vLLM, batch indexing favors Infinity (10 docs &times; 20 runs).</figcaption>
+          </figure>
+        </div>
+        <p><strong>Operational conclusion:</strong></p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Workload</th><th>Characteristics</th><th class="num">Best framework</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Document upload, bulk embedding for indexing</td><td>Hundreds to thousands of chunks per batch, latency tolerant</td><td class="num good"><strong>Infinity (chosen)</strong></td></tr>
+              <tr><td>User query, real-time retrieval</td><td>Single requests, latency sensitive</td><td class="num">vLLM</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>The trade-off decision:</strong>
+          vLLM wins on single-request latency. Our business model, however, had to onboard many
+          government agencies at once. Every new customer uploads hundreds to thousands of pages,
+          and bulk embedding for indexing was the dominant workload. Indexing throughput, not
+          millisecond-level query latency, was the bottleneck that decided scalability. So I
+          chose Infinity, which leads batch throughput by 1.4 to 1.7x. Its low variance was a
+          second benefit for operational stability. The crossover pattern reproduced consistently
+          across all 10 documents in both languages, so the trade-off holds regardless of domain
+          or language.
+        </p>
+
+        <h3 id="stage-2"><span class="detail-stage">Stage 2</span>What quantitative evaluation exposed</h3>
+        <p>
+          After building the Advanced RAG, I built a <strong>RAGAS-based evaluation
+          framework</strong> to measure it.
+        </p>
+        <p>
+          <strong>LLM-generated Silver dataset:</strong>
+          I borrowed the Medallion Architecture pattern (Bronze, Silver, Gold) from data
+          engineering. From 3,678 pages of raw public documents (<strong>Bronze</strong>),
+          Qwen3-VL-30B generated 81 Q&amp;A ground-truth pairs tagged with difficulty, query
+          type, and reasoning hops (<strong>Silver</strong>). The node-level ablation study ran
+          on this Silver set and quantified each component's contribution
+          (<strong>Gold</strong>). Those numbers set the decision-tree thresholds in the AI
+          Console recommendation engine.
+        </p>
+        <p>
+          <strong>The limits of RAGAS:</strong>
+          RAGAS leaned on token-overlap metrics such as ROUGE-L (0.050) and BLEU (0.002), which
+          score answers by token-level agreement with the ground truth. Generative models phrase
+          the same meaning differently every time, so semantically correct answers scored low.
+          Korean made it worse: it is agglutinative, and particles and endings keep changing
+          token forms. I switched to an <strong>LLM-as-a-Judge evaluation with 5 weighted
+          dimensions</strong> that scores meaning instead of tokens.
+        </p>
+        <p><strong>Node-level experiment results:</strong></p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Experiment</th><th>Comparison</th><th class="num">Result</th><th>Decision</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Chunking</td><td>Recursive vs Semantic</td><td class="num"><strong>600x faster</strong></td><td class="good"><strong>Adopt Recursive</strong> (14 ms vs 8,437 ms, similar coverage, decisive speed win)</td></tr>
+              <tr><td>Retrieval</td><td>Dense vs Hybrid</td><td class="num good"><strong>MRR +2.3 pp</strong></td><td><strong>Branch per document</strong> (Dense wins on Korean overall, but some documents need keyword matching)</td></tr>
+              <tr><td>Reranking</td><td>On vs off</td><td class="num good"><strong>MRR +3.9 pp</strong></td><td class="good"><strong>Always on</strong> (2.8x latency increase, but the precision gain matters more)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>A structural limitation the evaluations exposed:</strong>
+          Most real queries were flat, not multi-hop. But the dominant pattern needed dozens of
+          contexts at once. A question like "describe the project criteria for all 20 tracks"
+          needs 20 or more contexts, and a reranker with top-k=5 cannot feed that. Analyzing
+          these documents showed a shared trait: repetitive structure, such as per-section
+          conclusions and requirements. This insight justified <strong>Qdrant</strong>. For
+          repetitive documents, JSON metadata filtering beats semantic search. Store per-section
+          metadata at upload time, and the pipeline can filter exactly the 20+ contexts it
+          needs. The dual vector database design came from this experience: Weaviate for hybrid
+          search, Qdrant for filtered retrieval, branched by document characteristics.
+        </p>
+        <p>
+          <strong>E2E evaluation: Advanced RAG scored lower.</strong>
+          Full evaluation on 81 Q&amp;A pairs, 5-dimension weighted average:
+        </p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Metric</th><th class="num">Weight</th><th class="num">Naive RAG</th><th class="num">Advanced RAG</th><th class="num">Delta</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Faithfulness</td><td class="num">30%</td><td class="num">0.813</td><td class="num">0.738</td><td class="num bad">&minus;7.5 pp</td></tr>
+              <tr><td>Relevance</td><td class="num">25%</td><td class="num">0.825</td><td class="num">0.763</td><td class="num bad">&minus;6.2 pp</td></tr>
+              <tr><td><strong>Completeness</strong></td><td class="num">20%</td><td class="num">0.813</td><td class="num bad"><strong>0.688</strong></td><td class="num bad"><strong>&minus;12.5 pp</strong></td></tr>
+              <tr><td>Coherence</td><td class="num">15%</td><td class="num">0.925</td><td class="num">0.938</td><td class="num good">+1.3 pp</td></tr>
+              <tr><td>Fluency</td><td class="num">10%</td><td class="num">0.963</td><td class="num">0.950</td><td class="num bad">&minus;1.3 pp</td></tr>
+              <tr class="detail-table__total"><td><strong>Weighted average</strong></td><td class="num">100%</td><td class="num"><strong>0.848</strong></td><td class="num"><strong>0.785</strong></td><td class="num bad"><strong>&minus;6.3 pp</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Completeness collapsed by 12.5 pp. For public-document Q&amp;A, where answers must be
+          exhaustive, that is fatal. I had to admit that the assumption "add every component and
+          quality improves" was wrong. This failure produced the core insight: <strong>each
+          document needs a RAG structure that fits it</strong>. The goal became a platform that
+          generates an optimized pipeline per document.
+        </p>
+
+        <h3 id="stage-3"><span class="detail-stage">Stage 3</span>Finding the culprit: ablation study</h3>
+        <p>
+          E2E metrics said Advanced RAG was worse. They could not say which of the 4 added
+          components was responsible. So I designed and ran a node-level ablation study.
+        </p>
+        <p><strong>Key findings:</strong></p>
+        <ul>
+          <li>Removing <strong>Reranking</strong>: <strong>&minus;12.8 pp</strong>. The single largest contributor.</li>
+          <li>Removing <strong>Query Decomposition</strong>: <strong>+6.8 pp</strong> and 32% lower latency (129 s to 88 s). It was actively hurting quality.</li>
+          <li>Removing Query Rewrite: &minus;0.8 pp. Marginal contribution.</li>
+          <li>Switching Hybrid to Dense: &minus;5.0 pp. Mid-level contribution.</li>
+        </ul>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Removed component</th><th class="num">Score change</th><th class="num">Latency</th><th>Verdict</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Reranking</strong></td><td class="num bad"><strong>&minus;12.8 pp</strong></td><td class="num">-</td><td class="good"><strong>Always on</strong> (removal collapses accuracy; core contributor)</td></tr>
+              <tr><td><strong>Query Decomposition</strong></td><td class="num good"><strong>+6.8 pp</strong></td><td class="num good">&minus;32% (129 s to 88 s)</td><td class="bad"><strong>Conditional</strong> (removal improved quality)</td></tr>
+              <tr><td>Query Rewrite</td><td class="num">&minus;0.8 pp</td><td class="num">-</td><td>Keep (small but positive)</td></tr>
+              <tr><td>Hybrid to Dense</td><td class="num bad">&minus;5.0 pp</td><td class="num">-</td><td><strong>Branch per document</strong> (Dense-favoring and Hybrid-needing documents coexist)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Why Query Decomposition hurt:</strong>
+          Splitting a query dilutes its core intent. Each sub-query drags in noisy context, and
+          answer quality drops. It also mattered that 80% of the ground truth was easy or medium
+          difficulty: most questions were answerable from a single query without complex
+          reasoning.
+        </p>
+        <p>
+          <strong>Why Hybrid lost to Dense:</strong>
+          BM25 keyword matching was weak on Korean public documents. Korean inflection changes
+          token forms, and the Sino-Korean terms and abbreviations of public documents fit the
+          tokenizer poorly, so sparse search injected noise. MRR fell as the sparse weight rose:
+          0.838 at alpha 0.7 versus 0.811 at alpha 0.3. Hybrid still helps in domains like law
+          and regulation where exact term matching matters, so the design branches by document
+          type.
+        </p>
+        <p>
+          <strong>The core insight:</strong>
+          E2E evaluation can show that Advanced RAG is worse. Only node-level ablation can show
+          that Query Decomposition is the culprit. Reranking's +12.8 pp contribution was masking
+          Query Decomposition's 6.8 pp damage. Separating the two was the point of the study.
+        </p>
+
+        <h3 id="stage-4"><span class="detail-stage">Stage 4</span>From insight to ecosystem design</h3>
+        <p><strong>"Every document needs a different strategy"</strong> was the R&amp;D conclusion. It maps to design rules:</p>
+        <ul>
+          <li>Reranking is always on, in every pipeline.</li>
+          <li>Query Decomposition activates only when multi-hop queries are expected (multi_hop_likelihood &gt; 0.4).</li>
+          <li>BM25 degrades on Korean, so retrieval branches between Dense and Hybrid on semantic importance.</li>
+          <li>Optimal chunking depends on document structure, so the chunking strategy branches on structural complexity.</li>
+        </ul>
+        <p>
+          <strong>A second insight: data structuring decides answer quality.</strong>
+          The ablation work exposed a chain: the quality of document structuring shapes semantic
+          chunking, chunking shapes retrieval, and retrieval shapes the final answer. Text-based
+          parsers destroy the structure of the complex tables, charts, and layouts in public
+          documents, degrading every downstream stage. That insight started a separate research
+          project, <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer"><strong>WigtnOCR</strong></a>:
+          a LoRA fine-tune of Qwen3-VL-2B that ranked 1st in Table TEDS among 4 compared models.
+        </p>
+        <p>
+          <strong>Business background: why a platform.</strong>
+          Soundmind was a voice AI company entering NLP for the first time. We had no PoC to
+          show. Demo opportunities came through networks, and asking every prospect for a 2-week
+          PoC window and their data was unrealistic for the sales team. When a chance appeared,
+          the team needed to <strong>open a cloud console, upload the customer's documents, and
+          demo on the spot</strong>. That need, combined with the R&amp;D insights, set the goal:
+          document analysis, tailored pipeline generation, and one-click deployment in a console
+          that non-developers can operate. Evaluation of deployed pipelines, real-time
+          monitoring with log analysis, and admin for users and permissions were folded into the
+          same console. That is the Soundmind AI Ecosystem.
+        </p>
+
+        <!-- ============================== -->
+        <!-- AI Console -->
+        <!-- ============================== -->
+        <h2 id="ai-console">AI Console: Internal Operations Platform</h2>
+        <p>
+          The integrated admin console born from the R&amp;D insights and the business need,
+          operable by non-developers. A single Next.js web console (port 3100) runs the full RAG
+          sales cycle: document analysis and deployment (<strong>Analysis</strong>), quality
+          evaluation (<strong>Eval</strong>), real-time monitoring (<strong>Monitoring</strong>),
+          and infrastructure plus user management (<strong>Admin</strong>).
+        </p>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-ai-console-loginpage.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-ai-console-loginpage.png" alt="AI Console login page">
+            </a>
+            <figcaption>1. Login: AI Console administrator authentication.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-ai-console-dashboard.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-ai-console-dashboard.png" alt="AI Console dashboard">
+            </a>
+            <figcaption>2. Dashboard: service health, GPU allocation, model serving status, and pipeline management.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="console-analysis">Analysis: document analysis to automated RAG deployment</h3>
+        <p>
+          Upload a customer document. The AI profiles it from multiple angles, recommends the
+          optimal RAG pipeline, and deploys it as a Docker container in one click. <strong>New
+          engine prototype lead time: 2 weeks to 5 minutes.</strong> The architecture is 2-tier:
+          the Analysis API (port 9200) is the control plane, and deployed pipelines (ports 9201
+          to 9299) are the data plane.
+        </p>
+
+        <h4 id="dual-llm">Design rationale: why a Dual-LLM two-stage review</h4>
+        <p>
+          A single LLM profiling 26 characteristics inherits that model's training bias.
+          Judgments like structural complexity or domain specificity differ across models, so
+          trusting one model risks over- or under-engineered pipelines for certain document
+          types.
+        </p>
+        <ul>
+          <li><strong>Gemini 2.0 Flash</strong>: native PDF analysis through the File API. Handles first-pass profiling and strategy recommendation. A Flash-tier model keeps bulk analysis cost-efficient.</li>
+          <li><strong>GPT-4o</strong>: reviews Gemini's output. It reads the raw text extracted by the OSS parser (pdfplumber) alongside Gemini's profile, validates profile accuracy and strategy fit with Structured Outputs (json_schema strict mode), and calibrates confidence. On disagreement, GPT-4o's judgment wins.</li>
+        </ul>
+        <p>
+          This is not independent cross-validation. It is a sequential two-stage pipeline: Gemini
+          analyzes, GPT-4o reviews. GPT-4o holds a comparative advantage as the reviewer because
+          it also sees the parser-extracted text that Gemini cannot access.
+        </p>
+
+        <h4 id="profiling-26">Analysis criteria: 26-characteristic profiling</h4>
+        <p>
+          The criteria extend the Korean RAG strategy design of
+          <a href="https://github.com/urstory/urstory-rag" target="_blank" rel="noopener noreferrer"><strong>urstory-rag</strong></a>
+          (a Korean-optimized production RAG open-source project) into 4 profiles and 26
+          characteristics tuned for public-sector documents.
+        </p>
+        <ul>
+          <li><strong>Structure profile</strong>: hierarchy depth (1 to 4+), section independence (0.0 to 1.0), cross-reference density, dominant structure type (narrative, table-centric, hierarchical, mixed, QA), repetitive patterns.</li>
+          <li><strong>Content profile</strong>: information density (sparse, moderate, dense), density distribution, entity relationship structure, domain specificity (0.0 to 1.0).</li>
+          <li><strong>Retrieval profile</strong>: expected query types (factual, comparative, aggregation, causal, procedural), keyword and semantic importance, context window need, multi-hop likelihood.</li>
+          <li><strong>Visual profile</strong>: table complexity (none to nested), charts, image information density, layout complexity.</li>
+        </ul>
+
+        <h4 id="analysis-stage-1">Stage 1: Gemini 2.0 Flash plus text extraction, in parallel</h4>
+        <p>
+          Gemini analyzes the PDF natively and returns the 26-characteristic profile plus a
+          strategy recommendation (Structured Output, temperature 0.1). In parallel, pdfplumber
+          extracts the raw text for GPT review. asyncio.gather runs both at once and halves
+          analysis time. Documents over 300 pages or 50 MB get representative page sampling:
+          the first 60%, middle 20%, and last 20%.
+        </p>
+
+        <h4 id="analysis-stage-2">Stage 2: GPT-4o review</h4>
+        <p>
+          GPT-4o validates profile accuracy (structure depth, domain specificity) and strategy
+          fit (over- or under-engineering) in json_schema strict mode. It adjusts confidence
+          within &minus;0.3 to +0.2 and classifies the result as confirmed, modified, or
+          rejected. If no GPT key is configured, the system falls back to Gemini alone with a
+          0.8x confidence penalty for stability.
+        </p>
+
+        <h4 id="analysis-stage-3">Stage 3: strategy engine and dynamic pipeline assembly</h4>
+        <p>
+          ReportGenerator merges Gemini's original with GPT's corrections, then picks the best
+          combination in the <strong>4-dimension strategy space</strong>: 5 chunking, 5
+          retrieval, 4 indexing, and 4 post-processing options, over 6,400 theoretical
+          combinations. The branching logic combines the ablation results with domain
+          heuristics:
+        </p>
+        <ul>
+          <li><strong>Reranking</strong>: always on in every post-processing strategy (ablation: removal costs 12.8 pp).</li>
+          <li><strong>Query Decomposition</strong>: only when multi_hop_likelihood &gt; 0.4 (ablation: unconditional use costs 6.8 pp). The 0.4 threshold is a domain heuristic marking the lowest point where single-context answers start to fail. Three tiers at 0.4, 0.5, and 0.6 route mid complexity to Multi-Query and high complexity to Graph-Enhanced.</li>
+          <li><strong>Retrieval</strong>: Dense when semantic_importance &gt; 0.7, Hybrid when keyword_importance &gt; 0.6 (ablation confirmed Korean BM25 degradation; thresholds are domain rules).</li>
+          <li><strong>Vector database</strong>: Qdrant for metadata-filtered strategies, Weaviate otherwise, decided automatically.</li>
+        </ul>
+        <p>
+          DynamicRAGPipeline assembles a LangGraph StateGraph at runtime from a
+          ComponentRegistry. Six graph topologies: Linear, Classify-Filter, Hierarchical,
+          Multi-Index, Graph-Enhanced, Agentic.
+        </p>
+
+        <h4 id="one-click-deploy">One-click deployment</h4>
+        <ul>
+          <li>Jinja2 templates generate the Docker Compose configuration. Deployment is one click.</li>
+          <li>asyncio.Lock guards concurrency. Ports auto-allocate in the 9201 to 9299 range.</li>
+          <li>Each RAG pipeline runs isolated in its own container and registers as a service.</li>
+          <li>A pipeline factory names each deployment from its strategy combination, for example regulatory-struct_aware-filtered-rag.</li>
+        </ul>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-analysis-document-upload.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-analysis-document-upload.png" alt="Analysis: document upload and reports">
+            </a>
+            <figcaption>1. Reports: uploaded documents and analysis results with pipeline recommendation and confidence.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-analysis-strategy-recommendation.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-analysis-strategy-recommendation.png" alt="Analysis: strategy recommendation and profiling">
+            </a>
+            <figcaption>2. Strategy recommendation: recommended pipeline architecture with the 4 profiles and 26 characteristics visualized.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-analysis-pipeline-deploy.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-analysis-pipeline-deploy.png" alt="Analysis: pipeline builder and deploy">
+            </a>
+            <figcaption>3. Pipeline Builder: adjust the AI-recommended settings, opt into VLM parsing (WigtnOCR), deploy in one click.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-analysis-pipeline-deployed.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-analysis-pipeline-deployed.png" alt="Analysis: pipeline deployed">
+            </a>
+            <figcaption>4. Deployed: the Docker container is created and registered as a service automatically.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="console-eval">Eval: RAG quality evaluation</h3>
+        <p>
+          Quantifies the answer quality of deployed pipelines and statistically verifies the
+          effect of strategy changes.
+        </p>
+
+        <h4 id="why-judge">Design rationale: why LLM-as-a-Judge</h4>
+        <p>
+          The Eval platform productizes the evaluation framework from RAG R&amp;D Stage 2. The
+          5-dimension weighted rubric and the Silver-dataset ground-truth generation moved into
+          the console, so non-developers can evaluate any deployed pipeline immediately.
+        </p>
+        <p>
+          <strong>Separating the judge model from the answering model</strong> is the core design
+          principle. When one model does both, self-bias appears. I confirmed this
+          experimentally: the self-judging setup gave perfect scores to long answers that
+          contained hallucinations.
+        </p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Setup</th><th class="num">Answering (RAG LLM)</th><th class="num">Judge</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Before (self-judged)</td><td class="num">Qwen3-30B (vLLM)</td><td class="num">Qwen3-30B (vLLM)</td><td class="bad"><strong>naive-rag scored perfect</strong>: hallucinations undetected</td></tr>
+              <tr><td>After (separated)</td><td class="num">Qwen3-30B (vLLM)</td><td class="num">GPT-4o (OpenAI API)</td><td class="good"><strong>fusion-rag wins</strong>: hallucinations detected correctly</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 id="five-dimensions">LLM-as-a-Judge: 5-dimension weighted evaluation</h4>
+        <p>
+          G-Eval style rubrics with chain-of-thought reasoning. Each dimension scores on a 1 to 5
+          Likert scale and normalizes to 0 to 1.
+        </p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Dimension</th><th class="num">Weight</th><th>What it evaluates</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Faithfulness</strong></td><td class="num">30%</td><td>Is the answer grounded in the retrieved context (hallucination check)</td></tr>
+              <tr><td><strong>Relevance</strong></td><td class="num">25%</td><td>Does the answer address the question</td></tr>
+              <tr><td><strong>Completeness</strong></td><td class="num">20%</td><td>Does the answer include all required information</td></tr>
+              <tr><td><strong>Coherence</strong></td><td class="num">15%</td><td>Is the answer logically consistent</td></tr>
+              <tr><td><strong>Fluency</strong></td><td class="num">10%</td><td>Is the writing natural and readable</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 id="ab-test">A/B test: VLM parsing vs default parsing</h4>
+        <p>
+          The same document (a 69-page public AX project call for proposals) went into two
+          pipelines. The same questions went to both. GPT-4o judged the answers.
+        </p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Pipeline</th><th>Parser</th><th>Retrieval</th><th>Reranker</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>A: <strong>naive-rag</strong></td><td>pymupdf4llm (default)</td><td>Dense only, top_k=5</td><td>None</td></tr>
+              <tr><td>B: <strong>fusion-rag</strong></td><td>WigtnOCR VLM (4-way parallel)</td><td>Hybrid + Filtered, top_k=10</td><td>Qwen3 Reranker 8B</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>GPT-4o Judge results:</strong></p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Dimension</th><th class="num">naive-rag (A)</th><th class="num">fusion-rag (B)</th><th class="num">Delta</th><th class="num">Winner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Relevance (25%)</td><td class="num">1.00</td><td class="num">1.00</td><td class="num">0</td><td class="num">tie</td></tr>
+              <tr><td><strong>Faithfulness (30%)</strong></td><td class="num bad">0.75</td><td class="num good"><strong>1.00</strong></td><td class="num good">+0.25</td><td class="num good"><strong>B</strong></td></tr>
+              <tr><td>Coherence (15%)</td><td class="num">1.00</td><td class="num">1.00</td><td class="num">0</td><td class="num">tie</td></tr>
+              <tr><td>Fluency (10%)</td><td class="num">1.00</td><td class="num">1.00</td><td class="num">0</td><td class="num">tie</td></tr>
+              <tr><td><strong>Completeness (20%)</strong></td><td class="num bad">0.75</td><td class="num good"><strong>1.00</strong></td><td class="num good">+0.25</td><td class="num good"><strong>B</strong></td></tr>
+              <tr class="detail-table__total"><td><strong>Weighted overall</strong></td><td class="num"><strong>0.888</strong></td><td class="num good"><strong>1.000</strong></td><td class="num good"><strong>+0.113</strong></td><td class="num good"><strong>B</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>The judge's grounds for the deductions:</strong></p>
+        <ul>
+          <li><strong>Faithfulness &minus;0.25</strong>: the answer mixed in outside knowledge absent from the context, such as "private cost share 70%" and "in-kind contributions limited to labor cost". Hallucination.</li>
+          <li><strong>Completeness &minus;0.25</strong>: it missed that the quarantine, patent information, and legislation information tracks differ on research-institute eligibility, and wrongly stated that all tracks are identical.</li>
+        </ul>
+        <p>
+          Conclusion: VLM parsing (WigtnOCR) provides structured Markdown context, and the LLM
+          produces a complete answer without hallucination. Quantitatively confirmed.
+        </p>
+
+        <h4 id="ab-stats">A/B test statistical verification</h4>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th>Method</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mann-Whitney U test</td><td>Non-parametric testing, no normality assumption</td></tr>
+              <tr><td>Bootstrap CI (1,000 resamples)</td><td>95% confidence interval estimation</td></tr>
+              <tr><td>Cohen's d</td><td>Effect size interpretation (small, medium, large)</td></tr>
+              <tr><td>Holm-Bonferroni correction</td><td>Guards against Type I error in multiple comparisons</td></tr>
+              <tr><td>Redis caching</td><td>Caches baseline results, halving A/B test cost and time</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-eval-abtest-self-judge.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-eval-abtest-self-judge.png" alt="Eval: self-judge setup before separation">
+            </a>
+            <figcaption>1. Before: Qwen3-30B judging itself gives perfect scores and misses hallucinations.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-eval-abtest-gpt4o-judge.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-eval-abtest-gpt4o-judge.png" alt="Eval: separated GPT-4o judge">
+            </a>
+            <figcaption>2. After: a separated GPT-4o judge detects hallucinations and ranks fusion-rag ahead on Faithfulness and Completeness.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="console-monitoring">Monitoring: real-time observability</h3>
+        <p>
+          Collects and visualizes logs from the whole ecosystem in one place, detects failures
+          early, and shows service state in real time.
+        </p>
+        <h4 id="why-loki">Design rationale: why Grafana + Loki</h4>
+        <p>
+          LLM serving and the RAG pipelines share the GPU server (2x RTX PRO 6000). The ELK
+          stack's resource footprint was too heavy for that box. Grafana, Loki, and Promtail
+          collect logs non-intrusively through the Docker socket: no application code changes,
+          and far lighter than ELK.
+        </p>
+        <h4 id="monitoring-infra">Infrastructure</h4>
+        <ul>
+          <li>Grafana 11.5.2, Loki 3.4.2, Promtail 3.4.2 for centralized log collection.</li>
+          <li>Docker-socket-based discovery: a new container needs no configuration change.</li>
+          <li>Labels (low cardinality, for indexing: level, platform, service) are separated from structured metadata (high cardinality: logger, module, function) to keep Loki indexing efficient.</li>
+        </ul>
+        <h4 id="monitoring-dashboards">Dashboards</h4>
+        <ul>
+          <li>4 dedicated dashboards: System Overview, AI Platform, Analysis, Eval.</li>
+          <li>A separate dashboard for model serving logs.</li>
+          <li>Covers service health, GPU allocation, pipeline management, and user and permission settings.</li>
+        </ul>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-monitoring-system-overview.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-monitoring-system-overview.png" alt="Monitoring: system overview dashboard">
+            </a>
+            <figcaption>1. System Overview: real-time log dashboard for the whole ecosystem.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-monitoring-platform-detail.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-monitoring-platform-detail.png" alt="Monitoring: platform detail dashboard">
+            </a>
+            <figcaption>2. Platform detail: per-platform metrics and error tracking.</figcaption>
+          </figure>
+        </div>
+
+        <!-- ============================== -->
+        <!-- AI Platform -->
+        <!-- ============================== -->
+        <h2 id="ai-platform">AI Platform: Customer-Facing Playground (B2B SaaS)</h2>
+        <p>
+          The Playground where customers experience the tailored RAG pipeline built and deployed
+          in the AI Console, as an on-site PoC. The sales team logs into the cloud server,
+          uploads customer documents, and demos immediately. It offers three independent agent
+          sessions and is built on a React 19 web console and a FastAPI API gateway with JWT
+          multi-tenant authentication and SSE streaming.
+        </p>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-ai-platform-loginpage.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-ai-platform-loginpage.png" alt="AI Platform login page">
+            </a>
+            <figcaption>1. Login: JWT-based multi-tenant authentication.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-ai-platform-portal-page.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-ai-platform-portal-page.png" alt="AI Platform portal page">
+            </a>
+            <figcaption>2. Portal: choose between RAG Agent, Chat Agent, and AICC Agent.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="auth-evolution">Authentication and authorization: a 5-stage evolution</h3>
+        <p>
+          Authentication started from an unauthenticated MVP and grew stepwise to PoC delivery.
+          Multi-tenant isolation spans three layers: Company (slug), Team, and Session, keeping
+          each customer's data separate.
+        </p>
+        <div class="detail-scroll">
+          <table class="detail-table">
+            <thead>
+              <tr><th class="num">Stage</th><th>Authentication</th><th>Key change</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="num">1</td><td>None</td><td>Fast MVP validation</td></tr>
+              <tr><td class="num">2</td><td>JWT</td><td>Database-backed user authentication</td></tr>
+              <tr><td class="num">3</td><td>Guest tier</td><td>Try without signup (refresh token disabled)</td></tr>
+              <tr><td class="num">4</td><td>3-tier RBAC</td><td>Role-based access for Admin, Manager, User, Guest</td></tr>
+              <tr><td class="num">5</td><td>Guest BYOK</td><td>Guests call cloud LLMs with their own API key</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="rag-agent">1. RAG Agent: document-grounded Q&amp;A</h3>
+        <p>
+          Answers questions over the customer's uploaded documents. The platform auto-detects
+          and connects the pipeline that Analysis generated and deployed for that customer.
+          Different customers get different tailored pipelines, so each one gets retrieval and
+          answers optimized for their documents on the same platform.
+        </p>
+        <ul>
+          <li><strong>Dynamic pipeline routing</strong>: looks up each company's pipeline URL in a PipelineMapping table and routes dynamically. Up to 99 concurrent pipelines (ports 9201 to 9299), httpx.AsyncClient with lazy initialization and connection pooling.</li>
+          <li><strong>Graceful degradation</strong>: on pipeline failure, the request falls back to a direct LLM answer tagged with fallback metadata. User requests never dead-end.</li>
+          <li><strong>Retrieval Insight, 3 panels</strong>: (1) query transformation, the original query and its 5 optimized variants; (2) hybrid search scores as dense and sparse bar charts; (3) reranking impact with rank-movement badges (gold, silver, bronze). All streamed live over SSE events.</li>
+          <li><strong>SSE streaming</strong>: an event chain of agent_start, processing, llm_stream (token level), final_response, done. StreamingThinkParser separates think tags in real time and renders the reasoning and the answer side by side.</li>
+        </ul>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-rag-agent-main.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-rag-agent-main.png" alt="RAG Agent main screen">
+            </a>
+            <figcaption>1. RAG Agent main: document-grounded Q&amp;A playground.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-rag-agent-chat-session.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-rag-agent-chat-session.png" alt="RAG Agent chat session">
+            </a>
+            <figcaption>2. Chat session: document Q&amp;A with live SSE streaming.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-rag-agent-document-upload.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-rag-agent-document-upload.png" alt="RAG Agent document upload">
+            </a>
+            <figcaption>3. Document upload: customer documents connect to their pipeline.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-rag-agent-qa.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-rag-agent-qa.png" alt="RAG Agent retrieval insight">
+            </a>
+            <figcaption>4. Retrieval Insight: query transformation, hybrid scores, and reranking impact visualized.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="chat-agent">2. Chat Agent: autonomous tool-using agent (MVP complete)</h3>
+        <p>
+          An autonomous agent not limited to documents. The LLM assesses the situation and
+          selects the tools to call. Built on the LangGraph ReAct architecture, it executes
+          compound tasks step by step.
+        </p>
+        <ul>
+          <li><strong>LangGraph StateGraph</strong>: a 2-node graph of agent (LLM call) and tools (execution). Conditional routing on tool_calls, MemorySaver for session state, and a 10-iteration cap against infinite loops.</li>
+          <li><strong>3 built-in tools</strong>: Tavily Search (web search, up to 5 results), File Read (TXT and PDF, with security checks blocking .env, .ssh, and .aws), and Report Agent (a document-generation sub-agent with 4 modes: summary, analysis, minutes, custom).</li>
+          <li><strong>MCP extension</strong>: external tools attach dynamically through a Model Context Protocol client.</li>
+          <li><strong>Multi-provider</strong>: OpenAI, vLLM, and Gemini behind one interface, plus Guest BYOK (bring your own key).</li>
+        </ul>
+        <div class="detail-gallery">
+          <figure>
+            <a href="../images/projects/soundmind-chat-agent-build.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-chat-agent-build.png" alt="Chat Agent toolkit build screen">
+            </a>
+            <figcaption>1. Chat Agent toolkit: pick the model, tools, MCP servers, and sub-agents, then build.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-chat-agent-chat-session.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-chat-agent-chat-session.png" alt="Chat Agent chat session">
+            </a>
+            <figcaption>2. Chat session: a Tavily Search tool call and its response.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-chat-agent-file-read.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-chat-agent-file-read.png" alt="Chat Agent file read">
+            </a>
+            <figcaption>3. File Read: reading a file and invoking the Report Agent automatically.</figcaption>
+          </figure>
+          <figure>
+            <a href="../images/projects/soundmind-chat-agent-reports.png" target="_blank" rel="noopener noreferrer">
+              <img src="../images/projects/soundmind-chat-agent-reports.png" alt="Chat Agent report result">
+            </a>
+            <figcaption>4. Report complete: the generated document summary report.</figcaption>
+          </figure>
+        </div>
+
+        <h3 id="aicc-agent">3. AICC Agent: AI contact center (not started at departure)</h3>
+        <p>
+          Planned as an AI contact-center agent combining the RAG Agent's document grounding
+          with the Chat Agent's autonomous tool use, specialized for customer-support scenarios.
+          Development had not begun by my departure in March 2026.
+        </p>
+
+        <!-- ============================== -->
+        <!-- Roadmap -->
+        <!-- ============================== -->
+        <h2 id="roadmap">Roadmap at Departure</h2>
+        <p>
+          These were the plans as of March 2026, when I left. Progress after that date happened
+          inside Soundmind without my involvement.
+        </p>
+        <h3 id="wigtn-ocr-integration">WigtnOCR integration: VLM-based document parsing</h3>
+        <p>
+          The goal was to extend parsing beyond text extraction to VLM parsing that preserves
+          tables, charts, and layout.
+          <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer"><strong>WigtnOCR</strong></a>,
+          my separate research project (a LoRA fine-tune of Qwen3-VL-2B that ranked 1st in Table
+          TEDS among 4 compared models and surpassed a 15x larger 30B model), would roll the
+          A/B-confirmed quality gain (0.888 to 1.000) out to every pipeline.
+        </p>
+        <h3 id="production-release">Production release (planned)</h3>
+        <ul>
+          <li>Stabilize UX and reliability from beta-test feedback.</li>
+          <li>Close the loop: evaluation, analysis, and redeployment as an automatic optimization cycle.</li>
+          <li>Build the AICC Agent and complete the three-agent lineup.</li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <span>&copy; 2026 Hyeong-seob Kim</span>
+      <a href="../">Home</a>
+    </div>
+  </footer>
+</body>
+</html>
