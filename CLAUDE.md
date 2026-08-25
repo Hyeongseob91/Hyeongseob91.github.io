@@ -33,9 +33,11 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   AI Researcher at RAPIDS LAB (MODULABS). 위치는 나라만 표기 (South Korea), 도시 생략.
 - **IWSLT 표기**: "IWSLT 2026 (co-located with ACL 2026)" — 발표는 IWSLT 소속, ACL은 개최 맥락.
 - **Publications**: accepted 논문만 등재 (in-prep 금지). Paper 링크는 ACL Anthology.
-  WigtnOCR EMNLP 논문은 accepted 시점에 추가 예정. 게재 완료면 "published in" (not "accepted to").
+  게재 완료면 "published in" (not "accepted to"). RCPS(EMNLP 2026 Industry Track)는 Accepted
+  상태로 등재됨 — 게재 시 venue 문구·Anthology 링크 교체, repo 공개 시 Code 배지 추가.
 - **저자 역할 표기**: 1저자는 저자 목록 첫 위치 + 본인 이름 볼드로만 표시 (별도 마커 금지).
-  교신저자는 이름 뒤 위첨자 `†` + 저자줄 아래 "† Corresponding author" 각주 (WigtnOCR EMNLP 추가 시 적용).
+  교신저자는 이름 뒤 위첨자 `*` + 저자줄 아래 "* Corresponding author" 각주 (RCPS 항목에 적용됨;
+  본인 이름은 저자 목록 맨 뒤).
 - **About bio 톤**: 커리어 전환 서사(건축공학 → AI) 유지. 논문·학회명 등 성과 나열은 bio에 넣지 않는다
   (publications 섹션이 담당). 슬로건형 첫 문장 금지.
 - **수치는 논문 확정치와 일치**: WIGVO는 "zero echo loops across 147 completed real calls"

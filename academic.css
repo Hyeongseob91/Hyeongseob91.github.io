@@ -274,6 +274,11 @@ strong, b {
   margin-bottom: 0.5rem;
 }
 
+.pub__note {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
 .pub__links {
   display: flex;
   gap: 0.5rem;
