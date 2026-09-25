@@ -39,9 +39,11 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 - **Publications**: accepted 논문만 등재 (in-prep 금지). Paper 링크는 ACL Anthology.
   게재 완료면 "published in" (not "accepted to"). RCPS(EMNLP 2026 Industry Track)는 Accepted
   상태로 등재됨 — 게재 시 venue 문구·Anthology 링크 교체, repo 공개 시 Code 배지 추가.
-  Non-archival 워크숍 논문도 Publications에 등재하되 venue 줄 끝에 "(non-archival)"을 붙인다
-  (MDI, TAE @ NeurIPS 2026 항목에 적용됨). Anthology가 없으므로 Paper 링크는 카메라레디 공개 후
-  OpenReview. 워크숍 항목이 2건 이상 쌓이면 소제목 분리를 검토한다.
+  Non-archival 워크숍 논문도 Publications에 등재. venue 줄은 호스트 학회를 앞에 두고 끝에
+  ", non-archival."을 붙인다: "Accepted to the NeurIPS 2026 Workshop on Trust-AI-Eval (TAE),
+  non-archival." (MDI 항목). 발표 형식(poster/oral)과 워크숍 부제는 쓰지 않는다. Anthology가
+  없으므로 Paper 링크는 카메라레디 공개 후 OpenReview. 워크숍 항목이 2건 이상 쌓이면 소제목
+  분리를 검토한다.
 - **저자 역할 표기**: 1저자는 저자 목록 첫 위치 + 본인 이름 볼드로만 표시 (별도 마커 금지).
   교신저자는 이름 뒤 위첨자 `*`(`<sup aria-label="corresponding author">`) + 항목 말미(venue 아래)에
   "* Corresponding author" 각주 (RCPS 항목에 적용됨; 본인 이름은 저자 목록 2번째 —
