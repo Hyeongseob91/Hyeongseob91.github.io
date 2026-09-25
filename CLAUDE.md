@@ -29,8 +29,11 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ```
 
 ## Content Rules
-- **직책 표기**: Founder at WIGTN (AI Research Group) / AI Research Engineer at Braincrew /
+- **직책 표기**: Founder & CEO at WIGTN (AI Research & Engineering Group) / AI Research Engineer at Braincrew /
   AI Researcher at RAPIDS LAB (MODULABS). 위치는 나라만 표기 (South Korea), 도시 생략.
+  WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
+  WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
+  WIGTN의 레퍼런스는 Braincrew다. 고객사 실명은 Braincrew 첫 불릿에만 둔다.
 - **IWSLT 표기**: "IWSLT 2026 (co-located with ACL 2026)" — 발표는 IWSLT 소속, ACL은 개최 맥락.
   섹션명은 "Talks" (항목 1건이라 분리 불필요; 진짜 keynote급 초청이 생기면 그때 분리).
   성격은 항목별 괄호 표기: 제목 끝 "(Invited)" + venue 줄 "Oral Session II, IWSLT 2026 ...".
