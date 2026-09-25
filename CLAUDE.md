@@ -13,7 +13,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ## File Structure
 ```
 ├── index.html          # 메인 academic 홈 (영문): about, news, publications, talks, experience, education
-├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Awards + Certifications
+├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Hackathons + Awards + Certifications
 │                       #   "Download PDF" 버튼 = window.print() (print CSS는 academic.css에 정의)
 ├── academic.css        # 공용 스타일 (index + cv + 프로젝트 상세, print 스타일 포함)
 ├── projects/soundmind.html  # Soundmind 프로젝트 영문 상세 페이지 (academic.css의 detail-* 블록 사용)
@@ -54,7 +54,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   (155 시도 - 8 실패 = 147; "148"이나 "field tests" 표현 금지).
 - **em-dash(—) 사용 금지**: 콜론이나 마침표로 대체. 프로젝트 제목 구분자도 콜론.
 - **메인은 간결하게**: 프로젝트 상세·경력 불릿은 cv.html에만. 메인 experience는 직책 한 줄.
-- **CV 섹션 순서**: Interests → Publications → Talks → Experience → Projects →
+- **CV 섹션 순서**: Interests → Publications → Talks → Experience → Projects → Hackathons →
   Education → Honors → Certifications (연구 시그널 우선).
 - **이메일 아이콘**: 표준 `mailto:harrison@wigtn.com` (Gmail compose URL 금지).
 - 제거된 것들 (재도입 금지): K-Digital Training 항목, toy projects, Tech Report(reports/),
@@ -65,6 +65,10 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 - **논문**: index + cv 양쪽 publications에 `.pub` 항목 (Paper 링크 = Anthology).
 - **프로젝트**: `cv.html`의 Selected Projects에 `.proj` 항목 — meta 라벨 + 제목 +
   1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 기본적으로 만들지 않는다.
+  Selected Projects는 연구·프로덕트급만 둔다 (현재 WigtnOCR, Soundmind; GUAM은 결과 확정 시 추가).
+  해커톤은 별도 **Hackathons** 섹션에 같은 `.proj` 마크업으로, meta = 행사명(+ 수상), 설명 1-2줄.
+  오픈소스 개발 도구(WIGTN-Coding, LLM Loadtester)는 항목을 만들지 않고 WIGTN 경력 불릿에
+  링크로 언급한다 (2026-09-26 재구성: 핵심 프로젝트 희석 방지).
   예외: 리서치 서사가 필요한 대형 프로젝트는 `projects/soundmind.html` 패턴을 따른다 —
   academic.css의 `detail-*` 블록 재사용, 영문, JavaScript 없음, em-dash 금지,
   CV 항목에 `Details` 배지로 연결. 레거시 한국어 상세 페이지는 삭제하지 않고 보존.
