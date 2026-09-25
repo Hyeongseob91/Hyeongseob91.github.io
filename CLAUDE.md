@@ -29,7 +29,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ```
 
 ## Content Rules
-- **직책 표기**: Founder & CEO at WIGTN (AI Research & Engineering Group) / AI Research Engineer at Braincrew /
+- **직책 표기**: Founder & CEO at WIGTN (AI Research & Engineering Company) / AI Research Engineer at Braincrew /
   AI Researcher at RAPIDS LAB (MODULABS). 위치는 나라만 표기 (South Korea), 도시 생략.
   WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
   WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
@@ -53,6 +53,8 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   카메라레디 확정 순서).
 - **About bio 톤**: 커리어 전환 서사(건축공학 → AI) 유지. 논문·학회명 등 성과 나열은 bio에 넣지 않는다
   (publications 섹션이 담당). 슬로건형 첫 문장 금지.
+  구조(2026-09-26 확정): 1문장 현재 역할과 하는 일 → 2문장 WIGTN 정체(연구+AX 실행) → 3문장 전환 서사.
+  WIGTN은 사업자 등록된 회사: "company"로 표기, "group"·"independent research group" 표현 금지.
 - **수치는 논문 확정치와 일치**: WIGVO는 "zero echo loops across 147 completed real calls"
   (155 시도 - 8 실패 = 147; "148"이나 "field tests" 표현 금지).
 - **em-dash(—) 사용 금지**: 콜론이나 마침표로 대체. 프로젝트 제목 구분자도 콜론.
