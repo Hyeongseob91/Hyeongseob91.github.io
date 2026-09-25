@@ -391,6 +391,11 @@ strong, b {
   color: var(--color-text-secondary);
 }
 
+.entries__date .entries__status {
+  margin-top: 0.1rem;
+  white-space: normal;
+}
+
 .entries__desc {
   font-size: 0.92rem;
   margin-top: 0.3rem;
