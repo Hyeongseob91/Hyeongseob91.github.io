@@ -39,6 +39,8 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   Work experience의 현재 소속 셋에는 기간 칸 아래 `.entries__status` 라벨: Braincrew "Full-time" /
   WIGTN "Self-employed" / RAPIDS LAB "Research affiliate" (LinkedIn 고용 유형 어휘, 2026-09-26).
   "Part-time"·"independent" 표현 금지 (대표를 시간제로 읽히게 함). 과거 경력에는 라벨 없음.
+  Work experience 순서(index·cv 동일, 위에서부터): 현재 소속은 **Braincrew → RAPIDS LAB → WIGTN**
+  (사용자 지시 2026-09-27; 시작일 역순과도 일치), 그 아래 과거 경력은 시작일 역순.
   WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
   WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
   WIGTN의 레퍼런스는 Braincrew다. 고객사 실명은 Braincrew 첫 불릿에만 둔다.
