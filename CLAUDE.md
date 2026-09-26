@@ -59,6 +59,11 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   교신저자는 이름 뒤 위첨자 `*`(`<sup aria-label="corresponding author">`) + 항목 말미(venue 아래)에
   "* Corresponding author" 각주 (RCPS 항목에 적용됨; 본인 이름은 저자 목록 2번째 —
   카메라레디 확정 순서).
+- **Research interests (index 한 줄 + cv 섹션 동일 문구)**: 프레임은 "AI problems enterprise clients struggle with
+  in production" (기업 고객의 pain point에서 출발하는 연구, FDE형 독자를 겨냥), 뒤에 논문·연구와 1:1 대응하는
+  주제어만 나열: real-time speech translation(WIGVO), document parsing for retrieval(RCPS), LLM-judge
+  evaluation(MDI), GPU-accelerated machine learning(RAPIDS LAB). 실무 항목(production ML deployment)이나
+  bio가 담당하는 서사(legacy systems)는 넣지 않는다 (2026-09-27). 논문이 늘면 주제어를 추가·교체.
 - **About bio 톤**: 커리어 전환 서사(건축공학 → AI) 유지. 논문·학회명 등 성과 나열은 bio에 넣지 않는다
   (publications 섹션이 담당). 슬로건형 첫 문장 금지.
   구조(2026-09-26 확정): 3문단. ① Braincrew 소속과 하는 일 → ② WIGTN 정체(연구+AX 실행) → ③ 전환 서사.
