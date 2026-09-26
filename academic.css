@@ -107,6 +107,23 @@ strong, b {
   margin-bottom: 1.1rem;
 }
 
+.section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.1rem;
+}
+
+.section__head .section__title {
+  margin-bottom: 0;
+}
+
+.section__link {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
 /* About (al-folio style: photo floated right, bio wraps around) */
 .about {
   margin-bottom: 3.5rem;

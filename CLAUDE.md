@@ -42,6 +42,10 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
   WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
   WIGTN의 레퍼런스는 Braincrew다. 고객사 실명은 Braincrew 첫 불릿에만 둔다.
+  고객사는 **계약 주체**로 쓴다: "Hyundai AutoEver (Hyundai Motor Group)" (계약은 오토에버, 실사용자는
+  현대차 연구소이나 위임 관계이므로 그룹명만 괄호로; 연구소 실명 금지), SK hynix, SK AX, SK Telecom.
+  Braincrew 2~4번 불릿은 도메인·설계 패턴·스택·역할까지만: 고객사와 설계의 1:1 대응, 내부 시스템명,
+  수치, 일정, 협력사, 망 구성, 인명 금지 (2026-09-27).
 - **IWSLT 표기**: "IWSLT 2026 (co-located with ACL 2026)" — 발표는 IWSLT 소속, ACL은 개최 맥락.
   섹션명은 "Talks" (항목 1건이라 분리 불필요; 진짜 keynote급 초청이 생기면 그때 분리).
   성격은 항목별 괄호 표기: 제목 끝 "(Invited)" + venue 줄 "Oral Session II, IWSLT 2026 ...".
