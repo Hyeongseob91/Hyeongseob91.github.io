@@ -35,7 +35,8 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   led by Korea's LangChain Global Ambassador". 앰버서더는 **Braincrew 대표**이지 본인이 아니다: "home to",
   "with" 등 본인이 앰버서더로 읽힐 수 있는 표현 금지, "led by"로 대표에게 귀속시킨다.
   "LangChain Global Partner" 표현 금지 (공식 파트너 계약 없음).
-  WIGTN = "AI research and engineering company". cv 역할 줄은 "Founder & CEO, AI Research & Engineering Company".
+  WIGTN = "an AI company in Korea" (WIGTN 공식 태그라인의 축약형, WIGTN 쪽에서 2026-10-22 통일).
+  "AI research and engineering company"는 폐기. cv 역할 줄은 "Founder & CEO, AI Company in Korea".
   Work experience의 현재 소속 셋에는 기간 칸 아래 `.entries__status` 라벨: Braincrew "Full-time" /
   WIGTN "Self-employed" / RAPIDS LAB "Research affiliate" (LinkedIn 고용 유형 어휘, 2026-09-26).
   "Part-time"·"independent" 표현 금지 (대표를 시간제로 읽히게 함). 과거 경력에는 라벨 없음.
