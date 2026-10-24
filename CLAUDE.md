@@ -55,8 +55,10 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   조직위 발의 편성이므로 (Invited)는 정확하나, 프로그램 공식 Invited Talk는 Bansal·Carpuat
   2건뿐이므로 "Invited Talks"/"Invited Talk"/"Keynote"/"Invited Speaker" 라벨 금지.
 - **Publications**: accepted 논문만 등재 (in-prep 금지). Paper 링크는 ACL Anthology.
-  게재 완료면 "published in" (not "accepted to"). RCPS(EMNLP 2026 Industry Track)는 Accepted
-  상태로 등재됨 — 게재 시 venue 문구·Anthology 링크 교체, repo 공개 시 Code 배지 추가.
+  게재 완료면 venue 줄은 "In Proceedings of ..." (not "accepted to"). 게재된 항목은 venue 아래
+  `.pub__links`(Paper = Anthology, 공개 repo는 Code)를 두고, 교신저자 각주는 그 아래 항목 맨 끝에 둔다.
+  RCPS(EMNLP 2026 Industry Track)는 2026-10-24 Anthology 게재 반영(2026.emnlp-industry.90, Code =
+  wigtn/WigtnOCR-RADP).
   Non-archival 워크숍 논문도 Publications에 등재. venue 줄은 호스트 학회를 앞에 두고 끝에
   ", non-archival."을 붙인다: "Accepted to the NeurIPS 2026 Workshop on Trust-AI-Eval (TAE),
   non-archival." (MDI 항목). 발표 형식(poster/oral)과 워크숍 부제는 쓰지 않는다. Anthology가
