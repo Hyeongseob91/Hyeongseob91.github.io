@@ -61,7 +61,11 @@
       <article class="pub">
         <p class="pub__authors">Sang-Woo Son, <strong>Hyeong-seob Kim</strong><sup aria-label="corresponding author">*</sup>, Hyeonsang Kim, Hyun-woo Cho, Jinmo Kim</p>
         <p class="pub__title">Retrieval-Conditional Parsing Score (RCPS): Choosing Document Parsers by Retrieval, Not by Appearance</p>
-        <p class="pub__venue">Accepted to EMNLP 2026 Industry Track.</p>
+        <p class="pub__venue">In Proceedings of EMNLP 2026 Industry Track.</p>
+        <div class="pub__links">
+          <a href="https://aclanthology.org/2026.emnlp-industry.90/" target="_blank" rel="noopener noreferrer" class="pub__link">Paper</a>
+          <a href="https://github.com/wigtn/WigtnOCR-RADP" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
+        </div>
         <p class="pub__note">* Corresponding author</p>
       </article>
       <article class="pub">
@@ -203,12 +207,13 @@
         <p class="proj__meta">Research · Open Source</p>
         <p class="proj__title">WigtnOCR: VLM Parsing Model for Korean Public Documents</p>
         <p class="proj__desc">
-          LoRA fine-tuned Qwen3-VL-2B that surpasses a 15x larger 30B teacher model:
-          1st in Table TEDS (0.649) on OmniDocBench (CVPR 2025) and best Hit@1 / MRR@10
-          among 6 parsers on KoGovDoc retrieval.
+          Qwen3-VL-2B distilled from a 30B teacher with LoRA. It matches or beats the teacher
+          on 3 of 5 OmniDocBench (CVPR 2025) metrics, including Table TEDS (0.649 vs 0.523),
+          and is level with it on the RCPS retrieval score (0.583 vs 0.584).
         </p>
         <div class="pub__links">
           <a href="https://huggingface.co/Wigtn/Qwen3-VL-2B-WigtnOCR" target="_blank" rel="noopener noreferrer" class="pub__link">HuggingFace</a>
+          <a href="https://github.com/wigtn/wigtnOCR-v1" target="_blank" rel="noopener noreferrer" class="pub__link">Code</a>
         </div>
       </article>
       <article class="proj">

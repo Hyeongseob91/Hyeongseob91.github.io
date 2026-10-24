@@ -302,6 +302,10 @@ strong, b {
   color: var(--color-text-secondary);
 }
 
+.pub__links + .pub__note {
+  margin-top: 0.35rem;
+}
+
 .pub__links {
   display: flex;
   gap: 0.5rem;
