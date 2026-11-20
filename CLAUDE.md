@@ -30,19 +30,24 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 
 ## Content Rules
 - **직책 표기**: index About의 현재 직책 목록은 "Current positions" 라벨 아래 괄호 없이 한 줄씩:
-  Founder & CEO at WIGTN / AI Research Engineer at Braincrew / AI Researcher at RAPIDS LAB, MODULABS
-  (2026-09-26). 회사 설명은 bio 문단이 담당한다. Braincrew = "a deep-tech AI company in South Korea
+  Founder & CEO at WIGTN / AI Research Engineer at Braincrew (2026-11-21, RAPIDS LAB 줄 제거). 회사 설명은 bio 문단이 담당한다. Braincrew = "a deep-tech AI company in South Korea
   led by Korea's LangChain Global Ambassador". 앰버서더는 **Braincrew 대표**이지 본인이 아니다: "home to",
   "with" 등 본인이 앰버서더로 읽힐 수 있는 표현 금지, "led by"로 대표에게 귀속시킨다.
   "LangChain Global Partner" 표현 금지 (공식 파트너 계약 없음).
   WIGTN = "an AI company in Korea" (WIGTN 공식 태그라인의 축약형, WIGTN 쪽에서 2026-10-22 통일).
   "AI research and engineering company"는 폐기. cv 역할 줄은 "Founder & CEO, AI Company in Korea".
-  Work experience의 현재 소속 셋에는 기간 칸 아래 `.entries__status` 라벨: Braincrew "Full-time" /
-  WIGTN "Self-employed" / RAPIDS LAB "Research affiliate" (LinkedIn 고용 유형 어휘, 2026-09-26).
+  Work experience의 현재 소속 둘에는 기간 칸 아래 `.entries__status` 라벨: Braincrew "Full-time" /
+  WIGTN "Self-employed" (LinkedIn 고용 유형 어휘, 2026-09-26).
   "Part-time"·"independent" 표현 금지 (대표를 시간제로 읽히게 함). 과거 경력에는 라벨 없음.
-  Work experience 순서(index·cv 동일, 위에서부터): 현재 소속은 **Braincrew → RAPIDS LAB → WIGTN**
+  Work experience 순서(index·cv 동일, 위에서부터): 현재 소속은 **Braincrew → WIGTN**
   (사용자 지시 2026-09-27; 시작일 역순과도 일치), 그 아래 과거 경력은 시작일 역순.
-  WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
+  RAPIDS LAB (MODULABS)은 별도 경력 항목으로 두지 않는다 (사용자 지시 2026-11-21): GPU AutoML 연구(GUAM)는
+  WIGTN 소속으로 수행·제출한 연구이고 MODULABS는 팀을 모은 곳이다. cv의 WIGTN 불릿에
+  "with a team formed through RAPIDS LAB at MODULABS"로만 남기고, index Current positions와
+  Work experience에 RAPIDS LAB 줄을 다시 넣지 않는다. MODULABS가 연구를 지원·주관한 것처럼 읽히는
+  표현("conducted at", "affiliated with") 금지.
+  WIGTN 경력 불릿은 연구(논문 프로그램 → GPU AutoML) → AX 실행(Braincrew delivery partnership,
+  2026-09 계약) → 오픈소스 순.
   WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
   WIGTN의 레퍼런스는 Braincrew다. 고객사 실명은 Braincrew 첫 불릿에만 둔다.
   고객사는 **계약 주체**로 쓴다: "Hyundai AutoEver (Hyundai Motor Group)" (계약은 오토에버, 실사용자는
@@ -71,7 +76,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 - **Research interests (index 한 줄 + cv 섹션 동일 문구)**: 프레임은 "AI problems enterprise clients struggle with
   in production" (기업 고객의 pain point에서 출발하는 연구, FDE형 독자를 겨냥), 뒤에 논문·연구와 1:1 대응하는
   주제어만 나열: real-time speech translation(WIGVO), document parsing for retrieval(RCPS), LLM-judge
-  evaluation(MDI), GPU-accelerated machine learning(RAPIDS LAB). 실무 항목(production ML deployment)이나
+  evaluation(MDI), GPU-accelerated machine learning(WIGTN의 GPU AutoML 연구, GUAM). 실무 항목(production ML deployment)이나
   bio가 담당하는 서사(legacy systems)는 넣지 않는다 (2026-09-27). 논문이 늘면 주제어를 추가·교체.
 - **About bio 톤**: 커리어 전환 서사(건축공학 → AI) 유지. 논문·학회명 등 성과 나열은 bio에 넣지 않는다
   (publications 섹션이 담당). 슬로건형 첫 문장 금지.
