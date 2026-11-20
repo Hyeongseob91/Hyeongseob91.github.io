@@ -63,7 +63,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   ", non-archival."을 붙인다: "Accepted to the NeurIPS 2026 Workshop on Trust-AI-Eval (TAE),
   non-archival." (MDI 항목). 발표 형식(poster/oral)과 워크숍 부제는 쓰지 않는다. Anthology가
   없으므로 Paper 링크는 학회 공식 페이지(MDI = https://neurips.cc/virtual/2026/178307,
-  2026-11-21 반영). 워크숍 항목이 2건 이상 쌓이면 소제목 분리를 검토한다.
+  Code = wigtn/mdi-llm-judge, 2026-11-21 반영). 워크숍 항목이 2건 이상 쌓이면 소제목 분리를 검토한다.
 - **저자 역할 표기**: 1저자는 저자 목록 첫 위치 + 본인 이름 볼드로만 표시 (별도 마커 금지).
   교신저자는 이름 뒤 위첨자 `*`(`<sup aria-label="corresponding author">`) + 항목 말미(venue 아래)에
   "* Corresponding author" 각주 (RCPS 항목에 적용됨; 본인 이름은 저자 목록 2번째 —
