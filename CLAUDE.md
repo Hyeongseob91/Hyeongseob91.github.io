@@ -18,14 +18,12 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ├── academic.css        # 공용 스타일 (index + cv + 프로젝트 상세, print 스타일 포함)
 ├── projects/soundmind.html  # Soundmind 프로젝트 영문 상세 페이지 (academic.css의 detail-* 블록 사용)
 ├── images/profile.jpg  # 프로필 사진
+├── images/projects/    # soundmind.html이 쓰는 스크린샷 24개만 둔다
 ├── .nojekyll
-│
-│  # ── 아래는 레거시 자산 (링크 해제됨, 파일만 유지) ──
-├── styles.css, scripts.js   # 구 카드형 포트폴리오 스타일/스크립트
-├── projects/*.html          # 구 프로젝트 상세 페이지 13개 — 필요 시 URL 직접 공유용
-├── images/(aboutme|companies|projects)/  # 구 포트폴리오 이미지
-├── wigtn/, docs/            # 기타 (WIGTN 소개 페이지, cover letter 초안)
 ```
+구 카드형 포트폴리오 자산(styles.css, scripts.js, 구 프로젝트 상세 페이지 12개와 project.css/js,
+images/aboutme·companies·navigation, 안 쓰는 프로젝트 이미지, wigtn/, docs/)은 2026-11-21에 삭제했다
+(사용자 지시). 필요하면 git 이력에서 되살린다. 현재 페이지가 참조하지 않는 파일은 저장소에 두지 않는다.
 
 ## Content Rules
 - **직책 표기**: index About의 현재 직책 목록은 "Current positions" 라벨 아래 괄호 없이 한 줄씩:
@@ -102,7 +100,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   링크로 언급한다 (2026-09-26 재구성: 핵심 프로젝트 희석 방지).
   예외: 리서치 서사가 필요한 대형 프로젝트는 `projects/soundmind.html` 패턴을 따른다 —
   academic.css의 `detail-*` 블록 재사용, 영문, JavaScript 없음, em-dash 금지,
-  CV 항목에 `Details` 배지로 연결. 레거시 한국어 상세 페이지는 삭제하지 않고 보존.
+  CV 항목에 `Details` 배지로 연결.
 
 ## 배포
 main 브랜치 push = GitHub Pages 배포. 커밋은 Conventional Commits (영어).
