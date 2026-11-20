@@ -15,14 +15,13 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 ├── index.html          # 메인 academic 홈 (영문): about, publications, talks, experience, education
 ├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Hackathons + Awards + Certifications
 │                       #   "Download PDF" 버튼 = window.print() (print CSS는 academic.css에 정의)
-├── academic.css        # 공용 스타일 (index + cv + 프로젝트 상세, print 스타일 포함)
-├── projects/soundmind.html  # Soundmind 프로젝트 영문 상세 페이지 (academic.css의 detail-* 블록 사용)
+├── academic.css        # 공용 스타일 (index + cv, print 스타일 포함; detail-* 블록은 상세 페이지용으로 남아 있음)
 ├── images/profile.jpg  # 프로필 사진
-├── images/projects/    # soundmind.html이 쓰는 스크린샷 24개만 둔다
 ├── .nojekyll
 ```
 구 카드형 포트폴리오 자산(styles.css, scripts.js, 구 프로젝트 상세 페이지 12개와 project.css/js,
-images/aboutme·companies·navigation, 안 쓰는 프로젝트 이미지, wigtn/, docs/)은 2026-11-21에 삭제했다
+images/aboutme·companies·navigation, 프로젝트 이미지, wigtn/, docs/)과 Soundmind 프로젝트 자료
+(projects/soundmind.html, 스크린샷, cv의 Selected Projects 항목)는 2026-11-21에 삭제했다
 (사용자 지시). 필요하면 git 이력에서 되살린다. 현재 페이지가 참조하지 않는 파일은 저장소에 두지 않는다.
 
 ## Content Rules
@@ -94,13 +93,14 @@ images/aboutme·companies·navigation, 안 쓰는 프로젝트 이미지, wigtn/
 - **논문**: index + cv 양쪽 publications에 `.pub` 항목 (Paper 링크 = Anthology).
 - **프로젝트**: `cv.html`의 Selected Projects에 `.proj` 항목 — meta 라벨 + 제목 +
   1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 기본적으로 만들지 않는다.
-  Selected Projects는 연구·프로덕트급만 둔다 (현재 WigtnOCR, Soundmind; GUAM은 결과 확정 시 추가).
+  Selected Projects는 연구·프로덕트급만 둔다 (현재 WigtnOCR; GUAM은 결과 확정 시 추가). Soundmind 프로젝트 항목과
+  상세 페이지는 다시 넣지 않는다 (사용자 지시 2026-11-21; Soundmind 경력 항목은 유지).
   해커톤은 별도 **Hackathons** 섹션에 같은 `.proj` 마크업으로, meta = 행사명(+ 수상), 설명 1-2줄.
   오픈소스 개발 도구(WIGTN-Coding, LLM Loadtester)는 항목을 만들지 않고 WIGTN 경력 불릿에
   링크로 언급한다 (2026-09-26 재구성: 핵심 프로젝트 희석 방지).
-  예외: 리서치 서사가 필요한 대형 프로젝트는 `projects/soundmind.html` 패턴을 따른다 —
+  예외: 리서치 서사가 필요한 대형 프로젝트는 `projects/<name>.html` 상세 페이지를 만든다 —
   academic.css의 `detail-*` 블록 재사용, 영문, JavaScript 없음, em-dash 금지,
-  CV 항목에 `Details` 배지로 연결.
+  CV 항목에 `Details` 배지로 연결. (현재 상세 페이지 없음)
 
 ## 배포
 main 브랜치 push = GitHub Pages 배포. 커밋은 Conventional Commits (영어).
