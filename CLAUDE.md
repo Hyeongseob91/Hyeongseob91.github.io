@@ -12,7 +12,7 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 
 ## File Structure
 ```
-├── index.html          # 메인 academic 홈 (영문): about, news, publications, talks, experience, education
+├── index.html          # 메인 academic 홈 (영문): about, publications, talks, experience, education
 ├── cv.html             # CV (영문): 상세 경력 불릿 + Selected Projects + Hackathons + Awards + Certifications
 │                       #   "Download PDF" 버튼 = window.print() (print CSS는 academic.css에 정의)
 ├── academic.css        # 공용 스타일 (index + cv + 프로젝트 상세, print 스타일 포함)
@@ -22,7 +22,6 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
 │
 │  # ── 아래는 레거시 자산 (링크 해제됨, 파일만 유지) ──
 ├── styles.css, scripts.js   # 구 카드형 포트폴리오 스타일/스크립트
-├── en/                      # 구 영문 미러 포트폴리오
 ├── projects/*.html          # 구 프로젝트 상세 페이지 13개 — 필요 시 URL 직접 공유용
 ├── images/(aboutme|companies|projects)/  # 구 포트폴리오 이미지
 ├── wigtn/, docs/            # 기타 (WIGTN 소개 페이지, cover letter 초안)
@@ -91,10 +90,9 @@ al-folio 스타일의 영문 academic 페이지가 메인이며, 포지셔닝은
   Education → Honors → Certifications (연구 시그널 우선).
 - **이메일 아이콘**: 표준 `mailto:harrison@wigtn.com` (Gmail compose URL 금지).
 - 제거된 것들 (재도입 금지): K-Digital Training 항목, toy projects, Tech Report(reports/),
-  한국어 메인 페이지, "To appear"/"upcoming" 등 시한성 표기는 시점 지나면 즉시 제거.
+  한국어 메인 페이지, 구 영문 미러 포트폴리오(`en/`, 2026-11-21 삭제), "To appear"/"upcoming" 등 시한성 표기는 시점 지나면 즉시 제거.
 
 ## 새 콘텐츠 추가 패턴
-- **뉴스**: `index.html`의 `.news__list`에 `<li class="news__item">` (날짜 역순).
 - **논문**: index + cv 양쪽 publications에 `.pub` 항목 (Paper 링크 = Anthology).
 - **프로젝트**: `cv.html`의 Selected Projects에 `.proj` 항목 — meta 라벨 + 제목 +
   1-2줄 설명 + 외부 링크 배지(`.pub__links`). 상세 설명 페이지는 기본적으로 만들지 않는다.
