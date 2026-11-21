@@ -37,13 +37,13 @@ images/aboutme·companies·navigation, 프로젝트 이미지, wigtn/, docs/)과
   "Part-time"·"independent" 표현 금지 (대표를 시간제로 읽히게 함). 과거 경력에는 라벨 없음.
   Work experience 순서(index·cv 동일, 위에서부터): 현재 소속은 **Braincrew → WIGTN**
   (사용자 지시 2026-09-27; 시작일 역순과도 일치), 그 아래 과거 경력은 시작일 역순.
-  RAPIDS LAB (MODULABS)은 별도 경력 항목으로 두지 않는다 (사용자 지시 2026-11-21): GPU AutoML 연구(GUAM)는
-  WIGTN 소속으로 수행·제출한 연구이고 MODULABS는 팀을 모은 곳이다. cv의 WIGTN 불릿에
-  "with a team formed through RAPIDS LAB at MODULABS"로만 남기고, index Current positions와
-  Work experience에 RAPIDS LAB 줄을 다시 넣지 않는다. MODULABS가 연구를 지원·주관한 것처럼 읽히는
-  표현("conducted at", "affiliated with") 금지.
-  WIGTN 경력 불릿은 연구(논문 프로그램 → GPU AutoML) → AX 실행(Braincrew delivery partnership,
-  2026-09 계약) → 오픈소스 순.
+  RAPIDS LAB (MODULABS)은 Current positions와 Work experience에 두지 않는다 (사용자 지시 2026-11-21):
+  계약이나 직책 부여가 없는 랩 활동이라 경력 항목이 아니다. GPU AutoML 연구(GUAM)의 소속은
+  Modulabs RAPIDS LAB이고 WIGTN은 후원사다(채택 시 1저자 참가비 지원, 포스터에 후원 로고).
+  따라서 GUAM을 WIGTN의 연구로 쓰지 않는다: WIGTN 경력 불릿과 bio의 WIGTN 연구 범위(NLP, speech AI)에
+  GPU AutoML을 넣지 않는다. GUAM은 결과 확정 뒤 Selected Projects나 Publications에 올리고, 소속은
+  그 항목 안에서 "Modulabs RAPIDS LAB"으로 적는다.
+  WIGTN 경력 불릿은 연구 → AX 실행(Braincrew delivery partnership, 2026-09 계약) → 오픈소스 순.
   WIGTN 항목에는 최종 고객사(Hyundai Motor, SK 계열)를 쓰지 않는다: 그 계약 당사자는 Braincrew이고
   WIGTN의 레퍼런스는 Braincrew다. 고객사 실명은 Braincrew 첫 불릿에만 둔다.
   고객사는 **계약 주체**로 쓴다: "Hyundai AutoEver (Hyundai Motor Group)" (계약은 오토에버, 실사용자는
@@ -72,7 +72,7 @@ images/aboutme·companies·navigation, 프로젝트 이미지, wigtn/, docs/)과
 - **Research interests (index 한 줄 + cv 섹션 동일 문구)**: 프레임은 "AI problems enterprise clients struggle with
   in production" (기업 고객의 pain point에서 출발하는 연구, FDE형 독자를 겨냥), 뒤에 논문·연구와 1:1 대응하는
   주제어만 나열: real-time speech translation(WIGVO), document parsing for retrieval(RCPS), LLM-judge
-  evaluation(MDI), GPU-accelerated machine learning(WIGTN의 GPU AutoML 연구, GUAM). 실무 항목(production ML deployment)이나
+  evaluation(MDI), GPU-accelerated machine learning(Modulabs RAPIDS LAB의 GUAM 연구; 본인 관심사로만 적는다). 실무 항목(production ML deployment)이나
   bio가 담당하는 서사(legacy systems)는 넣지 않는다 (2026-09-27). 논문이 늘면 주제어를 추가·교체.
 - **About bio 톤**: 커리어 전환 서사(건축공학 → AI) 유지. 논문·학회명 등 성과 나열은 bio에 넣지 않는다
   (publications 섹션이 담당). 슬로건형 첫 문장 금지.
